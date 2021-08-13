@@ -19,6 +19,15 @@ English/[中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 &nbsp;&nbsp;&nbsp;&nbsp;However, due to the large amount of calculation and complex principle of FOC, a high-cost controller is required, which also makes FOC not popularized and used in many scenarios. After half a year's research and iteration, I deeply optimized a large number of calculation codes of FOC design, and re selected according to the domestic supply chain. I hope this open source project can help domestic developers use BLDC motors with excellent performance and contribute to the open source community.
 
 ***
+### Bugs & Feature Requests
+
+Please report bugs and request features using the [Issue Tracker](https://github.com/ZhuYanzhen1/miniFOC/issues) and follow these request:
+
+1. Tab highlight when on different tab.
+2. Don’t let the update disappear if the window is not in focus.
+
+
+***
 
 ### License
 

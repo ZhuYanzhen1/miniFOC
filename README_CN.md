@@ -19,6 +19,15 @@
 
 ***
 
+### BUG报告 & 功能需求
+
+请使用[Issue Tracker](https://github.com/ZhuYanzhen1/miniFOC/issues)报告错误和需求功能，并遵循以下要求：
+
+1.在不同选项卡上突出显示选项卡。
+2.如果窗口未聚焦，不要让更新消失。
+
+***
+
 ### 许可证
 
 源代码根据[GPL3.0许可证](https://github.com/ZhuYanzhen1/miniFOC/blob/main/LICENSE)发布。
