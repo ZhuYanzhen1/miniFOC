@@ -20,3 +20,12 @@ English/[中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
 ***
 
+### License
+
+The source code is released under a [GPL3.0 License](https://github.com/ZhuYanzhen1/miniFOC/blob/main/LICENSE).
+
+**Affiliation：AcmeTech<br>
+Author: Zhu Yanzhen<br>
+Maintainer：YanzhenZhu, 2208213223@qq.com**
+
+The product has been tested under Windows 10 and Ubuntu 18.04 and 20.04. This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
