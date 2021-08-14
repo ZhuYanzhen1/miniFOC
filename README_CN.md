@@ -21,7 +21,7 @@
 
 ### 开源方案对比
 
-|     开源方案     |   miniFOC    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) |
+|     开源方案     |   **miniFOC**    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) |
 | :--------------: | :----------: | :----------------------------------------------------------: | :------------------------------------------------: |
 |     主控制器     | GD32F130G6U6 |                          ATmega328P                          |                   STM32F405RGT6                    |
 |     驱动芯片     |    EG2133    |                            L6234                             |                      DRV8301                       |
@@ -30,7 +30,7 @@
 |     驱动功率     |     90W      |                             120W                             |                        960W                        |
 | 成本价格（大约） |     20¥      |                             100¥                             |                        300¥                        |
 
-
+&nbsp;&nbsp;&nbsp;&nbsp;从上表格中可以看出，**miniFOC**所采用的方案可以实现在低成本下达到较高的性能。同时由于重新根据国内的供应链进行了选型，所以在器件的选择上没有那么局限，有很多替代方案。在2021年芯片供应紧缺的情况下能将FOC的成本降至约20元，这也证明了本项目在成本上的优化程度和巨大潜力。
 
 ***
 
@@ -39,7 +39,7 @@
 + 输入电压范围：5V~18V（你可以根据这里的教程修改电路以适应更高的电压）。
 + 最大驱动电流：5A（你可以根据这里的教程修改电路以实现更大的驱动电流）。
 + FOC详细参数：无电流环控制，采用SVPWM (Space Vector Pulse Width Modulation)。
-+ 通信参数：串口通信波特率115200，采用[中容量数传协议](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README_CN.md)进行数据传输
++ 通信参数：串口通信波特率115200，采用[中容量数传协议](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README_CN.md)进行数据传输。
 
 ***
 

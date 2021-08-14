@@ -22,23 +22,25 @@ English/[中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
 ### Comparison Of Open Source Solutions
 
-|    Open source solution    |   miniFOC    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) |
+|    Open source solution    |   **miniFOC**    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) |
 | :------------------------: | :----------: | :----------------------------------------------------------: | :------------------------------------------------: |
-|           MCU(s)           | GD32F130G6U6 |                          ATmega328P                          |                   STM32F405RGT6                    |
+|      Microcontroller       | GD32F130G6U6 |                          ATmega328P                          |                   STM32F405RGT6                    |
 |        Driver chip         |    EG2133    |                            L6234                             |                      DRV8301                       |
 |     PID loop frequency     |    10kHz     |                            830Hz                             |                        8kHz                        |
 | Wheather have current loop |      No      |                              No                              |                        Yes                         |
 |       Driving power        |     90W      |                             120W                             |                        960W                        |
 |    Cost price (approx.)    |     20¥      |                             100¥                             |                        300¥                        |
 
+&nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the above table, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. In the case of chip supply shortage in 2021, the cost of FOC can be reduced to about 20¥, which also proves the cost optimization degree and great potential of the project.
+
 ***
 
 ### Performance Parameter 
 
-1. Input voltage range: 5V ~ 18V (you can modify the circuit according to the tutorial here to adapt to higher voltage).
-2. Maximum driving current: 5A (you can modify the circuit according to the tutorial here to achieve greater driving current).
-3. Detailed parameters of FOC: no current loop control, SVPWM (Space Vector Pulse Width Modulation) is adopted.
-4. Communication parameters: serial communication baud rate is 115200, and [Mid Capacity Data Transmit Protocol](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README.md) is used for data transmission
++ Input voltage range: 5V ~ 18V (you can modify the circuit according to the tutorial here to adapt to higher voltage).
++ Maximum driving current: 5A (you can modify the circuit according to the tutorial here to achieve greater driving current).
++ Detailed parameters of FOC: no current loop control, SVPWM (Space Vector Pulse Width Modulation) is adopted.
++ Communication parameters: UART baud rate is 115200, and [Mid Capacity Data Transmit Protocol](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README.md) is used for data transmission.
 
 ***
 
