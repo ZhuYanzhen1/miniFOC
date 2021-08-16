@@ -46,6 +46,18 @@
 
 ***
 
+### 开发环境
+
++ EDA工具：[立创EDA](https://lceda.cn/)（采用标准版免费许可证，无LICENSE纠纷）。
++ 编译工具链：gcc-arm-none-eabi 9-2020-q2-update
++ 烧录工具：OpenOCD 0.10.0
++ 集成开发工具：CLion 2021.2 #212.4746.93
++ 操作系统及工具链：
+  + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
+  + Ubuntu20.04 + make + cmake + gcc-arm-none-eabi + OpenOCD
+
+***
+
 ### BUG报告 & 功能需求
 
 请使用[Issue Tracker](https://github.com/ZhuYanzhen1/miniFOC/issues)报告错误和需求功能，并遵循以下要求：

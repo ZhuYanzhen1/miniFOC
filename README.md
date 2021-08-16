@@ -47,6 +47,18 @@ English/[中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
 ***
 
+### Development Environment 
+
++ EDA Tool: [EasyEDA](https://easyeda.com/) (the standard free license is adopted, and there is no license dispute).
++ Compiler tool chain: gcc-arm-none-eabi 9-2020-q2-update
++ Programming tool: OpenOCD 0.10.0
++ Integrated development tools: CLion 2021.2 #212.4746.93
++ Operating system and tool chain: 
+  + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
+  + Ubuntu20.04 + make + cmake + gcc-arm-none-eabi + OpenOCD
+
+***
+
 ### Bugs & Feature Requests
 
 Please report bugs and request features using the [Issue Tracker](https://github.com/ZhuYanzhen1/miniFOC/issues) and follow these request:
