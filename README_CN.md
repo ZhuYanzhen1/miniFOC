@@ -1,6 +1,7 @@
 # miniFOC
 
 你还在买十几块钱一个的直流有刷电机的驱动模块吗？你还在为有刷电机的高噪声、低响应速度和低寿命而烦恼吗？来看看这个项目吧，一个20块钱就能搞定的FOC无刷电机控制方案！**miniFOC**内置了力矩闭环控制器，为你提供一个通过3线串口就能控制的无刷电机控制器。本项目计划于2021年8月底完成基本功能的开发，软件及硬件设计完全遵循GPL3.0开源协议。
+
 ![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-GPL-blue.svg)
 
 [English](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README.md)/中文
@@ -40,7 +41,8 @@
 + 输入电压范围：5V~18V（你可以根据这里的教程修改电路以适应更高的电压）。
 + 最大驱动电流：5A（你可以根据这里的教程修改电路以实现更大的驱动电流）。
 + FOC详细参数：无电流环控制，采用SVPWM (Space Vector Pulse Width Modulation)。
-+ 通信参数：串口通信波特率115200，采用[中容量数传协议](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README_CN.md)进行数据传输。
++ 通信参数：UART串口通信波特率115200，采用[中容量数传协议](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README_CN.md)进行数据传输。
++ 微控制器参数：Cortex-M3内核，48MHz主频，32KB Flash，4KB  SRAM。
 
 ***
 

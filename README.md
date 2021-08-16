@@ -1,6 +1,6 @@
 # miniFOC
 
-Are you still buying a DC brushless motor drive module for more than 10￥? Are you still worried about the high noise, low response speed and low life of brush motor? Let's take a look at this project, a FOC brushless motor control scheme that can be done for 20￥!  **miniFOC** has built-in torque closed-loop controller to provide you with a brushless motor controller that can be controlled through 3-wire serial port. The project is planned to complete the development of basic functions by the end of August 2021. The software and hardware design fully comply with the GPL3.0 License.
+Are you still buying a DC brushless motor drive module for more than 10￥? Are you still worried about the high noise, low response speed and low life of brush motor? Let's take a look at this project, a FOC brushless motor control scheme that can be done for 20￥!  **miniFOC** has built-in torque closed-loop controller to provide you with a brushless motor controller that can be controlled through 3-wire serial port. The project is planned to complete the development of basic functions by the end of August 2021. The software and hardware design fully comply with the GPL3.0 License.<br>
 
 ![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-GPL-blue.svg)
 
@@ -43,6 +43,7 @@ English/[中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 + Maximum driving current: 5A (you can modify the circuit according to the tutorial here to achieve greater driving current).
 + Detailed parameters of FOC: no current loop control, SVPWM (Space Vector Pulse Width Modulation) is adopted.
 + Communication parameters: UART baud rate is 115200, and [Mid Capacity Data Transmit Protocol](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README.md) is used for data transmission.
++  Microcontroller parameters: Cortex-M3 core, 48MHz frequency, 32KB FLASH, 4KB SRAM. 
 
 ***
 
