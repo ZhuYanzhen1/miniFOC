@@ -35,14 +35,14 @@ jobs:
       - name: Upload Hex
         uses: actions/upload-artifact@v2
         with:
-          name: miniFOC.hex
+          name: miniFOC-hex
           path: build/miniFOC.hex
   deploy:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: miniFOC.hex
+          name: miniFOC-hex
           path: ./
       - name: check file
         run: ls -a
