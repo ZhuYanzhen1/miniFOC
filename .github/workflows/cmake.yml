@@ -7,25 +7,24 @@ on:
     branches: [ main ]
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally
-    # well on Windows or Mac.  You can convert this to a matrix build if you need
-    # cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: ubuntu-latest
-
+    runs-on:ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-
     - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: mkdir build && cd build && cmake ../program
-
+      run: |
+      ls -a
+      apt-get update && apt-get -y upgrade && apt-get install -y cmake gcc g++ automake autoconf libtool make build-essential wget
+      wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+      tar jxf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+      mv gcc-arm-none-eabi-9-2020-q2-update /builds/dynamicx/rm_power_manager/gcc-arm-none-eabi
+      PATH="$PATH:/builds/dynamicx/rm_power_manager/gcc-arm-none-eabi/bin" && echo $PATH
+      ls -a
+      mkdir build && cd build && cmake ../program
     - name: Build
-      # Build your program with the given configuration
-      run: make
+      run: |
+      ls -a
+      make
