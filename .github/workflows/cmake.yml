@@ -38,6 +38,7 @@ jobs:
           name: miniFOC-hex
           path: build/miniFOC.hex
   deploy:
+    needs: build
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/download-artifact@v2
