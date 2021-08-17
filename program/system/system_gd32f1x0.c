@@ -43,8 +43,8 @@
 /* select a system clock by uncommenting the following line */
 //#define __SYSTEM_CLOCK_8M_HXTAL              (__HXTAL)
 //#define __SYSTEM_CLOCK_8M_IRC8M              (__IRC8M)
-#define __SYSTEM_CLOCK_72M_PLL_HXTAL         (uint32_t)(72000000)
-//#define __SYSTEM_CLOCK_72M_PLL_IRC8M_DIV2    (uint32_t)(72000000)
+//#define __SYSTEM_CLOCK_72M_PLL_HXTAL         (uint32_t)(72000000)
+#define __SYSTEM_CLOCK_72M_PLL_IRC8M_DIV2    (uint32_t)(72000000)
 
 #define SEL_IRC8M       0x00
 #define SEL_HXTAL       0x01
@@ -74,15 +74,14 @@ static void system_clock_config(void);
     \param[out] none
     \retval     none
 */
-void SystemInit (void)
-{
+void SystemInit(void) {
     /* enable IRC8M */
     RCU_CTL0 |= RCU_CTL0_IRC8MEN;
-    while(0U == (RCU_CTL0 & RCU_CTL0_IRC8MSTB)){
+    while (0U == (RCU_CTL0 & RCU_CTL0_IRC8MSTB)) {
     }
     /* reset RCU */
 #ifdef GD32F130_150
-    RCU_CFG0 &= ~(RCU_CFG0_SCS | RCU_CFG0_AHBPSC | RCU_CFG0_APB1PSC | RCU_CFG0_APB2PSC |\
+    RCU_CFG0 &= ~(RCU_CFG0_SCS | RCU_CFG0_AHBPSC | RCU_CFG0_APB1PSC | RCU_CFG0_APB2PSC | \
                   RCU_CFG0_ADCPSC | RCU_CFG0_CKOUTSEL | RCU_CFG0_CKOUTDIV | RCU_CFG0_PLLDV);
 #elif defined (GD32F170_190)
     RCU_CFG0 &= ~(RCU_CFG0_SCS | RCU_CFG0_AHBPSC | RCU_CFG0_APB1PSC | RCU_CFG0_APB2PSC |\
@@ -104,7 +103,7 @@ void SystemInit (void)
     RCU_CFG3 &= ~RCU_CFG3_CKOUT1DIV;
 #endif /* GD32F130_150 */
     RCU_INT = 0x00000000U;
-    
+
     /* configure system clock */
     system_clock_config();
 }
@@ -115,8 +114,7 @@ void SystemInit (void)
     \param[out] none
     \retval     none
 */
-static void system_clock_config(void)
-{
+static void system_clock_config(void) {
 #ifdef __SYSTEM_CLOCK_8M_HXTAL
     system_clock_8m_hxtal();
 #elif defined (__SYSTEM_CLOCK_72M_PLL_HXTAL)
@@ -227,8 +225,7 @@ static void system_clock_72m_hxtal(void)
     \param[out] none
     \retval     none
 */
-static void system_clock_72m_irc8m(void)
-{
+static void system_clock_72m_irc8m(void) {
     /* AHB = SYSCLK */
     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
     /* APB2 = AHB */
@@ -238,19 +235,19 @@ static void system_clock_72m_irc8m(void)
     /* PLL = (IRC8M/2) * 18 = 72 MHz */
     RCU_CFG0 &= ~(RCU_CFG0_PLLSEL | RCU_CFG0_PLLMF);
     RCU_CFG0 |= (RCU_PLLSRC_IRC8M_DIV2 | RCU_PLL_MUL18);
-    
+
     /* enable PLL */
     RCU_CTL0 |= RCU_CTL0_PLLEN;
 
     /* wait until PLL is stable */
-    while(0 == (RCU_CTL0 & RCU_CTL0_PLLSTB));
+    while (0 == (RCU_CTL0 & RCU_CTL0_PLLSTB));
 
     /* select PLL as system clock */
     RCU_CFG0 &= ~RCU_CFG0_SCS;
     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
 
     /* wait until PLL is selected as system clock */
-    while(0 == (RCU_CFG0 & RCU_SCSS_PLL));
+    while (0 == (RCU_CFG0 & RCU_SCSS_PLL));
 }
 
 #else
@@ -284,47 +281,43 @@ static void system_clock_8m_irc8m(void)
     \param[out] none
     \retval     none
 */
-void SystemCoreClockUpdate (void)
-{
+void SystemCoreClockUpdate(void) {
     uint32_t sws = 0U;
     uint32_t pllmf = 0U, pllmf4 = 0U, pllsel = 0U, prediv = 0U, idx = 0U, clk_exp = 0U;
     /* exponent of AHB clock divider */
     const uint8_t ahb_exp[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
-    
+
     sws = GET_BITS(RCU_CFG0, 2, 3);
-    switch(sws){
-    /* IRC8M is selected as CK_SYS */
-    case SEL_IRC8M:
-        SystemCoreClock = IRC8M_VALUE;
-        break;
-    /* HXTAL is selected as CK_SYS */
-    case SEL_HXTAL:
-        SystemCoreClock = HXTAL_VALUE;
-        break;
-    /* PLL is selected as CK_SYS */
-    case SEL_PLL:
-        /* get the value of PLLMF[3:0] */
-        pllmf = GET_BITS(RCU_CFG0, 18, 21);
-        pllmf4 = GET_BITS(RCU_CFG0, 27, 27);
-        /* high 16 bits */
-        if(1U == pllmf4){
-            pllmf += 17U;
-        }else{
-            pllmf += 2U;
-        }
-        /* PLL clock source selection, HXTAL or IRC8M/2 */
-        pllsel = GET_BITS(RCU_CFG0, 16, 16);
-        if(0U != pllsel){
-            prediv = (GET_BITS(RCU_CFG1, 0, 3) + 1U);
-            SystemCoreClock = (HXTAL_VALUE / prediv) * pllmf;
-        }else{
-            SystemCoreClock = (IRC8M_VALUE >> 1) * pllmf;
-        }
-        break;
-    /* IRC8M is selected as CK_SYS */
-    default:
-        SystemCoreClock = IRC8M_VALUE;
-        break;
+    switch (sws) {
+        /* IRC8M is selected as CK_SYS */
+        case SEL_IRC8M:SystemCoreClock = IRC8M_VALUE;
+            break;
+            /* HXTAL is selected as CK_SYS */
+        case SEL_HXTAL:SystemCoreClock = HXTAL_VALUE;
+            break;
+            /* PLL is selected as CK_SYS */
+        case SEL_PLL:
+            /* get the value of PLLMF[3:0] */
+            pllmf = GET_BITS(RCU_CFG0, 18, 21);
+            pllmf4 = GET_BITS(RCU_CFG0, 27, 27);
+            /* high 16 bits */
+            if (1U == pllmf4) {
+                pllmf += 17U;
+            } else {
+                pllmf += 2U;
+            }
+            /* PLL clock source selection, HXTAL or IRC8M/2 */
+            pllsel = GET_BITS(RCU_CFG0, 16, 16);
+            if (0U != pllsel) {
+                prediv = (GET_BITS(RCU_CFG1, 0, 3) + 1U);
+                SystemCoreClock = (HXTAL_VALUE / prediv) * pllmf;
+            } else {
+                SystemCoreClock = (IRC8M_VALUE >> 1) * pllmf;
+            }
+            break;
+            /* IRC8M is selected as CK_SYS */
+        default:SystemCoreClock = IRC8M_VALUE;
+            break;
     }
     /* calculate AHB clock frequency */
     idx = GET_BITS(RCU_CFG0, 4, 7);

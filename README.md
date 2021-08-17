@@ -51,7 +51,7 @@ English/[中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
 + EDA Tool: [EasyEDA](https://easyeda.com/) (the standard free license is adopted, and there is no license dispute).
 + Compiler tool chain: gcc-arm-none-eabi 9-2020-q2-update
-+ Programming tool: OpenOCD 0.10.0
++ Programming tool: OpenOCD 0.11.0-1
 + Integrated development tools: CLion 2021.2 #212.4746.93
 + Operating system and tool chain: 
   + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
