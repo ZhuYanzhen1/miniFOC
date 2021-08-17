@@ -27,13 +27,13 @@ jobs:
         run: |
           PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
           mkdir build -p && cd build && cmake ../program
-      - name: Build
+      - name: Build Hex
         run: |
           PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
           cd build && ls && make
           ls
-      - name: Deploy to gh-pages
-      - uses: actions/upload-artifact@v2
+      - name: Upload Hex
+        uses: actions/upload-artifact@v2
         with:
-          name: agileconfig-ui
+          name: miniFOC.hex
           path: build/miniFOC.hex
