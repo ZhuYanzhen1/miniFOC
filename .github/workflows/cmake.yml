@@ -17,7 +17,7 @@ jobs:
       - name: Configure Software
         run: |
           sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get install -y cmake gcc g++ automake autoconf libtool make build-essential wget
-          wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+          wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
       - name: Install Compiler
         run: |
           tar jxf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
@@ -32,3 +32,8 @@ jobs:
           PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
           cd build && ls && make
           ls
+      - name: Deploy to gh-pages
+      - uses: actions/upload-artifact@v2
+        with:
+          name: agileconfig-ui
+          path: build/miniFOC.hex
