@@ -21,12 +21,12 @@ jobs:
           ls
       - name: Install Compiler
         run: |
-          tar jxf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+          ls && tar jxf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
           mv gcc-arm-none-eabi-9-2020-q2-update ./gcc-arm-none-eabi
           rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
-          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH
+          PATH="$PATH:/home/runner/work/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH
           pwd && ls
       - name: Configure CMake
-        run: mkdir build && cd build && cmake ../program
+        run: ls && echo $PATH && mkdir build && cd build && cmake ../program
       - name: Build
         run: ls && make
