@@ -1,7 +1,7 @@
 title: Firmware Publish Site
 author: Yanzhen Zhu
 email: 2208213223@qq.com
-url: https://zhuyanzhen1.github.io/miniFOC/
+url: https://zhuyanzhen1.github.io/miniFOC/index
 baseurl: ""
 description: > # description of the site (multiple lines allowed)
   A (nearly) no-CSS, fast, minimalist Jekyll theme.
@@ -13,7 +13,7 @@ remote_theme: riggraz/no-style-please
 
 theme_config:
   appearance: "auto" # can be "light", "dark" or "auto"
-  back_home_text: ".." # customize text for homepage link in post layout
+  back_home_text: "Home" # customize text for homepage link in post layout
   date_format: "%Y-%m-%d" # customize how date is formatted
   show_description: false # show blog description in home page
 
