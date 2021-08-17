@@ -24,6 +24,11 @@ jobs:
           mv gcc-arm-none-eabi-9-2020-q2-update ./gcc-arm-none-eabi
           rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
       - name: Configure CMake
-        run: PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH && mkdir build && cd build && cmake ../program
+        run: |
+          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
+          mkdir build -p && cd build && cmake ../program
       - name: Build
-        run: ls && make
+        run: |
+          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
+          cd build && ls && make
+          ls
