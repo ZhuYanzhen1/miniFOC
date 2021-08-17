@@ -1,8 +1,6 @@
 # miniFOC
 
-![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)
-
-English/[中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
+![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
 &nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brushless motor drive module for more than 10￥? Are you still worried about the high noise, low response speed and low life of brush motor? Let's take a look at this project, a FOC brushless motor control scheme that can be done for 20￥!  **miniFOC** has built-in torque closed-loop controller to provide you with a brushless motor controller that can be controlled through 3-wire serial port. The project is planned to complete the development of basic functions by the end of August 2021. The software and hardware design fully comply with the AGPL-3.0 License.
 
