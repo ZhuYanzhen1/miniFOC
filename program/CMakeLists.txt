@@ -4,7 +4,6 @@ cmake_minimum_required(VERSION 3.17)
 
 # specify cross compilers and tools
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
-set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(CMAKE_ASM_COMPILER arm-none-eabi-gcc)
 set(CMAKE_AR arm-none-eabi-ar)
 set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
@@ -21,13 +20,13 @@ add_compile_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
 add_compile_options(-Ofast)
 
-include_directories(user system lib/inc device hardware)
+include_directories(system library/inc)
 
-add_definitions(-DUSE_HAL_DRIVER -DGD32F10X_MD -DDEBUG)
+add_definitions(-DUSE_STDPERIPH_DRIVER -DGD32F130_150)
 
-file(GLOB_RECURSE SOURCES "library/src/*.c")
+file(GLOB_RECURSE SOURCES "library/src/*.c" "system/*.c" "main.c" "system/startup_gd32f130.s")
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/GD32F103TB_FLASH.ld)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/GD32F130G6.ld)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork)
