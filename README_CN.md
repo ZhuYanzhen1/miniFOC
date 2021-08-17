@@ -1,8 +1,8 @@
 # miniFOC
 
-你还在买十几块钱一个的直流有刷电机的驱动模块吗？你还在为有刷电机的高噪声、低响应速度和低寿命而烦恼吗？来看看这个项目吧，一个20块钱就能搞定的FOC无刷电机控制方案！**miniFOC**内置了力矩闭环控制器，为你提供一个通过3线串口就能控制的无刷电机控制器。本项目计划于2021年8月底完成基本功能的开发，软件及硬件设计完全遵循GPL3.0开源协议。
+你还在买十几块钱一个的直流有刷电机的驱动模块吗？你还在为有刷电机的高噪声、低响应速度和低寿命而烦恼吗？来看看这个项目吧，一个20块钱就能搞定的FOC无刷电机控制方案！**miniFOC**内置了力矩闭环控制器，为你提供一个通过3线串口就能控制的无刷电机控制器。本项目计划于2021年8月底完成基本功能的开发，软件及硬件设计完全遵循AGPL-3.0开源协议。
 
-![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-GPL-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)
 
 [English](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README.md)/中文
 
@@ -75,7 +75,7 @@
 
 ### 许可证
 
-源代码根据[GPL3.0许可证](https://github.com/ZhuYanzhen1/miniFOC/blob/main/LICENSE)发布。
+源代码根据[AGPL-3.0许可证](https://github.com/ZhuYanzhen1/miniFOC/blob/main/LICENSE)发布。
 
 **组织：AcmeTech <br>
 作者：朱彦臻<br>
