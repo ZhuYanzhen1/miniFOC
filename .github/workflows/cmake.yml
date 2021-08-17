@@ -18,15 +18,12 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get install -y cmake gcc g++ automake autoconf libtool make build-essential wget
           wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
-          ls
       - name: Install Compiler
         run: |
-          ls && tar jxf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+          tar jxf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
           mv gcc-arm-none-eabi-9-2020-q2-update ./gcc-arm-none-eabi
           rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
-          PATH="$PATH:/home/runner/work/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH
-          pwd && ls
       - name: Configure CMake
-        run: ls && echo $PATH && mkdir build && cd build && cmake ../program
+        run: PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH && mkdir build && cd build && cmake ../program
       - name: Build
         run: ls && make
