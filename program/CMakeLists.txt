@@ -16,7 +16,7 @@ project(miniFOC C ASM)
 set(CMAKE_C_STANDARD 11)
 
 add_compile_options(-mfloat-abi=soft)
-add_compile_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork)
+add_compile_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork -specs=nosys.specs)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
 add_compile_options(-Ofast)
 

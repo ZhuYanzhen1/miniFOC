@@ -40,6 +40,7 @@ SECTIONS
 
     . = ALIGN(4);
     _etext = .;        /* define a global symbols at end of code */
+    _exit = .;
   } >FLASH
 
   /* Constant data into "FLASH" Rom type memory */
