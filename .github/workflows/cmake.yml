@@ -14,19 +14,19 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Configure CMake
+      - name: Configure Software
         run: |
-          ls -a
           sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get install -y cmake gcc g++ automake autoconf libtool make build-essential wget
           wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+          ls
+      - name: Install Compiler
+        run: |
           tar jxf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
           mv gcc-arm-none-eabi-9-2020-q2-update ./gcc-arm-none-eabi
           rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
-          pwd
-          PATH="$PATH:/builds/dynamicx/rm_power_manager/gcc-arm-none-eabi/bin" && echo $PATH
-          ls -a
-          mkdir build && cd build && cmake ../program
+          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH
+          pwd && ls
+      - name: Configure CMake
+        run: mkdir build && cd build && cmake ../program
       - name: Build
-        run: |
-          ls -a
-          make
+        run: ls && make
