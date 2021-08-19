@@ -1,4 +1,4 @@
-![LOGO](https://github.com/ZhuYanzhen1/miniFOC/blob/main/image/LOGO.png)
+![LOGO](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC/main/image/LOGO.png)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[English](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README.md) / 中文
 
@@ -59,6 +59,8 @@
 ### 入门指南
 
 入门请参考本项目的[wiki页面](https://github.com/ZhuYanzhen1/miniFOC/wiki)。
+
+我们还提供了[国内镜像](https://gitee.com/zhuyanzhen1/mini-foc)地址。
 
 ***
 
