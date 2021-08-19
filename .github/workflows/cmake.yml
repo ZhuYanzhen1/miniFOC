@@ -1,10 +1,8 @@
 name: CMake
 
 on:
-  push:
-    branches: [ main ]
   schedule:
-    - cron: '0 21 * * *'
+    - cron: '0 24 * * *'
 
 env:
   BUILD_TYPE: Release
