@@ -29,7 +29,7 @@ file(GLOB_RECURSE SOURCES "library/src/*.c" "system/*.c" "main.c" "system/startu
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/GD32F130G6.ld)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
-add_link_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork)
+add_link_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork --specs=nano.specs)
 add_link_options(-T ${LINKER_SCRIPT})
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
