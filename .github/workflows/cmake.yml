@@ -48,7 +48,9 @@ jobs:
 #          name: miniFOC-hex
 #          path: ./
       - name: Initialize Git
+        env: # Or as an environment variable
+          GITEE_KEY_ENV: ${{ secrets.GITEE_KEY }}
         run: |
-          mkdir -p ~/.ssh && echo ${{ secrets.GITEE_KEY }} > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa && sudo apt install -y git
-          git clone git@gitee.com:zhuyanzhen1/minifoc_firmware.git && ls && cd minifoc_firmware && ls
+          mkdir -p ~/.ssh && echo $GITEE_KEY_ENV > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa && sudo apt install -y git
+          git clone git@gitee.com:zhuyanzhen1/minifoc_firmware.git && ls && cd minifoc_firmware && ls && echo "\n\n$GITHUB_WORKFLOW"
 #          wget -O git_ssh.sh https://raw.githubusercontent.com/alvinabad/utils/master/bin/git.sh && sudo chmod +x git_ssh.sh
