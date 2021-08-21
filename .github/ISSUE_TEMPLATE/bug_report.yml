@@ -6,35 +6,17 @@ body:
     id: ensure
     attributes:
       label: Verify steps
-      description: "
-在提交之前，请确认
-Please verify that you've followed these steps
-"
+      description: "在提交之前，请确认： <br>Please verify that you've followed these steps:<br>"
       options:
-        - label: "
-如果你可以自己 debug 并解决的话，提交 PR 吧
-Is this something you can **debug and fix**? Send a pull request! Bug fixes and documentation fixes are welcome.
-"
+        - label: "如果你可以自己 debug 并解决的话，提交 PR 吧。 <br>Is this something you can **debug and fix**? Send a pull request! Bug fixes and documentation fixes are welcome."
           required: true
-        - label: "
-我已经在 [Issue Tracker](……/) 中找过我要提出的问题
-I have searched on the [issue tracker](……/) for a related issue.
-"
+        - label: "我已经在 [Issue Tracker](……/) 中找过我要提出的问题。<br>I have searched on the [issue tracker](……/) for a related issue."
           required: true
-        - label: "
-我已经使用 dev 分支版本测试过，问题依旧存在
-I have tested using the dev branch, and the issue still exists.
-"
+        - label: "我已经使用 dev 分支版本测试过，问题依旧存在。 <br>I have tested using the dev branch, and the issue still exists."
           required: true
-        - label: "
-我已经仔细看过 [Documentation](https://github.com/ZhuYanzhen1/miniFOC/wiki) 并无法自行解决问题
-I have read the [documentation](https://github.com/ZhuYanzhen1/miniFOC/wiki) and was unable to solve the issue.
-"
+        - label: "我已经仔细看过 [Documentation](https://github.com/ZhuYanzhen1/miniFOC/wiki) 并无法自行解决问题。 <br>I have read the [documentation](https://github.com/ZhuYanzhen1/miniFOC/wiki) and was unable to solve the issue."
           required: true
-        - label: "
-这是 miniFOC 核心的问题，并非我所使用的 miniFOC 衍生版本的特定问题
-This is an issue of the miniFOC core *per se*, not to the derivatives of miniFOC.
-"
+        - label: "这是 miniFOC 核心的问题，并非我所使用的 miniFOC 衍生版本的特定问题。  <br>This is an issue of the miniFOC core, not to the derivatives of miniFOC."
           required: true
   - type: input
     attributes:
@@ -53,21 +35,15 @@ This is an issue of the miniFOC core *per se*, not to the derivatives of miniFOC
   - type: textarea
     attributes:
       render: yaml
-      label: "Clash config"
-      description: "
-在下方附上 config.h 脱敏后配置文件的内容
-Paste the miniFOC config.h file content below.
-"
+      label: "miniFOC config"
+      description: "在下方附上 config.h 脱敏后配置文件的内容。 <br>Paste the miniFOC config.h file content below."
     validations:
       required: true
   - type: textarea
     attributes:
       render: shell
-      label: Clash log
-      description: "
-在下方附上 miniFOC 从串口返回的日志信息，log level 使用 DEBUG
-Paste the miniFOC log from UART below with the log level set to `DEBUG`.
-"
+      label: miniFOC log
+      description: "在下方附上 miniFOC 从串口返回的日志信息，log level 使用 DEBUG。 <br>Paste the miniFOC log from UART below with the log level set to `DEBUG`."
   - type: textarea
     attributes:
       label: Description
