@@ -55,11 +55,12 @@ jobs:
           git clone git@gitee.com:zhuyanzhen1/minifoc_firmware.git
       - name: Upload Firmware
         run: |
-          mv miniFOC.hex $filename && cd minifoc_firmware && currentdate=$(date +%Y%m%d) && filename="./minifoc_firmware/"$currentdate".hex"
+          currentmonth=$(date +%Y%m) && mkdir -p $currentmonth
+          mv miniFOC.hex $filename && cd minifoc_firmware && currentdate=$(date +%Y%m%d) && filename="./minifoc_firmware/"$currentmonth'/'$currentdate".hex"
           git config --global user.email "2208213223@qq.com" && git config --global user.name "LaoZhu"
           git add . && git commit -m "Upload new firmware from Github Actions" && git push origin master
       - name: Update Pages
         run: |
-          currentdate=$(date +%Y%m%d) && filestr="/&nbsp;/a\\r\n+ "$currentdate".hex"
+          currentdate=$(date +%Y%m%d) && filestr="/&nbsp;/a\\r\n+ ["$currentdate"](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/main/"$currentmonth'/'$currentdate".hex)"
           sed -i '$filestr' ./docs/index.md && echo ($filestr) && cat ./docs/index.md
           
