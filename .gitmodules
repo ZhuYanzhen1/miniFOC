@@ -1,0 +1,3 @@
+[submodule "firmware"]
+	path = firmware
+	url = https://gitee.com/zhuyanzhen1/minifoc_firmware.git
