@@ -63,10 +63,11 @@ jobs:
       - name: Update Pages
         env: 
           LOCAL_REPO_KEY_ENV: ${{ secrets.LOCAL_REPO_KEY }}
+          COMMIT_INFO: ${{ github.event.commits[0].message }}
         run: |
           ls && cd firmware && ls && cd ..
           currentdate=$(date +%Y%m%d) && currentmonth=$(date +%Y%m)
-          filestr="/下载&nbsp;/a\ \r\n+ ["$currentdate"](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/main/"$currentmonth'/'$currentdate".hex)"
+          filestr="/下载&nbsp;/a\ \r\n+ ["$currentdate"](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/"$currentmonth'/'$currentdate".hex): "$COMMIT_INFO
           sed -i "$filestr" ./docs/index.md && echo $filestr && rm ~/.ssh/id_rsa
           echo "$LOCAL_REPO_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
           git add . && git commit -m "Update new firmware link to Github Pages" && git push origin main
