@@ -163,31 +163,6 @@ g_pfnVectors:
   .word CAN0_SCE_IRQHandler
   .word SLCD_IRQHandler
   .word DMA_Channel5_6_IRQHandler
-  .word 0
-  .word 0
-  .word SPI2_IRQHandler
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word 0
-  .word CAN1_TX_IRQHandler
-  .word CAN1_RX0_IRQHandler
-  .word CAN1_RX1_IRQHandler
-  .word CAN1_SCE_IRQHandler
 /*******************************************************************************
 *
 * Provide weak aliases for each Exception handler to the Default_Handler.
@@ -348,19 +323,3 @@ g_pfnVectors:
 
   .weak DMA_Channel5_6_IRQHandler
   .thumb_set DMA_Channel5_6_IRQHandler,Default_Handler
-
-  .weak SPI2_IRQHandler
-  .thumb_set SPI2_IRQHandler,Default_Handler
-
-  .weak CAN1_TX_IRQHandler
-  .thumb_set CAN1_TX_IRQHandler,Default_Handler
-
-  .weak CAN1_RX0_IRQHandler
-  .thumb_set CAN1_RX0_IRQHandler,Default_Handler
-
-  .weak CAN1_RX1_IRQHandler
-  .thumb_set CAN1_RX1_IRQHandler,Default_Handler
-
-  .weak CAN1_SCE_IRQHandler
-  .thumb_set CAN1_SCE_IRQHandler,Default_Handler
-
