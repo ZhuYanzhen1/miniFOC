@@ -31,8 +31,7 @@ jobs:
       - name: Build Hex
         run: |
           PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
-          cd build && ls && make
-          ls
+          cd build && ls && make && ls
       - name: Upload Hex
         uses: actions/upload-artifact@v2
         with:
@@ -42,6 +41,7 @@ jobs:
     needs: build
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
         with:
           name: miniFOC-hex
@@ -52,18 +52,17 @@ jobs:
         run: |
           mkdir -p ~/.ssh && echo "$GITEE_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
           export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
-          git clone git@gitee.com:zhuyanzhen1/minifoc_firmware.git
+          git clone git@gitee.com:zhuyanzhen1/minifoc_firmware.git && ls
       - name: Upload Firmware
         run: |
           currentmonth=$(date +%Y%m) && currentdate=$(date +%Y%m%d) && filename="./minifoc_firmware/"$currentmonth'/'$currentdate".hex"
-          mkdir -p $currentmonth && mv miniFOC.hex $filename && cd minifoc_firmware
+          cd minifoc_firmware && mkdir -p $currentmonth && cd .. && mv miniFOC.hex $filename && cd minifoc_firmware
           git config --global user.email "2208213223@qq.com" && git config --global user.name "LaoZhu"
           git add . && git commit -m "Upload new firmware from Github Actions" && git push origin master
           cd .. && ls
-      - uses: actions/checkout@v2
       - name: Update Pages
         run: |
-          ls && cd minifoc_firmware && ls && cd ..
+          ls && cd firmware && ls && cd ..
           currentdate=$(date +%Y%m%d) && filestr="/&nbsp;/a\\r\n+ ["$currentdate"](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/main/"$currentmonth'/'$currentdate".hex)"
           sed -i '$filestr' ./docs/index.md && echo ($filestr) && cat ./docs/index.md
           
