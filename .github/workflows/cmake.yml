@@ -43,5 +43,8 @@ jobs:
         with:
           name: miniFOC-hex
           path: ./
-      - name: check file
-        run: ls -a
+      - name: Initialize Git
+        run: |
+          touch ~/.id_rsa && echo ${{ secrets.GITEE_KEY }} >> ~/.id_rsa.txt && cat ~/.id_rsa.txt && sudo apt install -y git wget
+          wget -O git_ssh.sh https://raw.githubusercontent.com/alvinabad/utils/master/bin/git.sh && sudo chmod +x git_ssh.sh
+          git_ssh.sh -i ~/.id_rsa.txt clone git@gitee.com:zhuyanzhen1/minifoc_firmware.git && ls && cd minifoc_firmware && ls
