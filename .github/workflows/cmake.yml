@@ -1,8 +1,6 @@
 name: CMake
 
 on:
-  push:
-    branches: main
   schedule:
     - cron: '0 23 * * *'
 
@@ -10,45 +8,45 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-#  build:
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 1
-#      - name: Configure Software
-#        run: |
-#          sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get install -y cmake gcc g++ automake autoconf libtool make build-essential wget
-#          wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
-#      - name: Install Compiler
-#        run: |
-#          tar jxf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
-#          mv gcc-arm-none-eabi-10-2020-q4-major ./gcc-arm-none-eabi
-#          rm gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
-#      - name: Configure CMake
-#        run: |
-#          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
-#          mkdir build -p && cd build && cmake ../program
-#      - name: Build Hex
-#        run: |
-#          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
-#          cd build && ls && make
-#          ls
-#      - name: Upload Hex
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: miniFOC-hex
-#          path: build/miniFOC.hex
-  deploy:
-#    needs: build
+  build:
     runs-on: ubuntu-20.04
     steps:
-#      - uses: actions/download-artifact@v2
-#        with:
-#          name: miniFOC-hex
-#          path: ./
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Configure Software
+        run: |
+          sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get install -y cmake gcc g++ automake autoconf libtool make build-essential wget
+          wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+      - name: Install Compiler
+        run: |
+          tar jxf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+          mv gcc-arm-none-eabi-10-2020-q4-major ./gcc-arm-none-eabi
+          rm gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+      - name: Configure CMake
+        run: |
+          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
+          mkdir build -p && cd build && cmake ../program
+      - name: Build Hex
+        run: |
+          PATH="$PATH:/home/runner/work/miniFOC/miniFOC/gcc-arm-none-eabi/bin" && echo $PATH 
+          cd build && ls && make
+          ls
+      - name: Upload Hex
+        uses: actions/upload-artifact@v2
+        with:
+          name: miniFOC-hex
+          path: build/miniFOC.hex
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: miniFOC-hex
+          path: ./
       - name: Initialize Git
-        env: # Or as an environment variable
+        env:
           GITEE_KEY_ENV: ${{ secrets.GITEE_KEY }}
         run: |
           touch miniFOC.hex
