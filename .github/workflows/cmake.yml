@@ -2,7 +2,7 @@ name: CMake
 
 on:
   schedule:
-    - cron: '0 23 * * *'
+    - cron: '0 13 * * *'
 
 env:
   BUILD_TYPE: Release
