@@ -1,4 +1,4 @@
-name: CMake
+name: Compile Firmware
 
 on:
   workflow_dispatch:
@@ -65,10 +65,9 @@ jobs:
           LOCAL_REPO_KEY_ENV: ${{ secrets.LOCAL_REPO_KEY }}
           COMMIT_INFO: ${{ github.event.commits[0].message }}
         run: |
-          ls && cd firmware && ls && cd ..
-          currentdate=$(date +%Y%m%d) && currentmonth=$(date +%Y%m)
-          filestr="/下载&nbsp;/a\ \r\n+ ["$currentdate"](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/"$currentmonth'/'$currentdate".hex): "
-          sed -i "$filestr$COMMIT_INFO" ./docs/index.md && echo $filestr$COMMIT_INFO && rm ~/.ssh/id_rsa
+          ls && currentdate=$(date +%Y%m%d) && currentmonth=$(date +%Y%m) && commit_information=${COMMIT_INFO#*]}
+          filestr="/下载&nbsp;/a\ \r\n+ ["$currentdate"](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/"$currentmonth'/'$currentdate".hex): "$commit_information
+          sed -i "$filestr" ./docs/index.md && echo $filestr && rm ~/.ssh/id_rsa
           echo "$LOCAL_REPO_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
           git add . && git commit -m "Update new firmware link to Github Pages" && git push origin main
-          ehco $COMMIT_INFO
+          echo $commit_information
