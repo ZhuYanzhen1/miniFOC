@@ -20,7 +20,7 @@ add_compile_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork -specs=nosys.specs
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
 add_compile_options(-Ofast)
 
-include_directories(system library/inc)
+include_directories(system library/inc hardware)
 
 add_definitions(-DUSE_STDPERIPH_DRIVER -DGD32F130_150)
 
