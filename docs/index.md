@@ -10,4 +10,6 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210823](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210823.hex): c774ad1 Add macro definition of LED level toggle.
+ 
 + [20210822](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210822.hex): c625232 Delete testing files
