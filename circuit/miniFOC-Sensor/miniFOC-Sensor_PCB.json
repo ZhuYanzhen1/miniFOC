@@ -137,8 +137,8 @@
     "Default": {
       "trackWidth": 1,
       "clearance": 0.5984,
-      "viaHoleDiameter": 2.4016,
-      "viaHoleD": 1.2008
+      "viaHoleDiameter": 2.3622,
+      "viaHoleD": 1.1811
     },
     "isRealtime": true,
     "isDrcOnRoutingOrPlaceVia": false,
