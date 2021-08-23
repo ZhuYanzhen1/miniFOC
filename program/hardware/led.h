@@ -11,5 +11,6 @@
 
 #define led_on()        gpio_bit_reset(GPIOB, GPIO_PIN_5)
 #define led_off()       gpio_bit_set(GPIOB, GPIO_PIN_5)
+#define led_toggle()    gpio_bit_write(GPIOB, GPIO_PIN_5, !gpio_output_bit_get(GPIOB, GPIO_PIN_5))
 
 #endif //MINIFOC_HARDWARE_LED_H_
