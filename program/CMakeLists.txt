@@ -20,11 +20,12 @@ add_compile_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork -specs=nosys.specs
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
 add_compile_options(-Ofast)
 
-include_directories(system library/inc hardware)
+include_directories(system library/inc hardware ./)
 
 add_definitions(-DUSE_STDPERIPH_DRIVER -DGD32F130_150)
 
-file(GLOB_RECURSE SOURCES "library/src/*.c" "system/*.c" "main.c" "system/startup_gd32f130.s")
+file(GLOB_RECURSE SOURCES "library/src/*.c" "system/*.c" "main.c"
+        "system/startup_gd32f130.s" "hardware/*.c")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/GD32F130G6.ld)
 

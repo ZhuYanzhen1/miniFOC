@@ -15,20 +15,7 @@
 #ifndef GD32F1X0_LIBOPT_H
 #define GD32F1X0_LIBOPT_H
 
-//#include "gd32f1x0_adc.h"
-//#include "gd32f1x0_cec.h"
-//#include "gd32f1x0_crc.h"
-//#include "gd32f1x0_cmp.h"
-//#include "gd32f1x0_dac.h"
-//#include "gd32f1x0_fmc.h"
-//#include "gd32f1x0_fwdgt.h"
-//#include "gd32f1x0_rtc.h"
-//#include "gd32f1x0_wwdgt.h"
-//#include "gd32f1x0_misc.h"
-//#include "gd32f1x0_tsi.h"
-//#include "gd32f1x0_pmu.h"
-//#include "gd32f1x0_dbg.h"
-
+#include "gd32f1x0_misc.h"
 #include "gd32f1x0_dma.h"
 #include "gd32f1x0_exti.h"
 #include "gd32f1x0_gpio.h"
