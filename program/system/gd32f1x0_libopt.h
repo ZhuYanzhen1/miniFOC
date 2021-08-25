@@ -17,10 +17,7 @@
 
 #include "gd32f1x0_misc.h"
 #include "gd32f1x0_dma.h"
-#include "gd32f1x0_exti.h"
 #include "gd32f1x0_gpio.h"
-#include "gd32f1x0_syscfg.h"
-#include "gd32f1x0_i2c.h"
 #include "gd32f1x0_rcu.h"
 #include "gd32f1x0_spi.h"
 #include "gd32f1x0_timer.h"

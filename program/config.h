@@ -7,4 +7,6 @@
 
 #define UART_BAUDRATE   115200      // UART baudrate set to 115200
 
+#define UART_PRIORITY   1           // UART preemption priority set to 1
+
 #endif //MINIFOC__CONFIG_H_

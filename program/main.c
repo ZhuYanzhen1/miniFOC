@@ -5,6 +5,8 @@
 #include "main.h"
 
 int main(void) {
+    /* 4 bits for preemption priority 0 bits for subpriority */
+    nvic_priority_group_set(NVIC_PRIGROUP_PRE4_SUB0);
     /* configure systick timer for delay_ms() function */
     systick_config();
     /* configure led gpio */

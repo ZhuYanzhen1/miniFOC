@@ -14,7 +14,7 @@
 */
 void uart_config(void) {
     /* UART interrupt configuration */
-    nvic_irq_enable(USART0_IRQn, 0, 0);
+    nvic_irq_enable(USART0_IRQn, UART_PRIORITY, 0);
     /* enable GPIO clock and UART clock*/
     rcu_periph_clock_enable(RCU_GPIOA);
     rcu_periph_clock_enable(RCU_USART0);
