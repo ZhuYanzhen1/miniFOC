@@ -5,6 +5,35 @@
 #include "uart.h"
 #include "config.h"
 #include "gd32f1x0.h"
+#include "system.h"
+
+unsigned char dtp_status = 0;
+unsigned char dtp_numcounter = 0;
+unsigned char dtp_databuffer[10] = {0};
+void mdtp_receive_handler(unsigned char data) {
+    switch (dtp_status) {
+        case 0:
+            /* Judge whether the packet header is received */
+            if (data == 0xff) {
+                /* Enter the receive state and clear the relevant registers */
+                dtp_status = 1;
+                dtp_numcounter = 0;
+                user_memset(dtp_databuffer, 0x00, sizeof(dtp_databuffer));
+            }
+            break;
+        case 1:
+            if (data == 0xff && dtp_numcounter != 9)
+                dtp_status = 0;
+            if (dtp_numcounter != 10) {
+                dtp_databuffer[dtp_numcounter] = data;
+                dtp_numcounter = dtp_numcounter + 1;
+            } else
+                dtp_status = 2;
+            break;
+        default:dtp_status = 0;
+            break;
+    }
+}
 
 /*!
     \brief      configure uart0 periph and its gpios

@@ -23,5 +23,6 @@ void systick_config(void);
 void delayms(uint32_t count);
 /* delay decrement */
 void delay_decrement(void);
+void user_memset(void *buf, unsigned char data, unsigned char num);
 
 #endif /* SYS_TICK_H */

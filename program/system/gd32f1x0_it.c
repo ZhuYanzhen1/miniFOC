@@ -86,15 +86,27 @@ void PendSV_Handler(void) {
 }
 
 /*!
+    \brief      this function handles SysTick exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void SysTick_Handler(void) {
+    delay_decrement();
+}
+
+/*!
     \brief      this function handles USART RBNE interrupt request and TBE interrupt request
     \param[in]  none
     \param[out] none
     \retval     none
 */
+extern void mdtp_receive_handler(unsigned char data);
 void USART0_IRQHandler(void) {
     if (RESET != usart_interrupt_flag_get(USART0, USART_INT_FLAG_RBNE)) {
         /* receive data */
-        unsigned char rec_byte = usart_data_receive(USART0);
-        usart_data_transmit(USART0, rec_byte);
+        unsigned char rcv_data = usart_data_receive(USART0);
+        /* process and unzip data */
+        mdtp_receive_handler(rcv_data);
     }
 }
