@@ -96,6 +96,7 @@ void SysTick_Handler(void) {
 }
 
 extern void mdtp_receive_handler(unsigned char data);
+
 /*!
     \brief      this function handles USART RBNE interrupt request and TBE interrupt request
     \param[in]  none

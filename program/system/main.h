@@ -14,4 +14,4 @@
 #include "led.h"
 #include "uart.h"
 
-#endif  //MINIFOC_MAIN_H_
+#endif  // MINIFOC_MAIN_H_

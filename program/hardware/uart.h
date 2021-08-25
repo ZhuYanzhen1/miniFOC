@@ -10,4 +10,4 @@
 
 void uart_config(void);
 
-#endif //MINIFOC_HARDWARE_UART_H_
+#endif // MINIFOC_HARDWARE_UART_H_
