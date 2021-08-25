@@ -4,6 +4,10 @@
 
 #include "main.h"
 
+void mdtp_callback_handler(unsigned char pid, unsigned char *data) {
+
+}
+
 int main(void) {
     /* 4 bits for preemption priority 0 bits for subpriority */
     nvic_priority_group_set(NVIC_PRIGROUP_PRE4_SUB0);

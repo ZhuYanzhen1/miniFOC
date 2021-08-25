@@ -95,13 +95,13 @@ void SysTick_Handler(void) {
     delay_decrement();
 }
 
+extern void mdtp_receive_handler(unsigned char data);
 /*!
     \brief      this function handles USART RBNE interrupt request and TBE interrupt request
     \param[in]  none
     \param[out] none
     \retval     none
 */
-extern void mdtp_receive_handler(unsigned char data);
 void USART0_IRQHandler(void) {
     if (RESET != usart_interrupt_flag_get(USART0, USART_INT_FLAG_RBNE)) {
         /* receive data */

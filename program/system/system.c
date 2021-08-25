@@ -1,7 +1,7 @@
 #include "gd32f1x0.h"
 #include "system.h"
 
-volatile static uint32_t delay;
+static uint32_t delayms_counter = 1;
 
 /*!
     \brief      initialize systick timer to implementation delay function
@@ -22,8 +22,8 @@ void systick_config(void) {
     \retval       none
 */
 void delayms(uint32_t count) {
-    delay = count;
-    while (0U != delay);
+    delayms_counter = count;
+    while (0U != delayms_counter);
 }
 
 /*!
@@ -33,8 +33,8 @@ void delayms(uint32_t count) {
     \retval     none
 */
 void delay_decrement(void) {
-    if (0U != delay)
-        delay--;
+    if (0U != delayms_counter)
+        delayms_counter--;
 }
 
 /*!
