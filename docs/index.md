@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210825](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210825.hex): 0e68071 Some data receiving functions are realized. Annotate the functions in the system file. Fixed missing systick handler. The memset function is rewritten, and the program volume can be reduced without using the standard library.
+ 
 + [20210824](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210824.hex): 1b1fd54 Add UART0 initialization code, file author declaration, function declaration and code comments. Add config header file to facilitate users to modify important parameters.
  
 + [20210823](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210823.hex): c774ad1 Add macro definition of LED level toggle.
