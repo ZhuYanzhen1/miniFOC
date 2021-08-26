@@ -5,6 +5,7 @@
 #include "main.h"
 
 void mdtp_callback_handler(unsigned char pid, unsigned char *data) {
+    /* send package back directly for testing */
     mdtp_data_transmit(pid, data);
 }
 
