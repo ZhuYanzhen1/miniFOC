@@ -103,6 +103,23 @@ void mdtp_receive_handler(unsigned char data) {
     }
 }
 
+void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
+    unsigned char temp_buf[12] = {0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff};
+    unsigned char mdtp_pack_counter;
+    for (mdtp_pack_counter = 0; mdtp_pack_counter < 8; mdtp_pack_counter++) {
+        if (buffer[mdtp_pack_counter] == 0xff) {
+            temp_buf[2 + mdtp_pack_counter] = 0x00;
+            temp_buf[10] = (temp_buf[10] | (1 << mdtp_pack_counter));
+        } else
+            temp_buf[2 + mdtp_pack_counter] = buffer[mdtp_pack_counter];
+    }
+    temp_buf[1] = pid << 4 | ((~pid) & 0x0f);
+    for (mdtp_pack_counter = 0; mdtp_pack_counter < 12; mdtp_pack_counter++) {
+        usart_data_transmit(USART0, (uint8_t) temp_buf[mdtp_pack_counter]);
+        while (RESET == usart_flag_get(USART0, USART_FLAG_TBE));
+    }
+}
+
 /*!
     \brief      configure uart0 periph and its gpios
     \param[in]  none

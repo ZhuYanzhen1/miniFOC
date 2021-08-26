@@ -5,7 +5,7 @@
 #include "main.h"
 
 void mdtp_callback_handler(unsigned char pid, unsigned char *data) {
-
+    mdtp_data_transmit(pid, data);
 }
 
 int main(void) {
