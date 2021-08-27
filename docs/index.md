@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210827](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210827.hex): 924f307 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
+ 
 + [20210826](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210826.hex): dfea67b Add the packet function of medium capacity transmission protocol. When the data packet is received, it is sent back according to the original packet to test whether the function of receiving and sending data packet can operate normally.
  
 + [20210825](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210825.hex): 0e68071 Some data receiving functions are realized. Annotate the functions in the system file. Fixed missing systick handler. The memset function is rewritten, and the program volume can be reduced without using the standard library.
