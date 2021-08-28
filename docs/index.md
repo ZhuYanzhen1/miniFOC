@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210828](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210828.hex): 0a068b2 Add wiki repo into docs directory
+ 
 + [20210827](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210827.hex): 924f307 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
  
 + [20210826](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210826.hex): dfea67b Add the packet function of medium capacity transmission protocol. When the data packet is received, it is sent back according to the original packet to test whether the function of receiving and sending data packet can operate normally.
