@@ -18,6 +18,8 @@ int main(void) {
     led_config();
     /* configure uart for data transmit */
     uart_config();
+    /* configure timer1 for pwm output */
+    pwm_config();
     /* send test data from uart */
     uart_sendbyte(0xFF);
     while (1) {

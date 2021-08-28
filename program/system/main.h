@@ -13,5 +13,6 @@
 /////////////// Hardware ///////////////
 #include "led.h"
 #include "uart.h"
+#include "timer.h"
 
 #endif  // MINIFOC_MAIN_H_
