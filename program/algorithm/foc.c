@@ -10,7 +10,7 @@ void Update_Dq2Phase(float elect_angle, float d, float q, float *u, float *v, fl
     float cf = fast_cos(elect_angle);
     float sf = fast_sin(elect_angle);
     float tmp2, tmp3, Ta, Tb, Tc, Alpha, Beta;
-    int VecSector = 3;
+    char VecSector = 3;
     Alpha = d * cf - q * sf;
     Beta = q * cf + d * sf;
     tmp2 = Beta * 0.5f + Alpha * 0.8660254f;
