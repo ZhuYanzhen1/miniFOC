@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210829](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210829.hex): 1e40d66 Add and update PWM duty cycle function. Add comments for PWM initialization function and modify initialization channel.
+ 
 + [20210828](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210828.hex): 0a068b2 Add wiki repo into docs directory
  
 + [20210827](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210827.hex): 924f307 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
