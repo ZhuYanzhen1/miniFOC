@@ -4,10 +4,6 @@
 
 #include "fast_math.h"
 
-#define TWO_PI_F        6.2831854f
-#define PI_OVER_2_F     1.5707963f
-#define LUT_MULT        81.4873308f
-
 const float sin_tab[] = {
     0, 0.012296f, 0.024589f, 0.036879f, 0.049164f, 0.061441f, 0.073708f, 0.085965f, 0.098208f, 0.11044f, 0.12265f,
     0.13484f, 0.14702f, 0.15917f, 0.17129f, 0.18339f, 0.19547f, 0.20751f, 0.21952f, 0.2315f, 0.24345f, 0.25535f,
@@ -60,19 +56,32 @@ const float sin_tab[] = {
     -0.061441f, -0.049164f, -0.036879f, -0.024589f, -0.012296f, 0
 };
 
+/*!
+    \brief      fast calculation of sine
+    \param[in]  theta: angle to be calculated
+    \param[out] none
+    \retval     sine value of angle theta
+*/
 float fast_sin(float theta) {
+    /* congruence of angle theta to 2pi */
     while (1) {
-        if (theta > TWO_PI_F && theta > 0)
-            theta = theta - TWO_PI_F;
+        if (theta > 6.2831854f && theta > 0)
+            theta = theta - 6.2831854f;
         else if (theta < 0)
-            theta = theta + TWO_PI_F;
+            theta = theta + 6.2831854f;
         else
             break;
     }
-    theta = theta < 0 ? theta + TWO_PI_F : theta;
-    return sin_tab[(int) (LUT_MULT * theta)];
+    /* look up the table to obtain the sine value */
+    return sin_tab[(int) (81.4873308f * theta)];
 }
 
+/*!
+    \brief      fast calculation of cosine
+    \param[in]  theta: angle to be calculated
+    \param[out] none
+    \retval     cosine value of angle theta
+*/
 float fast_cos(float theta) {
-    return fast_sin(PI_OVER_2_F - theta);
+    return fast_sin(1.5707963f - theta);
 }

@@ -23,7 +23,8 @@ int main(void) {
     pwm_config();
     /* send test data from uart */
     uart_sendbyte(0xFF);
-    Update_Dq2Phase(0.314f, 0, 1.0f, &u, &v, &w);
+    foc_calculate_dutycycle(0.314f, 0, 1.0f, &u, &v, &w);
+    update_pwm_dutycycle(u, v, w);
     while (1) {
         led_toggle();
         delayms(500);

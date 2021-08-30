@@ -125,7 +125,7 @@ void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
             /* copy data directly to transmit buffer array */
             temp_buf[2 + mdtp_pack_counter] = buffer[mdtp_pack_counter];
     }
-    /* udge whether the package is all 0xff */
+    /* judge whether the package is all 0xff */
     if (temp_buf[10] == 0xff)
         temp_buf[10] = temp_buf[2] = 0xa5;
     /* load self checking packet id byte */
