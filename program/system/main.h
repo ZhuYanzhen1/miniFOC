@@ -15,4 +15,7 @@
 #include "uart.h"
 #include "timer.h"
 
+/////////////// Algorithm ///////////////
+#include "foc.h"
+
 #endif  // MINIFOC_MAIN_H_

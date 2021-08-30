@@ -10,6 +10,7 @@ void mdtp_callback_handler(unsigned char pid, unsigned char *data) {
 }
 
 int main(void) {
+    float u, v, w;
     /* 4 bits for preemption priority 0 bits for subpriority */
     nvic_priority_group_set(NVIC_PRIGROUP_PRE4_SUB0);
     /* configure systick timer for delay_ms() function */
@@ -22,6 +23,7 @@ int main(void) {
     pwm_config();
     /* send test data from uart */
     uart_sendbyte(0xFF);
+    Update_Dq2Phase(0.314f, 0, 1.0f, &u, &v, &w);
     while (1) {
         led_toggle();
         delayms(500);

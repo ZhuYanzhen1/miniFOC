@@ -7,6 +7,7 @@
 
 #define UART_BAUDRATE   115200      // UART baudrate set to 115200
 #define PWM_FREQUENCY   40          // PWM frequency set to 40kHz
+#define VBUS            12          // Bus voltage is 12V
 
 #define UART_PRIORITY   1           // UART preemption priority set to 1
 
