@@ -4,11 +4,11 @@
 
 #include "foc.h"
 #include "config.h"
-#include "math.h"
+#include "fast_math.h"
 
 void Update_Dq2Phase(float elect_angle, float d, float q, float *u, float *v, float *w) {
-    float cf = cosf(elect_angle);
-    float sf = sinf(elect_angle);
+    float cf = fast_cos(elect_angle);
+    float sf = fast_sin(elect_angle);
     float tmp2, tmp3, Ta, Tb, Tc, Alpha, Beta;
     int VecSector = 3;
     Alpha = d * cf - q * sf;
