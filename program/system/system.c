@@ -5,7 +5,7 @@
 #include "gd32f1x0.h"
 #include "system.h"
 
-static uint32_t delayms_counter = 1;
+static volatile uint32_t delayms_counter = 1;
 
 /*!
     \brief      initialize systick timer to implementation delay function
