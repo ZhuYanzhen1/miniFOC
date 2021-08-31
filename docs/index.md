@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210831](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210831.hex): 2d309e9 Code comments are added for fast mathematical calculation functions and FOC calculation functions.
+ 
 + [20210830](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210830.hex): 021d7fa The fast mathematical calculation function is added to accelerate the calculation speed of sin and cos calculate, and the program volume is reduced (compared with using math Standard Library).
  
 + [20210829](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210829.hex): 1e40d66 Add and update PWM duty cycle function. Add comments for PWM initialization function and modify initialization channel.
