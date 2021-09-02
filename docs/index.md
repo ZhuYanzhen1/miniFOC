@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210902](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210902.hex): 21ed3dd Add read and initialization functions of magnetic encoder. Add comments for SPI related functions and move SPI frequency division coefficient to config file for configuration.
+ 
 + [20210901](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210901.hex): 2698c41 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
  
 + [20210831](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210831.hex): 2d309e9 Code comments are added for fast mathematical calculation functions and FOC calculation functions.
