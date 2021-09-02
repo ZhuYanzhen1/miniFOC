@@ -52,13 +52,13 @@ void pwm_config(void) {
     gpio_af_set(GPIOA, GPIO_AF_2, GPIO_PIN_1);
     gpio_af_set(GPIOA, GPIO_AF_2, GPIO_PIN_2);
 
-    /* TIMER1CLK = SystemCoreClock / 72 = 1MHz */
-    timer_initpara.prescaler = 71;
+    /* TIMER1CLK = SystemCoreClock / 2 = 18MHz */
+    timer_initpara.prescaler = 1;
     /* timer center alignment up count mode */
     timer_initpara.alignedmode = TIMER_COUNTER_CENTER_UP;
     timer_initpara.counterdirection = TIMER_COUNTER_UP;
     /* Period = 36000 / PWM_FREQUENCY */
-    pwm_period = 36000 / PWM_FREQUENCY;
+    pwm_period = 18000 / PWM_FREQUENCY;
     timer_initpara.period = pwm_period;
     timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
     timer_initpara.repetitioncounter = 0;
@@ -77,13 +77,13 @@ void pwm_config(void) {
     timer_channel_output_mode_config(TIMER1, TIMER_CH_0, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_0, TIMER_OC_SHADOW_DISABLE);
 
-    /* CH1 configuration in PWM mode1,duty cycle 50% */
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_1, pwm_period / 2);
+    /* CH1 configuration in PWM mode1,duty cycle 25% */
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_1, pwm_period / 4);
     timer_channel_output_mode_config(TIMER1, TIMER_CH_1, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_1, TIMER_OC_SHADOW_DISABLE);
 
-    /* CH2 configuration in PWM mode1,duty cycle 50% */
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_2, pwm_period / 2);
+    /* CH2 configuration in PWM mode1,duty cycle 12.5% */
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_2, pwm_period / 5);
     timer_channel_output_mode_config(TIMER1, TIMER_CH_2, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_2, TIMER_OC_SHADOW_DISABLE);
 
