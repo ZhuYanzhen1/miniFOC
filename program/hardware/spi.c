@@ -6,6 +6,21 @@
 #include "gd32f1x0.h"
 
 /*!
+    \brief      spi0 transmit data for sc60228
+    \param[in]  data: data to transmit
+    \param[out] none
+    \retval     data received from slave
+*/
+unsigned short spi_readwrite_halfworld(unsigned short data) {
+    unsigned short buffer;
+    while (RESET == spi_i2s_flag_get(SPI0, SPI_FLAG_TBE));
+    spi_i2s_data_transmit(SPI0, data);
+    while (RESET == spi_i2s_flag_get(SPI0, SPI_FLAG_RBNE));
+    buffer = spi_i2s_data_receive(SPI0);
+    return buffer;
+}
+
+/*!
     \brief      configure spi0 periph and its gpios
     \param[in]  none
     \param[out] none
