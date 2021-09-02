@@ -4,6 +4,7 @@
 
 #include "spi.h"
 #include "gd32f1x0.h"
+#include "config.h"
 
 /*!
     \brief      spi0 transmit data for sc60228
@@ -46,7 +47,7 @@ void spi_config(void) {
     spi_init_struct.frame_size = SPI_FRAMESIZE_16BIT;
     spi_init_struct.clock_polarity_phase = SPI_CK_PL_HIGH_PH_2EDGE;
     spi_init_struct.nss = SPI_NSS_SOFT;
-    spi_init_struct.prescale = SPI_PSC_8;
+    spi_init_struct.prescale = SPI_PRESCALE;
     spi_init_struct.endian = SPI_ENDIAN_MSB;
     spi_init(SPI0, &spi_init_struct);
     spi_nss_internal_high(SPI0);

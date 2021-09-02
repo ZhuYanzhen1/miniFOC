@@ -18,5 +18,7 @@
 
 /////////////// Algorithm ///////////////
 #include "foc.h"
+#include "encoder.h"
+#include "fast_math.h"
 
 #endif  // MINIFOC_MAIN_H_

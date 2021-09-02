@@ -10,7 +10,6 @@ void mdtp_callback_handler(unsigned char pid, unsigned char *data) {
 }
 
 int main(void) {
-    float u, v, w;
     /* 4 bits for preemption priority 0 bits for subpriority */
     nvic_priority_group_set(NVIC_PRIGROUP_PRE4_SUB0);
     /* configure systick timer for delay_ms() function */
@@ -21,12 +20,14 @@ int main(void) {
     uart_config();
     /* configure timer1 for pwm output */
     pwm_config();
-    /* configure spi0 for pwm output */
+    /* configure spi0 for encoder communicate */
     spi_config();
+    /* configure encoder for foc algorithm */
+    encoder_config();
+
+    Sensor_Config();
     /* send test data from uart */
     uart_sendbyte(0xFF);
-    foc_calculate_dutycycle(0.314f, 0, 1.0f, &u, &v, &w);
-    update_pwm_dutycycle(u, v, w);
     while (1) {
         led_toggle();
         delayms(500);
