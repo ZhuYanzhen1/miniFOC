@@ -1,0 +1,41 @@
+//
+// Created by Lao·Zhu on 2021/9/2.
+//
+
+#include "spi.h"
+#include "gd32f1x0.h"
+
+/*!
+    \brief      configure spi0 periph and its gpios
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void spi_config(void) {
+    spi_parameter_struct spi_init_struct;
+    /* enable GPIO clock and SPI0 clock*/
+    rcu_periph_clock_enable(RCU_GPIOA);
+    rcu_periph_clock_enable(RCU_SPI0);
+
+    /* SPI0 GPIO config: SCK/PA5, MISO/PA6, MOSI/PA7 */
+    gpio_af_set(GPIOA, GPIO_AF_0, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
+    gpio_mode_set(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
+    gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
+    gpio_mode_set(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO_PIN_4);
+    gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_4);
+    gpio_bit_set(GPIOA, GPIO_PIN_4);
+
+    /* SPI0 parameter config */
+    spi_init_struct.trans_mode = SPI_TRANSMODE_FULLDUPLEX;
+    spi_init_struct.device_mode = SPI_MASTER;
+    spi_init_struct.frame_size = SPI_FRAMESIZE_16BIT;
+    spi_init_struct.clock_polarity_phase = SPI_CK_PL_HIGH_PH_2EDGE;
+    spi_init_struct.nss = SPI_NSS_SOFT;
+    spi_init_struct.prescale = SPI_PSC_8;
+    spi_init_struct.endian = SPI_ENDIAN_MSB;
+    spi_init(SPI0, &spi_init_struct);
+    spi_nss_internal_high(SPI0);
+    spi_crc_off(SPI0);
+    /* SPI enable */
+    spi_enable(SPI0);
+}

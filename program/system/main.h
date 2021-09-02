@@ -14,6 +14,7 @@
 #include "led.h"
 #include "uart.h"
 #include "timer.h"
+#include "spi.h"
 
 /////////////// Algorithm ///////////////
 #include "foc.h"

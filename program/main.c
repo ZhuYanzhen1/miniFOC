@@ -21,6 +21,8 @@ int main(void) {
     uart_config();
     /* configure timer1 for pwm output */
     pwm_config();
+    /* configure spi0 for pwm output */
+    spi_config();
     /* send test data from uart */
     uart_sendbyte(0xFF);
     foc_calculate_dutycycle(0.314f, 0, 1.0f, &u, &v, &w);
