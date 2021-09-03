@@ -26,8 +26,13 @@
 | :------------------------: | :----------: | :----------------------------------------------------------: | :------------------------------------------------: |
 |      Microcontroller       | GD32F130G6U6 |                          ATmega328P                          |                   STM32F405RGT6                    |
 |        Driver chip         |    EG2133    |                            L6234                             |                      DRV8301                       |
+<<<<<<< HEAD
 |     PID loop frequency     |    5kHz     |                            830Hz                             |                        8kHz                        |
 | Whether have current loop |      No      |                              No                              |                        Yes                         |
+=======
+|     PID loop frequency     |    30kHz (max)    |                            830Hz                             |                        8kHz                        |
+| Wheather have current loop |      No      |                              No                              |                        Yes                         |
+>>>>>>> 43382891153e1044d8a823b0d7bb03f55ca0901a
 |       Driving power        |     90W      |                             120W                             |                        960W                        |
 |    Cost price (approx.)    |     20¥      |                             100¥                             |                        300¥                        |
 
