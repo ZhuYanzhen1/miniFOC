@@ -6,7 +6,7 @@
 #define MINIFOC_ALGORITHM_ENCODER_H_
 
 void encoder_config(void);
-void Sensor_Config(void);
+void encoder_zeroing(void);
 unsigned short encoder_get_mechanical_angle(void);
 float encoder_get_electronic_angle(void);
 

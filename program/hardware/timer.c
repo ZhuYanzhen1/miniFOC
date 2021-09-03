@@ -78,12 +78,12 @@ void pwm_config(void) {
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_0, TIMER_OC_SHADOW_DISABLE);
 
     /* CH1 configuration in PWM mode1,duty cycle 25% */
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_1, pwm_period / 4);
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_1, pwm_period / 2);
     timer_channel_output_mode_config(TIMER1, TIMER_CH_1, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_1, TIMER_OC_SHADOW_DISABLE);
 
     /* CH2 configuration in PWM mode1,duty cycle 12.5% */
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_2, pwm_period / 5);
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_2, pwm_period / 2);
     timer_channel_output_mode_config(TIMER1, TIMER_CH_2, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_2, TIMER_OC_SHADOW_DISABLE);
 

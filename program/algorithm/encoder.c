@@ -8,10 +8,11 @@
 #include "foc.h"
 #include "timer.h"
 #include "system.h"
+#include "config.h"
 
-#define MECHANGLE_COEFFICIENT 0.0030679f
-#define ELECANGLE_COEFFICIENT 0.0214757f
-#define SPEED_COEFFICIENT 0.4882812        // rps
+#define MECHANGLE_COEFFICIENT   6.2831854f / ENCODER_RESO
+#define ELECANGLE_COEFFICIENT   (6.2831854f * POLAR_PAIRS) / ENCODER_RESO
+#define SPEED_COEFFICIENT       0.4882812        // rps
 
 unsigned short machine_angle_offset = 0;
 unsigned short last_mechanical_angle = 0;
@@ -80,7 +81,7 @@ float encoder_get_electronic_angle(void) {
     return electric_angle;
 }
 
-void Sensor_Config(void) {
+void encoder_zeroing(void) {
     float u, v, w;
     foc_calculate_dutycycle(0, 0.6f, 0, &u, &v, &w);
     update_pwm_dutycycle(u, v, w);
