@@ -50,8 +50,6 @@ void spi_config(void) {
     spi_init_struct.prescale = SPI_PRESCALE;
     spi_init_struct.endian = SPI_ENDIAN_MSB;
     spi_init(SPI0, &spi_init_struct);
-    spi_nss_internal_high(SPI0);
-    spi_crc_off(SPI0);
     /* SPI enable */
     spi_enable(SPI0);
 }

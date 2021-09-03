@@ -17,49 +17,67 @@ unsigned short machine_angle_offset = 0;
 unsigned short last_mechanical_angle = 0;
 unsigned long total_machine_angle = 0;
 
-unsigned short encoder_readdata(unsigned short TxData) {
+void encoder_delay(void) {
+    unsigned char delay_counter = 0xff;
+    while (delay_counter)
+        delay_counter--;
+}
+
+unsigned short encoder_read_data(unsigned short TxData) {
     unsigned short data;
-    unsigned char counter = 0xff;
     gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    while (counter--);
+    encoder_delay();
     data = spi_readwrite_halfworld(TxData);
-    counter = 0xff;
-    while (counter--);
+    encoder_delay();
     gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
     return data;
 }
 
 void encoder_config(void) {
+    delayms(100);
+
+    /* set io current and ab phase and mode */
     gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    spi_readwrite_halfworld(0x4000 | 0x0700 | 0xCE);
+    encoder_delay();
+    spi_readwrite_halfworld(0x47CE);
+    encoder_delay();
     gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
 
+    /* set zero position */
     gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    spi_readwrite_halfworld(0x4000 | 0x0500 | 0x20 | (4095 >> 8));
+    encoder_delay();
+    spi_readwrite_halfworld(0x452F);
+    encoder_delay();
+    gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
+    delayms(1);
+    gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
+    encoder_delay();
+    spi_readwrite_halfworld(0x44FF);
+    encoder_delay();
     gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
 
+    /* set zero width */
     gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    spi_readwrite_halfworld(0x4000 | 0x0400 | (4095 & 0x00ff));
+    encoder_delay();
+    spi_readwrite_halfworld(0x4840);
+    encoder_delay();
     gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
 
-    gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    spi_readwrite_halfworld(0x4000 | 0x0800 | 0x14);
-    gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
-
-    encoder_readdata(0x0000);
+    encoder_read_data(0x0000);
 }
 
 unsigned short encoder_get_mechanical_angle(void) {
-    unsigned short angle = encoder_readdata(0x0000) >> 4;
+    unsigned short angle = encoder_read_data(0x0000) >> 4;
     total_machine_angle = total_machine_angle + angle - last_mechanical_angle;
     last_mechanical_angle = angle;
     return ((total_machine_angle - machine_angle_offset) % 2048);
 }
 
-void encoder_get_electronic_angle(void) {
+float encoder_get_electronic_angle(void) {
     unsigned short tmp_mechanical_angle = encoder_get_mechanical_angle();
     float mechanical_angle = (float) tmp_mechanical_angle * MECHANGLE_COEFFICIENT;
     float electric_angle = (float) (tmp_mechanical_angle % 292) * ELECANGLE_COEFFICIENT;
+    return electric_angle;
 }
 
 void Sensor_Config(void) {

@@ -133,9 +133,7 @@ void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
     /* traverse the buffer array and send all bytes through UART0 */
     for (mdtp_pack_counter = 0; mdtp_pack_counter < 12; mdtp_pack_counter++) {
         /* transmit single byte through UART0 */
-        usart_data_transmit(USART0, (uint8_t) temp_buf[mdtp_pack_counter]);
-        /* wait for UART0 transmission to complete */
-        while (RESET == usart_flag_get(USART0, USART_FLAG_TBE));
+        uart_sendbyte(temp_buf[mdtp_pack_counter]);
     }
 }
 

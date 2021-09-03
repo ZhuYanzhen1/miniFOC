@@ -53,3 +53,23 @@ void user_memset(void *buf, unsigned char data, unsigned char num) {
     for (unsigned char counter = 0; counter < num; ++counter)
         buf_p[counter] = data;
 }
+
+unsigned short float_to_int16(float data0) {
+    if (data0 == 0)
+        return 0;
+    unsigned int *pfp32 = ((unsigned int *) &data0);
+    unsigned short fInt16 = ((*pfp32 >> 16) & 0x8000) |
+        ((((*pfp32 >> 23) - 0x7f + 0x0f) & 0x1f) << 10) |
+        ((*pfp32 >> 13) & 0x3ff);
+    return fInt16;
+}
+
+float int16_to_float(unsigned short data0) {
+    if (data0 == 0)
+        return 0;
+    unsigned int fInt32 = ((data0 & 0x8000) << 16) |
+        (((((data0 >> 10) & 0x1f) - 0x0f + 0x7f) & 0xff) << 23)
+        | ((data0 & 0x03FF) << 13);
+    float *fp32 = (float *) &fInt32;
+    return *fp32;
+}

@@ -24,12 +24,13 @@ int main(void) {
     spi_config();
     /* configure encoder for foc algorithm */
     encoder_config();
-
-    Sensor_Config();
-    /* send test data from uart */
-    uart_sendbyte(0xFF);
     while (1) {
+        unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+        float angle = (float) encoder_get_mechanical_angle() * 0.1757812f;
+        buffer[0] = float_to_int16(angle) >> 8;
+        buffer[1] = float_to_int16(angle) & 0x00ff;
+        mdtp_data_transmit(0x00, buffer);
         led_toggle();
-        delayms(500);
+        delayms(50);
     }
 }
