@@ -2,7 +2,7 @@ name: Compile Firmware
 
 on:
   schedule:
-    - cron: '30 15 * * *'      # compile at 23:50 each day
+    - cron: '40 15 * * *'      # compile at 23:50 each day
 
 env:
   BUILD_TYPE: Release

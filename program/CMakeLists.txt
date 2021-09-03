@@ -27,7 +27,7 @@ add_definitions(-DUSE_STDPERIPH_DRIVER -DGD32F130_150)
 file(GLOB_RECURSE SOURCES "library/src/*.c" "system/*.c" "main.c"
         "system/startup_gd32f130.s" "hardware/*.c" "algorithm/*.c")
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/GD32F130G6.ld)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/system/gd32f130g6u6.ld)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork --specs=nano.specs)

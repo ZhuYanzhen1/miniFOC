@@ -54,6 +54,12 @@ void user_memset(void *buf, unsigned char data, unsigned char num) {
         buf_p[counter] = data;
 }
 
+/*!
+    \brief      convert floating point numbers to int16 type data
+    \param[in]  data0: floating point type data to be converted
+    \param[out] none
+    \retval     converted int16 type data
+*/
 unsigned short float_to_int16(float data0) {
     if (data0 == 0)
         return 0;
@@ -64,6 +70,12 @@ unsigned short float_to_int16(float data0) {
     return fInt16;
 }
 
+/*!
+    \brief      convert int16 to floating point numbers type data
+    \param[in]  data0: int16 type data to be converted
+    \param[out] none
+    \retval     converted floating point type data
+*/
 float int16_to_float(unsigned short data0) {
     if (data0 == 0)
         return 0;

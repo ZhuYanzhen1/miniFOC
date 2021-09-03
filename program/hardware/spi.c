@@ -14,9 +14,13 @@
 */
 unsigned short spi_readwrite_halfworld(unsigned short data) {
     unsigned short buffer;
+    /* wait until the previous data transmission is completed */
     while (RESET == spi_i2s_flag_get(SPI0, SPI_FLAG_TBE));
+    /* send this data through spi0 */
     spi_i2s_data_transmit(SPI0, data);
+    /* wait for this data reception to complete */
     while (RESET == spi_i2s_flag_get(SPI0, SPI_FLAG_RBNE));
+    /* get data received through spi0 */
     buffer = spi_i2s_data_receive(SPI0);
     return buffer;
 }
@@ -37,8 +41,10 @@ void spi_config(void) {
     gpio_af_set(GPIOA, GPIO_AF_0, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
     gpio_mode_set(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
     gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
+    /* SPI0 GPIO config: CS/PA4 */
     gpio_mode_set(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO_PIN_4);
     gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_4);
+    /* pull up CS pin to end sending data */
     gpio_bit_set(GPIOA, GPIO_PIN_4);
 
     /* SPI0 parameter config */
@@ -50,6 +56,6 @@ void spi_config(void) {
     spi_init_struct.prescale = SPI_PRESCALE;
     spi_init_struct.endian = SPI_ENDIAN_MSB;
     spi_init(SPI0, &spi_init_struct);
-    /* SPI enable */
+    /* SPI0 enable */
     spi_enable(SPI0);
 }
