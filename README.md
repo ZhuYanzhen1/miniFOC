@@ -2,21 +2,21 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
-&nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brushless motor drive module for more than 2$? Are you still worried about the high noise, low response speed and low life of brush motor? Let's take a look at this project, a FOC brushless motor control scheme that can be done for 3$!  **miniFOC** has built-in torque closed-loop controller to provide you with a brushless motor controller that can be controlled through 3-wire serial port. The project is planned to complete the development of basic functions in mid September 2021, and the software and hardware design fully comply with the AGPL-3.0 open source agreement.
+&nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brushless motor drive module beyond 2$? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3$!  **miniFOC** has a built-in torque closed-loop controller that can control a 3-wire serial port with a brushless motor controller. We plan to complete developing the essential functions of miniFOC by the end of August 2021. The software and hardware design are fully compliant with the AGPL-3.0 open source agreement.
 
 ***
 
 ### Brief Introduction
 
-&nbsp;&nbsp;&nbsp;&nbsp;This open source project aims to realize a FOC (Field Oriented Control) scheme that can be implemented in China and at low cost. The components selected in the example circuit are domestic chips. FOC has many advantages in controlling BLDC (Brushless Direct Current) motor, mainly including the following advantages:
+&nbsp;&nbsp;&nbsp;&nbsp;This open-source project aims to accomplish a FOC(Field Oriented Control) scheme that is operatable with minimum costs in China. The components selected in the example circuit are all manufactured in China. FOC possesses various advantages when it comes to controlling BLCD (Brushless Direct Current) motor; some of the benefits are as follows:
 
-1. FOC has no speed limit at all, and can realize accurate control at any speed.
-2. The reversing performance of FOC is extremely excellent, and the forward and reverse switching can be very smooth at the highest speed.
+1. FOC has no speed limit at all and can be accurately controlled at any speed
+2. FOC excels at its reversing performance, ensuring the smoothness of forward and reverse switching even when running at its highest speed
 3. FOC can also perform braking control in the form of energy recovery.
-4. FOC can realize three closed-loop control of torque, speed and position.
-5. The noise of FOC driver will be much lower and the efficiency will be much higher than that of electric regulation.
+4. FOC can achieve three closed-loop control of torque, speed, and position.
+5. FOC has significantly lower noise but much higher efficiency compared that of electric regulation
 
-&nbsp;&nbsp;&nbsp;&nbsp;However, due to the large amount of calculation and complex principle of FOC, a high-cost controller is required, which also makes FOC not popularized and used in many scenarios. After half a year's research and iteration, I deeply optimized the code involving a large number of calculations in FOC, and re selected it according to the domestic supply chain. I hope this open source project can help domestic developers use BLDC motors with excellent performance and contribute to the open source community.
+&nbsp;&nbsp;&nbsp;Although FOC has many advantages, its large amount of calculation and complex principles requires an expensive controller, which made FOC unpopular. After half a year’s research and iteration, I deeply optimized the part of the code that implements mass calculations and re-selected its components to fit the domestic supply chain. I hope this open-source project can help domestic developers use BLDC motors with excellent performance and contribute to the open-source community.
 
 ***
 
@@ -27,11 +27,11 @@
 |      Microcontroller       | GD32F130G6U6 |                          ATmega328P                          |                   STM32F405RGT6                    |
 |        Driver chip         |    EG2133    |                            L6234                             |                      DRV8301                       |
 |     PID loop frequency     |    5kHz     |                            830Hz                             |                        8kHz                        |
-| Wheather have current loop |      No      |                              No                              |                        Yes                         |
+| Whether have current loop |      No      |                              No                              |                        Yes                         |
 |       Driving power        |     90W      |                             120W                             |                        960W                        |
 |    Cost price (approx.)    |     20¥      |                             100¥                             |                        300¥                        |
 
-&nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the above table, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. In the case of chip supply shortage in 2021, the cost of FOC can be reduced to about 20¥, which also proves the cost optimization degree and great potential of the project.
+&nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the above table, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re-selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. amid the chip shortage in 2021, the cost of FOC still can be controlled at about 20¥, which further proves the degree of cost optimization and the great potential of the project.
 
 ***
 
@@ -57,7 +57,7 @@
 
 ***
 
-### Getting Start
+### Getting Started
 
 Please refer to the [wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for getting started。
 
