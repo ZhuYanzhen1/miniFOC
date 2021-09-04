@@ -3,7 +3,7 @@
 //
 
 #include "gd32f1x0_it.h"
-#include "system.h"
+#include "main.h"
 
 /*!
     \brief      this function handles NMI exception
@@ -98,7 +98,7 @@ void SysTick_Handler(void) {
 extern void mdtp_receive_handler(unsigned char data);
 
 /*!
-    \brief      this function handles USART RBNE interrupt request and TBE interrupt request
+    \brief      this function handles USART RBNE interrupt request
     \param[in]  none
     \param[out] none
     \retval     none
@@ -109,5 +109,20 @@ void USART0_IRQHandler(void) {
         unsigned char rcv_data = usart_data_receive(USART0);
         /* process and unzip data */
         mdtp_receive_handler(rcv_data);
+    }
+}
+
+/*!
+    \brief      this function handles USART RBNE interrupt request
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void TIMER2_IRQHandler(void) {
+    if (SET == timer_interrupt_flag_get(TIMER2, TIMER_INT_UP)) {
+        timer_interrupt_flag_clear(TIMER2, TIMER_INT_UP);
+        float u, v, w, angle = (float) encoder_get_electronic_angle();
+        foc_calculate_dutycycle(angle, 0, 0.6f, &u, &v, &w);
+        update_pwm_dutycycle(u, v, w);
     }
 }

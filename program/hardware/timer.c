@@ -23,6 +23,40 @@ void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
     TIMER_CH2CV(TIMER1) = (uint32_t) ((float) pwm_period * ch2);
 }
 
+void timer2_config(void) {
+    timer_parameter_struct timer_initpara;
+    rcu_periph_clock_enable(RCU_TIMER2);
+
+    timer_deinit(TIMER2);
+    timer_initpara.prescaler = 71;
+    timer_initpara.alignedmode = TIMER_COUNTER_EDGE;
+    timer_initpara.counterdirection = TIMER_COUNTER_UP;
+    timer_initpara.period = (1000 / TIM2_FREQUENCY) - 1;
+    timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
+    timer_init(TIMER2, &timer_initpara);
+
+    timer_interrupt_enable(TIMER2, TIMER_INT_UP);
+    timer_enable(TIMER2);
+    nvic_irq_enable(TIMER2_IRQn, TIM2_PRIORITY, 0);
+}
+
+void timer13_config(void) {
+    timer_parameter_struct timer_initpara;
+    rcu_periph_clock_enable(RCU_TIMER13);
+
+    timer_deinit(TIMER13);
+    timer_initpara.prescaler = 71;
+    timer_initpara.alignedmode = TIMER_COUNTER_EDGE;
+    timer_initpara.counterdirection = TIMER_COUNTER_UP;
+    timer_initpara.period = (1000 / TIM13_FREQUENCY) - 1;
+    timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
+    timer_init(TIMER13, &timer_initpara);
+
+    timer_interrupt_enable(TIMER13, TIMER_INT_UP);
+    timer_enable(TIMER13);
+    nvic_irq_enable(TIMER13_IRQn, TIM13_PRIORITY, 0);
+}
+
 /*!
     \brief      configure timer1 periph and its gpios
     \param[in]  none

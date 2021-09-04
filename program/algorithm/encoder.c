@@ -171,4 +171,6 @@ void encoder_zeroing(void) {
     foc_calculate_dutycycle(0, 0, 0, &u, &v, &w);
     /* Apply to PWM */
     update_pwm_dutycycle(u, v, w);
+    /* delay to wait for the motor to respond */
+    delayms(500);
 }

@@ -26,13 +26,10 @@ int main(void) {
     encoder_config();
     /* zero the encoder for foc algorithm */
     encoder_zeroing();
+    /* configure timer1 for foc calculate loop */
+    timer2_config();
     while (1) {
-        unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-        float angle = (float) encoder_get_electronic_angle();
-        buffer[0] = float_to_int16(angle) >> 8;
-        buffer[1] = float_to_int16(angle) & 0x00ff;
-        mdtp_data_transmit(0x00, buffer);
         led_toggle();
-        delayms(50);
+        delayms(500);
     }
 }
