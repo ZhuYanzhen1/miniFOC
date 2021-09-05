@@ -5,6 +5,8 @@
 #include "gd32f1x0_it.h"
 #include "main.h"
 
+static volatile unsigned char systick_counter = 0;
+
 /*!
     \brief      this function handles NMI exception
     \param[in]  none
@@ -94,8 +96,12 @@ void PendSV_Handler(void) {
 void SysTick_Handler(void) {
     /* update millisecond delay counter */
     delay_decrement();
-    /* update the motor speedometer counter and calculate the speed */
-    encoder_update_speed();
+    systick_counter++;
+    if (systick_counter == 2) {
+        /* update the motor speedometer counter and calculate the speed */
+        encoder_update_speed();
+        systick_counter = 0;
+    }
 }
 
 /*!

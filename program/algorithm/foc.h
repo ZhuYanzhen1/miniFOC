@@ -10,6 +10,10 @@ typedef struct {
     float rotate_speed;
 } FOC_Structure_t;
 
+#define MECHANGLE_COEFFICIENT   (6.2831854f / ENCODER_RESO)
+#define ELECANGLE_COEFFICIENT   ((6.2831854f * POLAR_PAIRS) / ENCODER_RESO)
+#define SPEED_COEFFICIENT       (3141.5926535f / ENCODER_RESO)
+
 extern volatile FOC_Structure_t FOC_Struct;
 void foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, float *v, float *w);
 

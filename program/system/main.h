@@ -20,5 +20,6 @@
 #include "foc.h"
 #include "encoder.h"
 #include "fast_math.h"
+#include "filter.h"
 
 #endif  // MINIFOC_MAIN_H_

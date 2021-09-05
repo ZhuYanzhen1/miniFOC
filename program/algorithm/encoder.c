@@ -9,10 +9,7 @@
 #include "timer.h"
 #include "system.h"
 #include "config.h"
-
-#define MECHANGLE_COEFFICIENT   6.2831854f / ENCODER_RESO
-#define ELECANGLE_COEFFICIENT   (6.2831854f * POLAR_PAIRS) / ENCODER_RESO
-#define SPEED_COEFFICIENT       6283.1853072f / ENCODER_RESO        // rad/s
+#include "filter.h"
 
 volatile static unsigned short machine_angle_offset = 0;
 volatile static unsigned short last_mechanical_angle = 0;
@@ -82,9 +79,18 @@ float encoder_get_electronic_angle(void) {
     return electric_angle;
 }
 
+/*!
+    \brief      called every 2 milliseconds to calculate the speed.
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
 void encoder_update_speed(void) {
+    /* calculate the difference between this angle and the last angle */
     unsigned short tmp_mechanical_angle_velocity = total_machine_angle - systick_mechanical_angle_last;
-    FOC_Struct.rotate_speed = (float) tmp_mechanical_angle_velocity * SPEED_COEFFICIENT;
+    /* send it to low-pass filter for filtering to prevent PID high-frequency oscillation */
+    filter_update_value((Filter_Structure_t *) &velocity_filter, tmp_mechanical_angle_velocity);
+    /* update last angle*/
     systick_mechanical_angle_last = total_machine_angle;
 }
 
