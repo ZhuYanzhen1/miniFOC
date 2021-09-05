@@ -51,10 +51,11 @@ void spi_config(void) {
     spi_init_struct.trans_mode = SPI_TRANSMODE_FULLDUPLEX;
     spi_init_struct.device_mode = SPI_MASTER;
     spi_init_struct.frame_size = SPI_FRAMESIZE_16BIT;
-    spi_init_struct.clock_polarity_phase = SPI_CK_PL_HIGH_PH_2EDGE;
+    spi_init_struct.clock_polarity_phase = SPI_CK_PL_LOW_PH_2EDGE;
     spi_init_struct.nss = SPI_NSS_SOFT;
     spi_init_struct.prescale = SPI_PRESCALE;
     spi_init_struct.endian = SPI_ENDIAN_MSB;
+    spi_crc_off(SPI0);
     spi_init(SPI0, &spi_init_struct);
     /* SPI0 enable */
     spi_enable(SPI0);

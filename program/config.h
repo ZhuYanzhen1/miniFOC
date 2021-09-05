@@ -7,7 +7,7 @@
 
 #define VBUS            12.0f       // Bus voltage is 12V
 #define POLAR_PAIRS     7           // BLDC motor has 7 polar pairs
-#define ENCODER_RESO    2048        // Encoder resolution is 2^7=2048
+#define ENCODER_RESO    4096        // Encoder resolution is 2^8=4096
 
 #define UART_BAUDRATE   115200      // UART baudrate set to 115200
 #define PWM_FREQUENCY   20          // PWM frequency set to 20kHz

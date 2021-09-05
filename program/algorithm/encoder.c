@@ -14,9 +14,9 @@
 #define ELECANGLE_COEFFICIENT   (6.2831854f * POLAR_PAIRS) / ENCODER_RESO
 #define SPEED_COEFFICIENT       0.4882812        // rps
 
-unsigned short machine_angle_offset = 0;
-unsigned short last_mechanical_angle = 0;
-unsigned long total_machine_angle = 0;
+volatile unsigned short machine_angle_offset = 0;
+volatile unsigned short last_mechanical_angle = 0;
+volatile unsigned long total_machine_angle = 0;
 
 /*!
     \brief      delay function for magnetic encoder
@@ -52,66 +52,6 @@ unsigned short encoder_read_data(unsigned short TxData) {
 }
 
 /*!
-    \brief      register for configuring magnetic encoder
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void encoder_config(void) {
-    /* delay 100 ms to ensure the normal startup of the magnetic encoder chip */
-    delayms(100);
-    /* pull down the CS pin and prepare to send data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* set io current 60mA 10kHz, ab phase STAY, pin mode PP_OUTPUT*/
-    spi_readwrite_halfworld(0x47CE);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* pull up CS pin to end sending data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
-
-    delayms(1);
-    /* pull down the CS pin and prepare to send data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* set zero position angle to 0, polar to 1*/
-    spi_readwrite_halfworld(0x452F);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* pull up CS pin to end sending data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
-
-    delayms(1);
-    /* pull down the CS pin and prepare to send data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* set zero position angle to 0*/
-    spi_readwrite_halfworld(0x44FF);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* pull up CS pin to end sending data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
-
-    delayms(1);
-    /* pull down the CS pin and prepare to send data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, RESET);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* set zero width as LSB1_WIDTH*/
-    spi_readwrite_halfworld(0x4840);
-    /* delay preventing the timing between CS and CLK from exceeding the standard */
-    encoder_delay();
-    /* pull up CS pin to end sending data */
-    gpio_bit_write(GPIOA, GPIO_PIN_4, SET);
-
-    /* read angle data once */
-    encoder_read_data(0x0000);
-}
-
-/*!
     \brief      read mechanical angle directly from encoder
     \param[in]  none
     \param[out] none
@@ -136,7 +76,7 @@ unsigned short encoder_get_mechanical_angle(void) {
 */
 float encoder_get_electronic_angle(void) {
     unsigned short tmp_mechanical_angle = encoder_get_mechanical_angle();
-    float mechanical_angle = (float) tmp_mechanical_angle * MECHANGLE_COEFFICIENT;
+//    float mechanical_angle = (float) tmp_mechanical_angle * MECHANGLE_COEFFICIENT;
     float electric_angle = (float) (tmp_mechanical_angle % (ENCODER_RESO / POLAR_PAIRS)) * ELECANGLE_COEFFICIENT;
     return electric_angle;
 }
@@ -162,7 +102,7 @@ void encoder_zeroing(void) {
     /* Apply to PWM */
     update_pwm_dutycycle(u, v, w);
     /* delay to wait for the motor to respond */
-    delayms(250);
+    delayms(1000);
     machine_angle_offset = 0;
     total_machine_angle = 0;
     /* read the angle at this time as the offset angle */

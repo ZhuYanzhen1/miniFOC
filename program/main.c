@@ -22,11 +22,9 @@ int main(void) {
     pwm_config();
     /* configure spi0 for encoder communicate */
     spi_config();
-    /* configure encoder for foc algorithm */
-    encoder_config();
     /* zero the encoder for foc algorithm */
     encoder_zeroing();
-    /* configure timer1 for foc calculate loop */
+    /* configure timer2 for foc calculate loop */
     timer2_config();
     while (1) {
         led_toggle();
