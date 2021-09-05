@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210905](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210905.hex): be1d8fa The speed calculation code and sliding window filter function are added to make the speed smoother.
+ 
 + [20210904](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210904.hex): 84aa5d8 Polish README
  
 + [20210903](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210903.hex): ebb2498 The electric angle correction program is added. The pole number and encoder resolution are added to the config file for modification. Corrected PWM initialization duty cycle to prevent power on burn out.
