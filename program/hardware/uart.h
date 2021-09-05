@@ -10,5 +10,6 @@
 
 void uart_config(void);
 void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer);
+void mdtp_receive_handler(unsigned char data);
 
 #endif // MINIFOC_HARDWARE_UART_H_

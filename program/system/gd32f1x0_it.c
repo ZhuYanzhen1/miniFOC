@@ -92,10 +92,11 @@ void PendSV_Handler(void) {
     \retval     none
 */
 void SysTick_Handler(void) {
+    /* update millisecond delay counter */
     delay_decrement();
+    /* update the motor speedometer counter and calculate the speed */
+    encoder_update_speed();
 }
-
-extern void mdtp_receive_handler(unsigned char data);
 
 /*!
     \brief      this function handles USART RBNE interrupt request
@@ -104,6 +105,7 @@ extern void mdtp_receive_handler(unsigned char data);
     \retval     none
 */
 void USART0_IRQHandler(void) {
+    /* judge whether a reception interrupt is generated */
     if (RESET != usart_interrupt_flag_get(USART0, USART_INT_FLAG_RBNE)) {
         /* receive data */
         unsigned char rcv_data = usart_data_receive(USART0);
@@ -119,10 +121,15 @@ void USART0_IRQHandler(void) {
     \retval     none
 */
 void TIMER2_IRQHandler(void) {
+    /* judge whether a timer update interrupt is generated */
     if (SET == timer_interrupt_flag_get(TIMER2, TIMER_INT_UP)) {
+        /* clear timer interrupt flag bit */
         timer_interrupt_flag_clear(TIMER2, TIMER_INT_UP);
+        /* obtain the electric angle at the current time */
         float u, v, w, angle = (float) encoder_get_electronic_angle();
+        /* Clarke inverse transform and SVPWM modulation */
         foc_calculate_dutycycle(angle, 0, 0.6f, &u, &v, &w);
+        /* Apply to PWM */
         update_pwm_dutycycle(u, v, w);
     }
 }
