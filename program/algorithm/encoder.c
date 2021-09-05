@@ -12,11 +12,12 @@
 
 #define MECHANGLE_COEFFICIENT   6.2831854f / ENCODER_RESO
 #define ELECANGLE_COEFFICIENT   (6.2831854f * POLAR_PAIRS) / ENCODER_RESO
-#define SPEED_COEFFICIENT       0.4882812        // rps
+#define SPEED_COEFFICIENT       6283.1853072f / ENCODER_RESO        // rad/s
 
-volatile unsigned short machine_angle_offset = 0;
-volatile unsigned short last_mechanical_angle = 0;
-volatile unsigned long total_machine_angle = 0;
+volatile static unsigned short machine_angle_offset = 0;
+volatile static unsigned short last_mechanical_angle = 0;
+volatile static unsigned long long total_machine_angle = 0;
+volatile static unsigned long long systick_mechanical_angle_last = 0;
 
 /*!
     \brief      delay function for magnetic encoder
@@ -76,18 +77,16 @@ unsigned short encoder_get_mechanical_angle(void) {
 */
 float encoder_get_electronic_angle(void) {
     unsigned short tmp_mechanical_angle = encoder_get_mechanical_angle();
-//    float mechanical_angle = (float) tmp_mechanical_angle * MECHANGLE_COEFFICIENT;
+    FOC_Struct.mechanical_angle = (float) tmp_mechanical_angle * MECHANGLE_COEFFICIENT;
     float electric_angle = (float) (tmp_mechanical_angle % (ENCODER_RESO / POLAR_PAIRS)) * ELECANGLE_COEFFICIENT;
     return electric_angle;
 }
 
-//unsigned long systick_mechanical_angle_last = 0;
-//void Update_AngleSpeed(void) {
-//    unsigned short tmp_mechanical_angle_velocity = total_machine_angle - systick_mechanical_angle_last;
-//    FOC_Structure.velocity =
-//        FirstOrder_Filter_Calculate(&Velocity_f, qfp_fmul(tmp_mechanical_angle_velocity, SPEED_COEFFICIENT));
-//    systick_mechanical_angle_last = total_machine_angle;
-//}
+void encoder_update_speed(void) {
+    unsigned short tmp_mechanical_angle_velocity = total_machine_angle - systick_mechanical_angle_last;
+    FOC_Struct.rotate_speed = (float) tmp_mechanical_angle_velocity * SPEED_COEFFICIENT;
+    systick_mechanical_angle_last = total_machine_angle;
+}
 
 /*!
     \brief      correct the mechanical angle zero deviation between the magnetic encoder and FOC.
@@ -97,12 +96,14 @@ float encoder_get_electronic_angle(void) {
 */
 void encoder_zeroing(void) {
     float u, v, w;
+    /* delay to wait for the power supply voltage to be normal */
+    delayms(1000);
     /* set that there is only a magnetic field on the straight axis. */
-    foc_calculate_dutycycle(0, 0.6f, 0, &u, &v, &w);
+    foc_calculate_dutycycle(0, 0.5f, 0, &u, &v, &w);
     /* Apply to PWM */
     update_pwm_dutycycle(u, v, w);
     /* delay to wait for the motor to respond */
-    delayms(1000);
+    delayms(300);
     machine_angle_offset = 0;
     total_machine_angle = 0;
     /* read the angle at this time as the offset angle */
@@ -112,5 +113,5 @@ void encoder_zeroing(void) {
     /* Apply to PWM */
     update_pwm_dutycycle(u, v, w);
     /* delay to wait for the motor to respond */
-    delayms(500);
+    delayms(300);
 }

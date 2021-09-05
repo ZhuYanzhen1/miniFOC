@@ -31,7 +31,7 @@
 |       Driving power        |     90W      |                             120W                             |                        960W                        |
 |    Cost price (approx.)    |     20¥      |                             100¥                             |                        300¥                        |
 
-&nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the table above, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re-selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. amid the chip shortage in 2021, the cost of FOC still can be controlled at about 20¥, which further proves the degree of cost optimization and the great potential of the project.
+&nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the table above, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re-selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. amid the chip shortage in 2021, the cost of FOC still can be controlled at about 3$, which further proves the degree of cost optimization and the great potential of the project.
 
 ***
 

@@ -6,6 +6,8 @@
 #include "config.h"
 #include "fast_math.h"
 
+volatile FOC_Structure_t FOC_Struct;
+
 /*!
     \brief      calculate the corresponding three-phase PWM duty cycle under the current electrical angle
     \param[in]  elect_angle: electrical angle of motor rotor, in radian system

@@ -5,7 +5,7 @@
 #include "gd32f1x0.h"
 #include "system.h"
 
-static volatile uint32_t delayms_counter = 1;
+static volatile unsigned long delayms_counter = 1;
 
 /*!
     \brief      initialize systick timer to implementation delay function
@@ -25,7 +25,7 @@ void systick_config(void) {
     \param[out]   none
     \retval       none
 */
-void delayms(uint32_t count) {
+void delayms(unsigned long count) {
     delayms_counter = count;
     while (0U != delayms_counter);
 }

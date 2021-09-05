@@ -7,9 +7,9 @@
 #include "gd32f1x0.h"
 #include "system.h"
 
-unsigned char mdtp_receive_status = 0;
-unsigned char mdtp_receive_number_counter = 0;
-unsigned char mdtp_receive_data_buffer[10] = {0};
+volatile static unsigned char mdtp_receive_status = 0;
+volatile static unsigned char mdtp_receive_number_counter = 0;
+static unsigned char mdtp_receive_data_buffer[10] = {0};
 
 /*!
     \brief        user callback function for unpacking completion of medium capacity transport protocol
@@ -42,24 +42,25 @@ void mdtp_receive_handler(unsigned char data) {
             break;
         case 1:
             /* judge whether the end of the packet is mistakenly recognized as the header */
-            if (!(data == 0xff && mdtp_receive_number_counter == 0)) {
+            if (data == 0xff && mdtp_receive_number_counter != 0) {
+                /* an unexpected data had been received */
+                /* reset to receive start of package state */
+                mdtp_receive_status = 0;
+                /* clear receive array counter */
+                mdtp_receive_number_counter = 0;
+                /* clear the value in the buffer array */
+                user_memset(mdtp_receive_data_buffer, 0x00, sizeof(mdtp_receive_data_buffer));
+            } else if (data != 0xff) {
                 /* judge whether the reception is completed or the error data is received */
-                if (mdtp_receive_number_counter != 10 && data != 0xff) {
+                if (mdtp_receive_number_counter != 10) {
                     /* receive the data into the array in turn */
                     mdtp_receive_data_buffer[mdtp_receive_number_counter] = data;
                     mdtp_receive_number_counter = mdtp_receive_number_counter + 1;
-                } else if (mdtp_receive_number_counter == 10)
-                    /* jump to end of package processing */
-                    mdtp_receive_status = 2;
-                else {      /* an unexpected data had been received */
-                    /* reset to receive start of package state */
-                    mdtp_receive_status = 0;
-                    /* clear receive array counter */
-                    mdtp_receive_number_counter = 0;
-                    /* clear the value in the buffer array */
-                    user_memset(mdtp_receive_data_buffer, 0x00, sizeof(mdtp_receive_data_buffer));
+                    if (mdtp_receive_number_counter == 10)
+                        mdtp_receive_status = 2;
                 }
             }
+            break;
         case 2:
             if (data == 0xff) {
                 /* ready to receive the next packet */
@@ -93,12 +94,6 @@ void mdtp_receive_handler(unsigned char data) {
                 /* clear the value in the buffer array */
                 user_memset(mdtp_receive_data_buffer, 0x00, sizeof(mdtp_receive_data_buffer));
             }
-            break;
-        default:
-            /* reset to receive start of package state */
-            mdtp_receive_status = 0;
-            /* clear receive array counter */
-            mdtp_receive_number_counter = 0;
             break;
     }
 }

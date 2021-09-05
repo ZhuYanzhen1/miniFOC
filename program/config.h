@@ -5,13 +5,13 @@
 #ifndef MINIFOC__CONFIG_H_
 #define MINIFOC__CONFIG_H_
 
-#define VBUS            12.0f       // Bus voltage is 12V
+#define VBUS            8.4f        // Bus voltage is 8.4V
 #define POLAR_PAIRS     7           // BLDC motor has 7 polar pairs
 #define ENCODER_RESO    4096        // Encoder resolution is 2^8=4096
 
 #define UART_BAUDRATE   115200      // UART baudrate set to 115200
 #define PWM_FREQUENCY   20          // PWM frequency set to 20kHz
-#define TIM2_FREQUENCY  5           // timer2 interrupt frequency set to 5kHz
+#define TIM2_FREQUENCY  8           // timer2 interrupt frequency set to 8kHz
 #define TIM13_FREQUENCY 1           // timer13 interrupt frequency set to 1kHz
 #define SPI_PRESCALE    SPI_PSC_16  // SPI frequency is 72 / 16 = 4.5MHz
 
