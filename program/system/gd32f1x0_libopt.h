@@ -12,5 +12,6 @@
 #include "gd32f1x0_spi.h"
 #include "gd32f1x0_timer.h"
 #include "gd32f1x0_usart.h"
+#include "gd32f1x0_fmc.h"
 
 #endif // MINIFOC_SYSTEM_GD32F1X0_LIBOPT_H_
