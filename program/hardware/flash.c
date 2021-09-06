@@ -12,7 +12,7 @@
     \param[out] none
     \retval     none
 */
-void fmc_erase_pages(void) {
+void fmc_erase_page(void) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
     /* clear all pending flags */
@@ -32,7 +32,7 @@ void fmc_erase_pages(void) {
     \param[out] none
     \retval     none
 */
-void fmc_program(unsigned int addr, unsigned int data) {
+void fmc_program_word(unsigned int addr, unsigned int data) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
     /* program flash */
@@ -49,7 +49,7 @@ void fmc_program(unsigned int addr, unsigned int data) {
     \param[out] none
     \retval     data read from address
 */
-unsigned int fmc_readword(unsigned int addr) {
+unsigned int fmc_read_word(unsigned int addr) {
     /* redirect the address to access memory */
     addr = FMC_WRITE_START_ADDR + addr;
     unsigned int *ptrd = (unsigned int *) addr;
