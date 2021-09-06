@@ -5,8 +5,47 @@
 #include "foc.h"
 #include "config.h"
 #include "fast_math.h"
+#include "encoder.h"
+#include "system.h"
+#include "timer.h"
 
 volatile FOC_Structure_t FOC_Struct;
+volatile unsigned char phase_sequence = 0;
+
+void foc_calibrate_phase(void) {
+    unsigned short last_angle = 0, positive_counter = 0;
+    float u, v, w, angle = 0;
+    for (unsigned char counter = 0; counter < 255; ++counter) {
+        unsigned short current_angle = encoder_get_mechanical_angle();
+        if (current_angle > last_angle)
+            positive_counter++;
+        last_angle = current_angle;
+        /* set that there is only a magnetic field on the straight axis. */
+        foc_calculate_dutycycle(angle, 0.5f, 0, &u, &v, &w);
+        angle += 0.075f;
+        /* Apply to PWM */
+        update_pwm_dutycycle(u, v, w);
+        /* delay to wait for the motor to respond */
+        delayms(30);
+    }
+    for (unsigned char counter = 0; counter < 255; ++counter) {
+        unsigned short current_angle = encoder_get_mechanical_angle();
+        if (current_angle < last_angle)
+            positive_counter++;
+        last_angle = current_angle;
+        /* set that there is only a magnetic field on the straight axis. */
+        foc_calculate_dutycycle(angle, 0.5f, 0, &u, &v, &w);
+        angle -= 0.075f;
+        /* Apply to PWM */
+        update_pwm_dutycycle(u, v, w);
+        /* delay to wait for the motor to respond */
+        delayms(30);
+    }
+    if (positive_counter >= 400)
+        phase_sequence = 0;
+    else
+        phase_sequence = 1;
+}
 
 /*!
     \brief      calculate the corresponding three-phase PWM duty cycle under the current electrical angle
