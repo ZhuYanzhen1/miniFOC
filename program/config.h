@@ -19,4 +19,6 @@
 #define TIM2_PRIORITY   2           // TIMER2 preemption priority set to 3
 #define TIM13_PRIORITY  3           // TIMER13 preemption priority set to 2
 
+#define FMC_WRITE_START_ADDR    ((uint32_t)0x08007C00U)
+
 #endif //MINIFOC__CONFIG_H_

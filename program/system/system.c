@@ -20,7 +20,7 @@ void systick_config(void) {
 }
 
 /*!
-    \brief      millisecond delay function, any time time.
+    \brief        millisecond delay function, any time time.
     \param[in]    count: time to delay (in milliseconds)
     \param[out]   none
     \retval       none
@@ -42,11 +42,11 @@ void delay_decrement(void) {
 }
 
 /*!
-    \brief      format buffer array to fixed value, replace memset function
+    \brief          format buffer array to fixed value, replace memset function
     \param[in,out]  buf: array to format
     \param[in]      data: value to be formatted as
     \param[in]      num: number of elements to format
-    \retval     none
+    \retval         none
 */
 void user_memset(void *buf, unsigned char data, unsigned char num) {
     unsigned char *buf_p = (unsigned char *) buf;
