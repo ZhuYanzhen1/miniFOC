@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210907](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210907.hex): 238b89d Fix mdtp_callback_handler function name mismatch.
+ 
 + [20210906](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210906.hex): 791bb85 Normalized FLASH read / write function name.
  
 + [20210905](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210905.hex): be1d8fa The speed calculation code and sliding window filter function are added to make the speed smoother.
