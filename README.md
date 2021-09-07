@@ -2,7 +2,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
-&nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brushless motor drive module beyond 2$? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3$!  **miniFOC** has a built-in torque closed-loop controller that can control a 3-wire serial port with a brushless motor controller. We plan to complete developing the essential functions of miniFOC by the end of August 2021. The software and hardware design are fully compliant with the AGPL-3.0 open source agreement.
+&nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brush motor drive module in about 2$? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3$!  **miniFOC** has a built-in torque closed-loop controller so that you can control a brushless motor with a 3-wire UART port. We plan to complete developing the essential functions of miniFOC by the end of August 2021. The software and hardware design are fully compliant with the AGPL-3.0 open source agreement.
 
 ***
 
@@ -42,6 +42,16 @@
 + Detailed parameters of FOC: no current loop control, SVPWM (Space Vector Pulse Width Modulation) is adopted.
 + Communication parameters: UART baud rate is 115200, and [Mid Capacity Data Transmit Protocol](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README.md) is used for data transmission.
 +  Microcontroller parameters: Cortex-M3 core, 72MHz frequency, 32KB FLASH, 4KB SRAM. 
+
+***
+
+### Function Features
+
++ [x] Using space vector pulse width modulation
++ [x] Torque control without current sensor
++ [ ] Rotational speed closed loop control
++ [ ] Rotation angle closed loop control
++ [x] Automatic phase sequence detection and correction
 
 ***
 
