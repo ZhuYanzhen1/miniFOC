@@ -4,9 +4,10 @@
 
 #include "main.h"
 
-void mdtp_callback_handler(unsigned char pid, unsigned char *data) {
-    /* send package back directly for testing */
-    mdtp_data_transmit(pid, data);
+void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
+    /* calibrate BLDC motor phase if pack1 first byte is 0xa5 */
+    if (pid == 1 && data[0] == 0xA5)
+        foc_calibrate_phase();
 }
 
 int main(void) {

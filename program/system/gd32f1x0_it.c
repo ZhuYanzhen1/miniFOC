@@ -134,7 +134,11 @@ void TIMER2_IRQHandler(void) {
         /* obtain the electric angle at the current time */
         float u, v, w, angle = (float) encoder_get_electronic_angle();
         /* Clarke inverse transform and SVPWM modulation */
-        foc_calculate_dutycycle(angle, 0, 0.6f, &u, &v, &w);
+        /* judge whether the motor phase is connected reversely */
+        if (phase_sequence == 0)
+            foc_calculate_dutycycle(angle, 0, 0.6f, &u, &v, &w);
+        else
+            foc_calculate_dutycycle(angle, 0, 0.6f, &v, &u, &w);
         /* Apply to PWM */
         update_pwm_dutycycle(u, v, w);
     }
