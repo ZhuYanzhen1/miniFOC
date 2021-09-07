@@ -12,15 +12,6 @@ volatile static unsigned char mdtp_receive_number_counter = 0;
 static unsigned char mdtp_receive_data_buffer[10] = {0};
 
 /*!
-    \brief        user callback function for unpacking completion of medium capacity transport protocol
-    \param[in]    pid: medium capacity transport protocol package id
-    \param[in]    data: received data array of size 8 bytes
-    \param[out]   none
-    \retval       none
-*/
-extern void mdtp_callback_handler(unsigned char pid, unsigned char *data);
-
-/*!
     \brief        medium capacity data transmission protocol unpacking handler
     \param[in]    data: data received from UART peripheral
     \param[out]   none
