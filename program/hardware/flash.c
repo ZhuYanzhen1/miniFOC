@@ -7,12 +7,12 @@
 #include "config.h"
 
 /*!
-    \brief      erase fmc page in last sector
+    \brief      erase flash page in last sector
     \param[in]  none
     \param[out] none
     \retval     none
 */
-void fmc_erase_page(void) {
+void flash_erase_page(void) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
     /* clear all pending flags */
@@ -26,18 +26,18 @@ void fmc_erase_page(void) {
 }
 
 /*!
-    \brief      program fmc word to address
+    \brief      program flash word to address
     \param[in]  addr: address to write to
     \param[in]  data: data to be written
     \param[out] none
     \retval     none
 */
-void fmc_program_word(unsigned int addr, unsigned int *data, unsigned short counter) {
+void flash_program_word(unsigned int addr, unsigned int *data, unsigned short counter) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
     /* program flash */
     for (unsigned short data_cnt = 0; data_cnt < counter; data_cnt++) {
-        fmc_word_program(addr + FMC_WRITE_START_ADDR, data[counter]);
+        fmc_word_program(addr + FMC_WRITE_START_ADDR + 4 * data_cnt, data[data_cnt]);
         /* clear all pending flags */
         fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_WPERR | FMC_FLAG_PGERR);
     }
@@ -46,12 +46,12 @@ void fmc_program_word(unsigned int addr, unsigned int *data, unsigned short coun
 }
 
 /*!
-    \brief      read fmc word from address
+    \brief      read flash word from address
     \param[in]  addr: address to read from
     \param[out] none
     \retval     data read from address
 */
-unsigned int fmc_read_word(unsigned int addr) {
+unsigned int flash_read_word(unsigned int addr) {
     /* redirect the address to access memory */
     addr = FMC_WRITE_START_ADDR + addr;
     unsigned int *ptrd = (unsigned int *) addr;

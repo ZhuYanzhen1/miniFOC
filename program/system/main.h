@@ -15,6 +15,7 @@
 #include "uart.h"
 #include "timer.h"
 #include "spi.h"
+#include "flash.h"
 
 /////////////// Algorithm ///////////////
 #include "foc.h"
