@@ -6,7 +6,7 @@
 #define MINIFOC_HARDWARE_FLASH_H_
 
 void fmc_erase_page(void);
-void fmc_program_word(unsigned int addr, unsigned int data);
+void fmc_program_word(unsigned int addr, unsigned int *data, unsigned short counter);
 unsigned int fmc_read_word(unsigned int addr);
 
 #endif //MINIFOC_HARDWARE_FLASH_H_

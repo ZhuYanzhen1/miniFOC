@@ -32,13 +32,15 @@ void fmc_erase_page(void) {
     \param[out] none
     \retval     none
 */
-void fmc_program_word(unsigned int addr, unsigned int data) {
+void fmc_program_word(unsigned int addr, unsigned int *data, unsigned short counter) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
     /* program flash */
-    fmc_word_program(addr + FMC_WRITE_START_ADDR, data);
-    /* clear all pending flags */
-    fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_WPERR | FMC_FLAG_PGERR);
+    for (unsigned short data_cnt = 0; data_cnt < counter; data_cnt++) {
+        fmc_word_program(addr + FMC_WRITE_START_ADDR, data[counter]);
+        /* clear all pending flags */
+        fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_WPERR | FMC_FLAG_PGERR);
+    }
     /* lock the main FMC after the program operation */
     fmc_lock();
 }
