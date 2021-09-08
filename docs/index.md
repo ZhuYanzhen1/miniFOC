@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210908](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210908.hex): 0eef12c Normalize variable names and adjust the order.
+ 
 + [20210907](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210907.hex): 238b89d Fix mdtp_callback_handler function name mismatch.
  
 + [20210906](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210906.hex): 791bb85 Normalized FLASH read / write function name.
