@@ -83,15 +83,15 @@ void foc_calibrate_phase(void) {
     \retval     none
 */
 void foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, float *v, float *w) {
+    float alpha, beta;
     /* fast calculation of cosine and sine value of electric angle */
     float cf = fast_cos(elect_angle);
     float sf = fast_sin(elect_angle);
-    float Alpha, Beta;
     /* firstly, the inverse Clarke transform is calculated */
-    Alpha = d * cf - q * sf;
-    Beta = q * cf + d * sf;
+    alpha = d * cf - q * sf;
+    beta = q * cf + d * sf;
     /* secondly, the inverse Park transform is calculated */
-    *u = 0.5f - Alpha / VBUS;
-    *v = 0.5f + (Alpha * 0.5f - Beta * 0.866025404f) / VBUS;
+    *u = 0.5f - alpha / VBUS;
+    *v = 0.5f + (alpha * 0.5f - beta * 0.866025404f) / VBUS;
     *w = 1.5f - *u - *v;
 }
