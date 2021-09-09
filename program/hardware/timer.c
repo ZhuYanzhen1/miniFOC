@@ -6,8 +6,6 @@
 #include "gd32f1x0.h"
 #include "config.h"
 
-unsigned int pwm_period = 0;
-
 /*!
     \brief      update timer1 ch0 1 2 duty-cycle
     \param[in]  ch0: duty-cycle of channel0, 0 ~ 1.0f
@@ -18,40 +16,58 @@ unsigned int pwm_period = 0;
 */
 void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
     /* update the comparison register of timer1 */
-    TIMER_CH0CV(TIMER1) = (uint32_t) ((float) pwm_period * ch0);
-    TIMER_CH1CV(TIMER1) = (uint32_t) ((float) pwm_period * ch1);
-    TIMER_CH2CV(TIMER1) = (uint32_t) ((float) pwm_period * ch2);
+    TIMER_CH0CV(TIMER1) = (uint32_t) ((float) PWM_PERIOD * ch0);
+    TIMER_CH1CV(TIMER1) = (uint32_t) ((float) PWM_PERIOD * ch1);
+    TIMER_CH2CV(TIMER1) = (uint32_t) ((float) PWM_PERIOD * ch2);
 }
 
+/*!
+    \brief      configure timer2 periph for timing interrupt
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
 void timer2_config(void) {
     timer_parameter_struct timer_initpara;
+    /* enable TIMER2 clock*/
     rcu_periph_clock_enable(RCU_TIMER2);
-
     timer_deinit(TIMER2);
+    /* TIMER1CLK = SystemCoreClock / 72 = 1MHz */
     timer_initpara.prescaler = 71;
+    /* timer edge alignment up count mode */
     timer_initpara.alignedmode = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection = TIMER_COUNTER_UP;
+    /* Period = 1000 / TIM2_FREQUENCY (kHz) */
     timer_initpara.period = (1000 / TIM2_FREQUENCY) - 1;
     timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
     timer_init(TIMER2, &timer_initpara);
-
+    /* enable TIM2 update interrupt */
     timer_interrupt_enable(TIMER2, TIMER_INT_UP);
     timer_enable(TIMER2);
     nvic_irq_enable(TIMER2_IRQn, TIM2_PRIORITY, 0);
 }
 
+/*!
+    \brief      configure timer13 periph for timing interrupt
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
 void timer13_config(void) {
     timer_parameter_struct timer_initpara;
+    /* enable TIMER13 clock*/
     rcu_periph_clock_enable(RCU_TIMER13);
-
     timer_deinit(TIMER13);
+    /* TIMER1CLK = SystemCoreClock / 72 = 1MHz */
     timer_initpara.prescaler = 71;
+    /* timer edge alignment up count mode */
     timer_initpara.alignedmode = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection = TIMER_COUNTER_UP;
+    /* Period = 1000 / TIM13_FREQUENCY (kHz) */
     timer_initpara.period = (1000 / TIM13_FREQUENCY) - 1;
     timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
     timer_init(TIMER13, &timer_initpara);
-
+    /* enable TIM13 update interrupt */
     timer_interrupt_enable(TIMER13, TIMER_INT_UP);
     timer_enable(TIMER13);
     nvic_irq_enable(TIMER13_IRQn, TIM13_PRIORITY, 0);
@@ -92,8 +108,7 @@ void pwm_config(void) {
     timer_initpara.alignedmode = TIMER_COUNTER_CENTER_UP;
     timer_initpara.counterdirection = TIMER_COUNTER_UP;
     /* Period = 36000 / PWM_FREQUENCY */
-    pwm_period = 18000 / PWM_FREQUENCY;
-    timer_initpara.period = pwm_period;
+    timer_initpara.period = PWM_PERIOD;
     timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
     timer_initpara.repetitioncounter = 0;
     /* initialize the relevant registers of timer1 */
@@ -107,17 +122,17 @@ void pwm_config(void) {
     timer_channel_output_config(TIMER1, TIMER_CH_2, &timer_ocintpara);
 
     /* CH0 configuration in PWM mode1,duty cycle 50% */
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, pwm_period / 2);
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, PWM_PERIOD / 2);
     timer_channel_output_mode_config(TIMER1, TIMER_CH_0, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_0, TIMER_OC_SHADOW_DISABLE);
 
     /* CH1 configuration in PWM mode1,duty cycle 25% */
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_1, pwm_period / 2);
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_1, PWM_PERIOD / 2);
     timer_channel_output_mode_config(TIMER1, TIMER_CH_1, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_1, TIMER_OC_SHADOW_DISABLE);
 
     /* CH2 configuration in PWM mode1,duty cycle 12.5% */
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_2, pwm_period / 2);
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_2, PWM_PERIOD / 2);
     timer_channel_output_mode_config(TIMER1, TIMER_CH_2, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER1, TIMER_CH_2, TIMER_OC_SHADOW_DISABLE);
 

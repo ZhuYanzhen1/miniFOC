@@ -5,6 +5,8 @@
 #ifndef MINIFOC_HARDWARE_TIMER_H_
 #define MINIFOC_HARDWARE_TIMER_H_
 
+#define PWM_PERIOD  18000 / PWM_FREQUENCY
+
 void update_pwm_dutycycle(float ch0, float ch1, float ch2);
 void timer2_config(void);
 void timer13_config(void);

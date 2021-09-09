@@ -23,6 +23,7 @@ volatile static unsigned long long systick_mechanical_angle_last = 0;
     \retval     none
 */
 void encoder_delay(void) {
+    /* use loop functions to delay time */
     unsigned char delay_counter = 0xff;
     while (delay_counter)
         delay_counter--;
@@ -73,8 +74,11 @@ unsigned short encoder_get_mechanical_angle(void) {
     \retval     register raw data reading back
 */
 float encoder_get_electronic_angle(void) {
+    /* read back the mechanical angle directly from the magnetic encoder */
     unsigned short tmp_mechanical_angle = encoder_get_mechanical_angle();
+    /* calculate and update the mechanical angle */
     FOC_Struct.mechanical_angle = (float) tmp_mechanical_angle * MECHANGLE_COEFFICIENT;
+    /* calculate and update the electric angle */
     float electric_angle = (float) (tmp_mechanical_angle % (ENCODER_RESO / POLAR_PAIRS)) * ELECANGLE_COEFFICIENT;
     return electric_angle;
 }
