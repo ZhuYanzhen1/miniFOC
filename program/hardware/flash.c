@@ -2,9 +2,34 @@
 // Created by Lao·Zhu on 2021/9/5.
 //
 
-#include "flash.h"
-#include "gd32f1x0.h"
-#include "config.h"
+#include "main.h"
+
+/*!
+    \brief      program all parameters to flash
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void flash_write_parameters(void) {
+    unsigned int buffer[2] = {machine_angle_offset, phase_sequence};
+    flash_erase_page();
+    flash_program_word(0x00000000UL, buffer, 2);
+}
+
+/*!
+    \brief      read all parameters from flash
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void flash_read_parameters(void) {
+    machine_angle_offset = flash_read_word(0x00000000UL);
+    phase_sequence = flash_read_word(0x00000004UL);
+    if (machine_angle_offset > 4096 || phase_sequence > 1) {
+        led_on();
+        while (1);
+    }
+}
 
 /*!
     \brief      erase flash page in last sector

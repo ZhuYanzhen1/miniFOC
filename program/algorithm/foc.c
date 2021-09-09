@@ -22,7 +22,7 @@ void foc_calibrate_phase(void) {
     unsigned short last_angle = 0, positive_counter = 0;
     float u, v, w, angle = 0;
     /* set that there is only a magnetic field on the straight axis */
-    foc_calculate_dutycycle(0, 0.5f, 0, &u, &v, &w);
+    foc_calculate_dutycycle(0, CALI_TORQUE, 0, &u, &v, &w);
     /* Apply to PWM */
     update_pwm_dutycycle(u, v, w);
     /* delay to wait for the motor to respond */
@@ -36,7 +36,7 @@ void foc_calibrate_phase(void) {
         /* update last angle as current angle */
         last_angle = current_angle;
         /* set that there is only a magnetic field on the straight axis */
-        foc_calculate_dutycycle(angle, 0.5f, 0, &u, &v, &w);
+        foc_calculate_dutycycle(angle, CALI_TORQUE, 0, &u, &v, &w);
         angle += 0.2f;
         /* Apply to PWM */
         update_pwm_dutycycle(u, v, w);
@@ -52,7 +52,7 @@ void foc_calibrate_phase(void) {
         /* update last angle as current angle */
         last_angle = current_angle;
         /* set that there is only a magnetic field on the straight axis */
-        foc_calculate_dutycycle(angle, 0.5f, 0, &u, &v, &w);
+        foc_calculate_dutycycle(angle, CALI_TORQUE, 0, &u, &v, &w);
         angle -= 0.2f;
         /* Apply to PWM */
         update_pwm_dutycycle(u, v, w);

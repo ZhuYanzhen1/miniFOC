@@ -11,7 +11,7 @@
 #include "config.h"
 #include "filter.h"
 
-volatile static unsigned short machine_angle_offset = 0;
+volatile unsigned short machine_angle_offset = 0;
 volatile static unsigned short last_mechanical_angle = 0;
 volatile static unsigned long long total_machine_angle = 0;
 volatile static unsigned long long systick_mechanical_angle_last = 0;
@@ -105,7 +105,7 @@ void encoder_zeroing(void) {
     /* delay to wait for the power supply voltage to be normal */
     delayms(1000);
     /* set that there is only a magnetic field on the straight axis. */
-    foc_calculate_dutycycle(0, 0.5f, 0, &u, &v, &w);
+    foc_calculate_dutycycle(0, CALI_TORQUE, 0, &u, &v, &w);
     /* Apply to PWM */
     update_pwm_dutycycle(u, v, w);
     /* delay to wait for the motor to respond */
@@ -113,7 +113,7 @@ void encoder_zeroing(void) {
     machine_angle_offset = 0;
     total_machine_angle = 0;
     /* read the angle at this time as the offset angle */
-    machine_angle_offset = encoder_get_mechanical_angle();
+    machine_angle_offset = encoder_read_data(0x0000) >> 4;
     /* zero the torque in all directions to release the motor */
     foc_calculate_dutycycle(0, 0, 0, &u, &v, &w);
     /* Apply to PWM */

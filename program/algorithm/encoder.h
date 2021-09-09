@@ -5,6 +5,7 @@
 #ifndef MINIFOC_ALGORITHM_ENCODER_H_
 #define MINIFOC_ALGORITHM_ENCODER_H_
 
+extern volatile unsigned short machine_angle_offset;
 void encoder_zeroing(void);
 unsigned short encoder_get_mechanical_angle(void);
 float encoder_get_electronic_angle(void);
