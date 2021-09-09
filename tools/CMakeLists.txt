@@ -13,20 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets SerialPort REQUIRED)
 
-if(ANDROID)
-  add_library(monitor SHARED
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-  )
-else()
-  add_executable(monitor
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-  )
-endif()
+add_executable(monitor main.cpp mainwindow.cpp mainwindow.h mainwindow.ui
+                mdtp/decrypt.cpp mdtp/encrypt.cpp)
 
 target_link_libraries(monitor PRIVATE Qt5::Widgets Qt5::SerialPort)

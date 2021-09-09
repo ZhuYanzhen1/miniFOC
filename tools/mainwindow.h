@@ -6,6 +6,8 @@
 #include <QSerialPortInfo>
 #include <QMessageBox>
 
+#include <QDebug>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -20,13 +22,18 @@ public:
 
 private slots:
     void on_refresh_btn_clicked();
-
     void on_open_btn_clicked();
+
+public slots:
+    void serial_received();
 
 private:
     Ui::MainWindow *ui;
-    QSerialPort serial;
+    QSerialPort *serial;
     void refresh_serial_port();
     bool set_serial_badurate();
+    void mdtp_receive_handler(unsigned char data);
+    void mdtp_data_transmit(unsigned char pid, const unsigned char *data);
+    void mdtp_callback_handler(unsigned char pid, const unsigned char *data);
 };
 #endif // MAINWINDOW_H

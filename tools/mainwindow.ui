@@ -122,6 +122,16 @@
      </font>
     </property>
    </widget>
+   <widget class="QTextEdit" name="test_txt">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>70</y>
+      <width>681</width>
+      <height>451</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
