@@ -14,14 +14,20 @@ static volatile unsigned char minifoc_fsm_state = 0;
     \retval       none
 */
 void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
-    /* pack1 is the control pack of miniFOC*/
+    /* pack1 is the control pack of miniFOC */
     if (pid == 1) {
         switch (data[0]) {
-            /* 0x0f is used to correct motor phase sequence and sensor angle offset */
-            case 0x0f:minifoc_fsm_state = 1;
+            case 0x0F:
+                /* 0x0F is used to calibrate motor phase and sensor offset */
+                minifoc_fsm_state = 1;
                 break;
+            case 0x1E:
                 /* 0x1E used to enable the motor */
-            case 0x1e:minifoc_fsm_state = 2;
+                minifoc_fsm_state = 2;
+                break;
+            case 0x2D:
+                /* 0x2D used to disable the motor */
+                minifoc_fsm_state = 3;
                 break;
             default:break;
         }
@@ -41,6 +47,8 @@ int main(void) {
     spi_config();
     /* configure filter parameters for pid algorithm */
     filter_config();
+    /* configure pid parameters for (torque/speed/angle) loop */
+    pid_config(TORQUE_LOOP_CONTROL);
     /* configure systick timer for delay_ms() function */
     systick_config();
     /* read all parameters from flash */
@@ -70,16 +78,21 @@ int main(void) {
             case 0:
             default: {
                 unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+                /* converts velocity floating point data to an integer */
                 unsigned int velocity = float_to_int32(FOC_Struct.rotate_speed);
+                /* converts angle floating point data to an integer */
                 unsigned int angle = float_to_int32(FOC_Struct.mechanical_angle);
+                /* separates 32-bit velocity integer into 8-bit integers */
                 buffer[0] = (unsigned char) ((velocity >> 24UL) & 0x000000ffUL);
                 buffer[1] = (unsigned char) ((velocity >> 16UL) & 0x000000ffUL);
                 buffer[2] = (unsigned char) ((velocity >> 8UL) & 0x000000ffUL);
                 buffer[3] = (unsigned char) (velocity & 0x000000ffUL);
+                /* separates 32-bit angle integer into 8-bit integers */
                 buffer[4] = (unsigned char) ((angle >> 24UL) & 0x000000ffUL);
                 buffer[5] = (unsigned char) ((angle >> 16UL) & 0x000000ffUL);
                 buffer[6] = (unsigned char) ((angle >> 8UL) & 0x000000ffUL);
                 buffer[7] = (unsigned char) (angle & 0x000000ffUL);
+                /* packet and send through medium capacity data transmission protocol */
                 mdtp_data_transmit(0x00, buffer);
                 led_toggle();
                 delayms(50);

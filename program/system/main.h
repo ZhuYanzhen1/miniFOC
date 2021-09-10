@@ -22,5 +22,6 @@
 #include "encoder.h"
 #include "fast_math.h"
 #include "filter.h"
+#include "pid.h"
 
 #endif  // MINIFOC_MAIN_H_
