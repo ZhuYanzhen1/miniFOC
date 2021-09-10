@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>762</width>
+    <height>444</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,19 +122,26 @@
      </font>
     </property>
    </widget>
-   <widget class="QTextEdit" name="test_txt">
+   <widget class="QCustomPlot" name="custom_plot" native="true">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>70</y>
-      <width>681</width>
-      <height>451</height>
+      <x>20</x>
+      <y>60</y>
+      <width>561</width>
+      <height>361</height>
      </rect>
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

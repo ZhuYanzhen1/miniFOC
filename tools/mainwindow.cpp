@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     serial = new QSerialPort();
     ui->setupUi(this);
     refresh_serial_port();
+    setup_custom_plot();
     ui->serial_baudrate_txt->setText("115200");
 }
 
@@ -15,6 +16,58 @@ MainWindow::~MainWindow(){
         serial->close();
     delete serial;
     delete ui;
+}
+
+void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *data){
+    qDebug() << "pack:" << pid << "  data:" << data[0] << data[1] << data[2] << data[3]
+                 << data[4] << data[5] << data[6] << data[7];
+}
+
+void MainWindow::on_open_btn_clicked(){
+    if(serial->isOpen() == false){
+        if(set_serial_badurate() == true){
+            serial->open(QSerialPort::ReadWrite);
+            ui->open_btn->setText("Close");
+            ui->serial_port_cb->setEnabled(false);
+            ui->serial_baudrate_txt->setEnabled(false);
+            connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
+        }
+    }
+    else{
+        serial->close();
+        ui->open_btn->setText("Open");
+        ui->serial_port_cb->setEnabled(true);
+        ui->serial_baudrate_txt->setEnabled(true);
+    }
+}
+
+void MainWindow::on_refresh_btn_clicked(){
+    refresh_serial_port();
+}
+
+void MainWindow::setup_custom_plot(){
+    QPen pen;
+    pen.setColor(Qt::blue);
+    ui->custom_plot->legend->setVisible(true);
+    ui->custom_plot->addGraph();
+    ui->custom_plot->graph(0)->setPen(pen);
+    ui->custom_plot->graph(0)->setName("Speed");
+
+    pen.setColor(Qt::red);
+    ui->custom_plot->addGraph();
+    ui->custom_plot->graph(1)->setPen(pen);
+    ui->custom_plot->graph(1)->setName("Angle");
+
+    ui->custom_plot->xAxis->setLabel("n(times)");
+    ui->custom_plot->yAxis->setLabel("y(rad/s rad)");
+
+    ui->custom_plot->xAxis->setRange(0,1);
+    ui->custom_plot->yAxis->setRange(0,1);
+
+    connect(ui->custom_plot->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->custom_plot->xAxis2, SLOT(setRange(QCPRange)));
+    connect(ui->custom_plot->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->custom_plot->yAxis2, SLOT(setRange(QCPRange)));
+
+    ui->custom_plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
 
 bool MainWindow::set_serial_badurate(){
@@ -40,36 +93,9 @@ void MainWindow::refresh_serial_port(){
         ui->serial_port_cb->addItem(serialPortinfo.at(i).portName());
 }
 
-void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *data){
-    qDebug() << "pack:" << pid << "  data:" << data[0] << data[1] << data[2] << data[3]
-                 << data[4] << data[5] << data[6] << data[7];
-}
-
 void MainWindow::serial_received(){
     QByteArray info = serial->readAll();
     char *buffer = info.data();
     for (int counter = 0; counter < info.length(); counter++)
         mdtp_receive_handler(buffer[counter]);
-}
-
-void MainWindow::on_open_btn_clicked(){
-    if(serial->isOpen() == false){
-        if(set_serial_badurate() == true){
-            serial->open(QSerialPort::ReadWrite);
-            ui->open_btn->setText("Close");
-            ui->serial_port_cb->setEnabled(false);
-            ui->serial_baudrate_txt->setEnabled(false);
-            connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
-        }
-    }
-    else{
-        serial->close();
-        ui->open_btn->setText("Open");
-        ui->serial_port_cb->setEnabled(true);
-        ui->serial_baudrate_txt->setEnabled(true);
-    }
-}
-
-void MainWindow::on_refresh_btn_clicked(){
-    refresh_serial_port();
 }

@@ -32,6 +32,7 @@ private:
     QSerialPort *serial;
     void refresh_serial_port();
     bool set_serial_badurate();
+    void setup_custom_plot();
     void mdtp_receive_handler(unsigned char data);
     void mdtp_data_transmit(unsigned char pid, const unsigned char *data);
     void mdtp_callback_handler(unsigned char pid, const unsigned char *data);
