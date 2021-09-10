@@ -75,13 +75,3 @@ float fast_sin(float theta) {
     /* look up the table to obtain the sine value */
     return sin_tab[(int) (81.4873308f * theta)];
 }
-
-/*!
-    \brief      fast calculation of cosine
-    \param[in]  theta: angle to be calculated
-    \param[out] none
-    \retval     cosine value of angle theta
-*/
-float fast_cos(float theta) {
-    return fast_sin(1.5707963f - theta);
-}
