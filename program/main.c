@@ -46,7 +46,6 @@ int main(void) {
     /* read all parameters from flash */
     flash_read_parameters();
     while (1) {
-        unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
         switch (minifoc_fsm_state) {
             case 1:
                 /* automatic phase sequence detection and correction */
@@ -70,6 +69,7 @@ int main(void) {
                 break;
             case 0:
             default: {
+                unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
                 unsigned int velocity = float_to_int32(FOC_Struct.rotate_speed);
                 unsigned int angle = float_to_int32(FOC_Struct.mechanical_angle);
                 buffer[0] = (unsigned char) ((velocity >> 24UL) & 0x000000ffUL);
