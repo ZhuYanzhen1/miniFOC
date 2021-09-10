@@ -93,8 +93,9 @@ void encoder_update_speed(void) {
     /* calculate the difference between this angle and the last angle */
     unsigned short tmp_mechanical_angle_velocity = total_machine_angle - systick_mechanical_angle_last;
     /* send it to low-pass filter for filtering to prevent PID high-frequency oscillation */
-    filter_update_value((Filter_Structure_t *) &velocity_filter, tmp_mechanical_angle_velocity);
-    /* update last angle*/
+    FOC_Struct.rotate_speed =
+        filter_update_value((Filter_Structure_t *) &velocity_filter, tmp_mechanical_angle_velocity);
+    /* update last angle */
     systick_mechanical_angle_last = total_machine_angle;
 }
 

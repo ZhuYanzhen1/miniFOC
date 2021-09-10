@@ -6,8 +6,8 @@
 #define MINIFOC_ALGORITHM_FILTER_H_
 
 typedef struct {
-    unsigned char pointer;
-    unsigned short buffer[11];
+    unsigned short pointer;
+    unsigned short buffer[3];
     float current_result;
     float coefficient;
 } Filter_Structure_t;

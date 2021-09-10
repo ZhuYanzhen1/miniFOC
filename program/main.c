@@ -59,19 +59,31 @@ int main(void) {
                 minifoc_fsm_state = 0;
                 break;
             case 2:
+                /* delay to wait for the motor to respond */
+                delayms(1000);
                 /* configure timer2 for foc calculate loop */
                 timer2_config();
+                /* configure timer13 for velocity closed loop */
+                timer13_config();
                 /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
                 break;
             case 0:
-            default:buffer[0] = float_to_int16(velocity_filter.current_result) >> 8;
-                buffer[1] = float_to_int16(velocity_filter.current_result) & 0x00ff;
-                if (velocity_filter.current_result == 0)
-                    velocity_filter.current_result = 3.1415926f;
+            default: {
+                unsigned int velocity = float_to_int32(FOC_Struct.rotate_speed);
+                unsigned int angle = float_to_int32(FOC_Struct.mechanical_angle);
+                buffer[0] = (unsigned char) ((velocity >> 24UL) & 0x000000ffUL);
+                buffer[1] = (unsigned char) ((velocity >> 16UL) & 0x000000ffUL);
+                buffer[2] = (unsigned char) ((velocity >> 8UL) & 0x000000ffUL);
+                buffer[3] = (unsigned char) (velocity & 0x000000ffUL);
+                buffer[4] = (unsigned char) ((angle >> 24UL) & 0x000000ffUL);
+                buffer[5] = (unsigned char) ((angle >> 16UL) & 0x000000ffUL);
+                buffer[6] = (unsigned char) ((angle >> 8UL) & 0x000000ffUL);
+                buffer[7] = (unsigned char) (angle & 0x000000ffUL);
                 mdtp_data_transmit(0x00, buffer);
                 led_toggle();
                 delayms(50);
+            }
                 break;
         }
     }

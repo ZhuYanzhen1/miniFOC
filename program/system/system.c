@@ -55,33 +55,23 @@ void user_memset(void *buf, unsigned char data, unsigned char num) {
 }
 
 /*!
-    \brief      convert floating point numbers to int16 type data
+    \brief      convert floating point numbers to int32 type data
     \param[in]  data0: floating point type data to be converted
     \param[out] none
-    \retval     converted int16 type data
+    \retval     converted int32 type data
 */
-unsigned short float_to_int16(float data0) {
-    if (data0 == 0)
-        return 0;
-    unsigned int *pfp32 = ((unsigned int *) &data0);
-    unsigned short fInt16 = ((*pfp32 >> 16) & 0x8000) |
-        ((((*pfp32 >> 23) - 0x7f + 0x0f) & 0x1f) << 10) |
-        ((*pfp32 >> 13) & 0x3ff);
-    return fInt16;
+unsigned int float_to_int32(float data0) {
+    unsigned int uintp32 = (*((unsigned int *) (&data0)));
+    return uintp32;
 }
 
 /*!
-    \brief      convert int16 to floating point numbers type data
-    \param[in]  data0: int16 type data to be converted
+    \brief      convert int32 to floating point numbers type data
+    \param[in]  data0: int32 type data to be converted
     \param[out] none
     \retval     converted floating point type data
 */
-float int16_to_float(unsigned short data0) {
-    if (data0 == 0)
-        return 0;
-    unsigned int fInt32 = ((data0 & 0x8000) << 16) |
-        (((((data0 >> 10) & 0x1f) - 0x0f + 0x7f) & 0xff) << 23)
-        | ((data0 & 0x03FF) << 13);
-    float *fp32 = (float *) &fInt32;
-    return *fp32;
+float int32_to_float(unsigned int data0) {
+    float fp32 = (*((float *) (&data0)));
+    return fp32;
 }

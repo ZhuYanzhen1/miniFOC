@@ -63,8 +63,8 @@ void timer13_config(void) {
     /* timer edge alignment up count mode */
     timer_initpara.alignedmode = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection = TIMER_COUNTER_UP;
-    /* Period = 1000 / TIM13_FREQUENCY (kHz) */
-    timer_initpara.period = (1000 / TIM13_FREQUENCY) - 1;
+    /* Period = 1000000 / TIM13_FREQUENCY (kHz) */
+    timer_initpara.period = (1000000 / TIM13_FREQUENCY) - 1;
     timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
     timer_init(TIMER13, &timer_initpara);
     /* enable TIM13 update interrupt */

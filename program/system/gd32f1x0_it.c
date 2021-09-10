@@ -5,8 +5,6 @@
 #include "gd32f1x0_it.h"
 #include "main.h"
 
-static volatile unsigned char systick_counter = 0;
-
 /*!
     \brief      this function handles NMI exception
     \param[in]  none
@@ -96,12 +94,6 @@ void PendSV_Handler(void) {
 void SysTick_Handler(void) {
     /* update millisecond delay counter */
     delay_decrement();
-    systick_counter++;
-    if (systick_counter == 2) {
-        /* update the motor speedometer counter and calculate the speed */
-        encoder_update_speed();
-        systick_counter = 0;
-    }
 }
 
 /*!
@@ -121,7 +113,7 @@ void USART0_IRQHandler(void) {
 }
 
 /*!
-    \brief      this function handles USART RBNE interrupt request
+    \brief      this function handles TIMER2 TIMER_INT_UP interrupt request
     \param[in]  none
     \param[out] none
     \retval     none
@@ -136,10 +128,25 @@ void TIMER2_IRQHandler(void) {
         /* Clarke inverse transform and SVPWM modulation */
         /* judge whether the motor phase is connected reversely */
         if (phase_sequence == 0)
-            foc_calculate_dutycycle(angle, 0, 0.6f, &u, &v, &w);
+            foc_calculate_dutycycle(angle, 0, 0.4f, &u, &v, &w);
         else
-            foc_calculate_dutycycle(angle, 0, 0.6f, &v, &u, &w);
+            foc_calculate_dutycycle(angle, 0, 0.4f, &v, &u, &w);
         /* Apply to PWM */
         update_pwm_dutycycle(u, v, w);
+    }
+}
+
+/*!
+    \brief      this function handles TIMER13 TIMER_INT_UP interrupt request
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void TIMER13_IRQHandler(void) {
+    /* judge whether a timer update interrupt is generated */
+    if (SET == timer_interrupt_flag_get(TIMER13, TIMER_INT_UP)) {
+        /* clear timer interrupt flag bit */
+        timer_interrupt_flag_clear(TIMER13, TIMER_INT_UP);
+        encoder_update_speed();
     }
 }
