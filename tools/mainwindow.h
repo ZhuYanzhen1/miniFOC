@@ -24,6 +24,10 @@ private slots:
     void on_refresh_btn_clicked();
     void on_open_btn_clicked();
 
+    void on_start_stop_btn_clicked();
+
+    void on_calibrate_btn_clicked();
+
 public slots:
     void serial_received();
 

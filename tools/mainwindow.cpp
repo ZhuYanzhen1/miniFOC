@@ -22,16 +22,16 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
 //    qDebug() << "pack:" << pid << "  data:" << data[0] << data[1] << data[2] << data[3]
 //                 << data[4] << data[5] << data[6] << data[7];
     if(pid == 0){
-        uint32_t velocity =  (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
+        uint32_t velocity = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         uint32_t angle = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
         curve_x.resize(curve_counter + 1);
         curve_angle.resize(curve_counter + 1);
         curve_velocity.resize(curve_counter + 1);
-        curve_x[curve_counter] = (curve_counter + 1) * 0.05;
-        curve_angle[curve_counter] = (double)(* (float *)(&angle));
-        curve_velocity[curve_counter] = (double)(* (float *)(&velocity));
-        ui->custom_plot->graph(0)->setData(curve_x, curve_angle);
-        ui->custom_plot->graph(1)->setData(curve_x, curve_velocity);
+        curve_x[curve_counter] = (curve_counter + 1) * 0.05f;
+        curve_angle[curve_counter] = (*((float *)(&angle)));
+        curve_velocity[curve_counter] = (*((float *)(&velocity)));
+        ui->custom_plot->graph(0)->setData(curve_x, curve_velocity);
+        ui->custom_plot->graph(1)->setData(curve_x, curve_angle);
         ui->custom_plot->rescaleAxes();
         ui->custom_plot->replot();
         curve_counter = curve_counter + 1;
@@ -45,20 +45,44 @@ void MainWindow::on_open_btn_clicked(){
             ui->open_btn->setText("Close");
             ui->serial_port_cb->setEnabled(false);
             ui->serial_baudrate_txt->setEnabled(false);
+            ui->calibrate_btn->setEnabled(true);
+            ui->start_stop_btn->setEnabled(true);
             connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
         }
     }
     else{
         serial->close();
         ui->open_btn->setText("Open");
+        ui->calibrate_btn->setEnabled(false);
+        ui->start_stop_btn->setEnabled(false);
         ui->serial_port_cb->setEnabled(true);
         ui->serial_baudrate_txt->setEnabled(true);
     }
 }
 
+void MainWindow::on_start_stop_btn_clicked(){
+    unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    if(ui->start_stop_btn->text() == "Start"){
+        ui->start_stop_btn->setText("Stop");
+        buffer[0] = 0x1E;
+        mdtp_data_transmit(0x01, buffer);
+    }else{
+        ui->start_stop_btn->setText("Start");
+    }
+}
+
+void MainWindow::on_calibrate_btn_clicked(){
+    unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    buffer[0] = 0x0F;
+    mdtp_data_transmit(0x01, buffer);
+    ui->calibrate_btn->setEnabled(false);
+}
+
 void MainWindow::on_refresh_btn_clicked(){
     refresh_serial_port();
 }
+
+/* some functions related to plot initialize and refresh */
 
 void MainWindow::setup_custom_plot(){
     QPen pen;
