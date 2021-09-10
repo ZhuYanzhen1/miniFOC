@@ -11,9 +11,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Widgets SerialPort REQUIRED)
+find_package(Qt5 COMPONENTS Widgets SerialPort PrintSupport REQUIRED)
 
 add_executable(monitor main.cpp mainwindow.cpp mainwindow.h mainwindow.ui
-                mdtp/decrypt.cpp mdtp/encrypt.cpp)
+                mdtp/decrypt.cpp mdtp/encrypt.cpp qcustomplot.h qcustomplot.cpp)
 
-target_link_libraries(monitor PRIVATE Qt5::Widgets Qt5::SerialPort)
+target_link_libraries(monitor PRIVATE Qt5::Widgets Qt5::SerialPort Qt5::PrintSupport)
