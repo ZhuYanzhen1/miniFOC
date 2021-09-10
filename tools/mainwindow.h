@@ -30,6 +30,8 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
+    uint64_t curve_counter = 0;
+    QVector<double> curve_velocity, curve_angle, curve_x;
     void refresh_serial_port();
     bool set_serial_badurate();
     void setup_custom_plot();
