@@ -31,9 +31,6 @@ void MainWindow::mdtp_data_transmit(unsigned char pid, const unsigned char *data
         temp_buf[10] = temp_buf[2] = 0xa5;
     /* load self checking packet id byte */
     temp_buf[1] = pid << 4 | ((~pid) & 0x0f);
-    /* traverse the buffer array and send all bytes through general sendbyte function */
-    for (mdtp_pack_counter = 0; mdtp_pack_counter < 12; mdtp_pack_counter++) {
-        /* transmit single byte through general sendbyte function */
-        serial->write((const char *)temp_buf);
-    }
+    /* transmit 12 bytes through general sendbyte function */
+    serial->write((const char *)temp_buf, 12);
 }
