@@ -19,8 +19,6 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *data){
-//    qDebug() << "pack:" << pid << "  data:" << data[0] << data[1] << data[2] << data[3]
-//                 << data[4] << data[5] << data[6] << data[7];
     if(pid == 0){
         uint32_t velocity = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         uint32_t angle = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
@@ -67,6 +65,8 @@ void MainWindow::on_start_stop_btn_clicked(){
         buffer[0] = 0x1E;
         mdtp_data_transmit(0x01, buffer);
     }else{
+        buffer[0] = 0x2D;
+        mdtp_data_transmit(0x01, buffer);
         ui->start_stop_btn->setText("Start");
     }
 }
