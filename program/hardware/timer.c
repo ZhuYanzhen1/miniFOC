@@ -21,20 +21,39 @@ void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
     TIMER_CH2CV(TIMER1) = (uint32_t) ((float) PWM_PERIOD * ch2);
 }
 
+/*!
+    \brief      disable timer13 periph and timer2 interrupt
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
 void timer13_disable(void) {
+    /* stop TIMER13 and deinit */
     timer_disable(TIMER13);
     timer_deinit(TIMER13);
+    /* disable TIMER13 update interrupt */
     timer_interrupt_disable(TIMER13, TIMER_INT_UP);
     nvic_irq_disable(TIMER13_IRQn);
+    /* disable TIMER13 clock*/
     rcu_periph_clock_disable(RCU_TIMER13);
 }
 
+/*!
+    \brief      disable timer2 periph and timer2 interrupt
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
 void timer2_disable(void) {
+    /* stop TIMER2 and deinit */
     timer_disable(TIMER2);
     timer_deinit(TIMER2);
+    /* disable TIMER2 update interrupt */
     timer_interrupt_disable(TIMER2, TIMER_INT_UP);
     nvic_irq_disable(TIMER2_IRQn);
+    /* disable TIMER2 clock*/
     rcu_periph_clock_disable(RCU_TIMER2);
+    /* zero the torque in all directions to release the motor */
     update_pwm_dutycycle(0.5f, 0.5f, 0.5f);
 }
 
@@ -58,7 +77,7 @@ void timer2_config(void) {
     timer_initpara.period = (1000 / TIM2_FREQUENCY) - 1;
     timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
     timer_init(TIMER2, &timer_initpara);
-    /* enable TIM2 update interrupt */
+    /* enable TIMER2 update interrupt */
     timer_interrupt_enable(TIMER2, TIMER_INT_UP);
     timer_enable(TIMER2);
     nvic_irq_enable(TIMER2_IRQn, TIM2_PRIORITY, 0);
@@ -84,7 +103,7 @@ void timer13_config(void) {
     timer_initpara.period = (1000000 / TIM13_FREQUENCY) - 1;
     timer_initpara.clockdivision = TIMER_CKDIV_DIV1;
     timer_init(TIMER13, &timer_initpara);
-    /* enable TIM13 update interrupt */
+    /* enable TIMER13 update interrupt */
     timer_interrupt_enable(TIMER13, TIMER_INT_UP);
     timer_enable(TIMER13);
     nvic_irq_enable(TIMER13_IRQn, TIM13_PRIORITY, 0);
