@@ -5,6 +5,7 @@
 #include "timer.h"
 #include "gd32f1x0.h"
 #include "config.h"
+#include "foc.h"
 
 /*!
     \brief      update timer1 ch0 1 2 duty-cycle
@@ -19,6 +20,23 @@ void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
     TIMER_CH0CV(TIMER1) = (uint32_t) ((float) PWM_PERIOD * ch0);
     TIMER_CH1CV(TIMER1) = (uint32_t) ((float) PWM_PERIOD * ch1);
     TIMER_CH2CV(TIMER1) = (uint32_t) ((float) PWM_PERIOD * ch2);
+}
+
+void timer13_disable(void) {
+    timer_disable(TIMER13);
+    timer_deinit(TIMER13);
+    timer_interrupt_disable(TIMER13, TIMER_INT_UP);
+    nvic_irq_disable(TIMER13_IRQn);
+    rcu_periph_clock_disable(RCU_TIMER13);
+}
+
+void timer2_disable(void) {
+    timer_disable(TIMER2);
+    timer_deinit(TIMER2);
+    timer_interrupt_disable(TIMER2, TIMER_INT_UP);
+    nvic_irq_disable(TIMER2_IRQn);
+    rcu_periph_clock_disable(RCU_TIMER2);
+    update_pwm_dutycycle(0.5f, 0.5f, 0.5f);
 }
 
 /*!

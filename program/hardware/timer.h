@@ -8,6 +8,8 @@
 #define PWM_PERIOD  18000 / PWM_FREQUENCY
 
 void update_pwm_dutycycle(float ch0, float ch1, float ch2);
+void timer2_disable(void);
+void timer13_disable(void);
 void timer2_config(void);
 void timer13_config(void);
 void pwm_config(void);
