@@ -48,7 +48,8 @@ int main(void) {
     /* configure filter parameters for pid algorithm */
     filter_config();
     /* configure pid parameters for (torque/speed/angle) loop */
-    pid_config(TORQUE_LOOP_CONTROL);
+    pid_config(DEFAULT_MODE);
+    FOC_Struct.user_expect = 0.4f;
     /* configure systick timer for delay_ms() function */
     systick_config();
     /* read all parameters from flash */
@@ -76,9 +77,14 @@ int main(void) {
                 /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
                 break;
-            case 3:timer2_disable();
+            case 3:
+                /* disable timer2 to stop foc calculate loop */
+                timer2_disable();
+                /* disable timer13 to stop pid calculate loop */
                 if (pid_control_mode_flag != TORQUE_LOOP_CONTROL)
                     timer13_disable();
+                /* switch the status back to sending data */
+                minifoc_fsm_state = 0;
                 break;
             case 0:
             default: {

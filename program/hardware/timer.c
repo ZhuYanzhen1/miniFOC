@@ -5,7 +5,6 @@
 #include "timer.h"
 #include "gd32f1x0.h"
 #include "config.h"
-#include "foc.h"
 
 /*!
     \brief      update timer1 ch0 1 2 duty-cycle
