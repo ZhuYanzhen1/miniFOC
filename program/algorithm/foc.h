@@ -8,6 +8,7 @@
 typedef struct {
     float mechanical_angle;
     float rotate_speed;
+    float user_expect;
 } FOC_Structure_t;
 
 #define MECHANGLE_COEFFICIENT   (6.2831854f / ENCODER_RESO)

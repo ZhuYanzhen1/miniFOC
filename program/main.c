@@ -70,10 +70,15 @@ int main(void) {
                 delayms(1000);
                 /* configure timer2 for foc calculate loop */
                 timer2_config();
-                /* configure timer13 for velocity closed loop */
-                timer13_config();
+                if (pid_control_mode_flag != TORQUE_LOOP_CONTROL)
+                    /* configure timer13 for velocity or angle closed loop */
+                    timer13_config();
                 /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
+                break;
+            case 3:timer2_disable();
+                if (pid_control_mode_flag != TORQUE_LOOP_CONTROL)
+                    timer13_disable();
                 break;
             case 0:
             default: {
