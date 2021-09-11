@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210911](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210911.hex): 610eeb6 Add a comment for timer deactivation.
+ 
 + [20210910](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210910.hex): 97ade83 Modify the packet serial port sending function, and now you can send data correctly.
  
 + [20210909](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210909.hex): 9216fd7 Add upper computer monitor tools for miniFOC
