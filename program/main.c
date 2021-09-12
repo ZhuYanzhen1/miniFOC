@@ -16,6 +16,7 @@ static volatile unsigned char minifoc_fsm_state = 0;
 void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
     /* pack1 is the control pack of miniFOC */
     if (pid == 1) {
+        unsigned int receive_expect;
         switch (data[0]) {
             case 0x0F:
                 /* 0x0F is used to calibrate motor phase and sensor offset */
@@ -24,10 +25,17 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
             case 0x1E:
                 /* 0x1E used to enable the motor */
                 minifoc_fsm_state = 2;
+                /* configure pid parameters for (torque/speed/angle) loop */
+                pid_config(data[1]);
                 break;
             case 0x2D:
                 /* 0x2D used to disable the motor */
                 minifoc_fsm_state = 3;
+                break;
+            case 0x3C:
+                /* 0x3C used to set user expect */
+                receive_expect = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                FOC_Struct.user_expect = int32_to_float(receive_expect);
                 break;
             default:break;
         }
@@ -49,7 +57,6 @@ int main(void) {
     filter_config();
     /* configure pid parameters for (torque/speed/angle) loop */
     pid_config(DEFAULT_MODE);
-    FOC_Struct.user_expect = 0.4f;
     /* configure systick timer for delay_ms() function */
     systick_config();
     /* read all parameters from flash */
@@ -57,6 +64,10 @@ int main(void) {
     while (1) {
         switch (minifoc_fsm_state) {
             case 1:
+                /* disable timer2 to stop foc calculate loop */
+                timer2_disable();
+                /* disable timer13 to stop pid calculate loop */
+                timer13_disable();
                 /* automatic phase sequence detection and correction */
                 foc_calibrate_phase();
                 /* correct the mechanical angle zero deviation */
