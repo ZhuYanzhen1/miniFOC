@@ -23,17 +23,20 @@ public:
 private slots:
     void on_refresh_btn_clicked();
     void on_open_btn_clicked();
-
     void on_start_stop_btn_clicked();
-
     void on_calibrate_btn_clicked();
+    void on_user_expect_slider_valueChanged(int value);
 
 public slots:
     void serial_received();
+    void slider_timer_timeout();
 
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
+    bool slider_change_flag = false;
+    float slider_value = 0;
+    QTimer *slider_timer;
     uint64_t curve_counter = 0;
     QVector<double> curve_velocity, curve_angle, curve_x;
     void refresh_serial_port();

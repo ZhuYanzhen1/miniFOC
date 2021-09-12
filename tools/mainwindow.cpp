@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     refresh_serial_port();
     setup_custom_plot();
+    slider_timer = new QTimer(this);
+    slider_timer->setInterval(50);
+    connect(slider_timer,SIGNAL(timeout()),this,SLOT(slider_timer_timeout()));
     ui->serial_baudrate_txt->setText("115200");
     ui->mode_set_cb->addItem("Torque Control");
     ui->mode_set_cb->addItem("Speed Control");
@@ -18,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow(){
     if (serial->isOpen())
         serial->close();
+    delete slider_timer;
     delete serial;
     delete ui;
 }
@@ -40,6 +44,11 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
     }
 }
 
+void MainWindow::on_user_expect_slider_valueChanged(int value){
+    slider_change_flag = true;
+    slider_value  = (value / 10000.0f);
+}
+
 void MainWindow::on_open_btn_clicked(){
     if(serial->isOpen() == false){
         if(set_serial_badurate() == true){
@@ -50,23 +59,26 @@ void MainWindow::on_open_btn_clicked(){
             ui->calibrate_btn->setEnabled(true);
             ui->start_stop_btn->setEnabled(true);
             ui->mode_set_cb->setEnabled(true);
+            ui->user_expect_slider->setEnabled(true);
+            slider_timer->start();
             connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
         }
-    }
-    else{
+    }else {
         serial->close();
         ui->open_btn->setText("Open");
         ui->mode_set_cb->setEnabled(false);
         ui->calibrate_btn->setEnabled(false);
         ui->start_stop_btn->setEnabled(false);
+        ui->user_expect_slider->setEnabled(false);
         ui->serial_port_cb->setEnabled(true);
         ui->serial_baudrate_txt->setEnabled(true);
+        slider_timer->stop();
     }
 }
 
 void MainWindow::on_start_stop_btn_clicked(){
     unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    if(ui->start_stop_btn->text() == "Start"){
+    if(ui->start_stop_btn->text() == "Start") {
         ui->start_stop_btn->setText("Stop");
         buffer[0] = 0x1E;
         if (ui->mode_set_cb->currentText() == "Torque Control")
@@ -77,7 +89,7 @@ void MainWindow::on_start_stop_btn_clicked(){
                 buffer[1] = 0x03;
         mdtp_data_transmit(0x00, buffer);
         ui->mode_set_cb->setEnabled(false);
-    }else{
+    }else {
         buffer[0] = 0x2D;
         mdtp_data_transmit(0x00, buffer);
         ui->start_stop_btn->setText("Start");
@@ -93,6 +105,21 @@ void MainWindow::on_calibrate_btn_clicked(){
 
 void MainWindow::on_refresh_btn_clicked(){
     refresh_serial_port();
+}
+
+/* some functions related to timer interrupt */
+
+void MainWindow::slider_timer_timeout(){
+    if(slider_change_flag == true){
+        unsigned char buffer[8] = {0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+        unsigned int uintp32 = (*((unsigned int *) (&slider_value)));
+        buffer[4] = (unsigned char) ((uintp32 >> 24UL) & 0x000000ffUL);
+        buffer[5] = (unsigned char) ((uintp32 >> 16UL) & 0x000000ffUL);
+        buffer[6] = (unsigned char) ((uintp32 >> 8UL) & 0x000000ffUL);
+        buffer[7] = (unsigned char) (uintp32 & 0x000000ffUL);
+        mdtp_data_transmit(0x00, buffer);
+        slider_change_flag = false;
+    }
 }
 
 /* some functions related to plot initialize and refresh */
