@@ -13,8 +13,8 @@
 
 volatile unsigned short machine_angle_offset = 0;
 volatile static unsigned short last_mechanical_angle = 0;
-volatile static unsigned long long total_machine_angle = 0;
-volatile static unsigned long long systick_mechanical_angle_last = 0;
+volatile static long long total_machine_angle = 0;
+volatile static long long systick_mechanical_angle_last = 0;
 
 /*!
     \brief      delay function for magnetic encoder
@@ -91,7 +91,7 @@ float encoder_get_electronic_angle(void) {
 */
 void encoder_update_speed(void) {
     /* calculate the difference between this angle and the last angle */
-    unsigned short tmp_mechanical_angle_velocity = total_machine_angle - systick_mechanical_angle_last;
+    short tmp_mechanical_angle_velocity = (short) (total_machine_angle - systick_mechanical_angle_last);
     /* send it to low-pass filter for filtering to prevent PID high-frequency oscillation */
     FOC_Struct.rotate_speed =
         filter_update_value((Filter_Structure_t *) &velocity_filter, tmp_mechanical_angle_velocity);

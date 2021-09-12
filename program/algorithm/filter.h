@@ -7,13 +7,13 @@
 
 typedef struct {
     unsigned short pointer;
-    unsigned short buffer[3];
+    short buffer[3];
     float current_result;
     float coefficient;
 } Filter_Structure_t;
 
 extern volatile Filter_Structure_t velocity_filter;
-float filter_update_value(Filter_Structure_t *param, unsigned short value);
+float filter_update_value(Filter_Structure_t *param, short value);
 void filter_config(void);
 
 #endif //MINIFOC_ALGORITHM_FILTER_H_

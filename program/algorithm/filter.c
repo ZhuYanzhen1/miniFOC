@@ -18,8 +18,8 @@ void filter_config(void) {
     filter_coefficient_config((Filter_Structure_t *) &velocity_filter, SPEED_COEFFICIENT);
 }
 
-float filter_update_value(Filter_Structure_t *param, unsigned short value) {
-    unsigned long value_summary = 0;
+float filter_update_value(Filter_Structure_t *param, short value) {
+    long value_summary = 0;
     param->buffer[param->pointer] = value;
     param->pointer++;
     if (param->pointer == 3)
@@ -27,7 +27,7 @@ float filter_update_value(Filter_Structure_t *param, unsigned short value) {
     for (unsigned char counter = 0; counter < 3; ++counter)
         value_summary += param->buffer[counter];
     value_summary = value_summary / 3;
-    if (value_summary < 10000)
+    if (value_summary < 1000 && value_summary > -1000)
         param->current_result = (float) value_summary * param->coefficient;
     return param->current_result;
 }
