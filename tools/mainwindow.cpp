@@ -9,6 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     refresh_serial_port();
     setup_custom_plot();
     ui->serial_baudrate_txt->setText("115200");
+    ui->mode_set_cb->addItem("Torque Control");
+    ui->mode_set_cb->addItem("Speed Control");
+    ui->mode_set_cb->addItem("Angle Control");
+    ui->mode_set_cb->setEditText("Torque Control");
 }
 
 MainWindow::~MainWindow(){
@@ -45,12 +49,14 @@ void MainWindow::on_open_btn_clicked(){
             ui->serial_baudrate_txt->setEnabled(false);
             ui->calibrate_btn->setEnabled(true);
             ui->start_stop_btn->setEnabled(true);
+            ui->mode_set_cb->setEnabled(true);
             connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
         }
     }
     else{
         serial->close();
         ui->open_btn->setText("Open");
+        ui->mode_set_cb->setEnabled(false);
         ui->calibrate_btn->setEnabled(false);
         ui->start_stop_btn->setEnabled(false);
         ui->serial_port_cb->setEnabled(true);
@@ -63,18 +69,25 @@ void MainWindow::on_start_stop_btn_clicked(){
     if(ui->start_stop_btn->text() == "Start"){
         ui->start_stop_btn->setText("Stop");
         buffer[0] = 0x1E;
-        mdtp_data_transmit(0x01, buffer);
+        if (ui->mode_set_cb->currentText() == "Torque Control")
+                buffer[1] = 0x01;
+        if (ui->mode_set_cb->currentText() == "Speed Control")
+                buffer[1] = 0x02;
+        if (ui->mode_set_cb->currentText() == "Angle Control")
+                buffer[1] = 0x03;
+        mdtp_data_transmit(0x00, buffer);
+        ui->mode_set_cb->setEnabled(false);
     }else{
         buffer[0] = 0x2D;
-        mdtp_data_transmit(0x01, buffer);
+        mdtp_data_transmit(0x00, buffer);
         ui->start_stop_btn->setText("Start");
+        ui->mode_set_cb->setEnabled(true);
     }
 }
 
 void MainWindow::on_calibrate_btn_clicked(){
-    unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    buffer[0] = 0x0F;
-    mdtp_data_transmit(0x01, buffer);
+    unsigned char buffer[8] = {0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    mdtp_data_transmit(0x00, buffer);
     ui->calibrate_btn->setEnabled(false);
 }
 
