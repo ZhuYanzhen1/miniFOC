@@ -14,8 +14,8 @@ static volatile unsigned char minifoc_fsm_state = 0;
     \retval       none
 */
 void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
-    /* pack1 is the control pack of miniFOC */
-    if (pid == 1) {
+    /* pack0 is the control pack of miniFOC */
+    if (pid == 0) {
         unsigned int receive_expect;
         switch (data[0]) {
             case 0x0F:
