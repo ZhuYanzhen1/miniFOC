@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210913](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210913.hex): 3207bc9 The PCB circuit of minifoc is modified
+ 
 + [20210912](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210912.hex): 43bdf80 Fixed the problem that the reverse speed could not be measured during speed calculation.
  
 + [20210911](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210911.hex): 610eeb6 Add a comment for timer deactivation.
