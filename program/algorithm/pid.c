@@ -18,7 +18,7 @@ void pid_config(unsigned char mode) {
     if (mode == SPEED_LOOP_CONTROL || mode == ANGLE_LOOP_CONTROL) {
         speed_pid_handler.maximum = 1.0f;
         speed_pid_handler.minimum = -1.0f;
-        speed_pid_handler.kp = 0.1f;
+        speed_pid_handler.kp = 0.01f;
         pid_control_mode_flag = SPEED_LOOP_CONTROL;
     }
     if (mode == ANGLE_LOOP_CONTROL) {

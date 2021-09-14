@@ -16,7 +16,7 @@ static volatile unsigned char minifoc_fsm_state = 0;
 void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
     /* pack0 is the control pack of miniFOC */
     if (pid == 0) {
-        unsigned int receive_expect;
+        unsigned int receive_int32;
         switch (data[0]) {
             case 0x0F:
                 /* 0x0F is used to calibrate motor phase and sensor offset */
@@ -34,8 +34,31 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 break;
             case 0x3C:
                 /* 0x3C used to set user expect */
-                receive_expect = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
-                FOC_Struct.user_expect = int32_to_float(receive_expect);
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                switch (pid_control_mode_flag) {
+                    default:
+                    case TORQUE_LOOP_CONTROL:FOC_Struct.user_expect = int32_to_float(receive_int32);
+                        break;
+                    case SPEED_LOOP_CONTROL:speed_pid_handler.expect = int32_to_float(receive_int32);
+                        break;
+                    case ANGLE_LOOP_CONTROL:angle_pid_handler.expect = int32_to_float(receive_int32);
+                        break;
+                }
+                break;
+            case 0x4B:
+                /* 0x4D used to set speed pid kp */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                speed_pid_handler.kp = int32_to_float(receive_int32);
+                break;
+            case 0x5A:
+                /* 0x5A used to set speed pid ki */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                speed_pid_handler.ki = int32_to_float(receive_int32);
+                break;
+            case 0x69:
+                /* 0x69 used to set speed pid kd */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                speed_pid_handler.kd = int32_to_float(receive_int32);
                 break;
             default:break;
         }
