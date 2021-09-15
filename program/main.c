@@ -60,6 +60,31 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 speed_pid_handler.kd = int32_to_float(receive_int32);
                 break;
+            case 0x78:
+                /* 0x78 used to set speed pid summary maximum */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                speed_pid_handler.sum_maximum = int32_to_float(receive_int32);
+                break;
+            case 0x87:
+                /* 0x87 used to set angle pid kp */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                angle_pid_handler.kp = int32_to_float(receive_int32);
+                break;
+            case 0x96:
+                /* 0x96 used to set angle pid ki */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                angle_pid_handler.ki = int32_to_float(receive_int32);
+                break;
+            case 0xA5:
+                /* 0xA5 used to set angle pid kd */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                angle_pid_handler.kd = int32_to_float(receive_int32);
+                break;
+            case 0xB4:
+                /* 0xB4 used to set angle pid summary maximum */
+                receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+                angle_pid_handler.sum_maximum = int32_to_float(receive_int32);
+                break;
             default:break;
         }
     }
