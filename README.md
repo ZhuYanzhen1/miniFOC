@@ -1,8 +1,8 @@
 ![LOGO](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC/main/docs/image/LOGO.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
+&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
-&nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brush motor drive module in about 2$? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3$!  **miniFOC** has a built-in torque closed-loop controller so that you can control a brushless motor with a 3-wire UART port. We plan to complete developing the essential functions of miniFOC by the end of August 2021. The software and hardware design are fully compliant with the AGPL-3.0 open source agreement.
+&nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brush motor drive module in about 2$? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3$!  **miniFOC** has a built-in torque closed-loop controller so that you can control a brushless motor with a 3-wire UART port. The software and hardware design are fully compliant with the AGPL-3.0 open source agreement.
 
 ***
 
@@ -60,7 +60,8 @@
 + EDA Tool: [EasyEDA](https://easyeda.com/) (the standard free license is adopted, and there is no license dispute).
 + Compiler tool chain: gcc-arm-none-eabi 10-2020-q4-major
 + Programming tool: OpenOCD 0.11.0-1
-+ Integrated development tools: CLion 2021.2 #212.4746.93
++ Integrated development tools: CLion 2021.2.1 #212.5080.54
++ Software development tools: Qt 5.14.2 (MinGW 7.3.0 64bit)
 + Operating system and tool chain: 
   + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
   + Ubuntu20.04 + make + cmake + gcc-arm-none-eabi + OpenOCD
@@ -69,8 +70,7 @@
 
 ### Getting Started
 
-Please refer to the [wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for getting started。
-
+Please refer to the [wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for getting started.
 We also provide the [domestic image](https://gitee.com/zhuyanzhen1/mini-foc) address.
 
 ***
@@ -92,4 +92,4 @@ The source code is released under a [AGPL-3.0 License](https://github.com/ZhuYan
 Author: Zhu Yanzhen<br>
 Maintainer：YanzhenZhu, 2208213223@qq.com**
 
-The product has been tested under Windows 10 and Ubuntu 18.04 and 20.04. This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
+&nbsp;&nbsp;&nbsp;&nbsp;The product has been tested under Windows 10 and Ubuntu 18.04 and 20.04. This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
