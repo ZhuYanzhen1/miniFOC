@@ -98,7 +98,7 @@ void SysTick_Handler(void) {
     delay_decrement();
     systick_counter++;
     /* reduce the frequency to 500Hz */
-    if (systick_counter == 2) {
+    if (systick_counter == (1000 / SPEED_UP_FREQ)) {
         systick_counter = 0;
         /* update the current rotor speed */
         encoder_update_speed();

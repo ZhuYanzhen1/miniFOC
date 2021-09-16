@@ -15,6 +15,7 @@
 #define PWM_FREQUENCY   20                      // PWM frequency set to 20kHz
 #define TIM2_FREQUENCY  8                       // timer2 interrupt frequency set to 8kHz
 #define TIM13_FREQUENCY 200                     // timer13 interrupt frequency set to 200Hz
+#define SPEED_UP_FREQ   200                     // speed update frequency set to 200Hz
 #define SPI_PRESCALE    SPI_PSC_16              // SPI frequency is 72 / 16 = 4.5MHz
 
 #define UART_PRIORITY   1                       // UART preemption priority set to 1
