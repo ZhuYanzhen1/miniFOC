@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     slider_timer = new QTimer(this);
     slider_timer->setInterval(50);
     connect(slider_timer,SIGNAL(timeout()),this,SLOT(slider_timer_timeout()));
+    ui->slider_minimum_value->setText("-1.0");
+    ui->slider_maximum_value->setText("1.0");
     ui->serial_baudrate_txt->setText("115200");
     ui->mode_set_cb->addItem("Torque Control");
     ui->mode_set_cb->addItem("Speed Control");
@@ -45,8 +47,11 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
 }
 
 void MainWindow::on_user_expect_slider_valueChanged(int value){
+    float maximum = ui->slider_maximum_value->toPlainText().toFloat();
+    float minimum = ui->slider_minimum_value->toPlainText().toFloat();
     slider_change_flag = true;
-    slider_value  = (value / 10000.0f);
+    slider_value = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->slider_current_value->setText(QString::number(slider_value));
 }
 
 void MainWindow::on_open_btn_clicked(){
