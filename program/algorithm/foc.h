@@ -13,7 +13,7 @@ typedef struct {
 
 #define MECHANGLE_COEFFICIENT   (6.2831854f / ENCODER_RESO)
 #define ELECANGLE_COEFFICIENT   ((6.2831854f * POLAR_PAIRS) / ENCODER_RESO)
-#define SPEED_COEFFICIENT       (6.2831852f * TIM13_FREQUENCY / ENCODER_RESO)
+#define SPEED_COEFFICIENT       ((6.2831852f * TIM13_FREQUENCY) / ENCODER_RESO)
 
 extern volatile unsigned char phase_sequence;
 extern volatile FOC_Structure_t FOC_Struct;

@@ -6,10 +6,10 @@
 #define MINIFOC_ALGORITHM_FILTER_H_
 
 typedef struct {
-    unsigned short pointer;
-    short buffer[3];
+    float coefficient1;
+    float coefficient2;
+    float last_result;
     float current_result;
-    float coefficient;
 } Filter_Structure_t;
 
 extern volatile Filter_Structure_t velocity_filter;

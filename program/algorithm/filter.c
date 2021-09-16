@@ -9,25 +9,22 @@
 
 volatile Filter_Structure_t velocity_filter;
 
-void filter_coefficient_config(Filter_Structure_t *param, float coefficient) {
+void filter_coefficient_config(Filter_Structure_t *param, float cutoff_freq, float sample_freq, float coefficient) {
     user_memset(param, 0x00, sizeof(Filter_Structure_t));
-    param->coefficient = coefficient;
+    float time_const = 1.0f / (6.2831852f * cutoff_freq);
+    param->coefficient1 = (1.0f / (1.0f + time_const * sample_freq)) * coefficient;
+    param->coefficient2 = (time_const * sample_freq) / (1.0f + time_const * sample_freq);
+    param->current_result = 0;
+    param->last_result = 0;
 }
 
 void filter_config(void) {
-    filter_coefficient_config((Filter_Structure_t *) &velocity_filter, SPEED_COEFFICIENT);
+    filter_coefficient_config((Filter_Structure_t *) &velocity_filter,
+                              80.0f, 200.0f, SPEED_COEFFICIENT);
 }
 
 float filter_update_value(Filter_Structure_t *param, short value) {
-    long value_summary = 0;
-    param->buffer[param->pointer] = value;
-    param->pointer++;
-    if (param->pointer == 3)
-        param->pointer = 0;
-    for (unsigned char counter = 0; counter < 3; ++counter)
-        value_summary += param->buffer[counter];
-    value_summary = value_summary / 3;
-    if (value_summary < 1000 && value_summary > -1000)
-        param->current_result = (float) value_summary * param->coefficient;
+    param->current_result = param->coefficient1 * (float) value + param->coefficient2 * param->last_result;
+    param->last_result = param->current_result;
     return param->current_result;
 }
