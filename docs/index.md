@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210916](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210916.hex): 813b97e Add speed update configure macro to config.h.
+ 
 + [20210914](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210914.hex): 975d112 Update new firmware link to Github Pages
  
 + [20210913](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210913.hex): 3207bc9 The PCB circuit of minifoc is modified
