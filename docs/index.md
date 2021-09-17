@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210917](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210917.hex): b5a9140 Update new firmware link to Github Pages
+ 
 + [20210916](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210916.hex): 813b97e Add speed update configure macro to config.h.
  
 + [20210914](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210914.hex): 975d112 Update new firmware link to Github Pages
