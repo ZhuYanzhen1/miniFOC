@@ -48,8 +48,8 @@
 
 + [x] 采用空间矢量脉冲宽度调制方法
 + [x] 实现无电流传感器力矩控制
-+ [ ] 实现转动速度闭环控制
-+ [ ] 实现转动角度闭环控制
++ [x] 实现转动速度闭环控制
++ [x] 实现转动角度闭环控制
 + [x] 实现自动相序检测和相序矫正
 
 ***
@@ -69,7 +69,7 @@
 
 ### 入门指南
 
-入门请参考本项目的[wiki页面](https://github.com/ZhuYanzhen1/miniFOC/wiki)。
+入门请参考本项目的[wiki页面](https://github.com/ZhuYanzhen1/miniFOC/wiki)。<br>
 我们还提供了[国内镜像](https://gitee.com/zhuyanzhen1/mini-foc)仓库地址。
 
 ***

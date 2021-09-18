@@ -49,8 +49,8 @@
 
 + [x] Using space vector pulse width modulation
 + [x] Torque control without current sensor
-+ [ ] Rotational speed closed loop control
-+ [ ] Rotation angle closed loop control
++ [x] Rotational speed closed loop control
++ [x] Rotation angle closed loop control
 + [x] Automatic phase sequence detection and correction
 
 ***
@@ -70,7 +70,7 @@
 
 ### Getting Started
 
-Please refer to the [wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for getting started.
+Please refer to the [wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for getting started.<br>
 We also provide the [domestic image](https://gitee.com/zhuyanzhen1/mini-foc) address.
 
 ***
