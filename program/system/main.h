@@ -9,6 +9,7 @@
 #include "gd32f1x0.h"
 #include "system.h"
 #include "config.h"
+#include "error.h"
 
 /////////////// Hardware ///////////////
 #include "led.h"

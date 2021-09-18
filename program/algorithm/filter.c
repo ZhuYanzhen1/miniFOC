@@ -20,7 +20,7 @@ void filter_coefficient_config(Filter_Structure_t *param, float cutoff_freq, flo
 
 void filter_config(void) {
     filter_coefficient_config((Filter_Structure_t *) &velocity_filter,
-                              80.0f, 200.0f, SPEED_COEFFICIENT);
+                              TIM13_FREQUENCY, SPEED_UP_FREQ, SPEED_COEFFICIENT);
 }
 
 float filter_update_value(Filter_Structure_t *param, short value) {
