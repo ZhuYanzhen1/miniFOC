@@ -65,6 +65,8 @@ void MainWindow::on_open_btn_clicked(){
             ui->start_stop_btn->setEnabled(true);
             ui->mode_set_cb->setEnabled(true);
             ui->user_expect_slider->setEnabled(true);
+            ui->slider_maximum_value->setEnabled(true);
+            ui->slider_minimum_value->setEnabled(true);
             slider_timer->start();
             connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
         }
@@ -75,6 +77,8 @@ void MainWindow::on_open_btn_clicked(){
         ui->calibrate_btn->setEnabled(false);
         ui->start_stop_btn->setEnabled(false);
         ui->user_expect_slider->setEnabled(false);
+        ui->slider_maximum_value->setEnabled(false);
+        ui->slider_minimum_value->setEnabled(false);
         ui->serial_port_cb->setEnabled(true);
         ui->serial_baudrate_txt->setEnabled(true);
         slider_timer->stop();
