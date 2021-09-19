@@ -11,9 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     slider_timer = new QTimer(this);
     slider_timer->setInterval(50);
     connect(slider_timer,SIGNAL(timeout()),this,SLOT(slider_timer_timeout()));
-    ui->slider_minimum_value->setText("-1.0");
-    ui->slider_maximum_value->setText("1.0");
-    ui->serial_baudrate_txt->setText("115200");
     ui->mode_set_cb->addItem("Torque Control");
     ui->mode_set_cb->addItem("Speed Control");
     ui->mode_set_cb->addItem("Angle Control");
@@ -67,6 +64,8 @@ void MainWindow::on_open_btn_clicked(){
             ui->user_expect_slider->setEnabled(true);
             ui->slider_maximum_value->setEnabled(true);
             ui->slider_minimum_value->setEnabled(true);
+            ui->speed_groupbox->setEnabled(true);
+            ui->angle_groupbox->setEnabled(true);
             slider_timer->start();
             connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
         }
@@ -79,6 +78,8 @@ void MainWindow::on_open_btn_clicked(){
         ui->user_expect_slider->setEnabled(false);
         ui->slider_maximum_value->setEnabled(false);
         ui->slider_minimum_value->setEnabled(false);
+        ui->speed_groupbox->setEnabled(false);
+        ui->angle_groupbox->setEnabled(false);
         ui->serial_port_cb->setEnabled(true);
         ui->serial_baudrate_txt->setEnabled(true);
         slider_timer->stop();
