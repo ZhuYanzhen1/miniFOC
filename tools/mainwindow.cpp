@@ -46,9 +46,9 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
 void MainWindow::on_user_expect_slider_valueChanged(int value){
     float maximum = ui->slider_maximum_value->toPlainText().toFloat();
     float minimum = ui->slider_minimum_value->toPlainText().toFloat();
-    slider_change_flag = true;
-    slider_value = (maximum - minimum) * (value / 10000.0f) + minimum;
-    ui->slider_current_value->setText(QString::number(slider_value));
+    expect_slider_change_flag = true;
+    expect_slider_value = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->slider_current_value->setText(QString::number(expect_slider_value, 10, 2));
 }
 
 void MainWindow::on_open_btn_clicked(){
@@ -120,15 +120,15 @@ void MainWindow::on_refresh_btn_clicked(){
 /* some functions related to timer interrupt */
 
 void MainWindow::slider_timer_timeout(){
-    if(slider_change_flag == true){
+    if(expect_slider_change_flag == true){
         unsigned char buffer[8] = {0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-        unsigned int uintp32 = (*((unsigned int *) (&slider_value)));
+        unsigned int uintp32 = (*((unsigned int *) (&expect_slider_value)));
         buffer[4] = (unsigned char) ((uintp32 >> 24UL) & 0x000000ffUL);
         buffer[5] = (unsigned char) ((uintp32 >> 16UL) & 0x000000ffUL);
         buffer[6] = (unsigned char) ((uintp32 >> 8UL) & 0x000000ffUL);
         buffer[7] = (unsigned char) (uintp32 & 0x000000ffUL);
         mdtp_data_transmit(0x00, buffer);
-        slider_change_flag = false;
+        expect_slider_change_flag = false;
     }
 }
 

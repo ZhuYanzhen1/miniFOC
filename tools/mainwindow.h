@@ -34,8 +34,8 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
-    bool slider_change_flag = false;
-    float slider_value = 0;
+    bool expect_slider_change_flag = false;
+    float expect_slider_value = 0;
     QTimer *slider_timer;
     uint64_t curve_counter = 0;
     QVector<double> curve_velocity, curve_angle, curve_x;
