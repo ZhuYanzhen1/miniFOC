@@ -87,10 +87,10 @@ void foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, floa
     /* fast calculation of cosine and sine value of electric angle */
     float cf = fast_cos(elect_angle);
     float sf = fast_sin(elect_angle);
-    /* firstly, the inverse Clarke transform is calculated */
+    /* firstly, the inverse Park transform is calculated */
     alpha = d * cf - q * sf;
     beta = q * cf + d * sf;
-    /* secondly, the inverse Park transform is calculated */
+    /* secondly, the inverse Clarke transform is calculated */
     *u = 0.5f - alpha / VBUS;
     *v = 0.5f + (alpha * 0.5f - beta * 0.866025404f) / VBUS;
     *w = 1.5f - *u - *v;
