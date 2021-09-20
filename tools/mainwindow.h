@@ -27,6 +27,14 @@ private slots:
     void on_calibrate_btn_clicked();
     void on_user_expect_slider_valueChanged(int value);
 
+    void on_speed_kp_slider_valueChanged(int value);
+
+    void on_speed_ki_slider_valueChanged(int value);
+
+    void on_speed_kd_slider_valueChanged(int value);
+
+    void on_speed_summax_slider_valueChanged(int value);
+
 public slots:
     void serial_received();
     void slider_timer_timeout();
@@ -35,7 +43,11 @@ private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
     bool expect_slider_change_flag = false;
+    bool speed_slider_change_flag[4];
+    bool angle_slider_change_flag[4];
     float expect_slider_value = 0;
+    float speed_slider_value[4];
+    float angle_slider_value[4];
     QTimer *slider_timer;
     uint64_t curve_counter = 0;
     QVector<double> curve_velocity, curve_angle, curve_x;

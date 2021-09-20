@@ -14,7 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->mode_set_cb->addItem("Torque Control");
     ui->mode_set_cb->addItem("Speed Control");
     ui->mode_set_cb->addItem("Angle Control");
-    ui->mode_set_cb->setEditText("Torque Control");
+    for (int counter = 0; counter < 4; counter++)
+        angle_slider_change_flag[counter] = false;
+    for (int counter = 0; counter < 4; counter++)
+        speed_slider_change_flag[counter] = false;
 }
 
 MainWindow::~MainWindow(){
@@ -41,14 +44,6 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
         ui->custom_plot->replot();
         curve_counter = curve_counter + 1;
     }
-}
-
-void MainWindow::on_user_expect_slider_valueChanged(int value){
-    float maximum = ui->slider_maximum_value->toPlainText().toFloat();
-    float minimum = ui->slider_minimum_value->toPlainText().toFloat();
-    expect_slider_change_flag = true;
-    expect_slider_value = (maximum - minimum) * (value / 10000.0f) + minimum;
-    ui->slider_current_value->setText(QString::number(expect_slider_value, 10, 2));
 }
 
 void MainWindow::on_open_btn_clicked(){
@@ -117,19 +112,85 @@ void MainWindow::on_refresh_btn_clicked(){
     refresh_serial_port();
 }
 
+/* slider value changed functions */
+
+void MainWindow::on_speed_kp_slider_valueChanged(int value)
+{
+    float maximum = ui->speed_kp_maximum->toPlainText().toFloat();
+    float minimum = ui->speed_kp_minimum->toPlainText().toFloat();
+    speed_slider_change_flag[0] = true;
+    speed_slider_value[0] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->speed_kp_value->setText(QString::number(speed_slider_value[0], 10, 2));
+}
+
+void MainWindow::on_speed_ki_slider_valueChanged(int value){
+    float maximum = ui->speed_ki_maximum->toPlainText().toFloat();
+    float minimum = ui->speed_ki_minimum->toPlainText().toFloat();
+    speed_slider_change_flag[1] = true;
+    speed_slider_value[1] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->speed_ki_value->setText(QString::number(speed_slider_value[1], 10, 2));
+}
+
+void MainWindow::on_speed_kd_slider_valueChanged(int value){
+    float maximum = ui->speed_kd_maximum->toPlainText().toFloat();
+    float minimum = ui->speed_kd_minimum->toPlainText().toFloat();
+    speed_slider_change_flag[2] = true;
+    speed_slider_value[2] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->speed_kd_value->setText(QString::number(speed_slider_value[2], 10, 2));
+}
+
+void MainWindow::on_speed_summax_slider_valueChanged(int value){
+    float maximum = ui->speed_summax_maximum->toPlainText().toFloat();
+    float minimum = ui->speed_summax_minimum->toPlainText().toFloat();
+    speed_slider_change_flag[3] = true;
+    speed_slider_value[3] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->speed_summax_value->setText(QString::number(speed_slider_value[3], 10, 2));
+}
+
+void MainWindow::on_user_expect_slider_valueChanged(int value){
+    float maximum = ui->slider_maximum_value->toPlainText().toFloat();
+    float minimum = ui->slider_minimum_value->toPlainText().toFloat();
+    expect_slider_change_flag = true;
+    expect_slider_value = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->slider_current_value->setText(QString::number(expect_slider_value, 10, 2));
+}
+
 /* some functions related to timer interrupt */
 
 void MainWindow::slider_timer_timeout(){
+    unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    unsigned int uintp32 = 0x00000000UL;
     if(expect_slider_change_flag == true){
-        unsigned char buffer[8] = {0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-        unsigned int uintp32 = (*((unsigned int *) (&expect_slider_value)));
-        buffer[4] = (unsigned char) ((uintp32 >> 24UL) & 0x000000ffUL);
-        buffer[5] = (unsigned char) ((uintp32 >> 16UL) & 0x000000ffUL);
-        buffer[6] = (unsigned char) ((uintp32 >> 8UL) & 0x000000ffUL);
-        buffer[7] = (unsigned char) (uintp32 & 0x000000ffUL);
-        mdtp_data_transmit(0x00, buffer);
+        buffer[0] = 0x3C;
+        uintp32 = (*((unsigned int *) (&expect_slider_value)));
         expect_slider_change_flag = false;
+        goto mdtp_sendpackage;
     }
+
+    for (int counter = 0; counter < 4; counter++) {
+        if(speed_slider_change_flag[counter] != false){
+            buffer[0] = ((4 + counter) << 4) | ((~(4 + counter)) & 0x0f);
+            uintp32 = (*((unsigned int *) (&speed_slider_value[counter])));
+            speed_slider_change_flag[counter] = false;
+            goto mdtp_sendpackage;
+        }
+    }
+
+    for (int counter = 0; counter < 4; counter++) {
+        if(angle_slider_change_flag[counter] != false){
+            buffer[0] = ((8 + counter) << 4) | ((~(8 + counter)) & 0x0f);
+            uintp32 = (*((unsigned int *) (&angle_slider_value[counter])));
+            angle_slider_change_flag[counter] = false;
+            goto mdtp_sendpackage;
+        }
+    }
+
+mdtp_sendpackage:
+    buffer[4] = (unsigned char) ((uintp32 >> 24UL) & 0x000000ffUL);
+    buffer[5] = (unsigned char) ((uintp32 >> 16UL) & 0x000000ffUL);
+    buffer[6] = (unsigned char) ((uintp32 >> 8UL) & 0x000000ffUL);
+    buffer[7] = (unsigned char) (uintp32 & 0x000000ffUL);
+    mdtp_data_transmit(0x00, buffer);
 }
 
 /* some functions related to plot initialize and refresh */

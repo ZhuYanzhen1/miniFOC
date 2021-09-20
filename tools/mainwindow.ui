@@ -160,7 +160,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>721</width>
+        <width>701</width>
         <height>461</height>
        </rect>
       </property>
@@ -171,9 +171,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>720</x>
         <y>10</y>
-        <width>121</width>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
@@ -193,9 +193,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>739</x>
+        <x>719</x>
         <y>130</y>
-        <width>121</width>
+        <width>141</width>
         <height>22</height>
        </rect>
       </property>
@@ -227,9 +227,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>720</x>
         <y>90</y>
-        <width>121</width>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
@@ -249,7 +249,7 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>720</x>
         <y>160</y>
         <width>41</width>
         <height>31</height>
@@ -303,9 +303,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>720</x>
         <y>50</y>
-        <width>121</width>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
@@ -315,11 +315,17 @@
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <property name="currentText">
+       <string/>
+      </property>
      </widget>
      <widget class="QLabel" name="slider_current_value">
       <property name="geometry">
        <rect>
-        <x>790</x>
+        <x>780</x>
         <y>170</y>
         <width>41</width>
         <height>16</height>
@@ -819,7 +825,7 @@
       <property name="geometry">
        <rect>
         <x>320</x>
-        <y>40</y>
+        <y>30</y>
         <width>281</width>
         <height>421</height>
        </rect>
