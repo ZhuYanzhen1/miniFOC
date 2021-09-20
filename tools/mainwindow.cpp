@@ -147,6 +147,39 @@ void MainWindow::on_speed_summax_slider_valueChanged(int value){
     ui->speed_summax_value->setText(QString::number(speed_slider_value[3], 10, 2));
 }
 
+
+void MainWindow::on_angle_kp_slider_valueChanged(int value){
+    float maximum = ui->angle_kp_maximum->toPlainText().toFloat();
+    float minimum = ui->angle_kp_minimum->toPlainText().toFloat();
+    angle_slider_change_flag[0] = true;
+    angle_slider_value[0] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->angle_kp_value->setText(QString::number(angle_slider_value[0], 10, 2));
+}
+
+void MainWindow::on_angle_ki_slider_valueChanged(int value){
+    float maximum = ui->angle_ki_maximum->toPlainText().toFloat();
+    float minimum = ui->angle_ki_minimum->toPlainText().toFloat();
+    angle_slider_change_flag[1] = true;
+    angle_slider_value[1] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->angle_ki_value->setText(QString::number(angle_slider_value[1], 10, 2));
+}
+
+void MainWindow::on_angle_kd_slider_valueChanged(int value){
+    float maximum = ui->angle_kd_maximum->toPlainText().toFloat();
+    float minimum = ui->angle_kd_minimum->toPlainText().toFloat();
+    angle_slider_change_flag[2] = true;
+    angle_slider_value[2] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->angle_kd_value->setText(QString::number(angle_slider_value[2], 10, 2));
+}
+
+void MainWindow::on_angle_summax_slider_valueChanged(int value){
+    float maximum = ui->angle_summax_maximum->toPlainText().toFloat();
+    float minimum = ui->angle_summax_minimum->toPlainText().toFloat();
+    angle_slider_change_flag[3] = true;
+    angle_slider_value[3] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->angle_summax_value->setText(QString::number(angle_slider_value[3], 10, 2));
+}
+
 void MainWindow::on_user_expect_slider_valueChanged(int value){
     float maximum = ui->slider_maximum_value->toPlainText().toFloat();
     float minimum = ui->slider_minimum_value->toPlainText().toFloat();
