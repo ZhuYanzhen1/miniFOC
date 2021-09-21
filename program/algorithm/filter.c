@@ -24,7 +24,8 @@ void filter_config(void) {
 }
 
 float filter_update_value(Filter_Structure_t *param, short value) {
-    param->current_result = param->coefficient1 * (float) value + param->coefficient2 * param->last_result;
+    if (value < 200 && value > -200)
+        param->current_result = param->coefficient1 * (float) value + param->coefficient2 * param->last_result;
     param->last_result = param->current_result;
     return param->current_result;
 }
