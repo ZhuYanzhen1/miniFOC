@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210921](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210921.hex): 5607792 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
+ 
 + [20210920](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210920.hex): 06330fe Correct the FOC twice coordinate transformation annotation.
  
 + [20210919](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210919.hex): 626c4fb Modify the global variable name so that it does not duplicate.
