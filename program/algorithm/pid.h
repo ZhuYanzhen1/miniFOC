@@ -21,6 +21,7 @@ typedef struct {
     float last_error;
 } PID_Structure_t;
 
+extern unsigned char pid_parameter_available_flag;
 extern volatile unsigned char pid_control_mode_flag;
 extern volatile PID_Structure_t speed_pid_handler, angle_pid_handler;
 void pid_config(unsigned char mode);

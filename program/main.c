@@ -26,7 +26,10 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 /* 0x1E used to enable the motor */
                 minifoc_fsm_state = 2;
                 /* configure pid parameters for (torque/speed/angle) loop */
-                pid_config(data[1]);
+                if (pid_parameter_available_flag == 1)
+                    pid_config(data[1]);
+                else
+                    pid_config(TORQUE_LOOP_CONTROL);
                 break;
             case 0x2D:
                 /* 0x2D used to disable the motor */
@@ -35,15 +38,18 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
             case 0x3C:
                 /* 0x3C used to set user expect */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
-                switch (pid_control_mode_flag) {
-                    default:
-                    case TORQUE_LOOP_CONTROL:FOC_Struct.user_expect = int32_to_float(receive_int32);
-                        break;
-                    case SPEED_LOOP_CONTROL:speed_pid_handler.expect = int32_to_float(receive_int32);
-                        break;
-                    case ANGLE_LOOP_CONTROL:angle_pid_handler.expect = int32_to_float(receive_int32);
-                        break;
-                }
+                if (pid_parameter_available_flag == 1) {
+                    switch (pid_control_mode_flag) {
+                        default:
+                        case TORQUE_LOOP_CONTROL:FOC_Struct.user_expect = int32_to_float(receive_int32);
+                            break;
+                        case SPEED_LOOP_CONTROL:speed_pid_handler.expect = int32_to_float(receive_int32);
+                            break;
+                        case ANGLE_LOOP_CONTROL:angle_pid_handler.expect = int32_to_float(receive_int32);
+                            break;
+                    }
+                } else
+                    FOC_Struct.user_expect = int32_to_float(receive_int32);
                 break;
             case 0x4B:
                 /* 0x4D used to set speed pid kp */
@@ -103,8 +109,8 @@ int main(void) {
     spi_config();
     /* configure filter parameters for pid algorithm */
     filter_config();
-    /* configure pid parameters for (torque/speed/angle) loop */
-    pid_config(DEFAULT_MODE);
+    /* configure pid parameters for torque loop */
+    pid_config(TORQUE_LOOP_CONTROL);
     /* configure systick timer for delay_ms() function */
     systick_config();
     /* read all parameters from flash */

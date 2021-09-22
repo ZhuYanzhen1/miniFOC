@@ -11,7 +11,7 @@
     \retval     none
 */
 void flash_write_parameters(void) {
-    unsigned int buffer[10] = {machine_angle_offset, phase_sequence, 0x00000000UL, 0x00000000UL,
+    unsigned int buffer[11] = {machine_angle_offset, phase_sequence, 0x00000000UL, 0x00000000UL, 0x00000000UL,
                                0x00000000UL, 0x00000000UL, 0x00000000UL, 0x00000000UL, 0x00000000UL, 0x00000000UL};
     buffer[2] = float_to_int32(speed_pid_handler.kp);
     buffer[3] = float_to_int32(speed_pid_handler.ki);
@@ -21,6 +21,7 @@ void flash_write_parameters(void) {
     buffer[7] = float_to_int32(angle_pid_handler.ki);
     buffer[8] = float_to_int32(angle_pid_handler.kd);
     buffer[9] = float_to_int32(angle_pid_handler.sum_maximum);
+    buffer[10] = flash_read_word(0x00000040UL);
     flash_erase_page();
     flash_program_word(0x00000000UL, buffer, 10);
 }
@@ -46,6 +47,8 @@ void flash_read_parameters(void) {
         led_on();
         while (1);
     }
+    if (flash_read_word(0x00000040UL) != 0xA5A5A5A5UL)
+        pid_parameter_available_flag = 0;
 }
 
 /*!
