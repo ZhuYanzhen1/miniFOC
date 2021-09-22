@@ -2,7 +2,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[English](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README.md) / 中文
 
-&nbsp;&nbsp;&nbsp;&nbsp;你还在买十几块钱一个的直流有刷电机的驱动模块吗？你还在为有刷电机的高噪声、低响应速度和低寿命而烦恼吗？来看看这个项目吧，一个20块钱就能搞定的FOC无刷电机控制方案！**miniFOC**内置了力矩闭环控制器，为你提供一个通过3线串口就能控制的无刷电机控制器。本项目的软件及硬件设计完全遵循AGPL-3.0开源协议。
+&nbsp;&nbsp;&nbsp;&nbsp;你还在买十几块钱一个的直流有刷电机的驱动模块吗？你还在为有刷电机的高噪声、低响应速度和低寿命而烦恼吗？来看看这个项目吧，一个20块钱就能搞定的FOC无刷电机控制方案！**miniFOC**内置了力矩闭环控制器，为你提供一个通过3线UART口就能控制的无刷电机控制器。本项目的软件及硬件设计完全遵循AGPL-3.0开源协议。
 
 ***
 
@@ -59,7 +59,7 @@
 + EDA工具：[立创EDA](https://lceda.cn/)（采用标准版免费许可证，无LICENSE纠纷）。
 + 编译工具链：gcc-arm-none-eabi 10-2020-q4-major
 + 烧录工具：OpenOCD 0.11.0-1
-+ 集成开发工具：CLion 2021.2.1 #212.5080.54
++ 集成开发工具：CLion 2021.2.2 #212.5284.51
 + 上位机开发工具：Qt 5.14.2 (MinGW 7.3.0 64bit)
 + 操作系统及工具链：
   + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
@@ -70,7 +70,8 @@
 ### 入门指南
 
 入门请参考本项目的[wiki页面](https://github.com/ZhuYanzhen1/miniFOC/wiki)。<br>
-我们还提供了[国内镜像](https://gitee.com/zhuyanzhen1/mini-foc)仓库地址。
+我们还提供了[国内镜像](https://gitee.com/zhuyanzhen1/mini-foc)仓库地址。<br>
+**注意：**由于主要开发部署都在Github上进行，Gitee只是作为国内镜像仓库存放代码，会有wiki和issue等更新不及时的问题。您可[在此访问](https://github.com/ZhuYanzhen1/miniFOC)Github源仓库。
 
 ***
 
