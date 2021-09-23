@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210923](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210923.hex): bfeb755 Add the variable return function to sort out the uploaded functions into the report. C file.
+ 
 + [20210922](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210922.hex): f3c4b4f Modify the development environment version in readme and add notes for the image repo.
  
 + [20210921](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210921.hex): 5607792 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
