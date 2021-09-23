@@ -24,5 +24,6 @@
 #include "fast_math.h"
 #include "filter.h"
 #include "pid.h"
+#include "report.h"
 
 #endif  // MINIFOC_MAIN_H_

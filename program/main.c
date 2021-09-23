@@ -91,6 +91,10 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 angle_pid_handler.sum_maximum = int32_to_float(receive_int32);
                 break;
+            case 0xC3:
+                /* 0xC3 used to return current value */
+                minifoc_fsm_state = 4;
+                break;
             default:break;
         }
     }
@@ -151,28 +155,17 @@ int main(void) {
                 /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
                 break;
+            case 4:
+                /* transmit current value to monitor */
+                report_local_variable();
+                break;
             case 0:
-            default: {
-                unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-                /* converts velocity floating point data to an integer */
-                unsigned int velocity = float_to_int32(FOC_Struct.rotate_speed);
-                /* converts angle floating point data to an integer */
-                unsigned int angle = float_to_int32(FOC_Struct.mechanical_angle);
-                /* separates 32-bit velocity integer into 8-bit integers */
-                buffer[0] = (unsigned char) ((velocity >> 24UL) & 0x000000ffUL);
-                buffer[1] = (unsigned char) ((velocity >> 16UL) & 0x000000ffUL);
-                buffer[2] = (unsigned char) ((velocity >> 8UL) & 0x000000ffUL);
-                buffer[3] = (unsigned char) (velocity & 0x000000ffUL);
-                /* separates 32-bit angle integer into 8-bit integers */
-                buffer[4] = (unsigned char) ((angle >> 24UL) & 0x000000ffUL);
-                buffer[5] = (unsigned char) ((angle >> 16UL) & 0x000000ffUL);
-                buffer[6] = (unsigned char) ((angle >> 8UL) & 0x000000ffUL);
-                buffer[7] = (unsigned char) (angle & 0x000000ffUL);
-                /* packet and send through medium capacity data transmission protocol */
-                mdtp_data_transmit(0x00, buffer);
+            default:
+                /* transmit angle and speed to monitor */
+                report_angle_speed();
+                /* toggle LED */
                 led_toggle();
                 delayms(50);
-            }
                 break;
         }
     }
