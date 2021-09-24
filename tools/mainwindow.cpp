@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
         angle_slider_change_flag[counter] = false;
     for (int counter = 0; counter < 4; counter++)
         speed_slider_change_flag[counter] = false;
+    ui->speed_groupbox->setEnabled(false);
+    ui->angle_groupbox->setEnabled(false);
 }
 
 MainWindow::~MainWindow(){
@@ -49,20 +51,18 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
 void MainWindow::on_open_btn_clicked(){
     if(serial->isOpen() == false){
         if(set_serial_badurate() == true){
+            unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
             serial->open(QSerialPort::ReadWrite);
+            connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
             ui->open_btn->setText("Close");
             ui->serial_port_cb->setEnabled(false);
             ui->serial_baudrate_txt->setEnabled(false);
             ui->calibrate_btn->setEnabled(true);
             ui->start_stop_btn->setEnabled(true);
             ui->mode_set_cb->setEnabled(true);
-            ui->user_expect_slider->setEnabled(true);
-            ui->slider_maximum_value->setEnabled(true);
-            ui->slider_minimum_value->setEnabled(true);
-            ui->speed_groupbox->setEnabled(true);
-            ui->angle_groupbox->setEnabled(true);
             slider_timer->start();
-            connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
+            buffer[0] = 0xC3;
+            mdtp_data_transmit(0x00, buffer);
         }
     }else {
         serial->close();
@@ -70,11 +70,6 @@ void MainWindow::on_open_btn_clicked(){
         ui->mode_set_cb->setEnabled(false);
         ui->calibrate_btn->setEnabled(false);
         ui->start_stop_btn->setEnabled(false);
-        ui->user_expect_slider->setEnabled(false);
-        ui->slider_maximum_value->setEnabled(false);
-        ui->slider_minimum_value->setEnabled(false);
-        ui->speed_groupbox->setEnabled(false);
-        ui->angle_groupbox->setEnabled(false);
         ui->serial_port_cb->setEnabled(true);
         ui->serial_baudrate_txt->setEnabled(true);
         slider_timer->stop();
@@ -93,12 +88,24 @@ void MainWindow::on_start_stop_btn_clicked(){
         if (ui->mode_set_cb->currentText() == "Angle Control")
                 buffer[1] = 0x03;
         mdtp_data_transmit(0x00, buffer);
+
         ui->mode_set_cb->setEnabled(false);
+        ui->user_expect_slider->setEnabled(true);
+        ui->slider_maximum_value->setEnabled(true);
+        ui->slider_minimum_value->setEnabled(true);
+        ui->speed_groupbox->setEnabled(true);
+        ui->angle_groupbox->setEnabled(true);
     }else {
         buffer[0] = 0x2D;
         mdtp_data_transmit(0x00, buffer);
         ui->start_stop_btn->setText("Start");
+
         ui->mode_set_cb->setEnabled(true);
+        ui->user_expect_slider->setEnabled(false);
+        ui->slider_maximum_value->setEnabled(false);
+        ui->slider_minimum_value->setEnabled(false);
+        ui->speed_groupbox->setEnabled(false);
+        ui->angle_groupbox->setEnabled(false);
     }
 }
 
@@ -219,11 +226,13 @@ void MainWindow::slider_timer_timeout(){
     }
 
 mdtp_sendpackage:
-    buffer[4] = (unsigned char) ((uintp32 >> 24UL) & 0x000000ffUL);
-    buffer[5] = (unsigned char) ((uintp32 >> 16UL) & 0x000000ffUL);
-    buffer[6] = (unsigned char) ((uintp32 >> 8UL) & 0x000000ffUL);
-    buffer[7] = (unsigned char) (uintp32 & 0x000000ffUL);
-    mdtp_data_transmit(0x00, buffer);
+    if(buffer[0] != 0x00) {
+        buffer[4] = (unsigned char) ((uintp32 >> 24UL) & 0x000000ffUL);
+        buffer[5] = (unsigned char) ((uintp32 >> 16UL) & 0x000000ffUL);
+        buffer[6] = (unsigned char) ((uintp32 >> 8UL) & 0x000000ffUL);
+        buffer[7] = (unsigned char) (uintp32 & 0x000000ffUL);
+        mdtp_data_transmit(0x00, buffer);
+    }
 }
 
 /* some functions related to plot initialize and refresh */

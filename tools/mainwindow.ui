@@ -348,7 +348,7 @@
      </attribute>
      <widget class="QGroupBox" name="speed_groupbox">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -363,7 +363,7 @@
       </property>
       <widget class="QSlider" name="speed_kp_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -386,10 +386,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -538,7 +538,7 @@
       </widget>
       <widget class="QSlider" name="speed_ki_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -561,10 +561,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -652,7 +652,7 @@
       </widget>
       <widget class="QSlider" name="speed_kd_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -675,10 +675,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -761,7 +761,7 @@
       </widget>
       <widget class="QSlider" name="speed_summax_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -784,10 +784,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -820,7 +820,7 @@
      </widget>
      <widget class="QGroupBox" name="angle_groupbox">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -835,7 +835,7 @@
       </property>
       <widget class="QSlider" name="angle_kp_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -858,10 +858,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -1010,7 +1010,7 @@
       </widget>
       <widget class="QSlider" name="angle_ki_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1033,10 +1033,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -1124,7 +1124,7 @@
       </widget>
       <widget class="QSlider" name="angle_kd_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1147,10 +1147,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -1177,7 +1177,7 @@
       </widget>
       <widget class="QSlider" name="angle_summax_slider">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1200,10 +1200,10 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="sliderPosition">
-        <number>5000</number>
+        <number>0</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
