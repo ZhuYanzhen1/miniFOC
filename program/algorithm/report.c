@@ -5,10 +5,18 @@
 #include "main.h"
 
 void report_local_variable(void) {
-    unsigned int upload_var[11];
+    unsigned int upload_var[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-    upload_var[0] = machine_angle_offset;
-    upload_var[1] = phase_sequence;
+    upload_var[0] = (machine_angle_offset << 16) | phase_sequence;
+    switch (pid_control_mode_flag) {
+        default:
+        case TORQUE_LOOP_CONTROL:upload_var[1] = float_to_int32(FOC_Struct.user_expect);
+            break;
+        case SPEED_LOOP_CONTROL:upload_var[1] = float_to_int32(speed_pid_handler.expect);
+            break;
+        case ANGLE_LOOP_CONTROL:upload_var[1] = float_to_int32(angle_pid_handler.expect);
+            break;
+    }
     upload_var[2] = float_to_int32(speed_pid_handler.kp);
     upload_var[3] = float_to_int32(speed_pid_handler.ki);
     upload_var[4] = float_to_int32(speed_pid_handler.kd);
@@ -17,7 +25,6 @@ void report_local_variable(void) {
     upload_var[7] = float_to_int32(angle_pid_handler.ki);
     upload_var[8] = float_to_int32(angle_pid_handler.kd);
     upload_var[9] = float_to_int32(angle_pid_handler.sum_maximum);
-    upload_var[10] = flash_read_word(0x00000040UL);
     for (unsigned char counter = 0; counter < 5; ++counter) {
         buffer[0] = (unsigned char) ((upload_var[counter * 2] >> 24UL) & 0x000000ffUL);
         buffer[1] = (unsigned char) ((upload_var[counter * 2] >> 16UL) & 0x000000ffUL);
