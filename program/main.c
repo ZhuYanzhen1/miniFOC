@@ -158,6 +158,8 @@ int main(void) {
             case 4:
                 /* transmit current value to monitor */
                 report_local_variable();
+                /* switch the status back to sending data */
+                minifoc_fsm_state = 0;
                 break;
             case 0:
             default:

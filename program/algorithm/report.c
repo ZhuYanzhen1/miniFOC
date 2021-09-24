@@ -6,6 +6,7 @@
 
 void report_local_variable(void) {
     unsigned int upload_var[11];
+    unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     upload_var[0] = machine_angle_offset;
     upload_var[1] = phase_sequence;
     upload_var[2] = float_to_int32(speed_pid_handler.kp);
@@ -17,6 +18,21 @@ void report_local_variable(void) {
     upload_var[8] = float_to_int32(angle_pid_handler.kd);
     upload_var[9] = float_to_int32(angle_pid_handler.sum_maximum);
     upload_var[10] = flash_read_word(0x00000040UL);
+    for (unsigned char counter = 0; counter < 5; ++counter) {
+        buffer[0] = (unsigned char) ((upload_var[counter * 2] >> 24UL) & 0x000000ffUL);
+        buffer[1] = (unsigned char) ((upload_var[counter * 2] >> 16UL) & 0x000000ffUL);
+        buffer[2] = (unsigned char) ((upload_var[counter * 2] >> 8UL) & 0x000000ffUL);
+        buffer[3] = (unsigned char) (upload_var[counter * 2] & 0x000000ffUL);
+
+        buffer[4] = (unsigned char) ((upload_var[counter * 2 + 1] >> 24UL) & 0x000000ffUL);
+        buffer[5] = (unsigned char) ((upload_var[counter * 2 + 1] >> 16UL) & 0x000000ffUL);
+        buffer[6] = (unsigned char) ((upload_var[counter * 2 + 1] >> 8UL) & 0x000000ffUL);
+        buffer[7] = (unsigned char) (upload_var[counter * 2 + 1] & 0x000000ffUL);
+        mdtp_data_transmit(0x01 + counter, buffer);
+        led_toggle();
+        delayms(20);
+        led_toggle();
+    }
 }
 
 void report_angle_speed(void) {
