@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210924](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210924.hex): 00c7781 The problem of sending messages after the monitor is started has been solved. The problem of enabling logic of slider control in monitor is solved.
+ 
 + [20210923](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210923.hex): bfeb755 Add the variable return function to sort out the uploaded functions into the report. C file.
  
 + [20210922](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210922.hex): f3c4b4f Modify the development environment version in readme and add notes for the image repo.
