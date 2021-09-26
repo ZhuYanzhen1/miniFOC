@@ -31,20 +31,25 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *data){
-    if(pid == 0){
-        uint32_t velocity = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
-        uint32_t angle = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
-        curve_x.resize(curve_counter + 1);
-        curve_angle.resize(curve_counter + 1);
-        curve_velocity.resize(curve_counter + 1);
-        curve_x[curve_counter] = (curve_counter + 1) * 0.05f;
-        curve_angle[curve_counter] = (*((float *)(&angle)));
-        curve_velocity[curve_counter] = (*((float *)(&velocity)));
-        ui->custom_plot->graph(0)->setData(curve_x, curve_velocity);
-        ui->custom_plot->graph(1)->setData(curve_x, curve_angle);
-        ui->custom_plot->rescaleAxes();
-        ui->custom_plot->replot();
-        curve_counter = curve_counter + 1;
+    uint32_t data1, data2;
+    data1 = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
+    data2 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+    switch (pid) {
+        case 0:
+            curve_x.resize(curve_counter + 1);
+            curve_angle.resize(curve_counter + 1);
+            curve_velocity.resize(curve_counter + 1);
+            curve_x[curve_counter] = (curve_counter + 1) * 0.05f;
+            curve_angle[curve_counter] = (*((float *)(&data2)));
+            curve_velocity[curve_counter] = (*((float *)(&data1)));
+            ui->custom_plot->graph(0)->setData(curve_x, curve_velocity);
+            ui->custom_plot->graph(1)->setData(curve_x, curve_angle);
+            ui->custom_plot->rescaleAxes();
+            ui->custom_plot->replot();
+            curve_counter = curve_counter + 1;
+            break;
+        default:
+            break;
     }
 }
 

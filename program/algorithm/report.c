@@ -30,7 +30,6 @@ void report_local_variable(void) {
         buffer[1] = (unsigned char) ((upload_var[counter * 2] >> 16UL) & 0x000000ffUL);
         buffer[2] = (unsigned char) ((upload_var[counter * 2] >> 8UL) & 0x000000ffUL);
         buffer[3] = (unsigned char) (upload_var[counter * 2] & 0x000000ffUL);
-
         buffer[4] = (unsigned char) ((upload_var[counter * 2 + 1] >> 24UL) & 0x000000ffUL);
         buffer[5] = (unsigned char) ((upload_var[counter * 2 + 1] >> 16UL) & 0x000000ffUL);
         buffer[6] = (unsigned char) ((upload_var[counter * 2 + 1] >> 8UL) & 0x000000ffUL);
