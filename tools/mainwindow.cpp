@@ -87,7 +87,33 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
             curve_counter = curve_counter + 1;
             break;
         case 1:
-            //update_minimum_maximum_value((*((float *)(&data2))),ui->slider_current_value);
+            update_minimum_maximum_value((*((float *)(&data2))), ui->slider_current_value,
+                                         ui->user_expect_slider, ui->slider_maximum_value, ui->slider_minimum_value);
+            break;
+        case 2:
+            update_minimum_maximum_value((*((float *)(&data1))), ui->speed_kp_value,
+                                     ui->speed_kp_slider, ui->speed_kp_maximum, ui->speed_kp_minimum);
+            update_minimum_maximum_value((*((float *)(&data2))), ui->speed_ki_value,
+                                     ui->speed_ki_slider, ui->speed_ki_maximum, ui->speed_ki_minimum);
+            break;
+        case 3:
+            update_minimum_maximum_value((*((float *)(&data1))), ui->speed_kd_value,
+                                     ui->speed_kd_slider, ui->speed_kd_maximum, ui->speed_kd_minimum);
+            update_minimum_maximum_value((*((float *)(&data2))), ui->speed_summax_value,
+                                     ui->speed_summax_slider, ui->speed_summax_maximum, ui->speed_summax_minimum);
+            break;
+        case 4:
+            update_minimum_maximum_value((*((float *)(&data1))), ui->angle_kp_value,
+                                     ui->angle_kp_slider, ui->angle_kp_maximum, ui->angle_kp_minimum);
+            update_minimum_maximum_value((*((float *)(&data2))), ui->angle_ki_value,
+                                     ui->angle_ki_slider, ui->angle_ki_maximum, ui->angle_ki_minimum);
+            break;
+        case 5:
+            update_minimum_maximum_value((*((float *)(&data1))), ui->angle_kd_value,
+                                     ui->angle_kd_slider, ui->angle_kd_maximum, ui->angle_kd_minimum);
+            update_minimum_maximum_value((*((float *)(&data2))), ui->angle_summax_value,
+                                     ui->angle_summax_slider, ui->angle_summax_maximum, ui->angle_summax_minimum);
+            break;
         default:
             break;
     }
