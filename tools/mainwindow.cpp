@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <cmath>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,6 +31,43 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
+void MainWindow::update_minimum_maximum_value(float value, QLabel *value_widget, QSlider *value_slider,
+                                  QTextEdit *maximum_tb, QTextEdit *minimum_tb){
+    int32_t pow_counter = 0, maximum = 0, minimum = 0, error_value = 0, value_step = 0;
+    if(value != 0) {
+        if(value < 0) {
+            value = -1.0 * value;
+            for(pow_counter = 1; pow_counter <= 5; pow_counter++)
+                if(value > std::pow(10, pow_counter) && value < std::pow(10, pow_counter + 1))
+                    break;
+            maximum = ((int32_t)value / std::pow(10, pow_counter)) + 1;
+            minimum = ((int32_t)value / std::pow(10, pow_counter)) - 1;
+            maximum = std::pow(10, pow_counter) * -1 * maximum;
+            minimum = std::pow(10, pow_counter) * -1 * minimum;
+        } else {
+            for(pow_counter = 1; pow_counter <= 5; pow_counter++)
+                if(value > std::pow(10, pow_counter) && value < std::pow(10, pow_counter + 1))
+                    break;
+            maximum = ((int32_t)value / std::pow(10, pow_counter)) + 1;
+            minimum = ((int32_t)value / std::pow(10, pow_counter)) - 1;
+            maximum = std::pow(10, pow_counter) * maximum;
+            minimum = std::pow(10, pow_counter) * minimum;
+        }
+        value_widget->setText(QString::number(value, 10, 2));
+        maximum_tb->setText(QString::number((float)maximum, 10, 2));
+        minimum_tb->setText(QString::number((float)minimum, 10, 2));
+    } else {
+        maximum = 1;
+        minimum = -1;
+        value_widget->setText("0");
+        maximum_tb->setText(QString::number((float)maximum, 10, 2));
+        minimum_tb->setText(QString::number((float)minimum, 10, 2));
+    }
+    error_value = maximum - minimum;
+    value_step = (uint32_t)((value - minimum) * (10000.0 / (double)error_value));
+    value_slider->setValue(value_step);
+}
+
 void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *data){
     uint32_t data1, data2;
     data1 = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
@@ -48,6 +86,8 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
             ui->custom_plot->replot();
             curve_counter = curve_counter + 1;
             break;
+        case 1:
+            //update_minimum_maximum_value((*((float *)(&data2))),ui->slider_current_value);
         default:
             break;
     }

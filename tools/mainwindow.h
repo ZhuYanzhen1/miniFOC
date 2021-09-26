@@ -5,6 +5,8 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QMessageBox>
+#include <QTextEdit>
+#include <QSlider>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -59,6 +61,8 @@ private:
     /* serial configure functions */
     void refresh_serial_port();
     bool set_serial_badurate();
+    void update_minimum_maximum_value(float value, QLabel *value_widget, QSlider *value_slider,
+                                      QTextEdit *maximum_tb, QTextEdit *minimum_tb);
 
     /* chart & curve configure function */
     void setup_custom_plot();
