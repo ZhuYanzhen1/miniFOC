@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210927](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210927.hex): 4ef3bf9 Update new firmware link to Github Pages
+ 
 + [20210926](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210926.hex): 13c4a77 Add the slider position and the maximum and minimum value change code for the monitor. Now the parameters of the motor can be parsed and reflected on the slider.
  
 + [20210925](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210925.hex): 4c8ae1b Update new firmware link to Github Pages
