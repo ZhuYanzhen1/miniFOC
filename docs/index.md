@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20210929](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210929.hex): 0ad9f00 Add comments for PID program.
+ 
 + [20210928](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210928.hex): 6c3f43f Update new firmware link to Github Pages
  
 + [20210927](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210927.hex): 4ef3bf9 Update new firmware link to Github Pages
