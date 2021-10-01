@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20211001](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211001.hex): 5af6329 Update new firmware link to Github Pages
+ 
 + [20210930](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210930.hex): 62079a2 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
  
 + [20210929](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210929.hex): 0ad9f00 Add comments for PID program.
