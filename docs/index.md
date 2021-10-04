@@ -9,6 +9,8 @@ layout: default
 &nbsp;&nbsp;&nbsp;&nbsp;这个页面用于发布每次由Github Action定时任务生成的.hex固件，目的是自动编译发布main分支下最新commit的固件而无需开发者手动编译。需要注意的是，本页面下的.hex固件不保证它的稳定性和可用性。如果你想下载稳定可用的固件，请转到[Release页面](https://github.com/ZhuYanzhen1/miniFOC/releases)下载。
 
 ### Download / 下载&nbsp;
+ 
++ [20211004](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211004.hex): 9ad907a Correct the medium capacity data transfer protocol link in README.
 
 + [20210930](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210930.hex): 62079a2 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
 
