@@ -9,87 +9,81 @@ layout: default
 &nbsp;&nbsp;&nbsp;&nbsp;这个页面用于发布每次由Github Action定时任务生成的.hex固件，目的是自动编译发布main分支下最新commit的固件而无需开发者手动编译。需要注意的是，本页面下的.hex固件不保证它的稳定性和可用性。如果你想下载稳定可用的固件，请转到[Release页面](https://github.com/ZhuYanzhen1/miniFOC/releases)下载。
 
 ### Download / 下载&nbsp;
- 
-+ [20211003](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211003.hex): 79c3e89 Update new firmware link to Github Pages
- 
-+ [20211002](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211002.hex): ca342f3 Update new firmware link to Github Pages
- 
-+ [20211001](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211001.hex): 5af6329 Update new firmware link to Github Pages
- 
+
 + [20210930](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210930.hex): 62079a2 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
- 
+
 + [20210929](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210929.hex): 0ad9f00 Add comments for PID program.
- 
+
 + [20210928](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210928.hex): 6c3f43f Update new firmware link to Github Pages
- 
+
 + [20210927](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210927.hex): 4ef3bf9 Update new firmware link to Github Pages
- 
+
 + [20210926](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210926.hex): 13c4a77 Add the slider position and the maximum and minimum value change code for the monitor. Now the parameters of the motor can be parsed and reflected on the slider.
- 
+
 + [20210925](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210925.hex): 4c8ae1b Update new firmware link to Github Pages
- 
+
 + [20210924](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210924.hex): 00c7781 The problem of sending messages after the monitor is started has been solved. The problem of enabling logic of slider control in monitor is solved.
- 
+
 + [20210923](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210923.hex): bfeb755 Add the variable return function to sort out the uploaded functions into the report. C file.
- 
+
 + [20210922](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210922.hex): f3c4b4f Modify the development environment version in readme and add notes for the image repo.
- 
+
 + [20210921](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210921.hex): 5607792 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
- 
+
 + [20210920](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210920.hex): 06330fe Correct the FOC twice coordinate transformation annotation.
- 
+
 + [20210919](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210919.hex): 626c4fb Modify the global variable name so that it does not duplicate.
- 
+
 + [20210918](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210918.hex): 35eb651 Modify README and update mainwindow.ui of monitor
- 
+
 + [20210917](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210917.hex): b5a9140 Update new firmware link to Github Pages
- 
+
 + [20210916](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210916.hex): 813b97e Add speed update configure macro to config.h.
- 
+
 + [20210914](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210914.hex): 975d112 Update new firmware link to Github Pages
- 
+
 + [20210913](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210913.hex): 3207bc9 The PCB circuit of minifoc is modified
- 
+
 + [20210912](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210912.hex): 43bdf80 Fixed the problem that the reverse speed could not be measured during speed calculation.
- 
+
 + [20210911](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210911.hex): 610eeb6 Add a comment for timer deactivation.
- 
+
 + [20210910](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210910.hex): 97ade83 Modify the packet serial port sending function, and now you can send data correctly.
- 
+
 + [20210909](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210909.hex): 9216fd7 Add upper computer monitor tools for miniFOC
- 
+
 + [20210908](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210908.hex): 0eef12c Normalize variable names and adjust the order.
- 
+
 + [20210907](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210907.hex): 238b89d Fix mdtp_callback_handler function name mismatch.
- 
+
 + [20210906](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210906.hex): 791bb85 Normalized FLASH read / write function name.
- 
+
 + [20210905](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210905.hex): be1d8fa The speed calculation code and sliding window filter function are added to make the speed smoother.
- 
+
 + [20210904](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210904.hex): 84aa5d8 Polish README
- 
+
 + [20210903](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210903.hex): ebb2498 The electric angle correction program is added. The pole number and encoder resolution are added to the config file for modification. Corrected PWM initialization duty cycle to prevent power on burn out.
- 
+
 + [20210902](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210902.hex): 21ed3dd Add read and initialization functions of magnetic encoder. Add comments for SPI related functions and move SPI frequency division coefficient to config file for configuration.
- 
+
 + [20210901](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210901.hex): 2698c41 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
- 
+
 + [20210831](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210831.hex): 2d309e9 Code comments are added for fast mathematical calculation functions and FOC calculation functions.
- 
+
 + [20210830](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210830.hex): 021d7fa The fast mathematical calculation function is added to accelerate the calculation speed of sin and cos calculate, and the program volume is reduced (compared with using math Standard Library).
- 
+
 + [20210829](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210829.hex): 1e40d66 Add and update PWM duty cycle function. Add comments for PWM initialization function and modify initialization channel.
- 
+
 + [20210828](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210828.hex): 0a068b2 Add wiki repo into docs directory
- 
+
 + [20210827](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210827.hex): 924f307 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
- 
+
 + [20210826](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210826.hex): dfea67b Add the packet function of medium capacity transmission protocol. When the data packet is received, it is sent back according to the original packet to test whether the function of receiving and sending data packet can operate normally.
- 
+
 + [20210825](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210825.hex): 0e68071 Some data receiving functions are realized. Annotate the functions in the system file. Fixed missing systick handler. The memset function is rewritten, and the program volume can be reduced without using the standard library.
- 
+
 + [20210824](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210824.hex): 1b1fd54 Add UART0 initialization code, file author declaration, function declaration and code comments. Add config header file to facilitate users to modify important parameters.
- 
+
 + [20210823](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210823.hex): c774ad1 Add macro definition of LED level toggle.
- 
+
 + [20210822](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202108/20210822.hex): c625232 Delete testing files
