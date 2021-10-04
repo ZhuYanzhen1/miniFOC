@@ -39,7 +39,7 @@
 + 输入电压范围：5V~18V（你可以根据这里的教程修改电路以适应更高的电压）。
 + 最大驱动电流：5A（你可以根据这里的教程修改电路以实现更大的驱动电流）。
 + FOC详细参数：无电流环控制，采用SVPWM (Space Vector Pulse Width Modulation)。
-+ 通信参数：UART串口通信波特率115200，采用[中容量数传协议](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README_CN.md)进行数据传输。
++ 通信参数：UART串口通信波特率115200，采用[中容量数传协议](https://github.com/ZhuYanzhen1/CDTP/blob/master/mdtp/README_CN.md)进行数据传输。
 + 微控制器参数：Cortex-M3内核，72MHz主频，32KB Flash，4KB  SRAM。
 
 ***

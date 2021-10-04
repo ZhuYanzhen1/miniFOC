@@ -40,8 +40,8 @@
 + Input voltage range: 5V ~ 18V (you can modify the circuit according to the tutorial here to adapt to higher voltage).
 + Maximum driving current: 5A (you can modify the circuit according to the tutorial here to achieve greater driving current).
 + Detailed parameters of FOC: no current loop control, SVPWM (Space Vector Pulse Width Modulation) is adopted.
-+ Communication parameters: UART baud rate is 115200, and [Mid Capacity Data Transmit Protocol](https://github.com/ZhuYanzhen1/CDTP/blob/master/Mid%20Capacity/README.md) is used for data transmission.
-+  Microcontroller parameters: Cortex-M3 core, 72MHz frequency, 32KB FLASH, 4KB SRAM. 
++ Communication parameters: UART baud rate is 115200, and [Mid Capacity Data Transmit Protocol](https://github.com/ZhuYanzhen1/CDTP/blob/master/mdtp/README.md) is used for data transmission.
++ Microcontroller parameters: Cortex-M3 core, 72MHz frequency, 32KB FLASH, 4KB SRAM. 
 
 ***
 
