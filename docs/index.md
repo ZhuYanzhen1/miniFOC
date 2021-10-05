@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20211005](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211005.hex): 9e18ca4 Update new firmware link to Github Pages
+ 
 + [20211004](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211004.hex): 9ad907a Correct the medium capacity data transfer protocol link in README.
 
 + [20210930](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210930.hex): 62079a2 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
