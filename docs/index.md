@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20211007](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211007.hex): e1db21f Update new firmware link to Github Pages
+ 
 + [20211006](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211006.hex): 8ff27a8 Update new firmware link to Github Pages
  
 + [20211005](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211005.hex): 9e18ca4 Update new firmware link to Github Pages
