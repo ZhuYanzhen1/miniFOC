@@ -1,8 +1,8 @@
 /**************************************************************************//**
- * @file     cmsis_version.h
- * @brief    CMSIS Core(M) Version definitions
- * @version  V5.0.2
- * @date     19. April 2017
+  \file     cmsis_version.h
+  \brief    CMSIS Core(M) Version definitions
+  \version  V5.0.2
+  \date     19. April 2017
  ******************************************************************************/
 /*
  * Copyright (c) 2009-2017 ARM Limited. All rights reserved.
@@ -23,9 +23,9 @@
  */
 
 #if   defined ( __ICCARM__ )
-  #pragma system_include         /* treat file as system include file for MISRA check */
+#pragma system_include         /* treat file as system include file for MISRA check */
 #elif defined (__clang__)
-  #pragma clang system_header   /* treat file as system include file */
+#pragma clang system_header   /* treat file as system include file */
 #endif
 
 #ifndef __CMSIS_VERSION_H
