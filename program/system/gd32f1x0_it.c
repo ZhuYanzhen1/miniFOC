@@ -1,26 +1,28 @@
-//
-// Created by Lao·Zhu on 2021/8/20.
-//
+/**************************************************************************//**
+  \file     gd32f1x0_it.c
+  \brief    gd32f1x0 interrupt handler function source file
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #include "gd32f1x0_it.h"
 #include "main.h"
 
+/*!
+    \brief  systick interrupt count variable is used to
+            realize the encoder update function.
+*/
 static unsigned char systick_counter = 0;
 
 /*!
-    \brief      this function handles NMI exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles NMI exception
 */
 void NMI_Handler(void) {
 }
 
 /*!
-    \brief      this function handles HardFault exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles HardFault exception
 */
 void HardFault_Handler(void) {
     /* if Hard Fault exception occurs, go to infinite loop */
@@ -28,10 +30,7 @@ void HardFault_Handler(void) {
 }
 
 /*!
-    \brief      this function handles MemManage exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles MemManage exception
 */
 void MemManage_Handler(void) {
     /* if Memory Manage exception occurs, go to infinite loop */
@@ -39,10 +38,7 @@ void MemManage_Handler(void) {
 }
 
 /*!
-    \brief      this function handles BusFault exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles BusFault exception
 */
 void BusFault_Handler(void) {
     /* if Bus Fault exception occurs, go to infinite loop */
@@ -50,10 +46,7 @@ void BusFault_Handler(void) {
 }
 
 /*!
-    \brief      this function handles UsageFault exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles UsageFault exception
 */
 void UsageFault_Handler(void) {
     /* if Usage Fault exception occurs, go to infinite loop */
@@ -61,37 +54,25 @@ void UsageFault_Handler(void) {
 }
 
 /*!
-    \brief      this function handles SVC exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles SVC exception
 */
 void SVC_Handler(void) {
 }
 
 /*!
-    \brief      this function handles DebugMon exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles DebugMon exception
 */
 void DebugMon_Handler(void) {
 }
 
 /*!
-    \brief      this function handles PendSV exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles PendSV exception
 */
 void PendSV_Handler(void) {
 }
 
 /*!
-    \brief      this function handles SysTick exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles SysTick exception
 */
 void SysTick_Handler(void) {
     /* update millisecond delay counter */
@@ -106,10 +87,7 @@ void SysTick_Handler(void) {
 }
 
 /*!
-    \brief      this function handles USART RBNE interrupt request
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles USART RBNE interrupt request
 */
 void USART0_IRQHandler(void) {
     /* judge whether a reception interrupt is generated */
@@ -122,10 +100,7 @@ void USART0_IRQHandler(void) {
 }
 
 /*!
-    \brief      this function handles TIMER2 TIMER_INT_UP interrupt request
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles TIMER2 TIMER_INT_UP interrupt request
 */
 void TIMER2_IRQHandler(void) {
     /* judge whether a timer update interrupt is generated */
@@ -146,10 +121,7 @@ void TIMER2_IRQHandler(void) {
 }
 
 /*!
-    \brief      this function handles TIMER13 TIMER_INT_UP interrupt request
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  this function handles TIMER13 TIMER_INT_UP interrupt request
 */
 void TIMER13_IRQHandler(void) {
     /* judge whether a timer update interrupt is generated */

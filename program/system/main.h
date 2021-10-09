@@ -1,6 +1,10 @@
-//
-// Created by Lao·Zhu on 2021/8/20.
-//
+/**************************************************************************//**
+  \file     main.h
+  \brief    main function Header File
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #ifndef MINIFOC_MAIN_H_
 #define MINIFOC_MAIN_H_

@@ -1,6 +1,10 @@
-//
-// Created by Lao·Zhu on 2021/9/18.
-//
+/**************************************************************************//**
+  \file     error.h
+  \brief    used to check whether the user configured parameters conflict
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #ifndef MINIFOC__ERROR_H_
 #define MINIFOC__ERROR_H_

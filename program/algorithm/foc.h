@@ -1,18 +1,30 @@
-//
-// Created by Lao·Zhu on 2021/8/30.
-//
+/**************************************************************************//**
+  \file     foc.h
+  \brief    this is the header file of foc.c, which defines the structure
+            of FOC algorithm and angle conversion factor.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #ifndef MINIFOC_ALGORITHM_FOC_H_
 #define MINIFOC_ALGORITHM_FOC_H_
 
+/*!
+  \struct FOC_Structure_t
+  \brief structure of FOC algorithm
+ */
 typedef struct {
-    float mechanical_angle;
-    float rotate_speed;
-    float user_expect;
+    float mechanical_angle;     ///< mechanical angle read form encoder
+    float rotate_speed;         ///< motor rotate speed calculate from timer
+    float user_expect;          ///< user expect value of miniFOC
 } FOC_Structure_t;
 
+/*! \brief  mechanical angle conversion factor */
 #define MECHANGLE_COEFFICIENT   (6.2831854f / ENCODER_RESO)
+/*! \brief  electric angle conversion factor */
 #define ELECANGLE_COEFFICIENT   ((6.2831854f * POLAR_PAIRS) / ENCODER_RESO)
+/*! \brief  mechanical rotate speed conversion factor */
 #define SPEED_COEFFICIENT       ((6.2831852f * TIM13_FREQUENCY) / ENCODER_RESO)
 
 extern volatile unsigned char phase_sequence;

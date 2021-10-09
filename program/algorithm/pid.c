@@ -1,20 +1,34 @@
-//
-// Created by Lao·Zhu on 2021/9/11.
-//
+/**************************************************************************//**
+  \file     pid.c
+  \brief    PID algorithm implementation source code
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #include "pid.h"
 #include "fast_math.h"
 #include "system.h"
 
+/*!
+    \brief  flag variable for PID parameter availability
+*/
 unsigned char pid_parameter_available_flag = 0;
+/*!
+    \brief  flag variable of PID closed loop mode
+*/
 volatile unsigned char pid_control_mode_flag = 0;
-volatile PID_Structure_t speed_pid_handler, angle_pid_handler;
+/*!
+    \brief  algorithm handler of PID speed loop
+*/
+volatile PID_Structure_t speed_pid_handler;
+/*!
+    \brief  algorithm handler of PID angle loop
+*/
+volatile PID_Structure_t angle_pid_handler;
 
 /*!
-    \brief      configure pid loop parameters
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  configure pid loop parameters
 */
 void pid_config(unsigned char mode) {
     /* clear the value of the PID handler */
@@ -34,7 +48,6 @@ void pid_config(unsigned char mode) {
     \brief      calculate result using sampling value
     \param[in]  pid_handler: PID data handler
     \param[in]  collect: sampled data
-    \param[out] none
     \retval     calculated output value of PID controller
 */
 float pid_calculate_result(PID_Structure_t *pid_handler, float collect) {

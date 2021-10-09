@@ -1,6 +1,10 @@
-//
-// Created by Lao·Zhu on 2021/8/20.
-//
+/**************************************************************************//**
+  \file     gd32f1x0_it.h
+  \brief    gd32f1x0 interrupt handler function header file
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #ifndef GD32F1X0_IT_H
 #define GD32F1X0_IT_H
