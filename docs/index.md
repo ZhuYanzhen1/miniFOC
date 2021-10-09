@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20211009](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211009.hex): 1fdb661 Modify most of the files in the algorithm folder to a format recognized by Doxygen.
+ 
 + [20211008](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211008.hex): 96d4344 Update new firmware link to Github Pages
  
 + [20211007](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211007.hex): e1db21f Update new firmware link to Github Pages
