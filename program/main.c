@@ -1,16 +1,28 @@
-//
-// Created by Lao·Zhu on 2021/8/20.
-//
+/**************************************************************************//**
+  \file     main.c
+  \brief    miniFOC main source file, The relevant operations and main function
+  after unpacking of medium capacity transmission protocol are implemented in this document.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #include "main.h"
 
+/*!
+    \brief  used to indicate the current status of miniFOC
+    \param
+      1 calibrate motor phase and sensor offset  \n
+      2 enable the motor                         \n
+      3 disable the motor                        \n
+      4 return current parameters                \n
+*/
 static volatile unsigned char minifoc_fsm_state = 0;
 
 /*!
     \brief        user callback function for unpacking completion of medium capacity transport protocol
     \param[in]    pid: medium capacity transport protocol package id
     \param[in]    data: received data array of size 8 bytes
-    \param[out]   none
     \retval       none
 */
 void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
@@ -100,6 +112,9 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
     }
 }
 
+/*!
+    \brief        main function
+*/
 int main(void) {
     /* 4 bits for preemption priority 0 bits for subpriority */
     nvic_priority_group_set(NVIC_PRIGROUP_PRE4_SUB0);

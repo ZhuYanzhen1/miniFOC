@@ -1,14 +1,16 @@
-//
-// Created by Lao·Zhu on 2021/9/23.
-//
+/**************************************************************************//**
+  \file     report.c
+  \brief    this file is used to write the report correlation function
+            of the feedback host computer.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     9. October 2021
+ ******************************************************************************/
 
 #include "main.h"
 
 /*!
     \brief      report PID parameters and current user settings
-    \param[in]  none
-    \param[out] none
-    \retval     none
 */
 void report_local_variable(void) {
     unsigned int upload_var[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -62,9 +64,6 @@ void report_local_variable(void) {
 
 /*!
     \brief      report angle and speed using medium capacity transport protocol
-    \param[in]  none
-    \param[out] none
-    \retval     none
 */
 void report_angle_speed(void) {
     unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
