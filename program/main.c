@@ -1,7 +1,8 @@
 /**************************************************************************//**
   \file     main.c
   \brief    miniFOC main source file, The relevant operations and main function
-  after unpacking of medium capacity transmission protocol are implemented in this document.
+            after unpacking of medium capacity transmission protocol are implemented
+            in this document.
   \author   Lao·Zhu
   \version  V1.0.1
   \date     9. October 2021

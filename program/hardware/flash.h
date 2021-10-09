@@ -1,6 +1,10 @@
-//
-// Created by Lao·Zhu on 2021/9/5.
-//
+/**************************************************************************//**
+  \file     flash.h
+  \brief    this is the header file of flash.c.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     10. October 2021
+ ******************************************************************************/
 
 #ifndef MINIFOC_HARDWARE_FLASH_H_
 #define MINIFOC_HARDWARE_FLASH_H_

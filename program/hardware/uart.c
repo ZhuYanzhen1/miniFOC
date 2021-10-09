@@ -1,21 +1,34 @@
-//
-// Created by Lao·Zhu on 2021/8/24.
-//
+/**************************************************************************//**
+  \file     uart.c
+  \brief    this file contains the code implementation of UART interface
+            initialization function and medium capacity transmission protocol
+            transceiver function.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     10. October 2021
+ ******************************************************************************/
 
 #include "uart.h"
 #include "config.h"
 #include "gd32f1x0.h"
 #include "system.h"
 
+/*!
+    \brief  medium capacity transport protocol receive state variable
+*/
 volatile static unsigned char mdtp_receive_status = 0;
+/*!
+    \brief  medium capacity transport protocol receive character counter
+*/
 volatile static unsigned char mdtp_receive_number_counter = 0;
+/*!
+    \brief  medium capacity transport protocol receive buffer array
+*/
 static unsigned char mdtp_receive_data_buffer[10] = {0};
 
 /*!
     \brief        medium capacity data transmission protocol unpacking handler
     \param[in]    data: data received from UART peripheral
-    \param[out]   none
-    \retval       none
 */
 void mdtp_receive_handler(unsigned char data) {
     /* data receiving finite state machine */
@@ -92,9 +105,7 @@ void mdtp_receive_handler(unsigned char data) {
 /*!
     \brief      medium capacity data transmission protocol packing function
     \param[in]    pid: medium capacity transport protocol package id
-    \param[in]    data: received data array of size 8 bytes
-    \param[out]   none
-    \retval     none
+    \param[in]    buffer: transmit data array of size 8 bytes
 */
 void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
     unsigned char temp_buf[12] = {0xff, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -124,10 +135,7 @@ void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
 }
 
 /*!
-    \brief      configure uart0 periph and its gpios
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  configure uart0 periph and its gpios
 */
 void uart_config(void) {
     /* UART interrupt configuration */

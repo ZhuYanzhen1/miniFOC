@@ -1,9 +1,9 @@
 /**************************************************************************//**
-  \file     system.h
+  \file     system.c
   \brief    system basic function source file
   \author   Lao·Zhu
   \version  V1.0.1
-  \date     9. October 2021
+  \date     10. October 2021
  ******************************************************************************/
 
 #include "gd32f1x0.h"

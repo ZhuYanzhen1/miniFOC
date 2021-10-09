@@ -1,12 +1,21 @@
-//
-// Created by Lao·Zhu on 2021/9/5.
-//
+/**************************************************************************//**
+  \file     filter.c
+  \brief    this file contains the code implementation of first-order digital
+            RC low-pass filter algorithm and the code implementation of low-pass
+            filter coefficient calculation.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     10. October 2021
+ ******************************************************************************/
 
 #include "filter.h"
 #include "system.h"
 #include "foc.h"
 #include "config.h"
 
+/*!
+    \brief  motor rotation speed low pass filter handle
+*/
 volatile Filter_Structure_t velocity_filter;
 
 /*!
@@ -29,7 +38,7 @@ void filter_coefficient_config(Filter_Structure_t *param, float cutoff_freq, flo
 }
 
 /*!
-    \brief      configure low-pass filter parameters
+    \brief  configure low-pass filter parameters
 */
 void filter_config(void) {
     filter_coefficient_config((Filter_Structure_t *) &velocity_filter,

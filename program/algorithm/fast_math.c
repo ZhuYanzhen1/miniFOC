@@ -1,9 +1,17 @@
-//
-// Created by Lao·Zhu on 2021/8/30.
-//
+/**************************************************************************//**
+  \file     fast_math.c
+  \brief    this file contains the code implementation of sine function
+            value lookup table and fast calculation of sine value.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     10. October 2021
+ ******************************************************************************/
 
 #include "fast_math.h"
 
+/*!
+    \brief  fast sine function lookup table
+*/
 const float sin_tab[] = {
     0, 0.012296f, 0.024589f, 0.036879f, 0.049164f, 0.061441f, 0.073708f, 0.085965f, 0.098208f, 0.11044f, 0.12265f,
     0.13484f, 0.14702f, 0.15917f, 0.17129f, 0.18339f, 0.19547f, 0.20751f, 0.21952f, 0.2315f, 0.24345f, 0.25535f,
@@ -59,7 +67,6 @@ const float sin_tab[] = {
 /*!
     \brief      fast calculation of sine
     \param[in]  theta: angle to be calculated
-    \param[out] none
     \retval     sine value of angle theta
 */
 float fast_sin(float theta) {

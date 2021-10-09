@@ -1,6 +1,11 @@
-//
-// Created by Lao·Zhu on 2021/8/29.
-//
+/**************************************************************************//**
+  \file     timer.c
+  \brief    this file contains the code implementation of timer initialization
+            and disable timer function and setting timer comparison value.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     10. October 2021
+ ******************************************************************************/
 
 #include "timer.h"
 #include "gd32f1x0.h"
@@ -11,8 +16,6 @@
     \param[in]  ch0: duty-cycle of channel0, 0 ~ 1.0f
     \param[in]  ch1: duty-cycle of channel1, 0 ~ 1.0f
     \param[in]  ch2: duty-cycle of channel2, 0 ~ 1.0f
-    \param[out] none
-    \retval     none
 */
 void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
     /* update the comparison register of timer1 */
@@ -22,10 +25,7 @@ void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
 }
 
 /*!
-    \brief      disable timer13 periph and timer2 interrupt
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  disable timer13 periph and timer2 interrupt
 */
 void timer13_disable(void) {
     /* stop TIMER13 and deinit */
@@ -39,10 +39,7 @@ void timer13_disable(void) {
 }
 
 /*!
-    \brief      disable timer2 periph and timer2 interrupt
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  disable timer2 periph and timer2 interrupt
 */
 void timer2_disable(void) {
     /* stop TIMER2 and deinit */
@@ -58,10 +55,7 @@ void timer2_disable(void) {
 }
 
 /*!
-    \brief      configure timer2 periph for timing interrupt
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  configure timer2 periph for timing interrupt
 */
 void timer2_config(void) {
     timer_parameter_struct timer_initpara;
@@ -84,10 +78,7 @@ void timer2_config(void) {
 }
 
 /*!
-    \brief      configure timer13 periph for timing interrupt
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  configure timer13 periph for timing interrupt
 */
 void timer13_config(void) {
     timer_parameter_struct timer_initpara;
@@ -110,10 +101,7 @@ void timer13_config(void) {
 }
 
 /*!
-    \brief      configure timer1 periph and its gpios
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  configure timer1 periph and its gpios
 */
 void pwm_config(void) {
     timer_oc_parameter_struct timer_ocintpara;

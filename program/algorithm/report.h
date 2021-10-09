@@ -1,6 +1,6 @@
 /**************************************************************************//**
   \file     report.h
-  \brief    report function header file
+  \brief    this is the header file of report.c.
   \author   Lao·Zhu
   \version  V1.0.1
   \date     9. October 2021

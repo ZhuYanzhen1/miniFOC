@@ -1,6 +1,11 @@
-//
-// Created by Lao·Zhu on 2021/9/2.
-//
+/**************************************************************************//**
+  \file     spi.c
+  \brief    this file contains the initialization of SPI peripherals and
+            the code implementation of reading and writing half words.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     10. October 2021
+ ******************************************************************************/
 
 #include "spi.h"
 #include "gd32f1x0.h"
@@ -9,7 +14,6 @@
 /*!
     \brief      spi0 transmit data for sc60228
     \param[in]  data: data to transmit
-    \param[out] none
     \retval     data received from slave
 */
 unsigned short spi_readwrite_halfworld(unsigned short data) {
@@ -26,10 +30,7 @@ unsigned short spi_readwrite_halfworld(unsigned short data) {
 }
 
 /*!
-    \brief      configure spi0 periph and its gpios
-    \param[in]  none
-    \param[out] none
-    \retval     none
+    \brief  configure spi0 periph and its gpios
 */
 void spi_config(void) {
     spi_parameter_struct spi_init_struct;

@@ -1,6 +1,11 @@
-//
-// Created by Lao·Zhu on 2021/8/30.
-//
+/**************************************************************************//**
+  \file     foc.c
+  \brief    this document is mainly the code implementation of motor
+            phase sequence correction and FOC algorithm.
+  \author   Lao·Zhu
+  \version  V1.0.1
+  \date     10. October 2021
+ ******************************************************************************/
 
 #include "foc.h"
 #include "config.h"
@@ -9,11 +14,17 @@
 #include "system.h"
 #include "timer.h"
 
+/*!
+    \brief  FOC handler
+*/
 volatile FOC_Structure_t FOC_Struct;
+/*!
+    \brief  motor phase sequence flag variable
+*/
 volatile unsigned char phase_sequence = 0;
 
 /*!
-    \brief      automatic phase sequence detection and correction
+    \brief  automatic phase sequence detection and correction
 */
 void foc_calibrate_phase(void) {
     unsigned short last_angle = 0, positive_counter = 0;
