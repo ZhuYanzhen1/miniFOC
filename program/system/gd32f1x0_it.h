@@ -6,8 +6,8 @@
   \date     9. October 2021
  ******************************************************************************/
 
-#ifndef GD32F1X0_IT_H
-#define GD32F1X0_IT_H
+#ifndef MINIFOC_SYSTEM_GD32F1X0_IT_H
+#define MINIFOC_SYSTEM_GD32F1X0_IT_H
 
 #include "gd32f1x0.h"
 
@@ -24,4 +24,4 @@ void USART0_IRQHandler(void);
 void TIMER2_IRQHandler(void);
 void TIMER13_IRQHandler(void);
 
-#endif /* GD32F1X0_IT_H */
+#endif // MINIFOC_SYSTEM_GD32F1X0_IT_H
