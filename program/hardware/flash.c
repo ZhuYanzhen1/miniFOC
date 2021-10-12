@@ -12,6 +12,7 @@
 
 /*!
     \brief  program all parameters to flash
+    \retval none
 */
 void flash_write_parameters(void) {
     unsigned int buffer[11] = {machine_angle_offset, phase_sequence, 0x00000000UL, 0x00000000UL, 0x00000000UL,
@@ -31,6 +32,7 @@ void flash_write_parameters(void) {
 
 /*!
     \brief  read all parameters from flash
+    \retval none
 */
 void flash_read_parameters(void) {
     machine_angle_offset = flash_read_word(0x00000000UL);
@@ -53,6 +55,7 @@ void flash_read_parameters(void) {
 
 /*!
     \brief  erase flash page in last sector
+    \retval none
 */
 void flash_erase_page(void) {
     /* unlock the flash program/erase controller */
@@ -72,6 +75,7 @@ void flash_erase_page(void) {
     \param[in]  addr: address to write to
     \param[in]  data: data to be written
     \param[in]  counter: number of bytes to be written to flash
+    \retval none
 */
 void flash_program_word(unsigned int addr, unsigned int *data, unsigned short counter) {
     /* unlock the flash program/erase controller */

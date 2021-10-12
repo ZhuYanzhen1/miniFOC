@@ -16,6 +16,7 @@
     \param[in]  ch0: duty-cycle of channel0, 0 ~ 1.0f
     \param[in]  ch1: duty-cycle of channel1, 0 ~ 1.0f
     \param[in]  ch2: duty-cycle of channel2, 0 ~ 1.0f
+    \retval none
 */
 void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
     /* update the comparison register of timer1 */
@@ -26,6 +27,7 @@ void update_pwm_dutycycle(float ch0, float ch1, float ch2) {
 
 /*!
     \brief  disable timer13 periph and timer2 interrupt
+    \retval none
 */
 void timer13_disable(void) {
     /* stop TIMER13 and deinit */
@@ -40,6 +42,7 @@ void timer13_disable(void) {
 
 /*!
     \brief  disable timer2 periph and timer2 interrupt
+    \retval none
 */
 void timer2_disable(void) {
     /* stop TIMER2 and deinit */
@@ -56,6 +59,7 @@ void timer2_disable(void) {
 
 /*!
     \brief  configure timer2 periph for timing interrupt
+    \retval none
 */
 void timer2_config(void) {
     timer_parameter_struct timer_initpara;
@@ -79,6 +83,7 @@ void timer2_config(void) {
 
 /*!
     \brief  configure timer13 periph for timing interrupt
+    \retval none
 */
 void timer13_config(void) {
     timer_parameter_struct timer_initpara;
@@ -102,6 +107,7 @@ void timer13_config(void) {
 
 /*!
     \brief  configure timer1 periph and its gpios
+    \retval none
 */
 void pwm_config(void) {
     timer_oc_parameter_struct timer_ocintpara;

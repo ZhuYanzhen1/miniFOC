@@ -24,6 +24,7 @@ static volatile unsigned char minifoc_fsm_state = 0;
     \brief        user callback function for unpacking completion of medium capacity transport protocol
     \param[in]    pid: medium capacity transport protocol package id
     \param[in]    data: received data array of size 8 bytes
+    \retval none
 */
 void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
     /* pack0 is the control pack of miniFOC */
@@ -114,6 +115,7 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
 
 /*!
     \brief  main function
+    \retval none
 */
 int main(void) {
     /* 4 bits for preemption priority 0 bits for subpriority */

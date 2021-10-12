@@ -11,21 +11,25 @@
 
 /*!
     \brief  turn on LED
+    \retval none
 */
 #define led_on()        gpio_bit_reset(GPIOB, GPIO_PIN_5)
 
 /*!
     \brief  turn off LED
+    \retval none
 */
 #define led_off()       gpio_bit_set(GPIOB, GPIO_PIN_5)
 
 /*!
     \brief  flip the LED pin level
+    \retval none
 */
 #define led_toggle()    gpio_bit_write(GPIOB, GPIO_PIN_5, !gpio_output_bit_get(GPIOB, GPIO_PIN_5))
 
 /*!
     \brief  configure led periph and its gpios
+    \retval none
 */
 #define led_config()    rcu_periph_clock_enable(RCU_GPIOB);\
                         gpio_mode_set(GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO_PIN_5);\

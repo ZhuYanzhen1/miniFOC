@@ -12,6 +12,7 @@
 /*!
     \brief      UART send single byte macro
     \param[in]  x: byte to be send from UART
+    \retval none
 */
 #define uart_sendbyte(x);   usart_data_transmit(USART0, (uint8_t) x);\
                             while (RESET ==usart_flag_get(USART0, USART_FLAG_TBE))

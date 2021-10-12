@@ -25,6 +25,7 @@ volatile unsigned char phase_sequence = 0;
 
 /*!
     \brief  automatic phase sequence detection and correction
+    \retval none
 */
 void foc_calibrate_phase(void) {
     unsigned short last_angle = 0, positive_counter = 0;
@@ -88,6 +89,7 @@ void foc_calibrate_phase(void) {
     \param[out] u: calculation results of U-phase duty cycle
     \param[out] v: calculation results of V-phase duty cycle
     \param[out] w: calculation results of W-phase duty cycle
+    \retval none
 */
 void foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, float *v, float *w) {
     float alpha, beta;

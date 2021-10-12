@@ -29,6 +29,7 @@ static unsigned char mdtp_receive_data_buffer[10] = {0};
 /*!
     \brief        medium capacity data transmission protocol unpacking handler
     \param[in]    data: data received from UART peripheral
+    \retval none
 */
 void mdtp_receive_handler(unsigned char data) {
     /* data receiving finite state machine */
@@ -106,6 +107,7 @@ void mdtp_receive_handler(unsigned char data) {
     \brief      medium capacity data transmission protocol packing function
     \param[in]    pid: medium capacity transport protocol package id
     \param[in]    buffer: transmit data array of size 8 bytes
+    \retval none
 */
 void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
     unsigned char temp_buf[12] = {0xff, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -136,6 +138,7 @@ void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
 
 /*!
     \brief  configure uart0 periph and its gpios
+    \retval none
 */
 void uart_config(void) {
     /* UART interrupt configuration */

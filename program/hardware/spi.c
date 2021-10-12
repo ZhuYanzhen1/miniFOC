@@ -31,6 +31,7 @@ unsigned short spi_readwrite_halfworld(unsigned short data) {
 
 /*!
     \brief  configure spi0 periph and its gpios
+    \retval none
 */
 void spi_config(void) {
     spi_parameter_struct spi_init_struct;

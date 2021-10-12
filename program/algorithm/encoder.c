@@ -40,6 +40,7 @@ volatile static long long systick_mechanical_angle_last = 0;
 
 /*!
     \brief  delay function for magnetic encoder
+    \retval none
 */
 void encoder_delay(void) {
     /* use loop functions to delay time */
@@ -99,6 +100,7 @@ float encoder_get_electronic_angle(void) {
 
 /*!
     \brief  called every 2 milliseconds to calculate the speed.
+    \retval none
 */
 void encoder_update_speed(void) {
     /* calculate the difference between this angle and the last angle */
@@ -112,6 +114,7 @@ void encoder_update_speed(void) {
 
 /*!
     \brief  correct the mechanical angle zero deviation between the magnetic encoder and FOC.
+    \retval none
 */
 void encoder_zeroing(void) {
     float u, v, w;

@@ -29,6 +29,7 @@ volatile PID_Structure_t angle_pid_handler;
 
 /*!
     \brief  configure pid loop parameters
+    \retval none
 */
 void pid_config(unsigned char mode) {
     /* clear the value of the PID handler */

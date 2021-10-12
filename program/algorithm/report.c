@@ -11,6 +11,7 @@
 
 /*!
     \brief  report PID parameters and current user settings
+    \retval none
 */
 void report_local_variable(void) {
     unsigned int upload_var[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -64,6 +65,7 @@ void report_local_variable(void) {
 
 /*!
     \brief  report angle and speed using medium capacity transport protocol
+    \retval none
 */
 void report_angle_speed(void) {
     unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};

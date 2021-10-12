@@ -11,11 +11,13 @@
 
 /*!
     \brief  millisecond delay function count variable
+    \retval none
 */
 static volatile unsigned long delayms_counter = 1;
 
 /*!
     \brief  initialize systick timer to implementation delay function
+    \retval none
 */
 void systick_config(void) {
     if (SysTick_Config(SystemCoreClock / 1000U))
@@ -26,6 +28,7 @@ void systick_config(void) {
 /*!
     \brief        millisecond delay function, any time time.
     \param[in]    count: time to delay (in milliseconds)
+    \retval none
 */
 void delayms(unsigned long count) {
     delayms_counter = count;
@@ -34,6 +37,7 @@ void delayms(unsigned long count) {
 
 /*!
     \brief      delay counter decrement function, called by systick handler
+    \retval none
 */
 void delay_decrement(void) {
     if (0U != delayms_counter)
@@ -45,6 +49,7 @@ void delay_decrement(void) {
     \param[in,out]  buf: array to format
     \param[in]      data: value to be formatted as
     \param[in]      num: number of elements to format
+    \retval none
 */
 void user_memset(void *buf, unsigned char data, unsigned char num) {
     unsigned char *buf_p = (unsigned char *) buf;
