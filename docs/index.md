@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20211012](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211012.hex): 5aa44fc Merge remote-tracking branch 'origin/main' into main
+ 
 + [20211011](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211011.hex): 22d07b8 add two lables in monitor
  
 + [20211010](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211010.hex): 7520c1e Modify the main page of Doxygen generated documents to readme file as the main page.
