@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20211014](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211014.hex): 0b59ff0 Update new firmware link to Github Pages
+ 
 + [20211013](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211013.hex): 92e1577 Update new firmware link to Github Pages
  
 + [20211012](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211012.hex): 5aa44fc Merge remote-tracking branch 'origin/main' into main
