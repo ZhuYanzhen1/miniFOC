@@ -9,37 +9,23 @@ layout: default
 &nbsp;&nbsp;&nbsp;&nbsp;这个页面用于发布每次由Github Action定时任务生成的.hex固件，目的是自动编译发布main分支下最新commit的固件而无需开发者手动编译。需要注意的是，本页面下的.hex固件不保证它的稳定性和可用性。如果你想下载稳定可用的固件，请转到[Release页面](https://github.com/ZhuYanzhen1/miniFOC/releases)下载。
 
 ### Download / 下载&nbsp;
- 
-+ [20211019](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211019.hex): f9399aa Update new firmware link to Github Pages
- 
-+ [20211018](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211018.hex): f33a9d2 Update new firmware link to Github Pages
- 
-+ [20211017](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211017.hex): f7b87eb Update new firmware link to Github Pages
- 
-+ [20211016](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211016.hex): 4e40a71 Update new firmware link to Github Pages
- 
-+ [20211015](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211015.hex): 2a55dd8 Update new firmware link to Github Pages
- 
-+ [20211014](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211014.hex): 0b59ff0 Update new firmware link to Github Pages
- 
-+ [20211013](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211013.hex): 92e1577 Update new firmware link to Github Pages
- 
+
 + [20211012](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211012.hex): 5aa44fc Merge remote-tracking branch 'origin/main' into main
- 
+
 + [20211011](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211011.hex): 22d07b8 add two lables in monitor
- 
+
 + [20211010](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211010.hex): 7520c1e Modify the main page of Doxygen generated documents to readme file as the main page.
- 
+
 + [20211009](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211009.hex): 1fdb661 Modify most of the files in the algorithm folder to a format recognized by Doxygen.
- 
+
 + [20211008](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211008.hex): 96d4344 Update new firmware link to Github Pages
- 
+
 + [20211007](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211007.hex): e1db21f Update new firmware link to Github Pages
- 
+
 + [20211006](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211006.hex): 8ff27a8 Update new firmware link to Github Pages
- 
+
 + [20211005](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211005.hex): 9e18ca4 Update new firmware link to Github Pages
- 
+
 + [20211004](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211004.hex): 9ad907a Correct the medium capacity data transfer protocol link in README.
 
 + [20210930](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202109/20210930.hex): 62079a2 Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
