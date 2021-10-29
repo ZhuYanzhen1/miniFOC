@@ -59,7 +59,7 @@
 + EDA工具：[立创EDA](https://lceda.cn/)（采用标准版免费许可证，无LICENSE纠纷）。
 + 编译工具链：gcc-arm-none-eabi 10-2020-q4-major
 + 烧录工具：OpenOCD 0.11.0-1
-+ 集成开发工具：CLion 2021.2.2 #212.5284.51
++ 集成开发工具：CLion 2021.2.3 #212.5457.51
 + 上位机开发工具：Qt 5.14.2 (MinGW 7.3.0 64bit)
 + 操作系统及工具链：
   + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD

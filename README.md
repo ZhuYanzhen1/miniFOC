@@ -60,7 +60,7 @@
 + EDA Tool: [EasyEDA](https://easyeda.com/) (the standard free license is adopted, and there is no license dispute).
 + Compiler tool chain: gcc-arm-none-eabi 10-2020-q4-major
 + Programming tool: OpenOCD 0.11.0-1
-+ Integrated development tools: CLion 2021.2.2 #212.5284.51
++ Integrated development tools: CLion 2021.2.3 #212.5457.51
 + Software development tools: Qt 5.14.2 (MinGW 7.3.0 64bit)
 + Operating system and tool chain: 
   + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
