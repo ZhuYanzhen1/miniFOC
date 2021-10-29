@@ -65,7 +65,7 @@ jobs:
         run: |
           ls && currentdate=$(date +%Y%m%d) && currentmonth=$(date +%Y%m) && commit_info=$(git log -1 --oneline)
           filestr="/下载。&nbsp;/a\ \r\n+ ["$currentdate"](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/"$currentmonth'/'$currentdate".hex): "$commit_info
-          sed -i "$filestr" ./docs/mainpage.md && echo $filestr && rm ~/.ssh/id_rsa
+          sed -i "$filestr" ./docs/_mainpage.md && echo $filestr && rm ~/.ssh/id_rsa
           echo "$LOCAL_REPO_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
           git add . && git commit -m "Update new firmware link to Github Pages" && git push origin main
           
