@@ -10,6 +10,8 @@ layout: default
 
 ### Download / 下载&nbsp;
  
++ [20211029](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211029.hex): 1254535 Merge remote-tracking branch 'origin/main' into main
+ 
 + [20211020](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211020.hex): e1f4f51 Modify the GitHub action timed automatic compilation firmware to compile only when push occurs.
 
 + [20211012](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202110/20211012.hex): 5aa44fc Merge remote-tracking branch 'origin/main' into main
