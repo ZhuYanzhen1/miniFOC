@@ -2,8 +2,8 @@
   \file     gd32f1x0_it.c
   \brief    gd32f1x0 interrupt handler function source file
   \author   Lao·Zhu
-  \version  V1.0.1
-  \date     9. October 2021
+  \version  V1.0.2
+  \date     29. October 2021
  ******************************************************************************/
 
 #include "gd32f1x0_it.h"
@@ -87,10 +87,10 @@ void SysTick_Handler(void) {
     /* update millisecond delay counter */
     delay_decrement();
     systick_counter++;
-    /* reduce the frequency to 500Hz */
+
+    /* reduce the frequency to SPEED_UP_FREQ, update the current rotor speed */
     if (systick_counter == (1000 / SPEED_UP_FREQ)) {
         systick_counter = 0;
-        /* update the current rotor speed */
         encoder_update_speed();
     }
 }
@@ -102,9 +102,8 @@ void SysTick_Handler(void) {
 void USART0_IRQHandler(void) {
     /* judge whether a reception interrupt is generated */
     if (RESET != usart_interrupt_flag_get(USART0, USART_INT_FLAG_RBNE)) {
-        /* receive data */
+        /* receive, process and unzip data */
         unsigned char rcv_data = usart_data_receive(USART0);
-        /* process and unzip data */
         mdtp_receive_handler(rcv_data);
     }
 }
@@ -114,19 +113,18 @@ void USART0_IRQHandler(void) {
     \retval none
 */
 void TIMER2_IRQHandler(void) {
-    /* judge whether a timer update interrupt is generated */
+    /* judge whether a timer update interrupt is generated, clear timer interrupt flag bit */
     if (SET == timer_interrupt_flag_get(TIMER2, TIMER_INT_UP)) {
-        /* clear timer interrupt flag bit */
         timer_interrupt_flag_clear(TIMER2, TIMER_INT_UP);
+
         /* obtain the electric angle at the current time */
         float u, v, w, angle = (float) encoder_get_electronic_angle();
+
         /* Clarke inverse transform and SVPWM modulation */
-        /* judge whether the motor phase is connected reversely */
         if (phase_sequence == 0)
             foc_calculate_dutycycle(angle, 0, FOC_Struct.user_expect, &u, &v, &w);
         else
             foc_calculate_dutycycle(angle, 0, FOC_Struct.user_expect, &v, &u, &w);
-        /* Apply to PWM */
         update_pwm_dutycycle(u, v, w);
     }
 }
@@ -136,15 +134,16 @@ void TIMER2_IRQHandler(void) {
     \retval none
 */
 void TIMER13_IRQHandler(void) {
-    /* judge whether a timer update interrupt is generated */
+    /* judge whether a timer update interrupt is generated, clear timer interrupt flag bit */
     if (SET == timer_interrupt_flag_get(TIMER13, TIMER_INT_UP)) {
-        /* clear timer interrupt flag bit */
         timer_interrupt_flag_clear(TIMER13, TIMER_INT_UP);
+
         /* judge whether angle closed-loop control is required */
         if (pid_control_mode_flag == ANGLE_LOOP_CONTROL)
             /* the calculated value of the angle loop is taken as the expected value of the speed loop */
             speed_pid_handler.expect =
                 pid_calculate_result((PID_Structure_t *) &angle_pid_handler, FOC_Struct.mechanical_angle);
+
         /* calculate the speed loop PID and obtain the calculated value */
         FOC_Struct.user_expect = pid_calculate_result((PID_Structure_t *) &speed_pid_handler, FOC_Struct.rotate_speed);
     }

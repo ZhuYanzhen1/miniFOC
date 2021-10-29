@@ -2,8 +2,8 @@
   \file     system.c
   \brief    system basic function source file
   \author   Lao·Zhu
-  \version  V1.0.1
-  \date     10. October 2021
+  \version  V1.0.2
+  \date     29. October 2021
  ******************************************************************************/
 
 #include "gd32f1x0.h"
@@ -28,7 +28,7 @@ void systick_config(void) {
 /*!
     \brief        millisecond delay function, any time time.
     \param[in]    count: time to delay (in milliseconds)
-    \retval none
+    \retval       none
 */
 void delayms(unsigned long count) {
     delayms_counter = count;
@@ -37,7 +37,7 @@ void delayms(unsigned long count) {
 
 /*!
     \brief      delay counter decrement function, called by systick handler
-    \retval none
+    \retval     none
 */
 void delay_decrement(void) {
     if (0U != delayms_counter)
@@ -49,7 +49,7 @@ void delay_decrement(void) {
     \param[in,out]  buf: array to format
     \param[in]      data: value to be formatted as
     \param[in]      num: number of elements to format
-    \retval none
+    \retval         none
 */
 void user_memset(void *buf, unsigned char data, unsigned char num) {
     unsigned char *buf_p = (unsigned char *) buf;

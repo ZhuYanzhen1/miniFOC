@@ -4,8 +4,8 @@
             after unpacking of medium capacity transmission protocol are implemented
             in this document.
   \author   Lao·Zhu
-  \version  V1.0.1
-  \date     9. October 2021
+  \version  V1.0.2
+  \date     29. October 2021
  ******************************************************************************/
 
 #include "main.h"
@@ -35,19 +35,23 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 /* 0x0F is used to calibrate motor phase and sensor offset */
                 minifoc_fsm_state = 1;
                 break;
+
             case 0x1E:
                 /* 0x1E used to enable the motor */
                 minifoc_fsm_state = 2;
+
                 /* configure pid parameters for (torque/speed/angle) loop */
                 if (pid_parameter_available_flag == 1)
                     pid_config(data[1]);
                 else
                     pid_config(TORQUE_LOOP_CONTROL);
                 break;
+
             case 0x2D:
                 /* 0x2D used to disable the motor */
                 minifoc_fsm_state = 3;
                 break;
+
             case 0x3C:
                 /* 0x3C used to set user expect */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
@@ -64,46 +68,55 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 } else
                     FOC_Struct.user_expect = int32_to_float(receive_int32);
                 break;
+
             case 0x4B:
                 /* 0x4D used to set speed pid kp */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 speed_pid_handler.kp = int32_to_float(receive_int32);
                 break;
+
             case 0x5A:
                 /* 0x5A used to set speed pid ki */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 speed_pid_handler.ki = int32_to_float(receive_int32);
                 break;
+
             case 0x69:
                 /* 0x69 used to set speed pid kd */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 speed_pid_handler.kd = int32_to_float(receive_int32);
                 break;
+
             case 0x78:
                 /* 0x78 used to set speed pid summary maximum */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 speed_pid_handler.sum_maximum = int32_to_float(receive_int32);
                 break;
+
             case 0x87:
                 /* 0x87 used to set angle pid kp */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 angle_pid_handler.kp = int32_to_float(receive_int32);
                 break;
+
             case 0x96:
                 /* 0x96 used to set angle pid ki */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 angle_pid_handler.ki = int32_to_float(receive_int32);
                 break;
+
             case 0xA5:
                 /* 0xA5 used to set angle pid kd */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 angle_pid_handler.kd = int32_to_float(receive_int32);
                 break;
+
             case 0xB4:
                 /* 0xB4 used to set angle pid summary maximum */
                 receive_int32 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
                 angle_pid_handler.sum_maximum = int32_to_float(receive_int32);
                 break;
+
             case 0xC3:
                 /* 0xC3 used to return current value */
                 minifoc_fsm_state = 4;
@@ -120,69 +133,70 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
 int main(void) {
     /* 4 bits for preemption priority 0 bits for subpriority */
     nvic_priority_group_set(NVIC_PRIGROUP_PRE4_SUB0);
-    /* configure led gpio */
+
+    /* configure peripherals */
     led_config();
-    /* configure uart for data transmit */
     uart_config();
-    /* configure timer1 for pwm output */
     pwm_config();
-    /* configure spi0 for encoder communicate */
     spi_config();
-    /* configure filter parameters for pid algorithm */
+
+    /* configure filter and pid parameters for pid algorithm */
     filter_config();
-    /* configure pid parameters for torque loop */
     pid_config(TORQUE_LOOP_CONTROL);
+
     /* configure systick timer for delay_ms() function */
     systick_config();
+
     /* read all parameters from flash */
     flash_read_parameters();
+
     while (1) {
         switch (minifoc_fsm_state) {
             case 1:
-                /* disable timer2 to stop foc calculate loop */
+                /* disable timer to stop foc calculate loop */
                 timer2_disable();
-                /* disable timer13 to stop pid calculate loop */
                 timer13_disable();
+
                 /* automatic phase sequence detection and correction */
                 foc_calibrate_phase();
+
                 /* correct the mechanical angle zero deviation */
                 encoder_zeroing();
+
                 /* re-write the parameters to flash */
                 flash_write_parameters();
-                /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
                 break;
+
             case 2:
                 /* delay to wait for the motor to respond */
                 delayms(1000);
-                /* configure timer2 for foc calculate loop */
+
+                /* configure timer for foc calculate loop */
                 timer2_config();
                 if (pid_control_mode_flag != TORQUE_LOOP_CONTROL)
-                    /* configure timer13 for velocity or angle closed loop */
                     timer13_config();
-                /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
                 break;
+
             case 3:
-                /* disable timer2 to stop foc calculate loop */
+                /* disable timer to stop foc calculate loop */
                 timer2_disable();
-                /* disable timer13 to stop pid calculate loop */
                 if (pid_control_mode_flag != TORQUE_LOOP_CONTROL)
                     timer13_disable();
-                /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
                 break;
+
             case 4:
                 /* transmit current value to monitor */
                 report_local_variable();
-                /* switch the status back to sending data */
                 minifoc_fsm_state = 0;
                 break;
+
             case 0:
             default:
                 /* transmit angle and speed to monitor */
                 report_angle_speed();
-                /* toggle LED */
                 led_toggle();
                 delayms(50);
                 break;

@@ -4,8 +4,8 @@
             RC low-pass filter algorithm and the code implementation of low-pass
             filter coefficient calculation.
   \author   Lao·Zhu
-  \version  V1.0.1
-  \date     10. October 2021
+  \version  V1.0.2
+  \date     29. October 2021
  ******************************************************************************/
 
 #include "filter.h"
@@ -24,13 +24,15 @@ volatile Filter_Structure_t velocity_filter;
     \param[in]  cutoff_freq: cut off frequency in Hz
     \param[in]  sample_freq: sample frequency in Hz
     \param[in]  coefficient: input data weight, usually is 1
-    \retval none
+    \retval     none
 */
 void filter_coefficient_config(Filter_Structure_t *param, float cutoff_freq, float sample_freq, float coefficient) {
     /* clear the value of the first order low pass filter parameter handler */
     user_memset(param, 0x00, sizeof(Filter_Structure_t));
+
     /* the RC time constant is calculated from the cut-off frequency */
     float time_const = 1.0f / (6.2831852f * cutoff_freq);
+
     /* calculation of digital low-pass filter coefficients */
     param->coefficient1 = (1.0f / (1.0f + time_const * sample_freq)) * coefficient;
     param->coefficient2 = (time_const * sample_freq) / (1.0f + time_const * sample_freq);
@@ -54,10 +56,11 @@ void filter_config(void) {
     \retval     current calculation results of low-pass filter
 */
 float filter_update_value(Filter_Structure_t *param, short value) {
-    /* judge whether the input parameters are abnormal */
+    /* judge whether the input parameters are abnormal,
+     * calculate the output value of the first-order low-pass filter */
     if (value < 200 && value > -200)
-        /* calculate the output value of the first-order low-pass filter */
         param->current_result = param->coefficient1 * (float) value + param->coefficient2 * param->last_result;
+
     /* update the output value of the previous time */
     param->last_result = param->current_result;
     return param->current_result;

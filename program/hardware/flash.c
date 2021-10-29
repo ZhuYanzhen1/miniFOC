@@ -4,8 +4,8 @@
             reading, writing and erasing, as well as storing and reading
             user configurations.
   \author   Lao·Zhu
-  \version  V1.0.1
-  \date     10. October 2021
+  \version  V1.0.2
+  \date     29. October 2021
  ******************************************************************************/
 
 #include "main.h"
@@ -60,12 +60,12 @@ void flash_read_parameters(void) {
 void flash_erase_page(void) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
-    /* clear all pending flags */
     fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_WPERR | FMC_FLAG_PGERR);
+
     /* erase the flash page */
     fmc_page_erase(FMC_WRITE_START_ADDR);
-    /* clear all pending flags */
     fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_WPERR | FMC_FLAG_PGERR);
+
     /* lock the main FMC after the erase operation */
     fmc_lock();
 }
@@ -80,12 +80,13 @@ void flash_erase_page(void) {
 void flash_program_word(unsigned int addr, unsigned int *data, unsigned short counter) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
+
     /* program flash */
     for (unsigned short data_cnt = 0; data_cnt < counter; data_cnt++) {
         fmc_word_program(addr + FMC_WRITE_START_ADDR + 4 * data_cnt, data[data_cnt]);
-        /* clear all pending flags */
         fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_WPERR | FMC_FLAG_PGERR);
     }
+
     /* lock the main FMC after the program operation */
     fmc_lock();
 }
