@@ -123,6 +123,11 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 /* 0xC3 used to return current value */
                 minifoc_fsm_state = 4;
                 break;
+
+            case 0xD2:
+                /* 0xD2 used to write byte to flash */
+                flash_write_parameters(data[1]);
+                break;
             default:break;
         }
     }
@@ -166,7 +171,7 @@ int main(void) {
                 encoder_zeroing();
 
                 /* re-write the parameters to flash */
-                flash_write_parameters();
+                flash_write_parameters(0);
                 minifoc_fsm_state = 0;
                 break;
 

@@ -205,10 +205,25 @@ void MainWindow::on_start_stop_btn_clicked(){
     }
 }
 
-void MainWindow::on_calibrate_btn_clicked(){
+void MainWindow::on_calibrate_btn_clicked() {
     unsigned char buffer[8] = {0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     mdtp_data_transmit(0x00, buffer);
     ui->calibrate_btn->setEnabled(false);
+}
+
+void MainWindow::on_pid_available_btn_clicked() {
+    unsigned char buffer[8] = {0xD2, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    mdtp_data_transmit(0x00, buffer);
+}
+
+void MainWindow::on_pid_unavailable_btn_clicked() {
+    unsigned char buffer[8] = {0xD2, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    mdtp_data_transmit(0x00, buffer);
+}
+
+void MainWindow::on_write_to_flash_btn_clicked() {
+    unsigned char buffer[8] = {0xD2, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    mdtp_data_transmit(0x00, buffer);
 }
 
 void MainWindow::on_refresh_btn_clicked(){
