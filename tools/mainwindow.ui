@@ -341,13 +341,13 @@
        <string>0</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_11">
+     <widget class="QLabel" name="angle_offset_lable">
       <property name="geometry">
        <rect>
         <x>720</x>
         <y>210</y>
-        <width>72</width>
-        <height>15</height>
+        <width>131</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="font">
@@ -357,16 +357,16 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>Offset: </string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_12">
+     <widget class="QLabel" name="phase_lable">
       <property name="geometry">
        <rect>
         <x>720</x>
         <y>240</y>
-        <width>72</width>
-        <height>15</height>
+        <width>131</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="font">
@@ -376,7 +376,48 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>Phase: </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pid_available_lable">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>270</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>PID Available</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="foc_available_lable">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>300</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>FOC Available</string>
       </property>
      </widget>
     </widget>

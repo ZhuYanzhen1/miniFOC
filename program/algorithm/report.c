@@ -18,7 +18,8 @@ void report_local_variable(void) {
     unsigned char buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
     /* compress the angle deviation and motor phase sequence into a 32-bit integer */
-    upload_var[0] = (machine_angle_offset << 16) | phase_sequence;
+    upload_var[0] = (machine_angle_offset << 16) | phase_sequence | foc_parameter_available_flag << 1
+        | pid_parameter_available_flag << 2;
 
     /* converts user expect value to an integer */
     switch (pid_control_mode_flag) {

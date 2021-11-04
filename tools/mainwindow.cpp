@@ -34,6 +34,7 @@ MainWindow::~MainWindow(){
 void MainWindow::update_minimum_maximum_value(float value, QLabel *value_widget, QSlider *value_slider,
                                   QTextEdit *maximum_tb, QTextEdit *minimum_tb){
     int32_t pow_counter = 0, maximum = 0, minimum = 0, error_value = 0, value_step = 0;
+    qDebug() << QString("value: %1").arg(value);
     if(value != 0) {
         if(value < 0) {
             value = -1.0 * value;
@@ -87,6 +88,30 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
             curve_counter = curve_counter + 1;
             break;
         case 1:
+            ui->angle_offset_lable->setText("Offset: " + QString::number(data1 >> 16));
+            ui->phase_lable->setText("Phase: " + QString::number(data1 & 0x0001));
+            if(((data1 & 0x0002) >> 1) == 0x01) {
+                QPalette pe;
+                ui->foc_available_lable->setText("FOC Available");
+                pe.setColor(QPalette::WindowText, Qt::green);
+                ui->foc_available_lable->setPalette(pe);
+            } else {
+                QPalette pe;
+                ui->foc_available_lable->setText("FOC Unavailable");
+                pe.setColor(QPalette::WindowText, Qt::red);
+                ui->foc_available_lable->setPalette(pe);
+            }
+            if(((data1 & 0x0004) >> 2) == 0x01) {
+                QPalette pe;
+                ui->pid_available_lable->setText("PID Available");
+                pe.setColor(QPalette::WindowText, Qt::green);
+                ui->pid_available_lable->setPalette(pe);
+            } else {
+                QPalette pe;
+                ui->pid_available_lable->setText("PID Unavailable");
+                pe.setColor(QPalette::WindowText, Qt::red);
+                ui->pid_available_lable->setPalette(pe);
+            }
             update_minimum_maximum_value((*((float *)(&data2))), ui->slider_current_value,
                                          ui->user_expect_slider, ui->slider_maximum_value, ui->slider_minimum_value);
             break;
