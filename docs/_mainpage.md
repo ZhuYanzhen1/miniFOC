@@ -11,6 +11,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;下面发布的内容是每次由Github Action定时任务生成的.hex固件，目的是自动编译发布main分支下最新commit的固件而无需开发者手动编译。需要注意的是，本页面下的.hex固件不保证它的稳定性和可用性。如果你想下载稳定可用的固件，请转到[Release页面](https://github.com/ZhuYanzhen1/miniFOC/releases)下载。&nbsp;
  
++ [20211104](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202111/20211104.hex): 6a5dcd3 Added the button and method of flash writing content control. There are still problems with parameter reading and slider display that need to be modified.
+ 
 + [20211103](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202111/20211103.hex): ef97f44 Update new firmware link to Github Pages
  
 + [20211102](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202111/20211102.hex): b5687f6 Update new firmware link to Github Pages
