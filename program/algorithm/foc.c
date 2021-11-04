@@ -22,6 +22,10 @@ volatile FOC_Structure_t FOC_Struct;
     \brief  motor phase sequence flag variable
 */
 volatile unsigned char phase_sequence = 0;
+/*!
+    \brief  flag variable for FOC parameter availability
+*/
+unsigned char foc_parameter_available_flag = 1;
 
 /*!
     \brief  automatic phase sequence detection and correction

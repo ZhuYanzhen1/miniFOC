@@ -37,14 +37,16 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
                 break;
 
             case 0x1E:
-                /* 0x1E used to enable the motor */
-                minifoc_fsm_state = 2;
+                if (foc_parameter_available_flag == 1) {
+                    /* 0x1E used to enable the motor */
+                    minifoc_fsm_state = 2;
 
-                /* configure pid parameters for (torque/speed/angle) loop */
-                if (pid_parameter_available_flag == 1)
-                    pid_config(data[1]);
-                else
-                    pid_config(TORQUE_LOOP_CONTROL);
+                    /* configure pid parameters for (torque/speed/angle) loop */
+                    if (pid_parameter_available_flag == 1)
+                        pid_config(data[1]);
+                    else
+                        pid_config(TORQUE_LOOP_CONTROL);
+                }
                 break;
 
             case 0x2D:

@@ -27,6 +27,7 @@ typedef struct {
 /*! \brief  mechanical rotate speed conversion factor */
 #define SPEED_COEFFICIENT       ((6.2831852f * TIM13_FREQUENCY) / ENCODER_RESO)
 
+extern unsigned char foc_parameter_available_flag;
 extern volatile unsigned char phase_sequence;
 extern volatile FOC_Structure_t FOC_Struct;
 void foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, float *v, float *w);

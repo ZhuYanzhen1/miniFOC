@@ -45,10 +45,8 @@ void flash_read_parameters(void) {
     angle_pid_handler.ki = int32_to_float(flash_read_word(0x00000028UL));
     angle_pid_handler.kd = int32_to_float(flash_read_word(0x00000032UL));
     angle_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000036UL));
-    if (machine_angle_offset > 4096 || phase_sequence > 1) {
-        led_on();
-        while (1);
-    }
+    if (machine_angle_offset > 4096 || phase_sequence > 1)
+        foc_parameter_available_flag = 0;
     if (flash_read_word(0x00000040UL) != 0xA5A5A5A5UL)
         pid_parameter_available_flag = 0;
 }
