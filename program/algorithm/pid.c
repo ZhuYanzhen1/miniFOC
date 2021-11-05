@@ -13,7 +13,7 @@
 /*!
     \brief  flag variable for PID parameter availability
 */
-unsigned char pid_parameter_available_flag = 0;
+unsigned char pid_parameter_available_flag = 1;
 /*!
     \brief  flag variable of PID closed loop mode
 */
@@ -42,6 +42,11 @@ void pid_config(unsigned char mode) {
     /* set maximum and minimum output torque */
     speed_pid_handler.maximum = 1.0f;
     speed_pid_handler.minimum = -1.0f;
+
+    speed_pid_handler.kp = 0.06f;
+    speed_pid_handler.ki = 0.08f;
+    speed_pid_handler.kd = 0.01f;
+    speed_pid_handler.sum_maximum = 0;
 
     /* set maximum and minimum output speed */
     angle_pid_handler.maximum = 100.0f;

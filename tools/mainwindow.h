@@ -36,12 +36,7 @@ private slots:
     void on_angle_ki_slider_valueChanged(int value);
     void on_angle_kd_slider_valueChanged(int value);
     void on_angle_summax_slider_valueChanged(int value);
-
-    void on_pid_available_btn_clicked();
-
-    void on_pid_unavailable_btn_clicked();
-
-    void on_write_to_flash_btn_clicked();
+    void on_pid_parameter_btn_clicked();
 
 public slots:
     void serial_received();

@@ -1369,7 +1369,7 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pid_available_btn">
+     <widget class="QPushButton" name="pid_parameter_btn">
       <property name="geometry">
        <rect>
         <x>630</x>
@@ -1385,45 +1385,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Write PID Available</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pid_unavailable_btn">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>110</y>
-        <width>221</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Write PID Unavailable</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="write_to_flash_btn">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>180</y>
-        <width>221</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Write To Flash</string>
+       <string>Write PID Parameter</string>
       </property>
      </widget>
     </widget>

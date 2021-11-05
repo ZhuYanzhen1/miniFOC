@@ -35,28 +35,42 @@ void MainWindow::update_minimum_maximum_value(float value, QLabel *value_widget,
                                   QTextEdit *maximum_tb, QTextEdit *minimum_tb){
     int32_t pow_counter = 0, maximum = 0, minimum = 0, error_value = 0, value_step = 0;
     qDebug() << QString("value: %1").arg(value);
-    if(value != 0) {
-        if(value < 0) {
-            value = -1.0 * value;
-            for(pow_counter = 1; pow_counter <= 5; pow_counter++)
-                if(value > std::pow(10, pow_counter) && value < std::pow(10, pow_counter + 1))
-                    break;
-            maximum = ((int32_t)value / std::pow(10, pow_counter)) + 1;
-            minimum = ((int32_t)value / std::pow(10, pow_counter)) - 1;
-            maximum = std::pow(10, pow_counter) * -1 * maximum;
-            minimum = std::pow(10, pow_counter) * -1 * minimum;
-        } else {
-            for(pow_counter = 1; pow_counter <= 5; pow_counter++)
-                if(value > std::pow(10, pow_counter) && value < std::pow(10, pow_counter + 1))
-                    break;
-            maximum = ((int32_t)value / std::pow(10, pow_counter)) + 1;
-            minimum = ((int32_t)value / std::pow(10, pow_counter)) - 1;
-            maximum = std::pow(10, pow_counter) * maximum;
-            minimum = std::pow(10, pow_counter) * minimum;
-        }
+    if(value < 1.0 && value > -1.0f) {
+        minimum = 0;
+        maximum = value * 2;
         value_widget->setText(QString::number(value, 10, 2));
         maximum_tb->setText(QString::number((float)maximum, 10, 2));
         minimum_tb->setText(QString::number((float)minimum, 10, 2));
+    } else if(value < 1000.0f && value > -1000.0f) {
+        if(value != 0) {
+            if(value < 0) {
+                value = -1.0 * value;
+                for(pow_counter = 1; pow_counter <= 5; pow_counter++)
+                    if(value > std::pow(10, pow_counter) && value < std::pow(10, pow_counter + 1))
+                        break;
+                maximum = ((int32_t)value / std::pow(10, pow_counter)) + 1;
+                minimum = ((int32_t)value / std::pow(10, pow_counter)) - 1;
+                maximum = std::pow(10, pow_counter) * -1 * maximum;
+                minimum = std::pow(10, pow_counter) * -1 * minimum;
+            } else {
+                for(pow_counter = 1; pow_counter <= 5; pow_counter++)
+                    if(value > std::pow(10, pow_counter) && value < std::pow(10, pow_counter + 1))
+                        break;
+                maximum = ((int32_t)value / std::pow(10, pow_counter)) + 1;
+                minimum = ((int32_t)value / std::pow(10, pow_counter)) - 1;
+                maximum = std::pow(10, pow_counter) * maximum;
+                minimum = std::pow(10, pow_counter) * minimum;
+            }
+            value_widget->setText(QString::number(value, 10, 2));
+            maximum_tb->setText(QString::number((float)maximum, 10, 2));
+            minimum_tb->setText(QString::number((float)minimum, 10, 2));
+        } else {
+            maximum = 1;
+            minimum = -1;
+            value_widget->setText("0");
+            maximum_tb->setText(QString::number((float)maximum, 10, 2));
+            minimum_tb->setText(QString::number((float)minimum, 10, 2));
+        }
     } else {
         maximum = 1;
         minimum = -1;
@@ -159,6 +173,9 @@ void MainWindow::on_open_btn_clicked(){
             slider_timer->start();
             buffer[0] = 0xC3;
             mdtp_data_transmit(0x00, buffer);
+            ui->speed_groupbox->setEnabled(true);
+            ui->angle_groupbox->setEnabled(true);
+            ui->pid_parameter_btn->setEnabled(true);
         }
     }else {
         serial->close();
@@ -169,6 +186,9 @@ void MainWindow::on_open_btn_clicked(){
         ui->serial_port_cb->setEnabled(true);
         ui->serial_baudrate_txt->setEnabled(true);
         slider_timer->stop();
+        ui->speed_groupbox->setEnabled(false);
+        ui->angle_groupbox->setEnabled(false);
+        ui->pid_parameter_btn->setEnabled(false);
     }
 }
 
@@ -189,8 +209,6 @@ void MainWindow::on_start_stop_btn_clicked(){
         ui->user_expect_slider->setEnabled(true);
         ui->slider_maximum_value->setEnabled(true);
         ui->slider_minimum_value->setEnabled(true);
-        ui->speed_groupbox->setEnabled(true);
-        ui->angle_groupbox->setEnabled(true);
     }else {
         buffer[0] = 0x2D;
         mdtp_data_transmit(0x00, buffer);
@@ -200,8 +218,6 @@ void MainWindow::on_start_stop_btn_clicked(){
         ui->user_expect_slider->setEnabled(false);
         ui->slider_maximum_value->setEnabled(false);
         ui->slider_minimum_value->setEnabled(false);
-        ui->speed_groupbox->setEnabled(false);
-        ui->angle_groupbox->setEnabled(false);
     }
 }
 
@@ -211,18 +227,8 @@ void MainWindow::on_calibrate_btn_clicked() {
     ui->calibrate_btn->setEnabled(false);
 }
 
-void MainWindow::on_pid_available_btn_clicked() {
-    unsigned char buffer[8] = {0xD2, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    mdtp_data_transmit(0x00, buffer);
-}
-
-void MainWindow::on_pid_unavailable_btn_clicked() {
-    unsigned char buffer[8] = {0xD2, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    mdtp_data_transmit(0x00, buffer);
-}
-
-void MainWindow::on_write_to_flash_btn_clicked() {
-    unsigned char buffer[8] = {0xD2, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+void MainWindow::on_pid_parameter_btn_clicked(){
+    unsigned char buffer[8] = {0xD2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     mdtp_data_transmit(0x00, buffer);
 }
 

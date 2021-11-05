@@ -11,34 +11,27 @@
 #include "main.h"
 
 #define JUDGE_AVAILABLE(x, minimum, maximum)    if (x > maximum || x < minimum) \
-                                                x = 0
+                                                    x = 0
 
 /*!
     \brief  program all parameters to flash
     \retval none
 */
-void flash_write_parameters(unsigned char flag) {
+void flash_write_parameters(void) {
     unsigned int buffer[11] = {machine_angle_offset, phase_sequence, 0x00000000UL, 0x00000000UL, 0x00000000UL,
                                0x00000000UL, 0x00000000UL, 0x00000000UL, 0x00000000UL, 0x00000000UL, 0x00000000UL};
-    if (flag == 0)
-        for (unsigned char counter = 2; counter < 11; ++counter)
-            buffer[counter] = flash_read_word(counter * 4);
-    else if (flag == 1)
+    buffer[2] = float_to_int32(speed_pid_handler.kp);
+    buffer[3] = float_to_int32(speed_pid_handler.ki);
+    buffer[4] = float_to_int32(speed_pid_handler.kd);
+    buffer[5] = float_to_int32(speed_pid_handler.sum_maximum);
+    buffer[6] = float_to_int32(angle_pid_handler.kp);
+    buffer[7] = float_to_int32(angle_pid_handler.ki);
+    buffer[8] = float_to_int32(angle_pid_handler.kd);
+    buffer[9] = float_to_int32(angle_pid_handler.sum_maximum);
+    if (pid_parameter_available_flag == 1)
         buffer[10] = 0xA5A5A5A5UL;
-    else if (flag == 2)
-        buffer[10] = 0xFFFFFFFFUL;
-    else if (flag == 3) {
-        buffer[2] = float_to_int32(speed_pid_handler.kp);
-        buffer[3] = float_to_int32(speed_pid_handler.ki);
-        buffer[4] = float_to_int32(speed_pid_handler.kd);
-        buffer[5] = float_to_int32(speed_pid_handler.sum_maximum);
-        buffer[6] = float_to_int32(angle_pid_handler.kp);
-        buffer[7] = float_to_int32(angle_pid_handler.ki);
-        buffer[8] = float_to_int32(angle_pid_handler.kd);
-        buffer[9] = float_to_int32(angle_pid_handler.sum_maximum);
-    }
     flash_erase_page();
-    flash_program_word(0x00000000UL, buffer, 10);
+    flash_program_word(0x00000000UL, buffer, 11);
 }
 
 /*!
@@ -48,28 +41,28 @@ void flash_write_parameters(unsigned char flag) {
 void flash_read_parameters(void) {
     machine_angle_offset = flash_read_word(0x00000000UL);
     phase_sequence = flash_read_word(0x00000004UL);
-    speed_pid_handler.kp = int32_to_float(flash_read_word(0x00000008UL));
-    speed_pid_handler.ki = int32_to_float(flash_read_word(0x00000012UL));
-    speed_pid_handler.kd = int32_to_float(flash_read_word(0x00000016UL));
-    speed_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000020UL));
-    angle_pid_handler.kp = int32_to_float(flash_read_word(0x00000024UL));
-    angle_pid_handler.ki = int32_to_float(flash_read_word(0x00000028UL));
-    angle_pid_handler.kd = int32_to_float(flash_read_word(0x00000032UL));
-    angle_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000036UL));
-    if (machine_angle_offset > 4096 || phase_sequence > 1)
-        foc_parameter_available_flag = 0;
-    if (flash_read_word(0x00000040UL) != 0xA5A5A5A5UL)
-        pid_parameter_available_flag = 0;
-
-    JUDGE_AVAILABLE(speed_pid_handler.kp, 10.0f, -10.0f);
-    JUDGE_AVAILABLE(speed_pid_handler.ki, 10.0f, -10.0f);
-    JUDGE_AVAILABLE(speed_pid_handler.kd, 10.0f, -10.0f);
-    JUDGE_AVAILABLE(speed_pid_handler.sum_maximum, 10.0f, -10.0f);
-
-    JUDGE_AVAILABLE(angle_pid_handler.kp, 10.0f, -10.0f);
-    JUDGE_AVAILABLE(angle_pid_handler.ki, 10.0f, -10.0f);
-    JUDGE_AVAILABLE(angle_pid_handler.kd, 10.0f, -10.0f);
-    JUDGE_AVAILABLE(angle_pid_handler.sum_maximum, 10.0f, -10.0f);
+//    speed_pid_handler.kp = int32_to_float(flash_read_word(0x00000008UL));
+//    speed_pid_handler.ki = int32_to_float(flash_read_word(0x00000012UL));
+//    speed_pid_handler.kd = int32_to_float(flash_read_word(0x00000016UL));
+//    speed_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000020UL));
+//    angle_pid_handler.kp = int32_to_float(flash_read_word(0x00000024UL));
+//    angle_pid_handler.ki = int32_to_float(flash_read_word(0x00000028UL));
+//    angle_pid_handler.kd = int32_to_float(flash_read_word(0x00000032UL));
+//    angle_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000036UL));
+//    if (machine_angle_offset > 4096 || phase_sequence > 1)
+//        foc_parameter_available_flag = 0;
+//    if (flash_read_word(0x00000040UL) != 0xA5A5A5A5UL)
+//        pid_parameter_available_flag = 0;
+//
+//    JUDGE_AVAILABLE(speed_pid_handler.kp, 10.0f, -10.0f);
+//    JUDGE_AVAILABLE(speed_pid_handler.ki, 10.0f, -10.0f);
+//    JUDGE_AVAILABLE(speed_pid_handler.kd, 10.0f, -10.0f);
+//    JUDGE_AVAILABLE(speed_pid_handler.sum_maximum, 10.0f, -10.0f);
+//
+//    JUDGE_AVAILABLE(angle_pid_handler.kp, 10.0f, -10.0f);
+//    JUDGE_AVAILABLE(angle_pid_handler.ki, 10.0f, -10.0f);
+//    JUDGE_AVAILABLE(angle_pid_handler.kd, 10.0f, -10.0f);
+//    JUDGE_AVAILABLE(angle_pid_handler.sum_maximum, 10.0f, -10.0f);
 }
 
 /*!
@@ -96,12 +89,12 @@ void flash_erase_page(void) {
     \param[in]  counter: number of bytes to be written to flash
     \retval none
 */
-void flash_program_word(unsigned int addr, unsigned int *data, unsigned short counter) {
+void flash_program_word(unsigned int addr, unsigned int *data, unsigned char counter) {
     /* unlock the flash program/erase controller */
     fmc_unlock();
 
     /* program flash */
-    for (unsigned short data_cnt = 0; data_cnt < counter; data_cnt++) {
+    for (unsigned char data_cnt = 0; data_cnt < counter; data_cnt++) {
         fmc_word_program(addr + FMC_WRITE_START_ADDR + 4 * data_cnt, data[data_cnt]);
         fmc_flag_clear(FMC_FLAG_END | FMC_FLAG_WPERR | FMC_FLAG_PGERR);
     }

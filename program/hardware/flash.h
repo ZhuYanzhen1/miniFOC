@@ -9,10 +9,10 @@
 #ifndef MINIFOC_HARDWARE_FLASH_H_
 #define MINIFOC_HARDWARE_FLASH_H_
 
-void flash_write_parameters(unsigned char flag);
+void flash_write_parameters(void);
 void flash_read_parameters(void);
 void flash_erase_page(void);
-void flash_program_word(unsigned int addr, unsigned int *data, unsigned short counter);
+void flash_program_word(unsigned int addr, unsigned int *data, unsigned char counter);
 unsigned int flash_read_word(unsigned int addr);
 
 #endif //MINIFOC_HARDWARE_FLASH_H_

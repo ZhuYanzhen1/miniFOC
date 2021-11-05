@@ -16,7 +16,7 @@
       1 calibrate motor phase and sensor offset  \n
       2 enable the motor                         \n
       3 disable the motor                        \n
-      4 return current parameters                \n
+      4 return current parameters
 */
 static volatile unsigned char minifoc_fsm_state = 0;
 
@@ -126,7 +126,8 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
 
             case 0xD2:
                 /* 0xD2 used to write byte to flash */
-                flash_write_parameters(data[1]);
+                minifoc_fsm_state = 5;
+                pid_parameter_available_flag = 1;
                 break;
             default:break;
         }
@@ -157,6 +158,9 @@ int main(void) {
     /* read all parameters from flash */
     flash_read_parameters();
 
+    /* correct the mechanical angle zero deviation */
+    encoder_zeroing();
+
     while (1) {
         switch (minifoc_fsm_state) {
             case 1:
@@ -171,7 +175,7 @@ int main(void) {
                 encoder_zeroing();
 
                 /* re-write the parameters to flash */
-                flash_write_parameters(0);
+                flash_write_parameters();
                 minifoc_fsm_state = 0;
                 break;
 
@@ -197,6 +201,16 @@ int main(void) {
             case 4:
                 /* transmit current value to monitor */
                 report_local_variable();
+                minifoc_fsm_state = 0;
+                break;
+
+            case 5:
+                /* disable timer to stop foc calculate loop */
+                timer2_disable();
+                timer13_disable();
+
+                /* write data to flash */
+                flash_write_parameters();
                 minifoc_fsm_state = 0;
                 break;
 

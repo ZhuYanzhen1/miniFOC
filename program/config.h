@@ -9,13 +9,13 @@
 #ifndef MINIFOC__CONFIG_H_
 #define MINIFOC__CONFIG_H_
 
-/*! \brief bus voltage is 8.4V */
-#define VBUS            8.4f
+/*! \brief bus voltage is 16.0V */
+#define VBUS            16.0f
 /*! \brief set BLDC polar pairs to 7 */
 #define POLAR_PAIRS     7
 /*! \brief SC60228 resolution is 2^8 = 4096 */
 #define ENCODER_RESO    4096
-/*! \brief set calibrate torque to 0.3 */
+/*! \brief set calibrate torque to 0.2 */
 #define CALI_TORQUE     0.3f
 
 /*! \brief set UART baud rate to 115200 */
