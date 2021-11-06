@@ -1,6 +1,6 @@
 ![LOGO](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC/main/docs/image/LOGO.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.0.2-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
+&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.1.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
 &nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brush motor drive module in about 2$? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3$!  **miniFOC** has a built-in torque closed-loop controller so that you can control a brushless motor with a 3-wire UART port. The software and hardware design are fully compliant with the AGPL-3.0 open source license.
 
@@ -22,14 +22,14 @@
 
 ### Comparison Of Open Source Solutions
 
-|    Open source solution    |   **miniFOC**    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) |
-| :------------------------: | :----------: | :----------------------------------------------------------: | :------------------------------------------------: |
-|      Microcontroller       | GD32F130G6U6 |                          ATmega328P                          |                   STM32F405RGT6                    |
-|        Driver chip         |    EG2133    |                            L6234                             |                      DRV8301                       |
-|     PID loop frequency     |    30kHz (max)    |                           830Hz (max)                        |                        8kHz                        |
-| Whether have current loop |      No      |                              No                              |                        Yes                         |
-|       Driving power        |     90W      |                             120W                             |                        960W                        |
-|    Cost price (approx.)    |     20¥      |                             100¥                             |                        300¥                        |
+|    Open source solution    |   **miniFOC**    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) | [FpOC](https://github.com/WangXuan95/FpOC) |
+| :------------------------: | :----------: | :----------------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: |
+|      Microcontroller       | GD32F130G6U6 |                          ATmega328P                          |                   STM32F405RGT6                    |               FPGA |
+|        Driver chip         |    EG2133    |                            L6234                             |                      DRV8301                       |                      MP6540                 |
+|     PID loop frequency     |    30kHz (max)    |                           830Hz (max)                        |                        8kHz (typical)                        |                        18kHz (typical)                        |
+| Whether have current loop |      No      |                              No                              |                        Yes                         |                        Yes                      |
+|       Driving power        |     90W      |                             120W                             |                        960W                        |                        90W                        |
+|    Cost price (approx.)    |     20¥      |                             100¥                             |                        300¥                        |                        150¥                        |
 
 &nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the table above, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re-selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. amid the chip shortage in 2021, the cost of FOC still can be controlled at about 3$, which further proves the degree of cost optimization and the great potential of the project.
 
@@ -70,8 +70,10 @@
 
 ### Getting Started
 
-Please refer to the [wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for getting started.<br>
-We also provide the [domestic image](https://gitee.com/zhuyanzhen1/mini-foc) address.<br>
+Please refer to the [wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for getting started.
+<br>
+We also provide the [domestic image](https://gitee.com/zhuyanzhen1/mini-foc) address.
+<br>
 You can visit [Github Page](https://zhuyanzhen1.github.io/miniFOC/) to learn about the usage of functions and variables in the code.
 <br>
 **Note:** Since the main development and deployment are carried out on Github, Gitee is only used as a domestic mirror warehouse to store the code, and there will be problems such as wiki and issue that are not updated in time. You can visit the Github source repository [here](https://github.com/ZhuYanzhen1/miniFOC).
