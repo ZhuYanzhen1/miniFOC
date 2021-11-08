@@ -16,10 +16,10 @@
 /*! \brief SC60228 resolution is 2^8 = 4096 */
 #define ENCODER_RESO    4096
 /*! \brief set calibrate torque to 0.4 */
-#define CALI_TORQUE     0.4f
+#define CALI_TORQUE     0.5f
 
-/*! \brief set UART baud rate to 115200 */
-#define UART_BAUDRATE   115200
+/*! \brief set UART baud rate to 512000 */
+#define UART_BAUDRATE   512000
 /*! \brief set PWM frequency to 20kHz */
 #define PWM_FREQUENCY   20
 /*! \brief set FOC loop frequency to 8kHz */

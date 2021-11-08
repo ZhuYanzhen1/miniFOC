@@ -160,7 +160,7 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
 
 void MainWindow::on_open_btn_clicked(){
     if(serial->isOpen() == false){
-        if(set_serial_badurate() == true){
+        if(set_serial_badurate() == true) {
             unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
             serial->open(QSerialPort::ReadWrite);
             connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
