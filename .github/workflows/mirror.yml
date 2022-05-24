@@ -8,10 +8,10 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v1
-      - name: 'Mirror to gitee'
-        uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url:
-            git@gitee.com:zhuyanzhen1/mini-foc.git
-          ssh_private_key:
-            ${{ secrets.GITEE_KEY }}
+#       - name: 'Mirror to gitee'
+#         uses: pixta-dev/repository-mirroring-action@v1
+#         with:
+#           target_repo_url:
+#             git@gitee.com:zhuyanzhen1/mini-foc.git
+#           ssh_private_key:
+#             ${{ secrets.GITEE_KEY }}
