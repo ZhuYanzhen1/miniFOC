@@ -54,7 +54,7 @@ jobs:
           git clone git@github.com:ZhuYanzhen1/miniFOC_Firmware.git && ls
       - name: Upload Firmware
         run: |
-          currentmonth=$(date +%Y%m) && currentdate=$(date +%Y%m%d) && filename="./minifoc_firmware/"$currentmonth'/'$currentdate".hex"
+          currentmonth=$(date +%Y%m) && currentdate=$(date +%Y%m%d) && filename="./miniFOC_Firmware/"$currentmonth'/'$currentdate".hex"
           cd miniFOC_Firmware && mkdir -p $currentmonth && cd .. && mv miniFOC.hex $filename && cd miniFOC_Firmware
           git config --global user.email "2208213223@qq.com" && git config --global user.name "LaoZhu"
           git add . && git commit -m "Upload new firmware from Github Actions" && git push origin master
