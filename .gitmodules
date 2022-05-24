@@ -1,6 +1,6 @@
 [submodule "firmware"]
 	path = firmware
-	url = https://gitee.com/zhuyanzhen1/minifoc_firmware.git
+	url = https://github.com/ZhuYanzhen1/miniFOC_Firmware.git
 [submodule "docs/wiki"]
 	path = docs/wiki
 	url = https://github.com/ZhuYanzhen1/miniFOC.wiki.git
