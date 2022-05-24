@@ -11,6 +11,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;下面发布的内容是每次由Github Action定时任务生成的.hex固件，目的是自动编译发布main分支下最新commit的固件而无需开发者手动编译。需要注意的是，本页面下的.hex固件不保证它的稳定性和可用性。如果你想下载稳定可用的固件，请转到[Release页面](https://github.com/ZhuYanzhen1/miniFOC/releases)下载。&nbsp;
  
++ [20211108](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202111/20211108.hex): df8533c Change the automatic compilation workflow to run only when the push event occurs.
+ 
 + [20211107](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202111/20211107.hex): bb8409a Update new firmware link to Github Pages
  
 + [20211106](https://gitee.com/zhuyanzhen1/minifoc_firmware/raw/master/202111/20211106.hex): 62c17af Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC into main
