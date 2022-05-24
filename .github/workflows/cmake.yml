@@ -47,9 +47,9 @@ jobs:
           path: ./
       - name: Initialize Git
         env:
-          GITEE_KEY_ENV: ${{ secrets.GITHUB_KEY }}
+          GITEE_KEY_ENV: ${{ secrets.LOCAL_ACCOUNT_KEY }}
         run: |
-          mkdir -p ~/.ssh && echo "$GITHUB_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
+          mkdir -p ~/.ssh && echo "$LOCAL_ACCOUNT_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
           export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
           git clone git@github.com:ZhuYanzhen1/miniFOC_Firmware.git && ls
       - name: Upload Firmware
@@ -61,11 +61,11 @@ jobs:
           cd .. && ls && sudo rm -rf firmware && mv miniFOC_Firmware firmware
       - name: Update Pages
         env: 
-          LOCAL_REPO_KEY_ENV: ${{ secrets.LOCAL_REPO_KEY }}
+          LOCAL_REPO_KEY_ENV: ${{ secrets.LOCAL_ACCOUNT_KEY }}
         run: |
           ls && currentdate=$(date +%Y%m%d) && currentmonth=$(date +%Y%m) && commit_info=$(git log -1 --oneline)
           filestr="/下载。&nbsp;/a\ \r\n+ ["$currentdate"](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC_Firmware/master/"$currentmonth'/'$currentdate".hex): "$commit_info
           sed -i "$filestr" ./docs/_mainpage.md && echo $filestr && rm ~/.ssh/id_rsa
-          echo "$LOCAL_REPO_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
+          echo "$LOCAL_ACCOUNT_KEY_ENV" > ~/.ssh/id_rsa && sudo chmod 600 ~/.ssh/id_rsa
           git add . && git commit -m "Update new firmware link to Github Pages" && git push origin main
           
