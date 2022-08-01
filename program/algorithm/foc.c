@@ -3,8 +3,8 @@
   \brief    this document is mainly the code implementation of motor
             phase sequence correction and FOC algorithm.
   \author   Lao·Zhu
-  \version  V1.0.2
-  \date     29. October 2021
+  \version  V1.0.3
+  \date     1. August 2023
  ******************************************************************************/
 
 #include "foc.h"
@@ -105,6 +105,7 @@ void foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, floa
     float cf = fast_cos(elect_angle);
     float sf = fast_sin(elect_angle);
 
+#if USE_SVPWM == 0
     /* firstly, the inverse Park transform is calculated */
     alpha = d * cf - q * sf;
     beta = q * cf + d * sf;
@@ -113,4 +114,42 @@ void foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, floa
     *u = 0.5f - alpha / VBUS;
     *v = 0.5f + (alpha * 0.5f - beta * 0.866025404f) / VBUS;
     *w = 1.5f - *u - *v;
+#else
+    float tmp2, tmp3, Ta, Tb, Tc;
+    char vec_sector = 3;
+
+    /* firstly, the inverse Clarke transform is calculated */
+    alpha = d * cf - q * sf;
+    beta = q * cf + d * sf;
+    tmp2 = beta * 0.5f + alpha * 0.8660254f;
+    tmp3 = tmp2 - beta;
+
+    /* judge which sector the magnetic vector is in at this time */
+    vec_sector = ((*(unsigned int *) &tmp2) >> 31) ? vec_sector : (vec_sector - 1);
+    vec_sector = ((*(unsigned int *) &tmp3) >> 31) ? vec_sector : (vec_sector - 1);
+    vec_sector = ((*(unsigned int *) &beta) >> 31) ? (7 - vec_sector) : vec_sector;
+
+    /* the proportion of each phase is calculated by six sector modulation method */
+    switch (vec_sector) {
+        case 1:
+        case 4: Ta = tmp2;
+            Tb = beta - tmp3;
+            Tc = -tmp2;
+            break;
+        case 2:
+        case 5:Ta = tmp3 + tmp2;
+            Tb = beta;
+            Tc = -beta;
+            break;
+        default:Ta = tmp3;
+            Tb = -tmp3;
+            Tc = -(beta + tmp2);
+            break;
+    }
+
+    /* calculate the duty cycle in center alignment mode */
+    *u = (Ta / VBUS) * 0.5f + 0.5f;
+    *v = (Tb / VBUS) * 0.5f + 0.5f;
+    *w = (Tc / VBUS) * 0.5f + 0.5f;
+#endif
 }

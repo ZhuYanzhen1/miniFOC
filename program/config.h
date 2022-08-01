@@ -2,8 +2,8 @@
   \file     config.h
   \brief    used to place important parameter configurations for users
   \author   Lao·Zhu
-  \version  V1.0.1
-  \date     9. October 2021
+  \version  V1.0.3
+  \date     1. August 2023
  ******************************************************************************/
 
 #ifndef MINIFOC__CONFIG_H_
@@ -15,8 +15,10 @@
 #define POLAR_PAIRS     7
 /*! \brief SC60228 resolution is 2^8 = 4096 */
 #define ENCODER_RESO    4096
-/*! \brief set calibrate torque to 0.4 */
+/*! \brief set calibrate torque to 0.5 */
 #define CALI_TORQUE     0.5f
+/*! \brief Not using space vector pulse width modulator */
+#define USE_SVPWM       1
 
 /*! \brief set UART baud rate to 512000 */
 #define UART_BAUDRATE   512000
