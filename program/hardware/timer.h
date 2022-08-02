@@ -10,7 +10,7 @@
 #define MINIFOC_HARDWARE_TIMER_H_
 
 /*!
-    \brief  PWM period calculate from PWM_FREQUENCY
+    \brief PWM period calculate from PWM_FREQUENCY
 */
 #define PWM_PERIOD  18000 / PWM_FREQUENCY
 

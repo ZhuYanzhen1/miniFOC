@@ -10,7 +10,7 @@
 #include "fast_math.h"
 
 /*!
-    \brief  fast sine function lookup table
+    \brief fast sine function lookup table
 */
 const float sin_tab[] = {
     0, 0.012296f, 0.024589f, 0.036879f, 0.049164f, 0.061441f, 0.073708f, 0.085965f, 0.098208f, 0.11044f, 0.12265f,
@@ -65,9 +65,9 @@ const float sin_tab[] = {
 };
 
 /*!
-    \brief      fast calculation of sine
-    \param[in]  theta: angle to be calculated
-    \retval     sine value of angle theta
+    \brief     fast calculation of sine
+    \param[in] theta: angle to be calculated
+    \retval    sine value of angle theta
 */
 float fast_sin(float theta) {
     /* congruence of angle theta to 2pi */

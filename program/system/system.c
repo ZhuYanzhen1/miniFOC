@@ -10,14 +10,12 @@
 #include "system.h"
 
 /*!
-    \brief  millisecond delay function count variable
-    \retval none
+    \brief millisecond delay function count variable
 */
 static volatile unsigned long delayms_counter = 1;
 
 /*!
-    \brief  initialize systick timer to implementation delay function
-    \retval none
+    \brief initialize systick timer to implementation delay function
 */
 void systick_config(void) {
     if (SysTick_Config(SystemCoreClock / 1000U))
@@ -26,9 +24,8 @@ void systick_config(void) {
 }
 
 /*!
-    \brief        millisecond delay function, any time time.
-    \param[in]    count: time to delay (in milliseconds)
-    \retval       none
+    \brief     millisecond delay function, any time time.
+    \param[in] count: time to delay (in milliseconds)
 */
 void delayms(unsigned long count) {
     delayms_counter = count;
@@ -36,8 +33,7 @@ void delayms(unsigned long count) {
 }
 
 /*!
-    \brief      delay counter decrement function, called by systick handler
-    \retval     none
+    \brief delay counter decrement function, called by systick handler
 */
 void delay_decrement(void) {
     if (0U != delayms_counter)
@@ -45,11 +41,10 @@ void delay_decrement(void) {
 }
 
 /*!
-    \brief          format buffer array to fixed value, replace memset function
-    \param[in,out]  buf: array to format
-    \param[in]      data: value to be formatted as
-    \param[in]      num: number of elements to format
-    \retval         none
+    \brief         format buffer array to fixed value, replace memset function
+    \param[in,out] buf: array to format
+    \param[in]     data: value to be formatted as
+    \param[in]     num: number of elements to format
 */
 void user_memset(void *buf, unsigned char data, unsigned char num) {
     unsigned char *buf_p = (unsigned char *) buf;
@@ -58,9 +53,9 @@ void user_memset(void *buf, unsigned char data, unsigned char num) {
 }
 
 /*!
-    \brief      convert floating point numbers to int32 type data
-    \param[in]  data0: floating point type data to be converted
-    \retval     converted int32 type data
+    \brief     convert floating point numbers to int32 type data
+    \param[in] data0: floating point type data to be converted
+    \retval    converted int32 type data
 */
 unsigned int float_to_int32(float data0) {
     unsigned int uintp32 = (*((unsigned int *) (&data0)));
@@ -68,9 +63,9 @@ unsigned int float_to_int32(float data0) {
 }
 
 /*!
-    \brief      convert int32 to floating point numbers type data
-    \param[in]  data0: int32 type data to be converted
-    \retval     converted floating point type data
+    \brief     convert int32 to floating point numbers type data
+    \param[in] data0: int32 type data to be converted
+    \retval    converted floating point type data
 */
 float int32_to_float(unsigned int data0) {
     float fp32 = (*((float *) (&data0)));

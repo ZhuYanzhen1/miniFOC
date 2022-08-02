@@ -17,30 +17,29 @@
 #include "filter.h"
 
 /*!
-    \brief  mechanical angle offset, which is used to align the mechanical
-            angle with the zero point of the electrical angle.
+    \brief mechanical angle offset, which is used to align the mechanical
+           angle with the zero point of the electrical angle.
 */
 volatile unsigned short machine_angle_offset = 0;
 /*!
-    \brief  the mechanical angle at the last moment is used to calculate
-            the angle differential value and realize the angle measurement
-            function.
+    \brief the mechanical angle at the last moment is used to calculate
+           the angle differential value and realize the angle measurement
+           function.
 */
 volatile static unsigned short last_mechanical_angle = 0;
 /*!
-    \brief  the total mechanical angle since power on is used to calculate
-            the angle integral value and realize the angle measurement function.
+    \brief the total mechanical angle since power on is used to calculate
+           the angle integral value and realize the angle measurement function.
 */
 volatile static long long total_machine_angle = 0;
 /*!
-    \brief  the mechanical angle at the last moment is used to calculate
-            the rotation speed of the motor rotor.
+    \brief the mechanical angle at the last moment is used to calculate
+           the rotation speed of the motor rotor.
 */
 volatile static long long systick_mechanical_angle_last = 0;
 
 /*!
-    \brief  delay function for magnetic encoder
-    \retval none
+    \brief delay function for magnetic encoder
 */
 void encoder_delay(void) {
     /* use loop functions to delay time */
@@ -50,9 +49,9 @@ void encoder_delay(void) {
 }
 
 /*!
-    \brief      read data from the register of the magnetic encoder
-    \param[in]  TxData: data to be sent to magnetic encoder
-    \retval     data read from magnetic encoder
+    \brief     read data from the register of the magnetic encoder
+    \param[in] TxData: data to be sent to magnetic encoder
+    \retval    data read from magnetic encoder
 */
 unsigned short encoder_read_data(unsigned short TxData) {
     unsigned short data;
@@ -71,8 +70,8 @@ unsigned short encoder_read_data(unsigned short TxData) {
 }
 
 /*!
-    \brief      read mechanical angle directly from encoder
-    \retval     register raw data reading back
+    \brief  read mechanical angle directly from encoder
+    \retval register raw data reading back
 */
 unsigned short encoder_get_mechanical_angle(void) {
     /* read back register raw data */
@@ -87,9 +86,9 @@ unsigned short encoder_get_mechanical_angle(void) {
 }
 
 /*!
-    \brief      according to the electrical angle calculated from the mechanical angle,
-                this function will call encoder_get_mechanical_angle() function.
-    \retval     register raw data reading back
+    \brief  according to the electrical angle calculated from the mechanical angle,
+            this function will call encoder_get_mechanical_angle() function.
+    \retval register raw data reading back
 */
 float encoder_get_electronic_angle(void) {
     /* read back the mechanical angle directly from the magnetic encoder */
@@ -102,8 +101,7 @@ float encoder_get_electronic_angle(void) {
 }
 
 /*!
-    \brief  called every 2 milliseconds to calculate the speed.
-    \retval none
+    \brief called every 2 milliseconds to calculate the speed.
 */
 void encoder_update_speed(void) {
     /* calculate the difference between this angle and the last angle */
@@ -116,8 +114,7 @@ void encoder_update_speed(void) {
 }
 
 /*!
-    \brief  correct the mechanical angle zero deviation between the magnetic encoder and FOC.
-    \retval none
+    \brief correct the mechanical angle zero deviation between the magnetic encoder and FOC.
 */
 void encoder_zeroing(void) {
     float u, v, w;

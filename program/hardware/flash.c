@@ -10,12 +10,18 @@
 
 #include "main.h"
 
+/*!
+    \brief     determine whether the read-out variable is within the trusted range
+    \param[in] x: variables to be judged
+    \param[in] minimum: the minimum value of this variable
+    \param[in] maximum: the maximum value of this variable
+
+*/
 #define JUDGE_AVAILABLE(x, minimum, maximum)    if (x > maximum || x < minimum) \
                                                     x = 0
 
 /*!
-    \brief  program all parameters to flash
-    \retval none
+    \brief program all parameters to flash
 */
 void flash_write_parameters(void) {
     unsigned int buffer[11] = {machine_angle_offset, phase_sequence, 0x00000000UL, 0x00000000UL, 0x00000000UL,
@@ -36,38 +42,36 @@ void flash_write_parameters(void) {
 
 /*!
     \brief  read all parameters from flash
-    \retval none
 */
 void flash_read_parameters(void) {
     machine_angle_offset = flash_read_word(0x00000000UL);
     phase_sequence = flash_read_word(0x00000004UL);
-//    speed_pid_handler.kp = int32_to_float(flash_read_word(0x00000008UL));
-//    speed_pid_handler.ki = int32_to_float(flash_read_word(0x00000012UL));
-//    speed_pid_handler.kd = int32_to_float(flash_read_word(0x00000016UL));
-//    speed_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000020UL));
-//    angle_pid_handler.kp = int32_to_float(flash_read_word(0x00000024UL));
-//    angle_pid_handler.ki = int32_to_float(flash_read_word(0x00000028UL));
-//    angle_pid_handler.kd = int32_to_float(flash_read_word(0x00000032UL));
-//    angle_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000036UL));
-//    if (machine_angle_offset > 4096 || phase_sequence > 1)
-//        foc_parameter_available_flag = 0;
-//    if (flash_read_word(0x00000040UL) != 0xA5A5A5A5UL)
-//        pid_parameter_available_flag = 0;
-//
-//    JUDGE_AVAILABLE(speed_pid_handler.kp, 10.0f, -10.0f);
-//    JUDGE_AVAILABLE(speed_pid_handler.ki, 10.0f, -10.0f);
-//    JUDGE_AVAILABLE(speed_pid_handler.kd, 10.0f, -10.0f);
-//    JUDGE_AVAILABLE(speed_pid_handler.sum_maximum, 10.0f, -10.0f);
-//
-//    JUDGE_AVAILABLE(angle_pid_handler.kp, 10.0f, -10.0f);
-//    JUDGE_AVAILABLE(angle_pid_handler.ki, 10.0f, -10.0f);
-//    JUDGE_AVAILABLE(angle_pid_handler.kd, 10.0f, -10.0f);
-//    JUDGE_AVAILABLE(angle_pid_handler.sum_maximum, 10.0f, -10.0f);
+    speed_pid_handler.kp = int32_to_float(flash_read_word(0x00000008UL));
+    speed_pid_handler.ki = int32_to_float(flash_read_word(0x00000012UL));
+    speed_pid_handler.kd = int32_to_float(flash_read_word(0x00000016UL));
+    speed_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000020UL));
+    angle_pid_handler.kp = int32_to_float(flash_read_word(0x00000024UL));
+    angle_pid_handler.ki = int32_to_float(flash_read_word(0x00000028UL));
+    angle_pid_handler.kd = int32_to_float(flash_read_word(0x00000032UL));
+    angle_pid_handler.sum_maximum = int32_to_float(flash_read_word(0x00000036UL));
+    if (machine_angle_offset > 4096 || phase_sequence > 1)
+        foc_parameter_available_flag = 0;
+    if (flash_read_word(0x00000040UL) != 0xA5A5A5A5UL)
+        pid_parameter_available_flag = 0;
+
+    JUDGE_AVAILABLE(speed_pid_handler.kp, 10.0f, -10.0f);
+    JUDGE_AVAILABLE(speed_pid_handler.ki, 10.0f, -10.0f);
+    JUDGE_AVAILABLE(speed_pid_handler.kd, 10.0f, -10.0f);
+    JUDGE_AVAILABLE(speed_pid_handler.sum_maximum, 10.0f, -10.0f);
+
+    JUDGE_AVAILABLE(angle_pid_handler.kp, 10.0f, -10.0f);
+    JUDGE_AVAILABLE(angle_pid_handler.ki, 10.0f, -10.0f);
+    JUDGE_AVAILABLE(angle_pid_handler.kd, 10.0f, -10.0f);
+    JUDGE_AVAILABLE(angle_pid_handler.sum_maximum, 10.0f, -10.0f);
 }
 
 /*!
-    \brief  erase flash page in last sector
-    \retval none
+    \brief erase flash page in last sector
 */
 void flash_erase_page(void) {
     /* unlock the flash program/erase controller */
@@ -83,11 +87,10 @@ void flash_erase_page(void) {
 }
 
 /*!
-    \brief      program flash word to address
-    \param[in]  addr: address to write to
-    \param[in]  data: data to be written
-    \param[in]  counter: number of bytes to be written to flash
-    \retval none
+    \brief     program flash word to address
+    \param[in] addr: address to write to
+    \param[in] data: data to be written
+    \param[in] counter: number of bytes to be written to flash
 */
 void flash_program_word(unsigned int addr, unsigned int *data, unsigned char counter) {
     /* unlock the flash program/erase controller */
@@ -104,9 +107,9 @@ void flash_program_word(unsigned int addr, unsigned int *data, unsigned char cou
 }
 
 /*!
-    \brief      read flash word from address
-    \param[in]  addr: address to read from
-    \retval     data read from address
+    \brief     read flash word from address
+    \param[in] addr: address to read from
+    \retval    data read from address
 */
 unsigned int flash_read_word(unsigned int addr) {
     /* redirect the address to access memory */

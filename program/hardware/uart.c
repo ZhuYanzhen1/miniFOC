@@ -14,25 +14,24 @@
 #include "system.h"
 
 /*!
-    \brief  medium capacity transport protocol receive state variable
-          0 idle state and waiting for start of package           \n
-          1 receive status trying to receive a complete packet.   \n
-          2 end status processing the received data
+    \brief medium capacity transport protocol receive state variable
+           0 idle state and waiting for start of package           \n
+           1 receive status trying to receive a complete packet.   \n
+           2 end status processing the received data
 */
 volatile static unsigned char mdtp_receive_status = 0;
 /*!
-    \brief  medium capacity transport protocol receive character counter
+    \brief medium capacity transport protocol receive character counter
 */
 volatile static unsigned char mdtp_receive_number_counter = 0;
 /*!
-    \brief  medium capacity transport protocol receive buffer array
+    \brief medium capacity transport protocol receive buffer array
 */
 static unsigned char mdtp_receive_data_buffer[10] = {0};
 
 /*!
-    \brief        medium capacity data transmission protocol unpacking handler
-    \param[in]    data: data received from UART peripheral
-    \retval none
+    \brief     medium capacity data transmission protocol unpacking handler
+    \param[in] data: data received from UART peripheral
 */
 void mdtp_receive_handler(unsigned char data) {
     /* data receiving finite state machine */
@@ -102,14 +101,14 @@ void mdtp_receive_handler(unsigned char data) {
                 user_memset(mdtp_receive_data_buffer, 0x00, sizeof(mdtp_receive_data_buffer));
             }
             break;
+        default:break;
     }
 }
 
 /*!
-    \brief      medium capacity data transmission protocol packing function
-    \param[in]    pid: medium capacity transport protocol package id
-    \param[in]    buffer: transmit data array of size 8 bytes
-    \retval none
+    \brief     medium capacity data transmission protocol packing function
+    \param[in] pid: medium capacity transport protocol package id
+    \param[in] buffer: transmit data array of size 8 bytes
 */
 void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
     unsigned char temp_buf[12] = {0xff, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -139,8 +138,7 @@ void mdtp_data_transmit(unsigned char pid, const unsigned char *buffer) {
 }
 
 /*!
-    \brief  configure uart0 periph and its gpios
-    \retval none
+    \brief configure uart0 periph and its gpios
 */
 void uart_config(void) {
     /* UART interrupt configuration */

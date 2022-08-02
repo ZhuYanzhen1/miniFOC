@@ -11,7 +11,7 @@
 
 /*!
   \struct Filter_Structure_t
-  \brief structure of low-pass filter algorithm
+  \brief  structure of low-pass filter algorithm
  */
 typedef struct {
     float coefficient1;     ///< low-pass filter coefficient 1

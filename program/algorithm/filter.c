@@ -14,17 +14,16 @@
 #include "config.h"
 
 /*!
-    \brief  motor rotation speed low pass filter handle
+    \brief motor rotation speed low pass filter handle
 */
 volatile Filter_Structure_t velocity_filter;
 
 /*!
-    \brief      configure low-pass filter parameters
-    \param[in]  param: first order low pass filter parameter handler
-    \param[in]  cutoff_freq: cut off frequency in Hz
-    \param[in]  sample_freq: sample frequency in Hz
-    \param[in]  coefficient: input data weight, usually is 1
-    \retval     none
+    \brief     configure low-pass filter parameters
+    \param[in] param: first order low pass filter parameter handler
+    \param[in] cutoff_freq: cut off frequency in Hz
+    \param[in] sample_freq: sample frequency in Hz
+    \param[in] coefficient: input data weight, usually is 1
 */
 void filter_coefficient_config(Filter_Structure_t *param, float cutoff_freq, float sample_freq, float coefficient) {
     /* clear the value of the first order low pass filter parameter handler */
@@ -41,8 +40,7 @@ void filter_coefficient_config(Filter_Structure_t *param, float cutoff_freq, flo
 }
 
 /*!
-    \brief  configure low-pass filter parameters
-    \retval none
+    \brief configure low-pass filter parameters
 */
 void filter_config(void) {
     filter_coefficient_config((Filter_Structure_t *) &velocity_filter,
@@ -50,10 +48,10 @@ void filter_config(void) {
 }
 
 /*!
-    \brief      update the output value of the first-order low-pass filter
-    \param[in]  param: first order low pass filter parameter handler
-    \param[in]  value: the sampled value to be filtered at this moment
-    \retval     current calculation results of low-pass filter
+    \brief     update the output value of the first-order low-pass filter
+    \param[in] param: first order low pass filter parameter handler
+    \param[in] value: the sampled value to be filtered at this moment
+    \retval    current calculation results of low-pass filter
 */
 float filter_update_value(Filter_Structure_t *param, short value) {
     /* judge whether the input parameters are abnormal,

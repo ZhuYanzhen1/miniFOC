@@ -11,25 +11,24 @@
 #include "system.h"
 
 /*!
-    \brief  flag variable for PID parameter availability
+    \brief flag variable for PID parameter availability
 */
 unsigned char pid_parameter_available_flag = 1;
 /*!
-    \brief  flag variable of PID closed loop mode
+    \brief flag variable of PID closed loop mode
 */
 volatile unsigned char pid_control_mode_flag = 0;
 /*!
-    \brief  algorithm handler of PID speed loop
+    \brief algorithm handler of PID speed loop
 */
 volatile PID_Structure_t speed_pid_handler;
 /*!
-    \brief  algorithm handler of PID angle loop
+    \brief algorithm handler of PID angle loop
 */
 volatile PID_Structure_t angle_pid_handler;
 
 /*!
-    \brief  configure pid loop parameters
-    \retval none
+    \brief configure pid loop parameters
 */
 void pid_config(unsigned char mode) {
     /* clear the value of the PID handler */
@@ -54,10 +53,10 @@ void pid_config(unsigned char mode) {
 }
 
 /*!
-    \brief      calculate result using sampling value
-    \param[in]  pid_handler: PID data handler
-    \param[in]  collect: sampled data
-    \retval     calculated output value of PID controller
+    \brief     calculate result using sampling value
+    \param[in] pid_handler: PID data handler
+    \param[in] collect: sampled data
+    \retval    calculated output value of PID controller
 */
 float pid_calculate_result(PID_Structure_t *pid_handler, float collect) {
     /* calculate PID error value */

@@ -12,7 +12,7 @@
 
 /*!
   \struct FOC_Structure_t
-  \brief structure of FOC algorithm
+  \brief  structure of FOC algorithm
  */
 typedef struct {
     float mechanical_angle;     ///< mechanical angle read form encoder
@@ -20,11 +20,11 @@ typedef struct {
     float user_expect;          ///< user expect value of miniFOC
 } FOC_Structure_t;
 
-/*! \brief  mechanical angle conversion factor */
+/*! \brief mechanical angle conversion factor */
 #define MECHANGLE_COEFFICIENT   (6.2831854f / ENCODER_RESO)
-/*! \brief  electric angle conversion factor */
+/*! \brief electric angle conversion factor */
 #define ELECANGLE_COEFFICIENT   ((6.2831854f * POLAR_PAIRS) / ENCODER_RESO)
-/*! \brief  mechanical rotate speed conversion factor */
+/*! \brief mechanical rotate speed conversion factor */
 #define SPEED_COEFFICIENT       ((6.2831852f * TIM13_FREQUENCY) / ENCODER_RESO)
 
 extern unsigned char foc_parameter_available_flag;

@@ -10,9 +10,8 @@
 #define MINIFOC_HARDWARE_UART_H_
 
 /*!
-    \brief      UART send single byte macro
-    \param[in]  x: byte to be send from UART
-    \retval none
+    \brief     UART send single byte macro
+    \param[in] x: byte to be send from UART
 */
 #define uart_sendbyte(x);   usart_data_transmit(USART0, (uint8_t) x);\
                             while (RESET ==usart_flag_get(USART0, USART_FLAG_TBE))

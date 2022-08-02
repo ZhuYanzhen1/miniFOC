@@ -11,7 +11,7 @@
 #include "main.h"
 
 /*!
-    \brief  used to indicate the current status of miniFOC
+    \brief used to indicate the current status of miniFOC
     \param
       1 calibrate motor phase and sensor offset  \n
       2 enable the motor                         \n
@@ -21,10 +21,9 @@
 static volatile unsigned char minifoc_fsm_state = 0;
 
 /*!
-    \brief        user callback function for unpacking completion of medium capacity transport protocol
-    \param[in]    pid: medium capacity transport protocol package id
-    \param[in]    data: received data array of size 8 bytes
-    \retval none
+    \brief     user callback function for unpacking completion of medium capacity transport protocol
+    \param[in] pid: medium capacity transport protocol package id
+    \param[in] data: received data array of size 8 bytes
 */
 void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
     /* pack0 is the control pack of miniFOC */
@@ -135,8 +134,7 @@ void mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
 }
 
 /*!
-    \brief  main function
-    \retval none
+    \brief main function
 */
 int main(void) {
     /* 4 bits for preemption priority 0 bits for subpriority */
