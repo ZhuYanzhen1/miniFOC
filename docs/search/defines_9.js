@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['uart_5fbaudrate_0',['UART_BAUDRATE',['../config_8h.html#a2c7ed0283bd6f2f9d791860d6254ef4f',1,'config.h']]],
-  ['uart_5fpriority_1',['UART_PRIORITY',['../config_8h.html#a7bb8116c0084a1decc494f532e229e1e',1,'config.h']]],
-  ['uart_5fsendbyte_2',['uart_sendbyte',['../uart_8h.html#ad0829c8bd2841fd6525781b3dbf496b7',1,'uart.h']]]
+  ['tim13_5ffrequency_0',['TIM13_FREQUENCY',['../config_8h.html#ae9289eb166344bb9d0d6560b6da41118',1,'config.h']]],
+  ['tim13_5fpriority_1',['TIM13_PRIORITY',['../config_8h.html#a5726838e06fba2bf7e5a7ebf44de9641',1,'config.h']]],
+  ['tim2_5ffrequency_2',['TIM2_FREQUENCY',['../config_8h.html#abf175a4d203eb22407f26a7e09abe70e',1,'config.h']]],
+  ['tim2_5fpriority_3',['TIM2_PRIORITY',['../config_8h.html#af73502ecef65b17c424513be3294841f',1,'config.h']]],
+  ['torque_5floop_5fcontrol_4',['TORQUE_LOOP_CONTROL',['../pid_8h.html#a8ffc8824a06f7892f9691a65b83982a7',1,'pid.h']]]
 ];

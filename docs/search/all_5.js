@@ -14,7 +14,7 @@ var searchData=
   ['flash_2ec_11',['flash.c',['../flash_8c.html',1,'']]],
   ['flash_2eh_12',['flash.h',['../flash_8h.html',1,'']]],
   ['flash_5ferase_5fpage_13',['flash_erase_page',['../flash_8h.html#ac0d03d56de1c227449fe6628980cc12f',1,'flash_erase_page(void):&#160;flash.c'],['../flash_8c.html#ac0d03d56de1c227449fe6628980cc12f',1,'flash_erase_page(void):&#160;flash.c']]],
-  ['flash_5fprogram_5fword_14',['flash_program_word',['../flash_8c.html#a976a3c0f32d24027d5c47073653c9cfa',1,'flash_program_word(unsigned int addr, unsigned int *data, unsigned short counter):&#160;flash.c'],['../flash_8h.html#a976a3c0f32d24027d5c47073653c9cfa',1,'flash_program_word(unsigned int addr, unsigned int *data, unsigned short counter):&#160;flash.c']]],
+  ['flash_5fprogram_5fword_14',['flash_program_word',['../flash_8c.html#af30bf1694be8902e66ba2f5e30791b48',1,'flash_program_word(unsigned int addr, unsigned int *data, unsigned char counter):&#160;flash.c'],['../flash_8h.html#af30bf1694be8902e66ba2f5e30791b48',1,'flash_program_word(unsigned int addr, unsigned int *data, unsigned char counter):&#160;flash.c']]],
   ['flash_5fread_5fparameters_15',['flash_read_parameters',['../flash_8c.html#aaef765344f91439176e3223a0f51f4d0',1,'flash_read_parameters(void):&#160;flash.c'],['../flash_8h.html#aaef765344f91439176e3223a0f51f4d0',1,'flash_read_parameters(void):&#160;flash.c']]],
   ['flash_5fread_5fword_16',['flash_read_word',['../flash_8c.html#a9b7a8ed62067617696d1fa44e1c3117c',1,'flash_read_word(unsigned int addr):&#160;flash.c'],['../flash_8h.html#a9b7a8ed62067617696d1fa44e1c3117c',1,'flash_read_word(unsigned int addr):&#160;flash.c']]],
   ['flash_5fwrite_5fparameters_17',['flash_write_parameters',['../flash_8c.html#aa281b78d45017220d214a274f0c3e2c9',1,'flash_write_parameters(void):&#160;flash.c'],['../flash_8h.html#aa281b78d45017220d214a274f0c3e2c9',1,'flash_write_parameters(void):&#160;flash.c']]],
@@ -24,7 +24,8 @@ var searchData=
   ['foc_2eh_21',['foc.h',['../foc_8h.html',1,'']]],
   ['foc_5fcalculate_5fdutycycle_22',['foc_calculate_dutycycle',['../foc_8c.html#a2ee2669a464e17cfaab4e084e78c4fe1',1,'foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, float *v, float *w):&#160;foc.c'],['../foc_8h.html#a2ee2669a464e17cfaab4e084e78c4fe1',1,'foc_calculate_dutycycle(float elect_angle, float d, float q, float *u, float *v, float *w):&#160;foc.c']]],
   ['foc_5fcalibrate_5fphase_23',['foc_calibrate_phase',['../foc_8c.html#a85fbd426ff2859593ed2b1ecd4a35d4b',1,'foc_calibrate_phase(void):&#160;foc.c'],['../foc_8h.html#a85fbd426ff2859593ed2b1ecd4a35d4b',1,'foc_calibrate_phase(void):&#160;foc.c']]],
-  ['foc_5fstruct_24',['FOC_Struct',['../foc_8c.html#a6c9e1e8356380a4129a3a59d52ee1ec4',1,'FOC_Struct():&#160;foc.c'],['../foc_8h.html#a6c9e1e8356380a4129a3a59d52ee1ec4',1,'FOC_Struct():&#160;foc.c']]],
-  ['foc_5fstructure_5ft_25',['FOC_Structure_t',['../struct_f_o_c___structure__t.html',1,'']]],
-  ['function_20manual_20_2f_20函数手册_26',['Function manual / 函数手册',['../index.html',1,'']]]
+  ['foc_5fparameter_5favailable_5fflag_24',['foc_parameter_available_flag',['../foc_8c.html#a418bbe3f3019eaefea9f904a87cf0a05',1,'foc_parameter_available_flag():&#160;foc.c'],['../foc_8h.html#a418bbe3f3019eaefea9f904a87cf0a05',1,'foc_parameter_available_flag():&#160;foc.c']]],
+  ['foc_5fstruct_25',['FOC_Struct',['../foc_8c.html#a6c9e1e8356380a4129a3a59d52ee1ec4',1,'FOC_Struct():&#160;foc.c'],['../foc_8h.html#a6c9e1e8356380a4129a3a59d52ee1ec4',1,'FOC_Struct():&#160;foc.c']]],
+  ['foc_5fstructure_5ft_26',['FOC_Structure_t',['../struct_f_o_c___structure__t.html',1,'']]],
+  ['function_20manual_20_2f_20函数手册_27',['Function manual / 函数手册',['../index.html',1,'']]]
 ];

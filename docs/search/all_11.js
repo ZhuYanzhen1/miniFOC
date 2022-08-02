@@ -1,14 +1,17 @@
 var searchData=
 [
-  ['uart_2ec_0',['uart.c',['../uart_8c.html',1,'']]],
-  ['uart_2eh_1',['uart.h',['../uart_8h.html',1,'']]],
-  ['uart_5fbaudrate_2',['UART_BAUDRATE',['../config_8h.html#a2c7ed0283bd6f2f9d791860d6254ef4f',1,'config.h']]],
-  ['uart_5fconfig_3',['uart_config',['../uart_8c.html#afb2565a333438fc66b5725bf1e41ca0f',1,'uart_config(void):&#160;uart.c'],['../uart_8h.html#afb2565a333438fc66b5725bf1e41ca0f',1,'uart_config(void):&#160;uart.c']]],
-  ['uart_5fpriority_4',['UART_PRIORITY',['../config_8h.html#a7bb8116c0084a1decc494f532e229e1e',1,'config.h']]],
-  ['uart_5fsendbyte_5',['uart_sendbyte',['../uart_8h.html#ad0829c8bd2841fd6525781b3dbf496b7',1,'uart.h']]],
-  ['update_5fpwm_5fdutycycle_6',['update_pwm_dutycycle',['../timer_8c.html#ab3614c1dcfba485b2e299839d9c189e4',1,'update_pwm_dutycycle(float ch0, float ch1, float ch2):&#160;timer.c'],['../timer_8h.html#ab3614c1dcfba485b2e299839d9c189e4',1,'update_pwm_dutycycle(float ch0, float ch1, float ch2):&#160;timer.c']]],
-  ['usagefault_5fhandler_7',['UsageFault_Handler',['../gd32f1x0__it_8c.html#a1d98923de2ed6b7309b66f9ba2971647',1,'UsageFault_Handler(void):&#160;gd32f1x0_it.c'],['../gd32f1x0__it_8h.html#a1d98923de2ed6b7309b66f9ba2971647',1,'UsageFault_Handler(void):&#160;gd32f1x0_it.c']]],
-  ['usart0_5firqhandler_8',['USART0_IRQHandler',['../gd32f1x0__it_8c.html#aa521223328872dd7e4cd659fecbdfb84',1,'USART0_IRQHandler(void):&#160;gd32f1x0_it.c'],['../gd32f1x0__it_8h.html#aa521223328872dd7e4cd659fecbdfb84',1,'USART0_IRQHandler(void):&#160;gd32f1x0_it.c']]],
-  ['user_5fexpect_9',['user_expect',['../struct_f_o_c___structure__t.html#a483644b553c2be32ffbaf641f23c6cea',1,'FOC_Structure_t']]],
-  ['user_5fmemset_10',['user_memset',['../system_8c.html#a7e7cece1b30ef67968b244698f999b0e',1,'user_memset(void *buf, unsigned char data, unsigned char num):&#160;system.c'],['../system_8h.html#a7e7cece1b30ef67968b244698f999b0e',1,'user_memset(void *buf, unsigned char data, unsigned char num):&#160;system.c']]]
+  ['tim13_5ffrequency_0',['TIM13_FREQUENCY',['../config_8h.html#ae9289eb166344bb9d0d6560b6da41118',1,'config.h']]],
+  ['tim13_5fpriority_1',['TIM13_PRIORITY',['../config_8h.html#a5726838e06fba2bf7e5a7ebf44de9641',1,'config.h']]],
+  ['tim2_5ffrequency_2',['TIM2_FREQUENCY',['../config_8h.html#abf175a4d203eb22407f26a7e09abe70e',1,'config.h']]],
+  ['tim2_5fpriority_3',['TIM2_PRIORITY',['../config_8h.html#af73502ecef65b17c424513be3294841f',1,'config.h']]],
+  ['timer_2ec_4',['timer.c',['../timer_8c.html',1,'']]],
+  ['timer_2eh_5',['timer.h',['../timer_8h.html',1,'']]],
+  ['timer13_5fconfig_6',['timer13_config',['../timer_8c.html#a97f6f408a34a56cfe1488f8aafa54756',1,'timer13_config(void):&#160;timer.c'],['../timer_8h.html#a97f6f408a34a56cfe1488f8aafa54756',1,'timer13_config(void):&#160;timer.c']]],
+  ['timer13_5fdisable_7',['timer13_disable',['../timer_8c.html#a96e7b337ea7bf3c245ff1053e4843a1d',1,'timer13_disable(void):&#160;timer.c'],['../timer_8h.html#a96e7b337ea7bf3c245ff1053e4843a1d',1,'timer13_disable(void):&#160;timer.c']]],
+  ['timer13_5firqhandler_8',['TIMER13_IRQHandler',['../gd32f1x0__it_8c.html#a94ca44d5889df2048bb8e52f7e2076e4',1,'TIMER13_IRQHandler(void):&#160;gd32f1x0_it.c'],['../gd32f1x0__it_8h.html#a94ca44d5889df2048bb8e52f7e2076e4',1,'TIMER13_IRQHandler(void):&#160;gd32f1x0_it.c']]],
+  ['timer2_5fconfig_9',['timer2_config',['../timer_8c.html#af7559b2302c6fd04f459ae08a2eb8f6d',1,'timer2_config(void):&#160;timer.c'],['../timer_8h.html#af7559b2302c6fd04f459ae08a2eb8f6d',1,'timer2_config(void):&#160;timer.c']]],
+  ['timer2_5fdisable_10',['timer2_disable',['../timer_8c.html#a0ff329af778ba1ea50c17d3184af78d5',1,'timer2_disable(void):&#160;timer.c'],['../timer_8h.html#a0ff329af778ba1ea50c17d3184af78d5',1,'timer2_disable(void):&#160;timer.c']]],
+  ['timer2_5firqhandler_11',['TIMER2_IRQHandler',['../gd32f1x0__it_8c.html#a12c8b827e5eab9d3f93d56f858e735a3',1,'TIMER2_IRQHandler(void):&#160;gd32f1x0_it.c'],['../gd32f1x0__it_8h.html#a12c8b827e5eab9d3f93d56f858e735a3',1,'TIMER2_IRQHandler(void):&#160;gd32f1x0_it.c']]],
+  ['torque_5floop_5fcontrol_12',['TORQUE_LOOP_CONTROL',['../pid_8h.html#a8ffc8824a06f7892f9691a65b83982a7',1,'pid.h']]],
+  ['total_5fmachine_5fangle_13',['total_machine_angle',['../encoder_8c.html#a97999bca302a3ae095acd9977fee272a',1,'encoder.c']]]
 ];
