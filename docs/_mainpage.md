@@ -11,6 +11,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;下面发布的内容是每次由Github Action定时任务生成的.hex固件，目的是自动编译发布main分支下最新commit的固件而无需开发者手动编译。需要注意的是，本页面下的.hex固件不保证它的稳定性和可用性。如果你想下载稳定可用的固件，请转到[Release页面](https://github.com/ZhuYanzhen1/miniFOC/releases)下载。&nbsp;
  
++ [20220827](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC_Firmware/master/202208/20220827.hex): 5edd0af Merge branch 'main' of github.com:ZhuYanzhen1/miniFOC
+ 
 + [20220802](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC_Firmware/master/202208/20220802.hex): 6951035 Update Doxygen documentation
 
 + [20220801](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC_Firmware/master/202208/20220801.hex): abed215 Add SVPWM modulation code, which can be controlled by using macros.
