@@ -1,0 +1,20 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid c0e779a4-2783-4fec-ace7-7f3b1f943edf)
+
+  (paper "A4")
+
+  (title_block
+    (title "miniFOC-Sensor")
+    (date "2022-10-04")
+    (rev "1.2.1")
+  )
+
+  (lib_symbols
+  )
+
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)
