@@ -4,6 +4,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brush motor drive module in about 3<span>$</span>? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3 <span>$</span>!  **miniFOC** has a built-in torque closed-loop controller so that you can control a brushless motor with a 3-wire UART port. The software and hardware design are fully compliant with the AGPL-3.0 open source license.
 
+** Note: miniFOC V2 version is under development to support current loop and sensorless FOC algorithm, please look forward to it. **
+
 ***
 
 ### Brief Introduction
