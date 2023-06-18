@@ -15,7 +15,7 @@
 4. FOC可以实现力矩、速度、位置三个闭环控制。
 5. FOC驱动器的噪音会比电调小很多，效率也比电调高很多。
 
-&nbsp;&nbsp;&nbsp;&nbsp;但是由于FOC的计算量大、原理复杂，所以需要很高成本的控制器，这也使得FOC在很多场景下都没有得到推广和使用。在经过了半年的研究和迭代之后，本人将FOC涉及大量计算的代码进行了深度优化，也重新根据国内的供应链进行了选型，希望本开源项目能够帮助国内的广大开发者们用上有优秀性能的BLDC电机，为开源社区贡献一份力量。
+&nbsp;&nbsp;&nbsp;&nbsp;但是由于FOC的计算量大、原理复杂，所以需要很高成本的控制器，这也使得FOC在很多场景下都没有得到推广和使用。在经过了半年的研究和迭代之后，本人将FOC涉及大量计算的代码进行了大量简化，也重新根据国内的供应链进行了选型，希望本开源项目能够帮助国内的广大开发者们用上有优秀性能的BLDC电机，为开源社区贡献一份力量。
 
 ***
 
@@ -23,14 +23,14 @@
 
 |     开源方案     |   **miniFOC**    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) | [FpOC](https://github.com/WangXuan95/FpOC) |
 | :--------------: | :----------: | :----------------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: |
-|     主控制器     | AT32F421C8T6 |                          ATmega328P                          |                   STM32F405RGT6                    |                   FPGA                |
-|     驱动芯片     |    EG2133    |                            L6234                             |                      DRV8301                       |                      MP6540                 |
+|     主控制器     | CH32V203C8T6 |                          ATmega328P                          |                   STM32F405RGT6                    |                   FPGA                |
+|     驱动芯片     |    BDR2L00    |                            L6234                             |                      DRV8301                       |                      MP6540                 |
 |     闭环频率     | 30kHz (max) |                           830Hz (max)                        |                        8kHz (typical)                        |                        18kHz (typical)                        |
 |   是否有电流环   |      是      |                              否                              |                         是                         |                         是                         |
-|     驱动功率     |     200W     |                             120W                             |                        960W                        |                        90W                        |
+|     驱动功率     |     400W     |                             120W                             |                        960W                        |                        90W                        |
 | 成本价格（大约） |     20¥      |                             100¥                             |                        300¥                        |                        150¥                        |
 
-&nbsp;&nbsp;&nbsp;&nbsp;从上表格中可以看出，**miniFOC**所采用的方案可以实现在低成本下达到较高的性能。同时由于重新根据国内的供应链进行了选型，所以在器件的选择上没有那么局限，提供了很多替代方案。在2021年芯片供应紧缺的情况下能将FOC的成本降至约20元，这也证明了本项目在成本上的优化程度和巨大潜力。
+&nbsp;&nbsp;&nbsp;&nbsp;从上表格中可以看出，**miniFOC**所采用的方案可以实现在低成本下达到较高的性能。同时由于重新根据国内的供应链进行了选型，所以在器件的选择上没有那么局限，提供了很多替代方案。在驱动功率达到400W的情况下能将FOC的成本降至约20元，这也证明了本项目在成本上的优化程度和巨大潜力。
 
 ***
 
@@ -40,7 +40,7 @@
 + 最大驱动电流：30A（你可以根据这里的教程修改电路以实现更大的驱动电流）。
 + FOC详细参数：电流环闭环控制，采用SVPWM (Space Vector Pulse Width Modulation)。
 + 通信参数：UART串口通信波特率115200，采用[中容量数传协议](https://github.com/ZhuYanzhen1/CDTP/blob/master/mdtp/README_CN.md)进行数据传输。
-+ 微控制器参数：Cortex-M4f内核，120MHz主频，64KB Flash，16KB  SRAM。
++ 微控制器参数：RV32IMAC内核，144MHz主频，64KB Flash，20KB  SRAM。
 
 ***
 
@@ -58,14 +58,14 @@
 
 ### 开发环境
 
-+ EDA工具：KiCAD 6.0.7 (VC++ 1929, 64bit)
-+ 编译工具链：gcc-arm-none-eabi 10-2020-q4-major
-+ 烧录工具：OpenOCD 0.11.0-1
-+ 集成开发工具：CLion 2021.2.3 #212.5457.51
++ EDA工具：KiCAD 7.0.5 (VC++ 1936, 64bit)
++ 编译工具链：riscv-none-embed-gcc 8.2.0
++ 烧录工具：OpenOCD 0.11.0+dev-gfad123a16- (2023-05-05-13:43)
++ 集成开发工具：CLion 2023.1.3 #CL-231.9011.31
 + 上位机开发工具：Qt 5.14.2 (MinGW 7.3.0 64bit)
 + 操作系统及工具链：
-  + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
-  + Ubuntu20.04 + make + cmake + gcc-arm-none-eabi + OpenOCD
+  + Win10 + MinGW + CLion + riscv-none-embed-gcc + OpenOCD
+  + Ubuntu22.04 + make + cmake + riscv-none-embed-gcc + OpenOCD
 
 ***
 

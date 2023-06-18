@@ -3,37 +3,63 @@ set(CMAKE_SYSTEM_VERSION 1)
 cmake_minimum_required(VERSION 3.22)
 
 # specify cross compilers and tools
-set(CMAKE_C_COMPILER arm-none-eabi-gcc)
-set(CMAKE_ASM_COMPILER arm-none-eabi-gcc)
-set(CMAKE_AR arm-none-eabi-ar)
-set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
-set(CMAKE_OBJDUMP arm-none-eabi-objdump)
-set(SIZE arm-none-eabi-size)
+set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-embed-)
+set(CMAKE_C_COMPILER ${COMPILER_DIR}gcc.exe)
+set(CMAKE_CXX_COMPILER ${COMPILER_DIR}g++.exe)
+set(CMAKE_ASM_COMPILER ${COMPILER_DIR}gcc.exe)
+set(CMAKE_LINKER ${COMPILER_DIR}gcc.exe)
+set(CMAKE_AR ${COMPILER_DIR}ar.exe)
+set(CMAKE_OBJCOPY ${COMPILER_DIR}objcopy.exe)
+set(CMAKE_OBJDUMP ${COMPILER_DIR}objdump.exe)
+set(SIZE ${COMPILER_DIR}size.exe)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # project settings
 project(miniFOC C ASM)
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 
-add_compile_options(-mfloat-abi=soft)
-add_compile_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork -specs=nosys.specs)
-add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
-add_compile_options(-O2)
+# debug options
+set(DEBUG_SERIAL_BAUDRATE 115200)
+set(DEBUG_SERIAL_PORT COM9)
 
-include_directories(system library/inc hardware ./ algorithm)
+# version generate
+add_custom_target(update_version_file ALL
+        COMMAND ${CMAKE_COMMAND} -E echo "Updating version.h"
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/version.cmake
+        DEPENDS ${CMAKE_SOURCE_DIR}/version.cmake
+        )
 
-add_definitions(-DUSE_STDPERIPH_DRIVER -DGD32F130_150)
+# compile and running options
+add_definitions(-DTOOLCHAIN_PATH="${COMPILER_DIR}" -DPROJECT_PATH="${PROJECT_BINARY_DIR}/${PROJECT_NAME}.elf")
+add_definitions(-DDEBUG_SERIAL_BAUDRATE=${DEBUG_SERIAL_BAUDRATE})
+add_compile_options(-march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmessage-length=0)
+add_compile_options(-fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized)
+add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
+add_compile_options(-Og -g)
 
-file(GLOB_RECURSE SOURCES "library/src/*.c" "system/*.c" "main.c"
-        "system/startup_gd32f130.s" "hardware/*.c" "algorithm/*.c")
-
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/system/gd32f130g6u6.ld)
-
-add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
-add_link_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork --specs=nano.specs)
+# link options
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/system/linkscript.ld)
+add_link_options(-nostartfiles -Xlinker --gc-sections -Wl,--print-memory-usage,-Map,${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
+add_link_options(--specs=nano.specs --specs=nosys.specs -march=rv32imacxw -mabi=ilp32 -flto)
 add_link_options(-T ${LINKER_SCRIPT})
+
+# source and header files
+include_directories(system user library/include)
+file(GLOB_RECURSE SOURCES "system/startup.s" "system/*.c" "library/source/*.c" "user/*.c")
+
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
+add_dependencies(${PROJECT_NAME}.elf update_version_file)
+
+# generate hex and bin file
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
+set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
+set(LIST_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.lst)
+
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
-        COMMAND ${CMAKE_OBJCOPY} -Oihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${HEX_FILE}
-        COMMENT "Building ${HEX_FILE}")
+        COMMAND ${CMAKE_OBJCOPY} -O ihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${HEX_FILE}
+        COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${PROJECT_NAME}.elf> ${BIN_FILE}
+        COMMENT "Building ${HEX_FILE}
+Building ${BIN_FILE}")
+add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
+        COMMAND ${CMAKE_OBJDUMP} --all-headers --demangle --disassemble -M xw $<TARGET_FILE:${PROJECT_NAME}.elf> > ${LIST_FILE}
+        COMMENT "Building ${LIST_FILE}")

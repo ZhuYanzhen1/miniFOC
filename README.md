@@ -1,6 +1,6 @@
 ![LOGO](https://raw.githubusercontent.com/ZhuYanzhen1/miniFOC/main/docs/image/LOGO.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-1.2.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
+&nbsp;&nbsp;&nbsp;&nbsp;![Version](https://img.shields.io/badge/Version-2.0.1-brightgreen.svg)&nbsp;&nbsp;![Build](https://img.shields.io/badge/Build-Passed-success.svg)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-AGPL-blue.svg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English / [中文](https://github.com/ZhuYanzhen1/miniFOC/blob/main/README_CN.md)
 
 &nbsp;&nbsp;&nbsp;&nbsp;Are you still buying a DC brush motor drive module in about 3<span>$</span>? Are you still worried about the high noise in addition to the already low response speed and life? Allow me to present you our project, miniFOC---- a FOC brushless motor control scheme that can get you the most bang for your buck, for just 3 <span>$</span>!  **miniFOC** has a built-in torque closed-loop controller so that you can control a brushless motor with a 3-wire UART port. The software and hardware design are fully compliant with the AGPL-3.0 open source license.
 
@@ -24,14 +24,14 @@
 
 |    Open source solution    |   **miniFOC**    | [simpleFOC](https://github.com/simplefoc/Arduino-SimpleFOCShield) | [ODrive](https://github.com/odriverobotics/ODrive) | [FpOC](https://github.com/WangXuan95/FpOC) |
 | :------------------------: | :----------: | :----------------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: |
-|      Microcontroller       | AT32F421C8T6 |                          ATmega328P                          |                   STM32F405RGT6                    |               FPGA |
-|        Driver chip         |    EG2133    |                            L6234                             |                      DRV8301                       |                      MP6540                 |
+|      Microcontroller       | CH32V203C8T6 |                          ATmega328P                          |                   STM32F405RGT6                    |               FPGA |
+|        Driver chip         |    BDR2L00    |                            L6234                             |                      DRV8301                       |                      MP6540                 |
 |     PID loop frequency     |    30kHz (max)    |                           830Hz (max)                        |                        8kHz (typical)                        |                        18kHz (typical)                        |
 | Whether have current loop |      Yes      |                              No                              |                        Yes                         |                        Yes                      |
-|       Driving power        |     200W     |                             120W                             |                        960W                        |                        90W                        |
+|       Driving power        |     400W     |                             120W                             |                        960W                        |                        90W                        |
 |    Cost price (approx.)    |     20¥      |                             100¥                             |                        300¥                        |                        150¥                        |
 
-&nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the table above, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re-selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. amid the chip shortage in 2021, the cost of FOC still can be controlled at about 3$, which further proves the degree of cost optimization and the great potential of the project.
+&nbsp;&nbsp;&nbsp;&nbsp;As can be seen from the table above, the scheme adopted by **miniFOC** can achieve high performance at low cost. At the same time, due to the re-selection according to the domestic supply chain, the selection of devices is not so limited, and there are many alternatives. amid the chip shortage in 2023, the cost of FOC still can be controlled at about 3$, which further proves the degree of cost optimization and the great potential of the project.
 
 ***
 
@@ -41,7 +41,7 @@
 + Maximum driving current: 30A (you can modify the circuit according to the tutorial here to achieve greater driving current).
 + Detailed parameters of FOC: Current loop close loop control, SVPWM (Space Vector Pulse Width Modulation) is adopted.
 + Communication parameters: UART baud rate is 115200, and [Mid Capacity Data Transmit Protocol](https://github.com/ZhuYanzhen1/CDTP/blob/master/mdtp/README.md) is used for data transmission.
-+ Microcontroller parameters: Cortex-M4f core, 120MHz frequency, 64KB FLASH, 16KB SRAM. 
++ Microcontroller parameters: RV32IMAC core, 144MHz frequency, 64KB FLASH, 20KB SRAM. 
 
 ***
 
@@ -59,14 +59,14 @@
 
 ### Development Environment 
 
-+ EDA Tool: KiCAD 6.0.7 (VC++ 1929, 64bit)
-+ Compiler tool chain: gcc-arm-none-eabi 10-2020-q4-major
-+ Programming tool: OpenOCD 0.11.0-1
-+ Integrated development tools: CLion 2021.2.3 #212.5457.51
++ EDA Tool: KiCAD 7.0.5 (VC++ 1936, 64bit)
++ Compiler tool chain: riscv-none-embed-gcc 8.2.0
++ Programming tool: OpenOCD 0.11.0+dev-gfad123a16- (2023-05-05-13:43)
++ Integrated development tools: CLion 2023.1.3 #CL-231.9011.31
 + Software development tools: Qt 5.14.2 (MinGW 7.3.0 64bit)
 + Operating system and tool chain: 
-  + Win10 + MinGW + CLion + gcc-arm-none-eabi + OpenOCD
-  + Ubuntu20.04 + make + cmake + gcc-arm-none-eabi + OpenOCD
+  + Win10 + MinGW + CLion + riscv-none-embed-gcc + OpenOCD
+  + Ubuntu22.04 + make + cmake + riscv-none-embed-gcc + OpenOCD
 
 ***
 
