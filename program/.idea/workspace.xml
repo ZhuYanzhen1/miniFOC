@@ -3,9 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
@@ -22,124 +22,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea14f9e2-80f6-4cd9-b1be-64b084093690" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/program.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_adc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_bkp.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_can.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_crc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_dbgmcu.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_dma.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_exti.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_flash.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_gpio.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_i2c.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_iwdg.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_misc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_opa.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_pwr.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_rcc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_rtc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_spi.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_tim.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_usart.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/include/ch32v20x_wwdg.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_adc.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_bkp.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_can.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_crc.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_dbgmcu.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_dma.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_exti.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_flash.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_gpio.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_i2c.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_iwdg.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_misc.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_opa.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_pwr.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_rcc.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_rtc.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_spi.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_tim.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_usart.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/source/ch32v20x_wwdg.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/ch32v20x_conf.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/core_riscv.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/core_riscv.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/linkscript.ld" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/startup.s" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/system_ch32v20x.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/system_ch32v20x.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system/version.h.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/ch32v20x_it.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/ch32v20x_it.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/main.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README_CN.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README_CN.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.clang-format" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hardware/uart.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hardware/uart.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/PDFN-8_L5.8-W4.9_RU30J30M.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/PDFN-8_L5.8-W4.9_RU30J30M.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pcb" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pcb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pro" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_sch" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_sch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Doxygen.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/encoder.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/encoder.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/fast_math.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/fast_math.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/filter.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/filter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/foc.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/foc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/pid.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/pid.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/report.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/report.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_fw.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/error.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/flash.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/flash.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/led.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/spi.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/spi.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/timer.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/timer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/uart.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/uart.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_dma.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_fmc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_gpio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_misc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_rcu.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_spi.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_timer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/inc/gd32f1x0_usart.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_dma.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_fmc.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_gpio.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_misc.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_rcu.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_spi.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_timer.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/src/gd32f1x0_usart.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/cmsis_compiler.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/cmsis_gcc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/cmsis_version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/core_cm3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/gd32f130g6u6.ld" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/gd32f1x0.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/gd32f1x0_it.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/gd32f1x0_it.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/gd32f1x0_libopt.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/main.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/startup_gd32f130.s" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/system/system.c" beforeDir="false" afterPath="$PROJECT_DIR$/system/system.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/system.h" beforeDir="false" afterPath="$PROJECT_DIR$/system/system.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/system_gd32f1x0.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/system_gd32f1x0.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/system_ch32v20x.c" beforeDir="false" afterPath="$PROJECT_DIR$/system/system_ch32v20x.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/version.h.in" beforeDir="false" afterPath="$PROJECT_DIR$/system/version.h.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/ch32v20x_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/user/ch32v20x_it.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/ch32v20x_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/user/ch32v20x_it.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/user/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/version.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,8 +50,19 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+    <option name="clangWarnings" value="-Wno-unused-variable,-Wno-infinite-recursion,-Wno-array-bounds,-Werror=implicit-function-declaration,-Wshadow,-Wno-shadow-field-in-constructor-modified,-Wno-shadow-ivar,-Wuninitialized,-Wunused-label,-Wunused-lambda-capture,-Wno-ignored-attributes" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectId" id="2RNhgklFny0MFTqOEu8aMUeyhDM" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -157,31 +70,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "dev",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "configurable.group.build",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C/C++&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="miniFOC.elf" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="miniFOC" TARGET_NAME="miniFOC.elf" CONFIG_NAME="Debug" version="1" RUN_TARGET_PROJECT_NAME="miniFOC" RUN_TARGET_NAME="miniFOC.elf">
       <openocd version="1" gdb-port="3333" telnet-port="4444" reset-type="INIT" download-type="UPDATED_ONLY">
         <debugger kind="GDB" isBundled="true" />
@@ -200,6 +112,8 @@
       <option name="presentableId" value="Default" />
       <updated>1687095835623</updated>
       <workItem from="1687095837079" duration="632000" />
+      <workItem from="1687096560796" duration="3300000" />
+      <workItem from="1687180736976" duration="11000" />
     </task>
     <servers />
   </component>

@@ -21,6 +21,7 @@ set(CMAKE_C_STANDARD 99)
 # debug options
 set(DEBUG_SERIAL_BAUDRATE 115200)
 set(DEBUG_SERIAL_PORT COM9)
+set(DEBUG_SERIAL ON)
 
 # version generate
 add_custom_target(update_version_file ALL
@@ -30,12 +31,14 @@ add_custom_target(update_version_file ALL
         )
 
 # compile and running options
-add_definitions(-DTOOLCHAIN_PATH="${COMPILER_DIR}" -DPROJECT_PATH="${PROJECT_BINARY_DIR}/${PROJECT_NAME}.elf")
+if (${DEBUG_SERIAL})
+    add_definitions(-DDEBUG)
+endif ()
 add_definitions(-DDEBUG_SERIAL_BAUDRATE=${DEBUG_SERIAL_BAUDRATE})
 add_compile_options(-march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmessage-length=0)
 add_compile_options(-fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized)
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
-add_compile_options(-Og -g)
+add_compile_options(-O1)
 
 # link options
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/system/linkscript.ld)
@@ -44,8 +47,8 @@ add_link_options(--specs=nano.specs --specs=nosys.specs -march=rv32imacxw -mabi=
 add_link_options(-T ${LINKER_SCRIPT})
 
 # source and header files
-include_directories(system user library/include)
-file(GLOB_RECURSE SOURCES "system/startup.s" "system/*.c" "library/source/*.c" "user/*.c")
+include_directories(system user library/include hardware)
+file(GLOB_RECURSE SOURCES "system/startup.s" "system/*.c" "library/source/*.c" "user/*.c" "hardware/*.c")
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 add_dependencies(${PROJECT_NAME}.elf update_version_file)

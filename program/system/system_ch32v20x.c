@@ -11,7 +11,7 @@
 * Attention: This software (modified or not) and binary are used for 
 * microcontroller manufactured by Nanjing Qinheng Microelectronics.
 *******************************************************************************/
-#include "ch32v20x.h" 
+#include "ch32v20x.h"
 
 /* 
 * Uncomment the line corresponding to the desired System clock (SYSCLK) frequency (after 
@@ -22,7 +22,7 @@
 //#define SYSCLK_FREQ_48MHz_HSE  48000000
 //#define SYSCLK_FREQ_56MHz_HSE  56000000
 //#define SYSCLK_FREQ_72MHz_HSE  72000000
-#define SYSCLK_FREQ_96MHz_HSE  96000000
+//#define SYSCLK_FREQ_96MHz_HSE  96000000
 //#define SYSCLK_FREQ_120MHz_HSE  120000000
 //#define SYSCLK_FREQ_144MHz_HSE  144000000
 //#define SYSCLK_FREQ_HSI    HSI_VALUE
@@ -31,7 +31,7 @@
 //#define SYSCLK_FREQ_72MHz_HSI  72000000
 //#define SYSCLK_FREQ_96MHz_HSI  96000000
 //#define SYSCLK_FREQ_120MHz_HSI  120000000
-//#define SYSCLK_FREQ_144MHz_HSI  144000000
+#define SYSCLK_FREQ_144MHz_HSI  144000000
 
 /* Clock Definitions */
 #ifdef SYSCLK_FREQ_HSE
@@ -59,14 +59,13 @@ uint32_t SystemCoreClock         = SYSCLK_FREQ_96MHz_HSI;        /* System Clock
 #elif defined SYSCLK_FREQ_120MHz_HSI
 uint32_t SystemCoreClock         = SYSCLK_FREQ_120MHz_HSI;        /* System Clock Frequency (Core Clock) */
 #elif defined SYSCLK_FREQ_144MHz_HSI
-uint32_t SystemCoreClock         = SYSCLK_FREQ_144MHz_HSI;        /* System Clock Frequency (Core Clock) */
+uint32_t SystemCoreClock = SYSCLK_FREQ_144MHz_HSI;        /* System Clock Frequency (Core Clock) */
 #else
 uint32_t SystemCoreClock         = HSI_VALUE;                    /* System Clock Frequency (Core Clock) */
 
 #endif
 
 __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
-
 
 /* system_private_function_proto_types */
 static void SetSysClock(void);
@@ -96,7 +95,7 @@ static void SetSysClockTo96_HSI( void );
 #elif defined SYSCLK_FREQ_120MHz_HSI
 static void SetSysClockTo120_HSI( void );
 #elif defined SYSCLK_FREQ_144MHz_HSI
-static void SetSysClockTo144_HSI( void );
+static void SetSysClockTo144_HSI(void);
 
 #endif
 
@@ -108,17 +107,15 @@ static void SetSysClockTo144_HSI( void );
  *
  * @return  none
  */
-void SystemInit (void)
-{
-  RCC->CTLR |= (uint32_t)0x00000001;
-  RCC->CFGR0 &= (uint32_t)0xF8FF0000;
-  RCC->CTLR &= (uint32_t)0xFEF6FFFF;
-  RCC->CTLR &= (uint32_t)0xFFFBFFFF;
-  RCC->CFGR0 &= (uint32_t)0xFF80FFFF;
-  RCC->INTR = 0x009F0000;    
-  SetSysClock();
+void SystemInit(void) {
+    RCC->CTLR |= (uint32_t) 0x00000001;
+    RCC->CFGR0 &= (uint32_t) 0xF8FF0000;
+    RCC->CTLR &= (uint32_t) 0xFEF6FFFF;
+    RCC->CTLR &= (uint32_t) 0xFFFBFFFF;
+    RCC->CFGR0 &= (uint32_t) 0xFF80FFFF;
+    RCC->INTR = 0x009F0000;
+    SetSysClock();
 }
-
 
 /*********************************************************************
  * @fn      SystemCoreClockUpdate
@@ -127,73 +124,60 @@ void SystemInit (void)
  *
  * @return  none
  */
-void SystemCoreClockUpdate (void)
-{
-  uint32_t tmp = 0, pllmull = 0, pllsource = 0, Pll_6_5 = 0;
+void SystemCoreClockUpdate(void) {
+    uint32_t tmp = 0, pllmull = 0, pllsource = 0, Pll_6_5 = 0;
 
-  tmp = RCC->CFGR0 & RCC_SWS;
+    tmp = RCC->CFGR0 & RCC_SWS;
 
-  switch (tmp)
-  {
-    case 0x00:
-      SystemCoreClock = HSI_VALUE;
-      break;
-    case 0x04:
-      SystemCoreClock = HSE_VALUE;
-      break;
-    case 0x08:
-      pllmull = RCC->CFGR0 & RCC_PLLMULL;
-      pllsource = RCC->CFGR0 & RCC_PLLSRC;
-      pllmull = ( pllmull >> 18) + 2;
+    switch (tmp) {
+        case 0x00:SystemCoreClock = HSI_VALUE;
+            break;
+        case 0x04:SystemCoreClock = HSE_VALUE;
+            break;
+        case 0x08:pllmull = RCC->CFGR0 & RCC_PLLMULL;
+            pllsource = RCC->CFGR0 & RCC_PLLSRC;
+            pllmull = (pllmull >> 18) + 2;
 
-      if(pllmull == 17) pllmull = 18;
+            if (pllmull == 17) pllmull = 18;
 
-      if (pllsource == 0x00)
-      {
-          if(EXTEN->EXTEN_CTR & EXTEN_PLL_HSI_PRE){
-              SystemCoreClock = HSI_VALUE * pllmull;
-          }
-          else{
-              SystemCoreClock = (HSI_VALUE >> 1) * pllmull;
-          }
-      }
-      else
-      {
+            if (pllsource == 0x00) {
+                if (EXTEN->EXTEN_CTR & EXTEN_PLL_HSI_PRE) {
+                    SystemCoreClock = HSI_VALUE * pllmull;
+                } else {
+                    SystemCoreClock = (HSI_VALUE >> 1) * pllmull;
+                }
+            } else {
 #if defined (CH32V20x_D8W)
-        if((RCC->CFGR0 & (3<<22)) == (3<<22))
-        {
-          SystemCoreClock = ((HSE_VALUE>>1)) * pllmull;
-        }
-        else
+                if((RCC->CFGR0 & (3<<22)) == (3<<22))
+                {
+                  SystemCoreClock = ((HSE_VALUE>>1)) * pllmull;
+                }
+                else
 #endif
-        if ((RCC->CFGR0 & RCC_PLLXTPRE) != (uint32_t)RESET)
-        {
+                if ((RCC->CFGR0 & RCC_PLLXTPRE) != (uint32_t) RESET) {
 #if defined (CH32V20x_D8) || defined (CH32V20x_D8W)
-          SystemCoreClock = ((HSE_VALUE>>2) >> 1) * pllmull;
+                    SystemCoreClock = ((HSE_VALUE>>2) >> 1) * pllmull;
 #else
-          SystemCoreClock = (HSE_VALUE >> 1) * pllmull;
+                    SystemCoreClock = (HSE_VALUE >> 1) * pllmull;
 #endif
-        }
-        else
-        {
+                } else {
 #if defined (CH32V20x_D8) || defined (CH32V20x_D8W)
-            SystemCoreClock = (HSE_VALUE>>2) * pllmull;
+                    SystemCoreClock = (HSE_VALUE>>2) * pllmull;
 #else
-          SystemCoreClock = HSE_VALUE * pllmull;
+                    SystemCoreClock = HSE_VALUE * pllmull;
 #endif
-        }
-      }
+                }
+            }
 
-      if(Pll_6_5 == 1) SystemCoreClock = (SystemCoreClock / 2);
+            if (Pll_6_5 == 1) SystemCoreClock = (SystemCoreClock / 2);
 
-      break;
-    default:
-      SystemCoreClock = HSI_VALUE;
-      break;
-  }
+            break;
+        default:SystemCoreClock = HSI_VALUE;
+            break;
+    }
 
-  tmp = AHBPrescTable[((RCC->CFGR0 & RCC_HPRE) >> 4)];
-  SystemCoreClock >>= tmp;
+    tmp = AHBPrescTable[((RCC->CFGR0 & RCC_HPRE) >> 4)];
+    SystemCoreClock >>= tmp;
 }
 
 /*********************************************************************
@@ -203,8 +187,7 @@ void SystemCoreClockUpdate (void)
  *
  * @return  none
  */
-static void SetSysClock(void)
-{
+static void SetSysClock(void) {
 #ifdef SYSCLK_FREQ_HSE
     SetSysClockToHSE();
 #elif defined SYSCLK_FREQ_48MHz_HSE
@@ -233,12 +216,11 @@ static void SetSysClock(void)
     SetSysClockTo144_HSI();
 
 #endif
- 
- /* If none of the define above is enabled, the HSI is used as System clock
-  * source (default after reset) 
-	*/ 
-}
 
+    /* If none of the define above is enabled, the HSI is used as System clock
+     * source (default after reset)
+       */
+}
 
 #ifdef SYSCLK_FREQ_HSE
 
@@ -296,9 +278,9 @@ static void SetSysClockToHSE(void)
   }
   else
   { 
-		/* If HSE fails to start-up, the application will have wrong clock 
-     * configuration. User can add here some code to deal with this error 
-		 */
+        /* If HSE fails to start-up, the application will have wrong clock
+     * configuration. User can add here some code to deal with this error
+         */
   }  
 }
 
@@ -366,10 +348,10 @@ static void SetSysClockTo48_HSE(void)
   }
   else
   { 
-		/* 
-		 * If HSE fails to start-up, the application will have wrong clock 
-     * configuration. User can add here some code to deal with this error 
-		 */
+        /*
+         * If HSE fails to start-up, the application will have wrong clock
+     * configuration. User can add here some code to deal with this error
+         */
   } 
 }
 
@@ -438,10 +420,10 @@ static void SetSysClockTo56_HSE(void)
   }
   else
   { 
-		/* 
-		 * If HSE fails to start-up, the application will have wrong clock 
-     * configuration. User can add here some code to deal with this error 
-		 */
+        /*
+         * If HSE fails to start-up, the application will have wrong clock
+     * configuration. User can add here some code to deal with this error
+         */
   } 
 }
 
@@ -510,10 +492,10 @@ static void SetSysClockTo72_HSE(void)
   }
   else
   { 
-		/* 
-		 * If HSE fails to start-up, the application will have wrong clock 
-     * configuration. User can add here some code to deal with this error 
-		 */
+        /*
+         * If HSE fails to start-up, the application will have wrong clock
+     * configuration. User can add here some code to deal with this error
+         */
   }
 }
 
@@ -951,36 +933,32 @@ static void SetSysClockTo120_HSI(void)
  *
  * @return  none
  */
-static void SetSysClockTo144_HSI(void)
-{
+static void SetSysClockTo144_HSI(void) {
     EXTEN->EXTEN_CTR |= EXTEN_PLL_HSI_PRE;
 
     /* HCLK = SYSCLK */
-    RCC->CFGR0 |= (uint32_t)RCC_HPRE_DIV1;
+    RCC->CFGR0 |= (uint32_t) RCC_HPRE_DIV1;
     /* PCLK2 = HCLK */
-    RCC->CFGR0 |= (uint32_t)RCC_PPRE2_DIV1;
+    RCC->CFGR0 |= (uint32_t) RCC_PPRE2_DIV1;
     /* PCLK1 = HCLK */
-    RCC->CFGR0 |= (uint32_t)RCC_PPRE1_DIV2;
+    RCC->CFGR0 |= (uint32_t) RCC_PPRE1_DIV2;
 
     /*  PLL configuration: PLLCLK = HSI * 18 = 144 MHz */
-    RCC->CFGR0 &= (uint32_t)((uint32_t)~(RCC_PLLSRC | RCC_PLLXTPRE | RCC_PLLMULL));
+    RCC->CFGR0 &= (uint32_t) ((uint32_t) ~(RCC_PLLSRC | RCC_PLLXTPRE | RCC_PLLMULL));
 
-     RCC->CFGR0 |= (uint32_t)(RCC_PLLSRC_HSI_Div2 | RCC_PLLMULL18);
+    RCC->CFGR0 |= (uint32_t) (RCC_PLLSRC_HSI_Div2 | RCC_PLLMULL18);
 
     /* Enable PLL */
     RCC->CTLR |= RCC_PLLON;
     /* Wait till PLL is ready */
-    while((RCC->CTLR & RCC_PLLRDY) == 0)
-    {
+    while ((RCC->CTLR & RCC_PLLRDY) == 0) {
     }
     /* Select PLL as system clock source */
-    RCC->CFGR0 &= (uint32_t)((uint32_t)~(RCC_SW));
-    RCC->CFGR0 |= (uint32_t)RCC_SW_PLL;
+    RCC->CFGR0 &= (uint32_t) ((uint32_t) ~(RCC_SW));
+    RCC->CFGR0 |= (uint32_t) RCC_SW_PLL;
     /* Wait till PLL is used as system clock source */
-    while ((RCC->CFGR0 & (uint32_t)RCC_SWS) != (uint32_t)0x08)
-    {
+    while ((RCC->CFGR0 & (uint32_t) RCC_SWS) != (uint32_t) 0x08) {
     }
 }
-
 
 #endif
