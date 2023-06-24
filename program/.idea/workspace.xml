@@ -22,26 +22,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea14f9e2-80f6-4cd9-b1be-64b084093690" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.clang-format" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hardware/uart.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hardware/uart.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitmodules" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0402_1005Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0402_1005Metric.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0603_1608Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0603_1608Metric.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0805_2012Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0805_2012Metric.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_1206_3216Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_1206_3216Metric.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/D_SMB.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/D_SMB.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/JST_GH_SM03B-GHS-TB_1x03-1MP_P1.25mm_Horizontal.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/JST_GH_SM03B-GHS-TB_1x03-1MP_P1.25mm_Horizontal.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LOGO.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LOGO.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LQFP-48_7x7mm_P0.5mm.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LQFP-48_7x7mm_P0.5mm.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/L_Coilcraft_XxL4040.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/L_Coilcraft_XxL4040.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/MSOP-8_3x3mm_P0.65mm.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/MSOP-8_3x3mm_P0.65mm.kicad_mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/PDFN-8_L5.8-W4.9_RU30J30M.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/PDFN-8_L5.8-W4.9_RU30J30M.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_1.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_1.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_4.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_4.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_5.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_5.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_0402_1005Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_0402_1005Metric.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_1812_4532Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_1812_4532Metric.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-5.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-5.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-6.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-6.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SolderWire-0.1sqmm_1x02_P3.6mm_D0.4mm_OD1mm.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SolderWire-0.1sqmm_1x02_P3.6mm_D0.4mm_OD1mm.kicad_mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/TDFN-8_L2.0-W2.0-P0.50-BL-EP.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/TDFN-8_L2.0-W2.0-P0.50-BL-EP.kicad_mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pcb" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pcb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pro" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_sch" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_sch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/system.c" beforeDir="false" afterPath="$PROJECT_DIR$/system/system.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/system.h" beforeDir="false" afterPath="$PROJECT_DIR$/system/system.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/system_ch32v20x.c" beforeDir="false" afterPath="$PROJECT_DIR$/system/system_ch32v20x.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/version.h.in" beforeDir="false" afterPath="$PROJECT_DIR$/system/version.h.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/ch32v20x_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/user/ch32v20x_it.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/ch32v20x_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/user/ch32v20x_it.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/user/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/version.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +118,7 @@
       <workItem from="1687095837079" duration="632000" />
       <workItem from="1687096560796" duration="3300000" />
       <workItem from="1687180736976" duration="11000" />
+      <workItem from="1687605703189" duration="2000" />
     </task>
     <servers />
   </component>
