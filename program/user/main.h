@@ -8,5 +8,6 @@
 #include "system.h"
 
 #include "uart.h"
+#include "timer.h"
 
 #endif  // MINIFOC_USER_MAIN_H_

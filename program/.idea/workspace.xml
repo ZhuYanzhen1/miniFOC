@@ -21,31 +21,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea14f9e2-80f6-4cd9-b1be-64b084093690" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitmodules" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0402_1005Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0402_1005Metric.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0603_1608Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0603_1608Metric.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0805_2012Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_0805_2012Metric.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_1206_3216Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/C_1206_3216Metric.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/D_SMB.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/D_SMB.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/JST_GH_SM03B-GHS-TB_1x03-1MP_P1.25mm_Horizontal.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/JST_GH_SM03B-GHS-TB_1x03-1MP_P1.25mm_Horizontal.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LOGO.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LOGO.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LQFP-48_7x7mm_P0.5mm.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/LQFP-48_7x7mm_P0.5mm.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/L_Coilcraft_XxL4040.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/L_Coilcraft_XxL4040.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/MSOP-8_3x3mm_P0.65mm.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/MSOP-8_3x3mm_P0.65mm.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/PDFN-8_L5.8-W4.9_RU30J30M.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/PDFN-8_L5.8-W4.9_RU30J30M.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_1.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_1.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_4.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_4.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_5.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/Pad_5.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_0402_1005Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_0402_1005Metric.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_1812_4532Metric.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/R_1812_4532Metric.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-5.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-5.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-6.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23-6.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SOT-23.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SolderWire-0.1sqmm_1x02_P3.6mm_D0.4mm_OD1mm.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/SolderWire-0.1sqmm_1x02_P3.6mm_D0.4mm_OD1mm.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/TDFN-8_L2.0-W2.0-P0.50-BL-EP.kicad_mod" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/Library.pretty/TDFN-8_L2.0-W2.0-P0.50-BL-EP.kicad_mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pcb" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_pcb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_sch" beforeDir="false" afterPath="$PROJECT_DIR$/../circuit/miniFOC/miniFOC.kicad_sch" afterDir="false" />
+    <list default="true" id="ea14f9e2-80f6-4cd9-b1be-64b084093690" name="Changes" comment="Modify the sampling resistor package in the schematic diagram and PCB, and change its resistance value to 5 milliohms to adapt to the current sampling range of 20A.">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hardware/timer.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hardware/timer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/uart.c" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/uart.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/system.h" beforeDir="false" afterPath="$PROJECT_DIR$/system/system.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/user/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/user/main.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +51,10 @@
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
   <component name="ProjectId" id="2RNhgklFny0MFTqOEu8aMUeyhDM" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -98,7 +87,12 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="miniFOC.elf" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="miniFOC" TARGET_NAME="miniFOC.elf" CONFIG_NAME="Debug" version="1" RUN_TARGET_PROJECT_NAME="miniFOC" RUN_TARGET_NAME="miniFOC.elf">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="miniFOC.elf" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="miniFOC" TARGET_NAME="miniFOC.elf" CONFIG_NAME="Debug" version="1" RUN_TARGET_PROJECT_NAME="miniFOC" RUN_TARGET_NAME="miniFOC.elf">
       <openocd version="1" gdb-port="3333" telnet-port="4444" reset-type="INIT" download-type="UPDATED_ONLY">
         <debugger kind="GDB" isBundled="true" />
       </openocd>
@@ -118,8 +112,20 @@
       <workItem from="1687095837079" duration="632000" />
       <workItem from="1687096560796" duration="3300000" />
       <workItem from="1687180736976" duration="11000" />
-      <workItem from="1687605703189" duration="2000" />
+      <workItem from="1687605703189" duration="164000" />
+      <workItem from="1687615688537" duration="594000" />
+      <workItem from="1687873896300" duration="2768000" />
+      <workItem from="1688112544148" duration="601000" />
+      <workItem from="1691756167241" duration="2000" />
     </task>
+    <task id="LOCAL-00001" summary="Modify the sampling resistor package in the schematic diagram and PCB, and change its resistance value to 5 milliohms to adapt to the current sampling range of 20A.">
+      <created>1687605861372</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687605861372</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,5 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Modify the sampling resistor package in the schematic diagram and PCB, and change its resistance value to 5 milliohms to adapt to the current sampling range of 20A." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modify the sampling resistor package in the schematic diagram and PCB, and change its resistance value to 5 milliohms to adapt to the current sampling range of 20A." />
   </component>
 </project>

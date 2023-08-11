@@ -3,7 +3,8 @@
 int main(void) {
     system_config();
     usart1_config();
-
+    timer_config();
+    
     LOG("SystemClk:%lu\r\n", SystemCoreClock);
     LOG("This is printf example\r\n");
 
