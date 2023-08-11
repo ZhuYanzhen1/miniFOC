@@ -64,7 +64,7 @@ float pid_calculate_result(PID_Structure_t *pid_handler, float collect) {
 
     /* calculate the integral and realize anti integral saturation */
     pid_handler->summary = pid_handler->summary + error;
-    pid_handler->summary = fast_constrain(pid_handler->summary, pid_handler->sum_maximum, -pid_handler->sum_maximum);
+    pid_handler->summary = fast_constrain(pid_handler->summary, -pid_handler->sum_maximum, pid_handler->sum_maximum);
 
     /* calculate PID output value */
     current_result = pid_handler->kp * error + pid_handler->ki * pid_handler->summary

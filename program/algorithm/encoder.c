@@ -31,12 +31,12 @@ volatile static unsigned short last_mechanical_angle = 0;
     \brief the total mechanical angle since power on is used to calculate
            the angle integral value and realize the angle measurement function.
 */
-volatile static long long total_machine_angle = 0;
+volatile static uint64_t total_machine_angle = UINT64_MAX / 2;
 /*!
     \brief the mechanical angle at the last moment is used to calculate
            the rotation speed of the motor rotor.
 */
-volatile static long long systick_mechanical_angle_last = 0;
+volatile static uint64_t systick_mechanical_angle_last = UINT64_MAX / 2;
 
 /*!
     \brief delay function for magnetic encoder
