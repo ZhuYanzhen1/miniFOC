@@ -58,7 +58,7 @@
 
 ### 开发环境
 
-+ EDA工具：KiCAD 7.0.5 (VC++ 1936, 64bit)
++ EDA工具：KiCAD 7.0.7 (VC++ 1936, 64bit)
 + 编译工具链：riscv-none-embed-gcc 8.2.0
 + 烧录工具：OpenOCD 0.11.0+dev-gfad123a16- (2023-05-05-13:43)
 + 集成开发工具：CLion 2023.1.3 #CL-231.9011.31

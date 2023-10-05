@@ -5,6 +5,15 @@
 #include "uart.h"
 #include "system.h"
 
+char log_buffer[DEBUG_LOG_MAX_SIZE];;
+
+void send_buffer(unsigned char *buf, unsigned short length) {
+    for (unsigned short i = 0; i < length; i++) {
+        while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
+        USART_SendData(USART1, *buf++);
+    }
+}
+
 void usart1_config(void) {
     GPIO_InitTypeDef GPIO_InitStructure = {0};
     USART_InitTypeDef USART_InitStructure = {0};
@@ -29,13 +38,4 @@ void usart1_config(void) {
     USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
     USART_Init(USART1, &USART_InitStructure);
     USART_Cmd(USART1, ENABLE);
-}
-
-__attribute__((used))
-int _write(int fd, char *buf, int size) {
-    for (int i = 0; i < size; i++) {
-        while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
-        USART_SendData(USART1, *buf++);
-    }
-    return size;
 }

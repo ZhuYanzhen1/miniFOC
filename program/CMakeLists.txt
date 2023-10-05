@@ -3,7 +3,7 @@ set(CMAKE_SYSTEM_VERSION 1)
 cmake_minimum_required(VERSION 3.22)
 
 # specify cross compilers and tools
-set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-embed-)
+set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-elf-)
 set(CMAKE_C_COMPILER ${COMPILER_DIR}gcc.exe)
 set(CMAKE_CXX_COMPILER ${COMPILER_DIR}g++.exe)
 set(CMAKE_ASM_COMPILER ${COMPILER_DIR}gcc.exe)
@@ -28,22 +28,22 @@ add_custom_target(update_version_file ALL
         COMMAND ${CMAKE_COMMAND} -E echo "Updating version.h"
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/version.cmake
         DEPENDS ${CMAKE_SOURCE_DIR}/version.cmake
-        )
+)
 
 # compile and running options
 if (${DEBUG_SERIAL})
     add_definitions(-DDEBUG)
 endif ()
 add_definitions(-DDEBUG_SERIAL_BAUDRATE=${DEBUG_SERIAL_BAUDRATE})
-add_compile_options(-march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmessage-length=0)
-add_compile_options(-fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized)
+add_compile_options(-march=rv32imac -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmessage-length=0)
+add_compile_options(-fsigned-char -ffunction-sections -fdata-sections -Wunused -Wuninitialized)
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
-add_compile_options(-O1)
+add_compile_options(-O1 -g)
 
 # link options
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/system/linkscript.ld)
 add_link_options(-nostartfiles -Xlinker --gc-sections -Wl,--print-memory-usage,-Map,${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
-add_link_options(--specs=nano.specs --specs=nosys.specs -march=rv32imacxw -mabi=ilp32 -flto)
+add_link_options(--specs=nano.specs --specs=nosys.specs -march=rv32imac -mabi=ilp32 -flto)
 add_link_options(-T ${LINKER_SCRIPT})
 
 # source and header files

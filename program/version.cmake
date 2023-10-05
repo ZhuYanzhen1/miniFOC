@@ -39,8 +39,6 @@ if (CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
             OUTPUT_STRIP_TRAILING_WHITESPACE
     )
     string(REPLACE "\"" "" BUILD_TIME ${BUILD_TIME})
-    execute_process(COMMAND "date" "+%s" OUTPUT_VARIABLE CURRENT_TIME_SECONDS OUTPUT_STRIP_TRAILING_WHITESPACE)
-    set(CURRENT_TIME_SECONDS ${CURRENT_TIME_SECONDS}+28800)
 elseif (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
     execute_process(
             COMMAND powershell -Command "Get-Date -Format 'yyyy-MM-dd HH:mm'"
@@ -48,15 +46,14 @@ elseif (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
             OUTPUT_STRIP_TRAILING_WHITESPACE
     )
     execute_process(COMMAND "powershell" "Get-Date -UFormat %s" OUTPUT_VARIABLE CURRENT_TIME_SECONDS OUTPUT_STRIP_TRAILING_WHITESPACE)
-    string(REGEX REPLACE "\\..*$" "" CURRENT_TIME_SECONDS ${CURRENT_TIME_SECONDS})
 endif ()
 
 # Get GCC version
-set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-embed-)
+set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-elf-)
 execute_process(
         COMMAND ${COMPILER_DIR}gcc.exe -dumpfullversion
         OUTPUT_VARIABLE GCC_VERSION)
-string(REGEX MATCH "[0-9].[0-9].[0-9]+" GCC_VERSION_MAJOR ${GCC_VERSION})
+string(REGEX MATCH "[0-9][0-9].[0-9].[0-9]+" GCC_VERSION_MAJOR ${GCC_VERSION})
 
 set(TOOLCHAIN_DIR "${COMPILER_DIR}")
 set(PROJECT_ELF_PATH "${CMAKE_SOURCE_DIR}/miniFOC.elf")
