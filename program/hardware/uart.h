@@ -8,29 +8,34 @@
 #ifdef DEBUG
 #include "stdio.h"
 
-#define DEBUG_LOG_MAX_SIZE 512
-extern char log_buffer[DEBUG_LOG_MAX_SIZE];
+#define DEBUG_INFO(format, ...)                                                                                     \
+    {                                                                                                               \
+        unsigned char tmp_transmit_buffer[UART_TRANSMIT_BUFFER_SIZE] = {0};                                         \
+        unsigned short unLen = snprintf((char*)tmp_transmit_buffer, UART_TRANSMIT_BUFFER_SIZE, "[INFO]: ");         \
+        unLen +=                                                                                                    \
+            snprintf((char*)tmp_transmit_buffer + unLen, UART_TRANSMIT_BUFFER_SIZE - unLen, format, ##__VA_ARGS__); \
+        uart_transmit(tmp_transmit_buffer, unLen);                                                                  \
+    }
 
-#define DEBUG_INFO(format, ...) do{\
-    unsigned short unLen = 0;\
-    unLen += snprintf(log_buffer + unLen, DEBUG_LOG_MAX_SIZE, "[INFO]: ");\
-    unLen += snprintf(log_buffer + unLen, DEBUG_LOG_MAX_SIZE - unLen, format, ## __VA_ARGS__ );\
-    send_buffer((unsigned char *)log_buffer, unLen);\
-}while(0)
+#define DEBUG_WARN(format, ...)                                                                                     \
+    {                                                                                                               \
+        unsigned char tmp_transmit_buffer[UART_TRANSMIT_BUFFER_SIZE] = {0};                                         \
+        unsigned short unLen = snprintf((char*)tmp_transmit_buffer, UART_TRANSMIT_BUFFER_SIZE,                      \
+                                        "[WARN][%s() %d]: ", __FUNCTION__, __LINE__);                               \
+        unLen +=                                                                                                    \
+            snprintf((char*)tmp_transmit_buffer + unLen, UART_TRANSMIT_BUFFER_SIZE - unLen, format, ##__VA_ARGS__); \
+        uart_transmit(tmp_transmit_buffer, unLen);                                                                  \
+    }
 
-#define DEBUG_WARN(format, ...) do{\
-    unsigned short unLen = 0;\
-    unLen += snprintf(log_buffer + unLen, DEBUG_LOG_MAX_SIZE, "[WARN][%s() %d]: ",__FUNCTION__, __LINE__);\
-    unLen += snprintf(log_buffer + unLen, DEBUG_LOG_MAX_SIZE - unLen, format, ## __VA_ARGS__ );\
-    send_buffer((unsigned char *)log_buffer, unLen);\
-}while(0)
-
-#define DEBUG_ERR(format, ...) do{\
-    unsigned short unLen = 0;\
-    unLen += snprintf(log_buffer + unLen, DEBUG_LOG_MAX_SIZE, "[ERR][%s() %d]: ",__FUNCTION__, __LINE__);\
-    unLen += snprintf(log_buffer + unLen, DEBUG_LOG_MAX_SIZE - unLen, format, ## __VA_ARGS__ );\
-    send_buffer((unsigned char *)log_buffer, unLen);\
-}while(0)
+#define DEBUG_ERR(format, ...)                                                                                      \
+    {                                                                                                               \
+        unsigned char tmp_transmit_buffer[UART_TRANSMIT_BUFFER_SIZE] = {0};                                         \
+        unsigned short unLen = snprintf((char*)tmp_transmit_buffer, UART_TRANSMIT_BUFFER_SIZE,                      \
+                                        "[ERR][%s() %d]: ", __FUNCTION__, __LINE__);                                \
+        unLen +=                                                                                                    \
+            snprintf((char*)tmp_transmit_buffer + unLen, UART_TRANSMIT_BUFFER_SIZE - unLen, format, ##__VA_ARGS__); \
+        uart_transmit(tmp_transmit_buffer, unLen);                                                                  \
+    }
 
 #else
 
@@ -40,7 +45,23 @@ extern char log_buffer[DEBUG_LOG_MAX_SIZE];
 
 #endif
 
+#define UART_RECEIVE_BUFFER_SIZE 256
+#define UART_TRANSMIT_BUFFER_SIZE 32
+#define UART_TRANSMIT_BUFFER_NUM 8
+
+typedef struct UART_TRANSMIT_BUFFER_T {
+    struct UART_TRANSMIT_BUFFER_T* next_transmit_buffer;
+    unsigned char current_buffer[UART_TRANSMIT_BUFFER_SIZE];
+    unsigned char length;
+} uart_transmit_buffer_t;
+
+extern volatile unsigned char receive_buffer1[UART_RECEIVE_BUFFER_SIZE / 2];
+extern volatile unsigned char receive_buffer2[UART_RECEIVE_BUFFER_SIZE / 2];
+extern volatile unsigned char receive_buffer_counter[2], receive_buffer_available[2];
+extern uart_transmit_buffer_t* first_transmit_buffer;
+
 void usart1_config(void);
-void send_buffer(unsigned char *buf, unsigned short length);
+void uart_receive_callback(unsigned char* buffer, unsigned char length);
+unsigned char uart_transmit(const unsigned char* buffer, unsigned char length);
 
 #endif  // MINIFOC_HARDWARE_UART_H_
