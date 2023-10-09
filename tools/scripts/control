@@ -1,0 +1,7 @@
+Package: miniFOC-Monitor
+Version: 2.0.2
+Section: devel
+Architecture: amd64
+Maintainer: LaoZhu
+Installed-Size: 7851640
+Description: this is a application to tunning miniFOC project. Find details in https://github.com/ZhuYanzhen1/miniFOC

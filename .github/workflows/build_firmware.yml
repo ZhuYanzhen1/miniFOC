@@ -1,0 +1,27 @@
+name: Build Firmware
+
+on: #[ push ]
+  schedule:
+    - cron: '40 15 * * *'      # compile at 23:50 each day
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Install Compiler
+        run: |
+          sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get install -y cmake gcc g++ make build-essential wget p7zip-full
+          wget -q https://github.com/ZhuYanzhen1/miniFOC/releases/download/toolchain/GCC_Linux_x64.7z
+          7z x GCC_Linux_x64.7z && touch miniFOC.hex && ls
+      - name: Upload Hex
+        uses: actions/upload-artifact@v2
+        with:
+          name: miniFOC-hex
+          path: miniFOC.hex
+  
