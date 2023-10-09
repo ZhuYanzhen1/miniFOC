@@ -31,7 +31,6 @@ else ()
 endif ()
 
 # Get the current system time
-message(STATUS "Operation system is ${CMAKE_HOST_SYSTEM_NAME}")
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
     execute_process(
             COMMAND date +"%Y-%m-%d %H:%M"
@@ -49,11 +48,19 @@ elseif (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
 endif ()
 
 # Get GCC version
-set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-elf-)
-execute_process(
-        COMMAND ${COMPILER_DIR}gcc.exe -dumpfullversion
-        OUTPUT_VARIABLE GCC_VERSION)
-string(REGEX MATCH "[0-9][0-9].[0-9].[0-9]+" GCC_VERSION_MAJOR ${GCC_VERSION})
+if (CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
+    set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-embed-)
+    execute_process(
+            COMMAND ${COMPILER_DIR}gcc -dumpfullversion
+            OUTPUT_VARIABLE GCC_VERSION)
+    string(REGEX MATCH "[0-9].[0-9].[0-9]+" GCC_VERSION_MAJOR ${GCC_VERSION})
+elseif (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
+    set(COMPILER_DIR $ENV{CH32_DEV}bin/riscv-none-elf-)
+    execute_process(
+            COMMAND ${COMPILER_DIR}gcc.exe -dumpfullversion
+            OUTPUT_VARIABLE GCC_VERSION)
+    string(REGEX MATCH "[0-9][0-9].[0-9].[0-9]+" GCC_VERSION_MAJOR ${GCC_VERSION})
+endif ()
 
 set(TOOLCHAIN_DIR "${COMPILER_DIR}")
 set(PROJECT_ELF_PATH "${CMAKE_SOURCE_DIR}/miniFOC.elf")
