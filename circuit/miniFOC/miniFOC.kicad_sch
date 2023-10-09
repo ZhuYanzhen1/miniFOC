@@ -6,8 +6,8 @@
 
   (title_block
     (title "miniFOC")
-    (date "2023-06-24")
-    (rev "2.0.1")
+    (date "2023-10-09")
+    (rev "2.0.2")
   )
 
   (lib_symbols
@@ -1374,6 +1374,12 @@
   (junction (at 121.92 172.72) (diameter 0) (color 0 0 0 0)
     (uuid 86a19ad0-859b-4f9d-a65c-054da89f703c)
   )
+  (junction (at 161.29 142.24) (diameter 0) (color 0 0 0 0)
+    (uuid 90dc1618-a82e-4376-9a35-12c56ff86bc3)
+  )
+  (junction (at 161.29 176.53) (diameter 0) (color 0 0 0 0)
+    (uuid 926ecbc1-ae22-4795-8d62-545951354f92)
+  )
   (junction (at 128.27 172.72) (diameter 0) (color 0 0 0 0)
     (uuid 92eedf8c-7418-4742-983b-bbe38dde63f5)
   )
@@ -2201,6 +2207,10 @@
     (stroke (width 0) (type default))
     (uuid 9cb58686-6a1a-4f3f-8225-527826f91c2a)
   )
+  (wire (pts (xy 161.29 186.69) (xy 161.29 187.96))
+    (stroke (width 0) (type default))
+    (uuid 9ce5114a-804a-48b4-b00d-a8dc516aac2a)
+  )
   (wire (pts (xy 198.12 97.79) (xy 199.39 97.79))
     (stroke (width 0) (type default))
     (uuid 9de2a31b-302d-493f-b828-9dc54e547bf7)
@@ -2375,7 +2385,11 @@
     (stroke (width 0) (type default))
     (uuid baaac369-6912-4384-a09c-3d07b98f69ce)
   )
-  (wire (pts (xy 156.21 176.53) (xy 166.37 176.53))
+  (wire (pts (xy 161.29 176.53) (xy 166.37 176.53))
+    (stroke (width 0) (type default))
+    (uuid bbcd0aea-253c-45bf-8392-603b4311c218)
+  )
+  (wire (pts (xy 156.21 176.53) (xy 161.29 176.53))
     (stroke (width 0) (type default))
     (uuid bc369956-7505-41bd-8131-95e33f88ca6c)
   )
@@ -2455,7 +2469,7 @@
     (stroke (width 0) (type default))
     (uuid cf75294a-0047-403b-886f-aedf6ba2046c)
   )
-  (wire (pts (xy 156.21 142.24) (xy 166.37 142.24))
+  (wire (pts (xy 156.21 142.24) (xy 161.29 142.24))
     (stroke (width 0) (type default))
     (uuid cfc0546c-c856-4aff-b021-a43e66d7dbe8)
   )
@@ -2540,6 +2554,10 @@
     (stroke (width 0) (type default))
     (uuid dddcce20-3291-4640-b9ea-dd79637d1e82)
   )
+  (wire (pts (xy 161.29 152.4) (xy 161.29 153.67))
+    (stroke (width 0) (type default))
+    (uuid deb4dacd-4f30-4eb3-afce-d1c78c984c40)
+  )
   (wire (pts (xy 198.12 72.39) (xy 208.28 72.39))
     (stroke (width 0) (type default))
     (uuid df195330-5a1a-4def-b817-46398426f3bd)
@@ -2605,6 +2623,14 @@
     (stroke (width 0) (type default))
     (uuid ecfdcfd3-3423-4b31-9212-b485edb60bd1)
   )
+  (wire (pts (xy 161.29 176.53) (xy 161.29 179.07))
+    (stroke (width 0) (type default))
+    (uuid ed57e0a9-1b70-41f4-b483-36382f1ec2b8)
+  )
+  (wire (pts (xy 161.29 142.24) (xy 166.37 142.24))
+    (stroke (width 0) (type default))
+    (uuid ee06cff1-4533-4c37-ad26-75f9374d5dc2)
+  )
   (wire (pts (xy 232.41 31.75) (xy 232.41 38.1))
     (stroke (width 0) (type default))
     (uuid ef310b34-f2f2-4857-925f-41a12ee649fa)
@@ -2616,6 +2642,10 @@
   (wire (pts (xy 29.21 68.58) (xy 29.21 71.12))
     (stroke (width 0) (type default))
     (uuid f01b9e98-89f8-476c-a4fd-3c32483ee8f1)
+  )
+  (wire (pts (xy 161.29 142.24) (xy 161.29 144.78))
+    (stroke (width 0) (type default))
+    (uuid f02ede43-403c-4a15-9027-cea6f5f53b53)
   )
   (wire (pts (xy 20.32 175.26) (xy 27.94 175.26))
     (stroke (width 0) (type default))
@@ -2966,7 +2996,7 @@
   (symbol (lib_id "power:+15V") (at 195.58 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0250af7a-c3bf-47d9-9448-d70dcc437bf7)
-    (property "Reference" "#PWR074" (at 195.58 142.24 0)
+    (property "Reference" "#PWR076" (at 195.58 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 195.58 134.62 0)
@@ -2982,7 +3012,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR074") (unit 1)
+          (reference "#PWR076") (unit 1)
         )
       )
     )
@@ -2991,7 +3021,7 @@
   (symbol (lib_id "library:Conn_01x01") (at 248.92 102.87 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
     (uuid 031104e4-2843-42a8-88a2-40956a4b8fbd)
-    (property "Reference" "J7" (at 251.46 102.87 0)
+    (property "Reference" "J7" (at 247.65 100.33 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_01x01" (at 251.46 104.1399 0)
@@ -3016,7 +3046,7 @@
   (symbol (lib_id "power:+5V") (at 262.89 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 03b1309e-35c2-4066-a934-85ac02295a76)
-    (property "Reference" "#PWR095" (at 262.89 142.24 0)
+    (property "Reference" "#PWR097" (at 262.89 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 262.89 134.62 0)
@@ -3032,7 +3062,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR095") (unit 1)
+          (reference "#PWR097") (unit 1)
         )
       )
     )
@@ -3145,8 +3175,8 @@
     (property "Reference" "C6" (at 35.56 36.83 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "1uF" (at 35.56 39.37 0)
-      (effects (font (size 1.27 1.27)) (justify left))
+    (property "Value" "100nF" (at 35.56 39.37 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Footprint" "library:C_0402_1005Metric" (at 33.9852 41.91 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -3194,7 +3224,7 @@
   (symbol (lib_id "power:+15V") (at 257.81 31.75 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0e1e91a8-bebf-43fa-9b7d-96ae7a06014e)
-    (property "Reference" "#PWR091" (at 257.81 35.56 0)
+    (property "Reference" "#PWR093" (at 257.81 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 257.81 27.94 0)
@@ -3210,7 +3240,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR091") (unit 1)
+          (reference "#PWR093") (unit 1)
         )
       )
     )
@@ -3219,7 +3249,7 @@
   (symbol (lib_id "power:+15V") (at 220.98 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 10e452e1-3866-4f6d-bbf8-d36959013d2e)
-    (property "Reference" "#PWR082" (at 220.98 142.24 0)
+    (property "Reference" "#PWR084" (at 220.98 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 220.98 134.62 0)
@@ -3235,7 +3265,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR082") (unit 1)
+          (reference "#PWR084") (unit 1)
         )
       )
     )
@@ -3247,7 +3277,7 @@
     (property "Reference" "R20" (at 275.59 34.925 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "10kR" (at 275.59 36.83 0)
+    (property "Value" "1kR" (at 275.59 36.83 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 274.828 35.56 90)
@@ -3295,7 +3325,7 @@
   (symbol (lib_id "library:C") (at 203.2 67.31 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 140eb202-5676-4508-943e-1ef81684fcc4)
-    (property "Reference" "C29" (at 201.93 63.5 90)
+    (property "Reference" "C31" (at 201.93 63.5 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 207.01 63.5 90)
@@ -3312,7 +3342,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C29") (unit 1)
+          (reference "C31") (unit 1)
         )
       )
     )
@@ -3371,7 +3401,7 @@
   (symbol (lib_id "library:C") (at 267.97 154.94 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 15e769c6-5c6f-4f78-96ac-500286d22897)
-    (property "Reference" "C35" (at 269.24 152.4 0)
+    (property "Reference" "C37" (at 269.24 152.4 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 271.145 155.575 0)
@@ -3388,7 +3418,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C35") (unit 1)
+          (reference "C37") (unit 1)
         )
       )
     )
@@ -3539,7 +3569,7 @@
   (symbol (lib_id "library:C") (at 201.93 156.21 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1c779554-898a-4b46-b269-6d08102e0a72)
-    (property "Reference" "C27" (at 203.2 153.67 0)
+    (property "Reference" "C29" (at 203.2 153.67 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 204.47 157.48 0)
@@ -3556,7 +3586,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C27") (unit 1)
+          (reference "C29") (unit 1)
         )
       )
     )
@@ -3565,7 +3595,7 @@
   (symbol (lib_id "power:GND") (at 243.84 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1e18c7e6-1ece-4d11-86d3-1539e26a5b49)
-    (property "Reference" "#PWR087" (at 243.84 180.34 0)
+    (property "Reference" "#PWR089" (at 243.84 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 243.84 178.435 0)
@@ -3581,7 +3611,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR087") (unit 1)
+          (reference "#PWR089") (unit 1)
         )
       )
     )
@@ -3641,7 +3671,7 @@
   (symbol (lib_id "power:GND") (at 257.81 110.49 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 21872e99-76dd-40d0-a868-c099b82c0a5d)
-    (property "Reference" "#PWR094" (at 257.81 116.84 0)
+    (property "Reference" "#PWR096" (at 257.81 116.84 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 257.81 114.3 0)
@@ -3657,7 +3687,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR094") (unit 1)
+          (reference "#PWR096") (unit 1)
         )
       )
     )
@@ -3716,7 +3746,7 @@
   (symbol (lib_id "library:C") (at 189.23 156.21 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 26089197-270f-49cb-a610-86e6cd039a24)
-    (property "Reference" "C25" (at 190.5 153.67 0)
+    (property "Reference" "C27" (at 190.5 153.67 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 191.77 157.48 0)
@@ -3733,7 +3763,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C25") (unit 1)
+          (reference "C27") (unit 1)
         )
       )
     )
@@ -3869,7 +3899,7 @@
   (symbol (lib_id "power:GND") (at 273.05 80.01 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2ac0cb65-3d13-4575-ba0d-cb3e9cdfeb21)
-    (property "Reference" "#PWR0100" (at 273.05 86.36 0)
+    (property "Reference" "#PWR0102" (at 273.05 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 273.05 83.82 0)
@@ -3885,7 +3915,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR0100") (unit 1)
+          (reference "#PWR0102") (unit 1)
         )
       )
     )
@@ -3942,7 +3972,7 @@
   )
 
   (symbol (lib_id "library:SMAJ17CA") (at 257.81 101.6 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom yes) (on_board yes) (dnp no)
     (uuid 2f8524da-f8d1-4557-ac64-d27b42bf37fc)
     (property "Reference" "D2" (at 260.35 100.33 90)
       (effects (font (size 1.27 1.27)) (justify right))
@@ -4023,7 +4053,7 @@
     (property "Reference" "R2" (at 24.13 62.23 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "1kR" (at 24.13 64.77 0)
+    (property "Value" "160R" (at 24.13 64.77 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 18.542 63.5 90)
@@ -4071,7 +4101,7 @@
   (symbol (lib_id "library:C") (at 195.58 156.21 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3a68d059-aa81-4ced-ba1a-355d9da9cc57)
-    (property "Reference" "C26" (at 196.85 153.67 0)
+    (property "Reference" "C28" (at 196.85 153.67 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 198.12 157.48 0)
@@ -4088,7 +4118,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C26") (unit 1)
+          (reference "C28") (unit 1)
         )
       )
     )
@@ -4130,7 +4160,7 @@
   (symbol (lib_id "power:+15V") (at 232.41 62.23 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3d7f5d8a-c906-45be-9c53-e17a3630861e)
-    (property "Reference" "#PWR085" (at 232.41 66.04 0)
+    (property "Reference" "#PWR087" (at 232.41 66.04 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 232.41 58.42 0)
@@ -4146,7 +4176,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR085") (unit 1)
+          (reference "#PWR087") (unit 1)
         )
       )
     )
@@ -4155,7 +4185,7 @@
   (symbol (lib_id "power:+15V") (at 257.81 92.71 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3f2fc47a-81bc-41ec-aa11-a7c30667e8e1)
-    (property "Reference" "#PWR093" (at 257.81 96.52 0)
+    (property "Reference" "#PWR095" (at 257.81 96.52 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 257.81 88.9 0)
@@ -4171,7 +4201,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR093") (unit 1)
+          (reference "#PWR095") (unit 1)
         )
       )
     )
@@ -4381,7 +4411,7 @@
   (symbol (lib_id "power:+15V") (at 201.93 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 49b951eb-dacb-4442-953d-d8b1596b6df9)
-    (property "Reference" "#PWR076" (at 201.93 142.24 0)
+    (property "Reference" "#PWR078" (at 201.93 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 201.93 134.62 0)
@@ -4397,7 +4427,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR076") (unit 1)
+          (reference "#PWR078") (unit 1)
         )
       )
     )
@@ -4492,8 +4522,8 @@
     (property "Reference" "C7" (at 44.45 36.83 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "1uF" (at 44.45 39.37 0)
-      (effects (font (size 1.27 1.27)) (justify left))
+    (property "Value" "100nF" (at 44.45 39.37 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Footprint" "library:C_0402_1005Metric" (at 42.8752 41.91 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -4540,7 +4570,7 @@
   (symbol (lib_id "power:+15V") (at 213.36 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4d0bb8cd-ba9f-4d04-9f62-5e219d6a7b4f)
-    (property "Reference" "#PWR080" (at 213.36 142.24 0)
+    (property "Reference" "#PWR082" (at 213.36 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 213.36 134.62 0)
@@ -4556,7 +4586,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR080") (unit 1)
+          (reference "#PWR082") (unit 1)
         )
       )
     )
@@ -4568,7 +4598,7 @@
     (property "Reference" "R24" (at 275.59 95.885 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "10kR" (at 275.59 97.79 0)
+    (property "Value" "1kR" (at 275.59 97.79 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 274.828 96.52 90)
@@ -4694,7 +4724,7 @@
   (symbol (lib_id "power:GND") (at 257.81 49.53 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 54f7c8b0-6cc4-4186-82e8-47e2a4dcaff8)
-    (property "Reference" "#PWR092" (at 257.81 55.88 0)
+    (property "Reference" "#PWR094" (at 257.81 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 257.81 53.34 0)
@@ -4710,7 +4740,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR092") (unit 1)
+          (reference "#PWR094") (unit 1)
         )
       )
     )
@@ -4773,7 +4803,7 @@
     (property "Reference" "R21" (at 275.59 45.085 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "1kR" (at 275.59 46.99 0)
+    (property "Value" "160R" (at 275.59 46.99 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 274.828 45.72 90)
@@ -4855,7 +4885,7 @@
   (symbol (lib_id "power:GND") (at 208.28 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5da3fdc5-4f72-4d26-9e87-610e7d5ab021)
-    (property "Reference" "#PWR079" (at 208.28 180.34 0)
+    (property "Reference" "#PWR081" (at 208.28 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 208.28 178.435 0)
@@ -4871,7 +4901,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR079") (unit 1)
+          (reference "#PWR081") (unit 1)
         )
       )
     )
@@ -4935,7 +4965,7 @@
     (property "Reference" "R23" (at 275.59 75.565 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "1kR" (at 275.59 77.47 0)
+    (property "Value" "160R" (at 275.59 77.47 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 274.828 76.2 90)
@@ -5011,7 +5041,7 @@
     (property "Reference" "R22" (at 275.59 65.405 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "10kR" (at 275.59 67.31 0)
+    (property "Value" "1kR" (at 275.59 67.31 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 274.828 66.04 90)
@@ -5084,7 +5114,7 @@
   (symbol (lib_id "power:GND") (at 273.05 110.49 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6787dba6-465d-440e-a078-25b2e2167fcd)
-    (property "Reference" "#PWR0101" (at 273.05 116.84 0)
+    (property "Reference" "#PWR0103" (at 273.05 116.84 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 273.05 114.3 0)
@@ -5100,7 +5130,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR0101") (unit 1)
+          (reference "#PWR0103") (unit 1)
         )
       )
     )
@@ -5109,7 +5139,7 @@
   (symbol (lib_id "power:GND") (at 173.99 49.53 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 68f7deda-2a3c-432e-bdfb-858e4c71829b)
-    (property "Reference" "#PWR067" (at 173.99 55.88 0)
+    (property "Reference" "#PWR069" (at 173.99 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 173.99 53.34 0)
@@ -5125,7 +5155,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR067") (unit 1)
+          (reference "#PWR069") (unit 1)
         )
       )
     )
@@ -5167,7 +5197,7 @@
   (symbol (lib_id "power:+5V") (at 173.99 92.71 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6cec20bd-3719-469c-aa74-af40c66bd3bb)
-    (property "Reference" "#PWR070" (at 173.99 96.52 0)
+    (property "Reference" "#PWR072" (at 173.99 96.52 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 173.99 88.9 0)
@@ -5183,7 +5213,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR070") (unit 1)
+          (reference "#PWR072") (unit 1)
         )
       )
     )
@@ -5192,7 +5222,7 @@
   (symbol (lib_id "library:C") (at 247.65 151.13 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6d0a8729-3a54-430f-8b0f-be4deb3d1c1a)
-    (property "Reference" "C33" (at 249.555 145.415 90)
+    (property "Reference" "C35" (at 249.555 145.415 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "100nF" (at 251.46 147.32 90)
@@ -5209,7 +5239,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C33") (unit 1)
+          (reference "C35") (unit 1)
         )
       )
     )
@@ -5268,7 +5298,7 @@
   (symbol (lib_id "power:GND") (at 274.32 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 728f19e4-e650-4a3b-b406-1e1c4d2748ce)
-    (property "Reference" "#PWR0103" (at 274.32 180.34 0)
+    (property "Reference" "#PWR0105" (at 274.32 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 274.32 178.435 0)
@@ -5284,7 +5314,33 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR0103") (unit 1)
+          (reference "#PWR0105") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "library:C") (at 161.29 148.59 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 735d3fb3-5457-49f6-af8b-8bf726e86c71)
+    (property "Reference" "C25" (at 163.83 147.32 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "1uF" (at 163.83 149.86 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "library:C_0402_1005Metric" (at 162.2552 152.4 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 161.29 148.59 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 1649d999-ab71-42eb-be4a-c247a54dc3e5))
+    (pin "2" (uuid 6779e3d8-9f7d-4089-b8d1-199eda0c0328))
+    (instances
+      (project "miniFOC"
+        (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
+          (reference "C25") (unit 1)
         )
       )
     )
@@ -5293,7 +5349,7 @@
   (symbol (lib_id "power:GND") (at 246.38 76.2 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 73a8fe97-5ed6-43bd-b018-740860ef35dc)
-    (property "Reference" "#PWR089" (at 252.73 76.2 0)
+    (property "Reference" "#PWR091" (at 252.73 76.2 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 250.19 76.2 0)
@@ -5309,7 +5365,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR089") (unit 1)
+          (reference "#PWR091") (unit 1)
         )
       )
     )
@@ -5479,7 +5535,7 @@
   (symbol (lib_id "library:C") (at 203.2 97.79 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7eb94c39-4e9c-46be-a717-74af281ffe4b)
-    (property "Reference" "C30" (at 201.93 93.98 90)
+    (property "Reference" "C32" (at 201.93 93.98 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 207.01 93.98 90)
@@ -5496,7 +5552,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C30") (unit 1)
+          (reference "C32") (unit 1)
         )
       )
     )
@@ -5530,7 +5586,7 @@
   (symbol (lib_id "power:GND") (at 273.05 49.53 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7f049d34-2f88-4432-b508-3919d5f906c6)
-    (property "Reference" "#PWR099" (at 273.05 55.88 0)
+    (property "Reference" "#PWR0101" (at 273.05 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 273.05 53.34 0)
@@ -5546,7 +5602,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR099") (unit 1)
+          (reference "#PWR0101") (unit 1)
         )
       )
     )
@@ -5580,7 +5636,7 @@
   (symbol (lib_id "power:+5V") (at 173.99 31.75 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 81bb5b23-c7da-48de-8854-04e0a4691062)
-    (property "Reference" "#PWR066" (at 173.99 35.56 0)
+    (property "Reference" "#PWR068" (at 173.99 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 173.99 27.94 0)
@@ -5596,7 +5652,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR066") (unit 1)
+          (reference "#PWR068") (unit 1)
         )
       )
     )
@@ -5631,7 +5687,7 @@
   (symbol (lib_id "library:C") (at 208.28 156.21 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 82b4f01c-39bb-45b6-96b5-f986dac87167)
-    (property "Reference" "C31" (at 209.55 153.67 0)
+    (property "Reference" "C33" (at 209.55 153.67 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 210.82 157.48 0)
@@ -5648,7 +5704,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C31") (unit 1)
+          (reference "C33") (unit 1)
         )
       )
     )
@@ -5683,7 +5739,7 @@
   (symbol (lib_id "power:GND") (at 262.89 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 85ff8c97-37bd-426b-842a-2e495c9be141)
-    (property "Reference" "#PWR096" (at 262.89 180.34 0)
+    (property "Reference" "#PWR098" (at 262.89 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 262.89 178.435 0)
@@ -5699,7 +5755,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR096") (unit 1)
+          (reference "#PWR098") (unit 1)
         )
       )
     )
@@ -5733,7 +5789,7 @@
   (symbol (lib_id "library:C") (at 262.89 167.64 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8836bf46-cefc-4f20-9228-b7aa312d1021)
-    (property "Reference" "C34" (at 264.16 165.1 0)
+    (property "Reference" "C36" (at 264.16 165.1 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 266.065 168.91 0)
@@ -5750,7 +5806,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C34") (unit 1)
+          (reference "C36") (unit 1)
         )
       )
     )
@@ -5759,7 +5815,7 @@
   (symbol (lib_id "power:+5V") (at 173.99 62.23 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8bc68159-45ee-4436-a8cf-f544d3d7e716)
-    (property "Reference" "#PWR068" (at 173.99 66.04 0)
+    (property "Reference" "#PWR070" (at 173.99 66.04 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 173.99 58.42 0)
@@ -5775,7 +5831,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR068") (unit 1)
+          (reference "#PWR070") (unit 1)
         )
       )
     )
@@ -5784,7 +5840,7 @@
   (symbol (lib_id "power:+15V") (at 232.41 92.71 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8c77fb80-cbb2-4b84-ada0-84abd8ff7d49)
-    (property "Reference" "#PWR086" (at 232.41 96.52 0)
+    (property "Reference" "#PWR088" (at 232.41 96.52 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 232.41 88.9 0)
@@ -5800,7 +5856,33 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR086") (unit 1)
+          (reference "#PWR088") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "library:C") (at 161.29 182.88 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 8dd38922-cce6-4742-8257-73d8c99dc281)
+    (property "Reference" "C26" (at 163.83 181.61 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "1uF" (at 163.83 184.15 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "library:C_0402_1005Metric" (at 162.2552 186.69 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 161.29 182.88 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid fff6612c-b64c-48e2-9b84-ccd05779c1c4))
+    (pin "2" (uuid c57171fa-6f8d-4236-813f-32d6a4db77c9))
+    (instances
+      (project "miniFOC"
+        (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
+          (reference "C26") (unit 1)
         )
       )
     )
@@ -5835,7 +5917,7 @@
   (symbol (lib_id "library:C") (at 213.36 163.83 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8fa58785-af25-488f-a7f8-297cf17b37ae)
-    (property "Reference" "C32" (at 216.535 162.56 0)
+    (property "Reference" "C34" (at 216.535 162.56 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 215.9 165.1 0)
@@ -5852,7 +5934,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C32") (unit 1)
+          (reference "C34") (unit 1)
         )
       )
     )
@@ -6060,7 +6142,7 @@
   (symbol (lib_id "power:GND") (at 173.99 80.01 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a100f4b8-7563-41ed-b075-383ba340677a)
-    (property "Reference" "#PWR069" (at 173.99 86.36 0)
+    (property "Reference" "#PWR071" (at 173.99 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 173.99 83.82 0)
@@ -6076,7 +6158,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR069") (unit 1)
+          (reference "#PWR071") (unit 1)
         )
       )
     )
@@ -6160,7 +6242,7 @@
   (symbol (lib_id "power:GND") (at 220.98 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a4c0efff-4876-4f9d-ad7b-637d4f784391)
-    (property "Reference" "#PWR083" (at 220.98 180.34 0)
+    (property "Reference" "#PWR085" (at 220.98 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 220.98 178.435 0)
@@ -6176,7 +6258,32 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR083") (unit 1)
+          (reference "#PWR085") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 161.29 153.67 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid a7198529-137b-444c-9bde-8f2afb51cce4)
+    (property "Reference" "#PWR066" (at 161.29 160.02 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 161.29 157.48 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 161.29 153.67 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 161.29 153.67 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 52b521ef-1a10-4eb3-b4cb-abf209cc623d))
+    (instances
+      (project "miniFOC"
+        (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
+          (reference "#PWR066") (unit 1)
         )
       )
     )
@@ -6261,7 +6368,7 @@
   (symbol (lib_id "power:GND") (at 201.93 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ab4afcb9-871f-4bd5-bb35-bf279c713baa)
-    (property "Reference" "#PWR077" (at 201.93 180.34 0)
+    (property "Reference" "#PWR079" (at 201.93 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 201.93 178.435 0)
@@ -6277,7 +6384,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR077") (unit 1)
+          (reference "#PWR079") (unit 1)
         )
       )
     )
@@ -6360,7 +6467,7 @@
   )
 
   (symbol (lib_id "library:SMAJ17CA") (at 257.81 40.64 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom yes) (on_board yes) (dnp no)
     (uuid ad8a9544-5bc3-4575-b124-250e5d0a89fc)
     (property "Reference" "D1" (at 260.35 39.37 90)
       (effects (font (size 1.27 1.27)) (justify right))
@@ -6413,7 +6520,7 @@
   (symbol (lib_id "library:Conn_01x01") (at 248.92 41.91 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
     (uuid b79a7217-3e47-495b-8bfb-0863fe190bae)
-    (property "Reference" "J5" (at 251.46 41.91 0)
+    (property "Reference" "J5" (at 247.65 39.37 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_01x01" (at 251.46 43.1799 0)
@@ -6515,7 +6622,7 @@
   (symbol (lib_id "power:+5V") (at 267.97 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c006ca5f-c5f3-4012-9af4-bff03efca284)
-    (property "Reference" "#PWR097" (at 267.97 142.24 0)
+    (property "Reference" "#PWR099" (at 267.97 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 267.97 134.62 0)
@@ -6531,7 +6638,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR097") (unit 1)
+          (reference "#PWR099") (unit 1)
         )
       )
     )
@@ -6673,7 +6780,7 @@
   (symbol (lib_id "power:+15V") (at 232.41 31.75 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c80efa72-0090-4bcd-9f4c-4ffddd8ef708)
-    (property "Reference" "#PWR084" (at 232.41 35.56 0)
+    (property "Reference" "#PWR086" (at 232.41 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 232.41 27.94 0)
@@ -6689,7 +6796,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR084") (unit 1)
+          (reference "#PWR086") (unit 1)
         )
       )
     )
@@ -6750,7 +6857,7 @@
   (symbol (lib_id "power:GND") (at 213.36 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid cad056e5-0478-4640-ae54-8f45a66e1516)
-    (property "Reference" "#PWR081" (at 213.36 180.34 0)
+    (property "Reference" "#PWR083" (at 213.36 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 213.36 178.435 0)
@@ -6766,7 +6873,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR081") (unit 1)
+          (reference "#PWR083") (unit 1)
         )
       )
     )
@@ -6775,7 +6882,7 @@
   (symbol (lib_id "library:C") (at 274.32 154.94 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid cc13aa9b-0a71-47d7-a701-77ff3ce296df)
-    (property "Reference" "C36" (at 277.495 153.67 0)
+    (property "Reference" "C38" (at 277.495 153.67 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22uF" (at 277.495 155.575 0)
@@ -6792,7 +6899,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C36") (unit 1)
+          (reference "C38") (unit 1)
         )
       )
     )
@@ -6829,7 +6936,7 @@
     (property "Reference" "R1" (at 24.13 46.99 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "10kR" (at 25.4 49.53 0)
+    (property "Value" "1kR" (at 24.13 49.53 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 18.542 48.26 90)
@@ -6903,7 +7010,7 @@
   (symbol (lib_id "power:GND") (at 246.38 45.72 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d22d2bcd-12f7-4491-be19-340d51a6d3bf)
-    (property "Reference" "#PWR088" (at 252.73 45.72 0)
+    (property "Reference" "#PWR090" (at 252.73 45.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 250.19 45.72 0)
@@ -6919,7 +7026,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR088") (unit 1)
+          (reference "#PWR090") (unit 1)
         )
       )
     )
@@ -6954,7 +7061,7 @@
   (symbol (lib_id "power:GND") (at 173.99 110.49 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d4473c69-0a71-4e00-80f7-c2a2afb43ca5)
-    (property "Reference" "#PWR071" (at 173.99 116.84 0)
+    (property "Reference" "#PWR073" (at 173.99 116.84 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 173.99 114.3 0)
@@ -6970,7 +7077,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR071") (unit 1)
+          (reference "#PWR073") (unit 1)
         )
       )
     )
@@ -6979,7 +7086,7 @@
   (symbol (lib_id "power:GND") (at 189.23 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d549e135-be92-47b2-9904-65ed5d0611ea)
-    (property "Reference" "#PWR073" (at 189.23 180.34 0)
+    (property "Reference" "#PWR075" (at 189.23 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 189.23 178.435 0)
@@ -6995,7 +7102,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR073") (unit 1)
+          (reference "#PWR075") (unit 1)
         )
       )
     )
@@ -7026,10 +7133,35 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 161.29 187.96 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid d9374da9-9fa1-4ce9-bd2f-8c38fb7eed5b)
+    (property "Reference" "#PWR067" (at 161.29 194.31 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 161.29 191.77 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 161.29 187.96 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 161.29 187.96 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid c4fcd1f1-1823-4663-9ef8-ea5680ee8d92))
+    (instances
+      (project "miniFOC"
+        (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
+          (reference "#PWR067") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:GND") (at 267.97 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d9c71524-2a13-42e3-9faf-24eb826be864)
-    (property "Reference" "#PWR098" (at 267.97 180.34 0)
+    (property "Reference" "#PWR0100" (at 267.97 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 267.97 178.435 0)
@@ -7045,7 +7177,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR098") (unit 1)
+          (reference "#PWR0100") (unit 1)
         )
       )
     )
@@ -7054,7 +7186,7 @@
   (symbol (lib_id "power:GND") (at 195.58 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d9d74579-8d94-475a-ac98-66643625a6b1)
-    (property "Reference" "#PWR075" (at 195.58 180.34 0)
+    (property "Reference" "#PWR077" (at 195.58 180.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 195.58 178.435 0)
@@ -7070,7 +7202,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR075") (unit 1)
+          (reference "#PWR077") (unit 1)
         )
       )
     )
@@ -7154,7 +7286,7 @@
   (symbol (lib_id "power:GND") (at 246.38 106.68 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid de220c8f-2e65-4cf9-82c0-5f2a97a271fd)
-    (property "Reference" "#PWR090" (at 252.73 106.68 0)
+    (property "Reference" "#PWR092" (at 252.73 106.68 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 250.19 106.68 0)
@@ -7170,7 +7302,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR090") (unit 1)
+          (reference "#PWR092") (unit 1)
         )
       )
     )
@@ -7258,7 +7390,7 @@
     (property "Reference" "R25" (at 275.59 106.045 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "1kR" (at 275.59 107.95 0)
+    (property "Value" "160R" (at 275.59 107.95 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "library:R_0402_1005Metric" (at 274.828 106.68 90)
@@ -7307,7 +7439,7 @@
   (symbol (lib_id "library:C") (at 203.2 36.83 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e988ec1a-cda6-44c3-8b59-f3844b5dde45)
-    (property "Reference" "C28" (at 201.93 33.02 90)
+    (property "Reference" "C30" (at 201.93 33.02 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 207.01 33.02 90)
@@ -7324,7 +7456,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "C28") (unit 1)
+          (reference "C30") (unit 1)
         )
       )
     )
@@ -7333,7 +7465,7 @@
   (symbol (lib_id "power:+5V") (at 274.32 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ea3af3a7-5fd2-4621-8485-c4a1e832a1d9)
-    (property "Reference" "#PWR0102" (at 274.32 142.24 0)
+    (property "Reference" "#PWR0104" (at 274.32 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 274.32 134.62 0)
@@ -7349,7 +7481,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR0102") (unit 1)
+          (reference "#PWR0104") (unit 1)
         )
       )
     )
@@ -7679,7 +7811,7 @@
     (property "Reference" "C9" (at 53.34 36.83 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "1uF" (at 53.34 39.37 0)
+    (property "Value" "100nF" (at 53.34 39.37 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "library:C_0402_1005Metric" (at 51.7652 41.91 0)
@@ -7729,7 +7861,7 @@
   (symbol (lib_id "power:+15V") (at 189.23 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fca2f3c4-88bd-4575-8d44-f51b2f0e1ac2)
-    (property "Reference" "#PWR072" (at 189.23 142.24 0)
+    (property "Reference" "#PWR074" (at 189.23 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 189.23 134.62 0)
@@ -7745,7 +7877,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR072") (unit 1)
+          (reference "#PWR074") (unit 1)
         )
       )
     )
@@ -7754,7 +7886,7 @@
   (symbol (lib_id "power:+15V") (at 208.28 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fcd2be8f-9956-4c1c-94ed-47bc00a46809)
-    (property "Reference" "#PWR078" (at 208.28 142.24 0)
+    (property "Reference" "#PWR080" (at 208.28 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+15V" (at 208.28 134.62 0)
@@ -7770,7 +7902,7 @@
     (instances
       (project "miniFOC"
         (path "/59f7f05b-9fa8-4b8d-b293-144b433e6157"
-          (reference "#PWR078") (unit 1)
+          (reference "#PWR080") (unit 1)
         )
       )
     )
