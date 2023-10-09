@@ -7,10 +7,10 @@ int main(void) {
     timer_config();
     adc_config();
 
+    DEBUG_INFO("SystemClk: %lu\r\n", SystemCoreClock)
+
     //    TIM_Cmd(TIM1, ENABLE);
     //    TIM_CtrlPWMOutputs(TIM1, ENABLE);
-
-    DEBUG_INFO("SystemClk: %lu\r\n", SystemCoreClock);
 
     while (1) {
         if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {
