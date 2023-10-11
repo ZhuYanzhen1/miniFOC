@@ -6,8 +6,8 @@
 #define MINIFOC_USER_MAIN_H_
 
 ////////////// System //////////////
-#include "iqmath.h"
 #include "system.h"
+#include "version.h"
 
 ////////////// Hardware //////////////
 #include "adc.h"
@@ -15,6 +15,7 @@
 #include "pwm.h"
 #include "uart.h"
 
+////////////// Algorithm //////////////
 #include "fast_math.h"
 #include "transform.h"
 

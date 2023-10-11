@@ -14,20 +14,19 @@
     \param[out] v: calculation results of V-phase duty cycle
     \param[out] w: calculation results of W-phase duty cycle
 */
-void foc_calculate_dutycycle(float elect_angle, float d, float q, float* u, float* v, float* w) {
-    float alpha, beta;
-
-    /* fast calculation of cosine and sine value of electric angle */
-    float cf = fast_cos(elect_angle);
-    float sf = fast_sin(elect_angle);
-
-    float tmp2, tmp3, Ta, Tb, Tc;
+void foc_calculate_dutycycle(int32_t elect_angle, int32_t d, int32_t q, int32_t* u, int32_t* v, int32_t* w) {
+    int32_t alpha, beta;
+    int32_t tmp2, tmp3, Ta, Tb, Tc;
     unsigned int vec_sector = 3;
 
+    /* fast calculation of cosine and sine value of electric angle */
+    int32_t cf = IQcos(elect_angle);
+    int32_t sf = IQsin(elect_angle);
+
     /* firstly, the inverse Clarke transform is calculated */
-    alpha = d * cf - q * sf;
-    beta = q * cf + d * sf;
-    tmp2 = beta * 0.5f + alpha * 0.8660254f;
+    alpha = IQmul(d, cf) - IQmul(q, sf);
+    beta = IQmul(q, cf) + IQmul(d, sf);
+    tmp2 = (beta >> 1) + IQmul(alpha, IQ(0.8660254));
     tmp3 = tmp2 - beta;
 
     /* judge which sector the magnetic vector is in at this time */
@@ -57,7 +56,7 @@ void foc_calculate_dutycycle(float elect_angle, float d, float q, float* u, floa
     }
 
     /* calculate the duty cycle in center alignment mode */
-    *u = (Ta / 12.0f) * 0.5f + 0.5f;
-    *v = (Tb / 12.0f) * 0.5f + 0.5f;
-    *w = (Tc / 12.0f) * 0.5f + 0.5f;
+    *u = (IQdiv(Ta, IQ(12.0)) >> 1) + IQ(0.5);
+    *v = (IQdiv(Tb, IQ(12.0)) >> 1) + IQ(0.5);
+    *w = (IQdiv(Tc, IQ(12.0)) >> 1);  // + IQ(0.5);
 }

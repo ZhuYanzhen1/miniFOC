@@ -16,9 +16,12 @@ void pwm_start(void) {
 }
 
 void pwm_setval(float u, float v, float w) {
-    TIM1->CH1CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * u);
-    TIM1->CH2CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * v);
-    TIM1->CH3CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * w);
+    TIM1->CH1CVR = (unsigned int)(TIMER1_HALF_CYCLE / 2);
+    TIM1->CH2CVR = (unsigned int)(TIMER1_HALF_CYCLE / 2);
+    TIM1->CH3CVR = (unsigned int)(TIMER1_HALF_CYCLE / 2);
+    //    TIM1->CH1CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * u);
+    //    TIM1->CH2CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * v);
+    //    TIM1->CH3CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * w);
 }
 
 void pwm_config(void) {

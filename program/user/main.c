@@ -14,9 +14,9 @@ int main(void) {
     pwm_start();
     adc_start();
 
-    static float u, v, w;
-    foc_calculate_dutycycle(0, 0, 0.3f, &u, &v, &w);
-    pwm_setval(u, v, w);
+    static int32_t u, v, w;
+    foc_calculate_dutycycle(0, 0, IQ(0.3), &u, &v, &w);
+    pwm_setval(IQtoF(u), IQtoF(v), IQtoF(w));
 
     while (1) {
         if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {
