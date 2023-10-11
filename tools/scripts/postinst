@@ -1,0 +1,7 @@
+#!/bin/sh
+for user in /home/*
+do
+    cp /usr/share/applications/miniFOC_Monitor.desktop ${user}/Desktop/
+    chmod 755 ${user}/Desktop/miniFOC_Monitor.desktop
+    chown ${user#/home/} ${user}/Desktop/miniFOC_Monitor.desktop
+done

@@ -1,0 +1,9 @@
+#!/bin/sh
+for user in /home/*
+do
+    if test -f ${user}/Desktop/miniFOC_Monitor.desktop
+    then
+        rm ${user}/Desktop/miniFOC_Monitor.desktop
+    fi
+done
+

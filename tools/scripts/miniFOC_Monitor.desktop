@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=miniFOC-Monitor
+Comment=this is a application to tunning miniFOC project. Find details in https://github.com/ZhuYanzhen1/miniFOC
+Exec=/usr/bin/miniFOC_Monitor
+Icon=/usr/share/icons/hicolor/256x256/apps/miniFOC_Monitor
+Terminal=false
+Categories=Office;
