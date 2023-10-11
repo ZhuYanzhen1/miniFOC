@@ -1,16 +1,22 @@
 #include "main.h"
 
+adc_sample_t adc_sample = {0};
+
 int main(void) {
     system_config();
     dma_config();
     usart1_config();
-    timer_config();
+    pwm_config();
     adc_config();
 
-    DEBUG_INFO("SystemClk: %lu\r\n", SystemCoreClock)
+    adc_read_offset(&adc_sample);
 
-    //    TIM_Cmd(TIM1, ENABLE);
-    //    TIM_CtrlPWMOutputs(TIM1, ENABLE);
+    pwm_start();
+    adc_start();
+
+    static float u, v, w;
+    foc_calculate_dutycycle(0, 0, 0.3f, &u, &v, &w);
+    pwm_setval(u, v, w);
 
     while (1) {
         if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {

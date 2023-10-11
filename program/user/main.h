@@ -6,12 +6,16 @@
 #define MINIFOC_USER_MAIN_H_
 
 ////////////// System //////////////
+#include "iqmath.h"
 #include "system.h"
 
 ////////////// Hardware //////////////
-#include "uart.h"
-#include "timer.h"
-#include "dma.h"
 #include "adc.h"
+#include "dma.h"
+#include "pwm.h"
+#include "uart.h"
+
+#include "fast_math.h"
+#include "transform.h"
 
 #endif  // MINIFOC_USER_MAIN_H_

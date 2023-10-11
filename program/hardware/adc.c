@@ -5,10 +5,20 @@
 #include "adc.h"
 #include "system.h"
 
+void adc_stop(void) {
+    ADC1->CTLR2 &= 0xFFFFEFFF;
+    ADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);
+}
+
+void adc_start(void) {
+    ADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_CC4);
+}
+
 void adc_config(void) {
     ADC_InitTypeDef ADC_InitStructure = {0};
     GPIO_InitTypeDef GPIO_InitStructure = {0};
     TIM_OCInitTypeDef Timer_OCInitStructure = {0};
+    NVIC_InitTypeDef NVIC_InitStructure;
 
     RCC_ADCCLKConfig(RCC_PCLK2_Div6);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
@@ -38,7 +48,7 @@ void adc_config(void) {
     ADC_InitStructure.ADC_ScanConvMode = ENABLE;
     ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
     ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
-    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Left;
+    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
     ADC_InitStructure.ADC_NbrOfChannel = 1;
     ADC_Init(ADC1, &ADC_InitStructure);
 
@@ -50,6 +60,12 @@ void adc_config(void) {
     ADC_StartCalibration(ADC1);
     while (ADC_GetCalibrationStatus(ADC1)) {}
 
+    NVIC_InitStructure.NVIC_IRQChannel = ADC_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
     TIM1->CH4CVR = 1;
 
     /* 2 inject channel, ADC_Channel_6 is No.4, ADC_Channel_7 is No.3 */
@@ -60,38 +76,39 @@ void adc_read_offset(adc_sample_t* adc_sample) {
     adc_sample->ch1_offset = 0;
     adc_sample->ch3_offset = 0;
 
-    //禁止自动的注入通道组转换，禁止注入中断
     ADC_ITConfig(ADC1, ADC_IT_JEOC, DISABLE);
-
-    //注入转换外部触发源为软件触发
     ADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_None);
-
-    //使能外部事件启动注入转换
     ADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);
 
-    //注入序列转换长度为2
     ADC_InjectedSequencerLengthConfig(ADC1, 2);
 
     ADC_InjectedChannelConfig(ADC1, ADC_Channel_6, 1, ADC_SampleTime_7Cycles5);
     ADC_InjectedChannelConfig(ADC1, ADC_Channel_7, 2, ADC_SampleTime_7Cycles5);
 
-    ADC_ClearFlag(ADC1, ADC_FLAG_JEOC);  //清除注入转换结束标志位
+    ADC_ClearFlag(ADC1, ADC_FLAG_JEOC);
+    ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
 
-    ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);  //软件触发注入转换
-
-    //累加16次，即采样结果左移4位，实现注入转换的左对齐(和规则采样一致)
     for (unsigned char counter = 0; counter < 16; counter++) {
         while (!ADC_GetFlagStatus(ADC1, ADC_FLAG_JEOC)) {}
 
-        //采样结果右移3位累加
-        adc_sample->ch1_offset += (ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1) >> 3);
-        adc_sample->ch3_offset += (ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_2) >> 3);
+        adc_sample->ch1_offset += ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1) & 0x0FFF;
+        adc_sample->ch3_offset += ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_2) & 0x0FFF;
 
-        ADC_ClearFlag(ADC1, ADC_FLAG_JEOC);              //清除注入转换结束标志位
-        ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);  //再次软件触发
+        ADC_ClearFlag(ADC1, ADC_FLAG_JEOC);
+        ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
     }
+
+    adc_sample->ch1_offset = adc_sample->ch1_offset >> 4;
+    adc_sample->ch3_offset = adc_sample->ch3_offset >> 4;
 
     ADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_TRGO);
     ADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);
     ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE);
+}
+
+void read_adc_current(adc_sample_t* adc_sample) {
+    short adc_channel_6 = ADC1->IDATAR1 & 0x0FFF, adc_channel_7 = ADC1->IDATAR2 & 0x0FFF;
+    adc_sample->phase1_current = (adc_channel_6 - (short)adc_sample->ch1_offset);
+    adc_sample->phase3_current = (adc_channel_7 - (short)adc_sample->ch3_offset);
+    adc_sample->phase2_current = -(adc_sample->phase1_current + adc_sample->phase3_current);
 }

@@ -2,12 +2,26 @@
 // Created by LaoZhu on 2023/6/27.
 //
 
-#include "timer.h"
+#include "pwm.h"
 #include "system.h"
 
-#define TIMER1_HALF_CYCLE   ((72000000 / (TIM1_PRESCALER + 1)) / PWM_FREQUENCY)
+#define TIMER1_HALF_CYCLE ((72000000 / (TIM1_PRESCALER + 1)) / PWM_FREQUENCY)
 
-void timer_config(void) {
+void pwm_stop(void) {
+    TIM_CtrlPWMOutputs(TIM1, DISABLE);
+}
+
+void pwm_start(void) {
+    TIM_CtrlPWMOutputs(TIM1, ENABLE);
+}
+
+void pwm_setval(float u, float v, float w) {
+    TIM1->CH1CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * u);
+    TIM1->CH2CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * v);
+    TIM1->CH3CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * w);
+}
+
+void pwm_config(void) {
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure = {0};
     TIM_OCInitTypeDef TIM_OCInitStructure = {0};
     GPIO_InitTypeDef GPIO_InitStructure = {0};
@@ -21,7 +35,6 @@ void timer_config(void) {
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-    //定时器1配置
     TIM_DeInit(TIM1);
     TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
     TIM_TimeBaseStructure.TIM_Prescaler = TIM1_PRESCALER;
@@ -69,4 +82,6 @@ void timer_config(void) {
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
+
+    TIM_Cmd(TIM1, ENABLE);
 }

@@ -47,8 +47,8 @@ add_link_options(--specs=nano.specs --specs=nosys.specs -march=rv32imac -mabi=il
 add_link_options(-T ${LINKER_SCRIPT})
 
 # source and header files
-include_directories(system user library/include hardware)
-file(GLOB_RECURSE SOURCES "system/startup.s" "system/*.c" "library/source/*.c" "user/*.c" "hardware/*.c")
+include_directories(system user library/include hardware algorithm)
+file(GLOB_RECURSE SOURCES "system/startup.s" "system/*.c" "library/source/*.c" "user/*.c" "hardware/*.c" "algorithm/*.c")
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 add_dependencies(${PROJECT_NAME}.elf update_version_file)
