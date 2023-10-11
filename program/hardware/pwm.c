@@ -3,6 +3,7 @@
 //
 
 #include "pwm.h"
+#include "fast_math.h"
 #include "system.h"
 
 #define TIMER1_HALF_CYCLE ((72000000 / (TIM1_PRESCALER + 1)) / PWM_FREQUENCY)
@@ -15,13 +16,10 @@ void pwm_start(void) {
     TIM_CtrlPWMOutputs(TIM1, ENABLE);
 }
 
-void pwm_setval(float u, float v, float w) {
-    TIM1->CH1CVR = (unsigned int)(TIMER1_HALF_CYCLE / 2);
-    TIM1->CH2CVR = (unsigned int)(TIMER1_HALF_CYCLE / 2);
-    TIM1->CH3CVR = (unsigned int)(TIMER1_HALF_CYCLE / 2);
-    //    TIM1->CH1CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * u);
-    //    TIM1->CH2CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * v);
-    //    TIM1->CH3CVR = (unsigned int)((float)TIMER1_HALF_CYCLE * w);
+void pwm_setval(int32_t u, int32_t v, int32_t w) {
+    TIM1->CH1CVR = (int32_t)((TIMER1_HALF_CYCLE * (int64_t)u) >> GLOBAL_Q);
+    TIM1->CH2CVR = (int32_t)((TIMER1_HALF_CYCLE * (int64_t)v) >> GLOBAL_Q);
+    TIM1->CH3CVR = (int32_t)((TIMER1_HALF_CYCLE * (int64_t)w) >> GLOBAL_Q);
 }
 
 void pwm_config(void) {

@@ -386,7 +386,7 @@ extern "C" {
 #define IQdiv(A, B) IQ1div(A, B)
 #endif
 #else
-#define IQdiv(A, B) ((int32_t)((int64_t)A << GLOBAL_Q / (int64_t)B))
+#define IQdiv(A, B) ((int32_t)(((int64_t)A << GLOBAL_Q) / B))
 #endif
 
 /*******************************************************************************

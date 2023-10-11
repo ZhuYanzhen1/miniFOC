@@ -14,21 +14,24 @@ int main(void) {
     pwm_start();
     adc_start();
 
-    static int32_t u, v, w;
-    foc_calculate_dutycycle(0, 0, IQ(0.3), &u, &v, &w);
-    pwm_setval(IQtoF(u), IQtoF(v), IQtoF(w));
-
     while (1) {
-        if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {
-            uart_receive_callback((unsigned char*)receive_buffer1, receive_buffer_counter[0]);
-            receive_buffer_counter[0] = 0;
-            receive_buffer_available[0] = 1;
-        }
-
-        if (__builtin_expect((receive_buffer_counter[1] != 0), 0)) {
-            uart_receive_callback((unsigned char*)receive_buffer2, receive_buffer_counter[1]);
-            receive_buffer_counter[1] = 0;
-            receive_buffer_available[1] = 1;
-        }
+        static int32_t u, v, w;
+        foc_calculate_dutycycle(0, 0, IQ(0.1), &u, &v, &w);
+        pwm_setval(u, v, w);
+        delayms(1000);
+        foc_calculate_dutycycle(IQ(2.0), 0, IQ(0.1), &u, &v, &w);
+        pwm_setval(u, v, w);
+        delayms(1000);
+        //        if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {
+        //            uart_receive_callback((unsigned char*)receive_buffer1, receive_buffer_counter[0]);
+        //            receive_buffer_counter[0] = 0;
+        //            receive_buffer_available[0] = 1;
+        //        }
+        //
+        //        if (__builtin_expect((receive_buffer_counter[1] != 0), 0)) {
+        //            uart_receive_callback((unsigned char*)receive_buffer2, receive_buffer_counter[1]);
+        //            receive_buffer_counter[1] = 0;
+        //            receive_buffer_available[1] = 1;
+        //        }
     }
 }

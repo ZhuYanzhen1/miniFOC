@@ -58,5 +58,5 @@ void foc_calculate_dutycycle(int32_t elect_angle, int32_t d, int32_t q, int32_t*
     /* calculate the duty cycle in center alignment mode */
     *u = (IQdiv(Ta, IQ(12.0)) >> 1) + IQ(0.5);
     *v = (IQdiv(Tb, IQ(12.0)) >> 1) + IQ(0.5);
-    *w = (IQdiv(Tc, IQ(12.0)) >> 1);  // + IQ(0.5);
+    *w = (IQdiv(Tc, IQ(12.0)) >> 1) + IQ(0.5);
 }
