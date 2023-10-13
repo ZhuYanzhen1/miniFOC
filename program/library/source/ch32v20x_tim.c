@@ -497,7 +497,7 @@ void TIM_Cmd(TIM_TypeDef *TIMx, FunctionalState NewState)
  *
  * @brief   Enables or disables the TIM peripheral Main Outputs.
  *
- * @param   TIMx - where x can be 1 to 4 to select the TIM peripheral.
+ * @param   TIMx - where x can be 1/8/9/10 to select the TIM peripheral.
  *          NewState - ENABLE or DISABLE.
  *
  * @return  none

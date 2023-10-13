@@ -1,26 +1,32 @@
 #include "ch32v20x_it.h"
 #include "main.h"
 
-void NMI_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void TIM1_UP_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void DMA1_Channel4_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void ADC1_2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+void TIM3_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+void SPI2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
-void NMI_Handler(void) {
-    while (1) {}
-}
-
-void HardFault_Handler(void) {
-    while (1) {}
+void TIM3_IRQHandler(void) {
+    TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
 }
 
 void TIM1_UP_IRQHandler(void) {
     TIM_ClearFlag(TIM1, TIM_FLAG_Update);
 }
 
+void SPI2_IRQHandler(void) {
+    if (__builtin_expect((SPI_I2S_GetITStatus(SPI2, SPI_I2S_IT_RXNE) != RESET), 1)) {
+        GPIO_SetBits(GPIOB, GPIO_Pin_12);
+        SPI_I2S_ClearFlag(SPI2, SPI_I2S_FLAG_RXNE);
+        SPI_I2S_ReceiveData(SPI2);
+        SPI_I2S_ClearITPendingBit(SPI2, SPI_I2S_IT_RXNE);
+    }
+}
+
 void USART1_IRQHandler(void) {
+    // TODO: Receive buffer always delay 1 cycle
     if (__builtin_expect((USART_GetITStatus(USART1, USART_IT_IDLE) != RESET), 1)) {
         USART_ClearFlag(USART1, USART_IT_IDLE);
         unsigned char receive_size = (UART_RECEIVE_BUFFER_SIZE / 2) - DMA1_Channel5->CNTR;

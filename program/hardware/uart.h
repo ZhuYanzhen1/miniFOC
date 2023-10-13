@@ -45,6 +45,13 @@
 
 #endif
 
+#define KERNEL_DEBUG_INFO(format, ...)                                                           \
+    {                                                                                            \
+        unsigned char tmp_transmit_buffer[256] = {0};                                            \
+        unsigned short unLen = snprintf((char*)tmp_transmit_buffer, 256, format, ##__VA_ARGS__); \
+        uart_transmit_kernel(tmp_transmit_buffer, unLen);                                        \
+    }
+
 #define UART_RECEIVE_BUFFER_SIZE 256
 #define UART_TRANSMIT_BUFFER_SIZE 32
 #define UART_TRANSMIT_BUFFER_NUM 8
@@ -61,7 +68,9 @@ extern volatile unsigned char receive_buffer_counter[2], receive_buffer_availabl
 extern uart_transmit_buffer_t* first_transmit_buffer;
 
 void usart1_config(void);
+void usart1_config_kernel(void);
 void uart_receive_callback(unsigned char* buffer, unsigned char length);
 unsigned char uart_transmit(const unsigned char* buffer, unsigned char length);
+void uart_transmit_kernel(const unsigned char* buffer, unsigned char length);
 
 #endif  // MINIFOC_HARDWARE_UART_H_

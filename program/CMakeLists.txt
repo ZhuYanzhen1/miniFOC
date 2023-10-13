@@ -48,7 +48,7 @@ if (${DEBUG_SERIAL})
     add_definitions(-DDEBUG)
 endif ()
 add_definitions(-DDEBUG_SERIAL_BAUDRATE=${DEBUG_SERIAL_BAUDRATE})
-add_compile_options(-march=rv32imac -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmessage-length=0)
+add_compile_options(-march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmessage-length=0)
 add_compile_options(-fsigned-char -ffunction-sections -fdata-sections -Wunused -Wuninitialized)
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
 add_compile_options(-O1 -g)
@@ -56,7 +56,7 @@ add_compile_options(-O1 -g)
 # link options
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/system/linkscript.ld)
 add_link_options(-nostartfiles -Xlinker --gc-sections -Wl,--print-memory-usage,-Map,${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
-add_link_options(--specs=nano.specs --specs=nosys.specs -march=rv32imac -mabi=ilp32 -flto)
+add_link_options(--specs=nano.specs --specs=nosys.specs -march=rv32imacxw -mabi=ilp32 -flto)
 add_link_options(-T ${LINKER_SCRIPT})
 
 # source and header files

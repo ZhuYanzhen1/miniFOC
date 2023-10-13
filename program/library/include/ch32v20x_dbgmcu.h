@@ -44,7 +44,7 @@ uint32_t DBGMCU_GetDEVID(void);
 uint32_t __get_DEBUG_CR(void);
 void __set_DEBUG_CR(uint32_t value);
 void DBGMCU_Config(uint32_t DBGMCU_Periph, FunctionalState NewState);
-
+uint32_t DBGMCU_GetCHIPID( void );
 #ifdef __cplusplus
 }
 #endif

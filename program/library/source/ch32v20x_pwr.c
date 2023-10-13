@@ -4,11 +4,11 @@
  * Version            : V1.0.0
  * Date               : 2021/06/06
  * Description        : This file provides all the PWR firmware functions.
-*********************************************************************************
-* Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
-* Attention: This software (modified or not) and binary are used for 
-* microcontroller manufactured by Nanjing Qinheng Microelectronics.
-*******************************************************************************/
+ *********************************************************************************
+ * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
+ *******************************************************************************/
 #include "ch32v20x_pwr.h"
 #include "ch32v20x_rcc.h"
 
@@ -185,7 +185,7 @@ void PWR_EnterSTANDBYMode(void)
  *            PWR_FLAG_SB - StandBy flag
  *            PWR_FLAG_PVDO - PVD Output
  *
- * @return  none
+ * @return  The new state of PWR_FLAG (SET or RESET).
  */
 FlagStatus PWR_GetFlagStatus(uint32_t PWR_FLAG)
 {
@@ -373,14 +373,10 @@ void PWR_EnterSTOPMode_RAM_LV(uint32_t PWR_Regulator, uint8_t PWR_STOPEntry)
     tmpreg |= PWR_Regulator;
 
 #if defined (CH32V20x_D8) || defined (CH32V20x_D8W)
-    //2K+30K in standby power.
-    tmpreg |= (0x1 << 16) | (0x1 << 17);
-    //2K+30K in standby LV .
+
     tmpreg |= (0x1 << 20);
 #else
-    //RAM in standby power.
-    tmpreg |= ( ( uint32_t )1 << 16 );
-    //RAM in standby LV .
+
     tmpreg |= ( ( uint32_t )1 << 20 );
 
 #endif

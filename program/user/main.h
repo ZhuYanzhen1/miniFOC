@@ -13,6 +13,8 @@
 #include "adc.h"
 #include "dma.h"
 #include "pwm.h"
+#include "spi.h"
+#include "timer.h"
 #include "uart.h"
 
 ////////////// Algorithm //////////////

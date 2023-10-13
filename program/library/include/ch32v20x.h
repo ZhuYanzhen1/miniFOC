@@ -4,11 +4,11 @@
  * Version            : V1.0.0
  * Date               : 2021/06/06
  * Description        : CH32V20x Device Peripheral Access Layer Header File.
-*********************************************************************************
-* Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
-* Attention: This software (modified or not) and binary are used for 
-* microcontroller manufactured by Nanjing Qinheng Microelectronics.
-*******************************************************************************/
+ *********************************************************************************
+ * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
+ *******************************************************************************/
 #ifndef __CH32V20x_H
 #define __CH32V20x_H
 
@@ -17,7 +17,7 @@ extern "C" {
 #endif
 
 #if !defined(CH32V20x_D8W) && !defined(CH32V20x_D8) && !defined(CH32V20x_D6)
-#define CH32V20x_D6              /* CH32V203F6-CH32V203F8-CH32V203G6-CH32V203G8-CH32V203K6-CH32V203K8-CH32V203C6-CH32V203C8 */
+#define CH32V20x_D6              /* CH32V203F6-CH32V203F8-CH32V203G6-CH32V203G8-CH32V203K6-CH32V203K8-CH32V203C6-CH32V203C8-CH32V203G8*/
 //#define CH32V20x_D8              /* CH32V203RBT6 */
 //#define CH32V20x_D8W             /* CH32V208 */
 
@@ -36,6 +36,13 @@ extern "C" {
 #define HSE_STARTUP_TIMEOUT    ((uint16_t)0x1000) /* Time out for HSE start up */
 
 #define HSI_VALUE              ((uint32_t)8000000) /* Value of the Internal oscillator in Hz */
+
+/* CH32V20x Standard Peripheral Library version number */
+#define __CH32V20x_STDPERIPH_VERSION_MAIN   (0x01) /* [15:8] main version */
+#define __CH32V20x_STDPERIPH_VERSION_SUB    (0x08) /* [7:0] sub version */
+#define __CH32V20x_STDPERIPH_VERSION        ( (__CH32V20x_STDPERIPH_VERSION_MAIN << 8)\
+                                             |(__CH32V20x_STDPERIPH_VERSION_SUB << 0))
+
 
 /* Interrupt Number Definition, according to the selected device */
 typedef enum IRQn
@@ -523,22 +530,64 @@ typedef struct
     uint16_t      RESERVED7;
     __IO uint16_t CCER;
     uint16_t      RESERVED8;
-    __IO uint16_t CNT;
-    uint16_t      RESERVED9;
+    union
+    {
+        __IO uint32_t CNT_R32;
+        struct
+        {
+            __IO uint16_t CNT;
+            uint16_t      RESERVED9;
+        };
+    };
     __IO uint16_t PSC;
     uint16_t      RESERVED10;
-    __IO uint16_t ATRLR;
-    uint16_t      RESERVED11;
+    union
+    {
+        __IO uint32_t ATRLR_R32;
+        struct
+        {
+            __IO uint16_t ATRLR;
+            uint16_t      RESERVED11;
+        };
+    };
     __IO uint16_t RPTCR;
     uint16_t      RESERVED12;
-    __IO uint16_t CH1CVR;
-    uint16_t      RESERVED13;
-    __IO uint16_t CH2CVR;
-    uint16_t      RESERVED14;
-    __IO uint16_t CH3CVR;
-    uint16_t      RESERVED15;
-    __IO uint16_t CH4CVR;
-    uint16_t      RESERVED16;
+    union
+    {
+        __IO uint32_t CH1CVR_R32;
+        struct
+        {
+            __IO uint16_t CH1CVR;
+            uint16_t      RESERVED13;
+        };
+    };
+    union
+    {
+        __IO uint32_t CH2CVR_R32;
+        struct
+        {
+            __IO uint16_t CH2CVR;
+            uint16_t      RESERVED14;
+        };
+    };
+    union
+    {
+        __IO uint32_t CH3CVR_R32;
+        struct
+        {
+            __IO uint16_t CH3CVR;
+            uint16_t      RESERVED15;
+        };
+    };
+    union
+    {
+        __IO uint32_t CH4CVR_R32;
+        struct
+        {
+            __IO uint16_t CH4CVR;
+            uint16_t      RESERVED16;
+        };
+    };
     __IO uint16_t BDTR;
     uint16_t      RESERVED17;
     __IO uint16_t DMACFGR;

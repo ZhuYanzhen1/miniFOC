@@ -181,6 +181,7 @@ void     GPIO_EventOutputCmd(FunctionalState NewState);
 void     GPIO_PinRemapConfig(uint32_t GPIO_Remap, FunctionalState NewState);
 void     GPIO_EXTILineConfig(uint8_t GPIO_PortSource, uint8_t GPIO_PinSource);
 void     GPIO_ETH_MediaInterfaceConfig(uint32_t GPIO_ETH_MediaInterface);
+void     GPIO_IPD_Unused(void);
 
 #ifdef __cplusplus
 }
