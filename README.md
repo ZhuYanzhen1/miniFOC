@@ -19,6 +19,7 @@
 5. FOC has significantly lower noise but much higher efficiency compared that of electric regulation
 
 &nbsp;&nbsp;&nbsp;Although FOC has many advantages, its large amount of calculation and complex principles requires an expensive controller, which made FOC unpopular. After half a year’s research and iteration, I deeply optimized the part of the code that implements mass calculations and re-selected its components to fit the domestic supply chain. I hope this open-source project can help domestic developers use BLDC motors with excellent performance and contribute to the open-source community.
+
 &nbsp;&nbsp;&nbsp;&nbsp;Since the miniFOC 1.X.X version was launched earlier (September 2021), after two years, many component supply chains have changed, making the miniFOC v1.X.X hardware no longer adaptable to new needs. Therefore, I re-selected based on the domestic supply chain, and added current loop and non-inductive FOC functions based on the previous one.
 
 ***
@@ -75,12 +76,9 @@
 
 ### Getting Started
 
-You can visit the [Wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for a getting started guide.
-<br>
-You can visit [Github Page](https://zhuyanzhen1.github.io/miniFOC/) to learn about the functions and variable usage in the code.
-<br>
-You can visit the [Release](https://github.com/ZhuYanzhen1/miniFOC/releases) page to get the latest firmware, monitor tools, and compilation tool chains.
-<br>
++ You can visit the [Wiki page](https://github.com/ZhuYanzhen1/miniFOC/wiki) of this project for a getting started guide.
++ You can visit [Github Page](https://zhuyanzhen1.github.io/miniFOC/) to learn about the functions and variable usage in the code.
++ You can visit the [Release](https://github.com/ZhuYanzhen1/miniFOC/releases) page to get the latest firmware, monitor tools, and compilation tool chains.
 
 ***
 

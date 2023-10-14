@@ -18,6 +18,7 @@
 5. FOC驱动器的噪音会比电调小很多，效率也比电调高很多。
 
 &nbsp;&nbsp;&nbsp;&nbsp;但是由于FOC的计算量大、原理复杂，所以需要很高成本的控制器，这也使得FOC在很多场景下都没有得到推广和使用。在经过了半年的研究和迭代之后，本人将FOC涉及大量计算的代码进行了深度优化，也重新根据国内的供应链进行了选型，希望本开源项目能够帮助国内的广大开发者们用上有优秀性能的BLDC电机，为开源社区贡献一份力量。
+
 &nbsp;&nbsp;&nbsp;&nbsp;由于miniFOC 1.X.X版本推出的时间较早（2021年9月），在经过了两年的时间后，许多元件供应链发生了变化，使得miniFOC 1.X.X的硬件不再适应新需求。因此本人重新根据国内的供应链进行了选型，并且在之前的基础上增加电流环和无感FOC功能。
 
 ***
@@ -74,12 +75,9 @@
 
 ### 入门指南
 
-你可以访问本项目的[Wiki页面](https://github.com/ZhuYanzhen1/miniFOC/wiki)以获取入门指南。
-<br>
-你可以访问[Github Page](https://zhuyanzhen1.github.io/miniFOC/)页面以了解代码中的函数及变量的用法等信息。
-<br>
-你可以访问[Release](https://github.com/ZhuYanzhen1/miniFOC/releases)页面以获取最新的固件、上位机监视器工具以及编译工具链。
-<br>
++ 你可以访问本项目的[Wiki页面](https://github.com/ZhuYanzhen1/miniFOC/wiki)以获取入门指南。
++ 你可以访问[Github Page](https://zhuyanzhen1.github.io/miniFOC/)页面以了解代码中的函数及变量的用法等信息。
++ 你可以访问[Release](https://github.com/ZhuYanzhen1/miniFOC/releases)页面以获取最新的固件、上位机监视器工具以及编译工具链。
 
 ***
 
