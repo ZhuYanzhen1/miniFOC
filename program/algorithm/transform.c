@@ -17,7 +17,7 @@
 void foc_calculate_dutycycle(int32_t elect_angle, int32_t d, int32_t q, int32_t* u, int32_t* v, int32_t* w) {
     int32_t alpha, beta;
     int32_t tmp2, tmp3, Ta, Tb, Tc;
-    unsigned int vec_sector = 3;
+    int32_t vec_sector = 3;
 
     /* fast calculation of cosine and sine value of electric angle */
     int32_t cf = IQcos(elect_angle);

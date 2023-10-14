@@ -5,18 +5,18 @@
 #include "dma.h"
 #include "system.h"
 
-void uart_dma_transmit(const unsigned int* buffer, unsigned int size) {
-    DMA1_Channel4->CFGR &= (unsigned int)(~DMA_CFGR1_EN);
+void uart_dma_transmit(const uint32_t* buffer, uint32_t size) {
+    DMA1_Channel4->CFGR &= (uint32_t)(~DMA_CFGR1_EN);
     DMA1_Channel4->CNTR = size;
-    DMA1_Channel4->MADDR = (unsigned int)buffer;
+    DMA1_Channel4->MADDR = (uint32_t)buffer;
     DMA1_Channel4->CFGR |= DMA_CFGR1_EN;
     USART1->CTLR3 |= USART_DMAReq_Tx;
 }
 
-void uart_dma_receive(const unsigned int* buffer, unsigned int size) {
-    DMA1_Channel5->CFGR &= (unsigned int)(~DMA_CFGR1_EN);
+void uart_dma_receive(const uint32_t* buffer, uint32_t size) {
+    DMA1_Channel5->CFGR &= (uint32_t)(~DMA_CFGR1_EN);
     DMA1_Channel5->CNTR = size;
-    DMA1_Channel5->MADDR = (unsigned int)buffer;
+    DMA1_Channel5->MADDR = (uint32_t)buffer;
     DMA1_Channel5->CFGR |= DMA_CFGR1_EN;
     USART1->CTLR3 |= USART_DMAReq_Rx;
 }
@@ -28,7 +28,7 @@ void dma_config(void) {
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 
     DMA_DeInit(DMA1_Channel4);
-    DMA_InitStructure.DMA_PeripheralBaseAddr = (unsigned int)(&USART1->DATAR);
+    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)(&USART1->DATAR);
     DMA_InitStructure.DMA_MemoryBaseAddr = 0x00000000UL;
     DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
     DMA_InitStructure.DMA_BufferSize = 0x00000000UL;
@@ -42,7 +42,7 @@ void dma_config(void) {
     DMA_Init(DMA1_Channel4, &DMA_InitStructure);
 
     DMA_DeInit(DMA1_Channel5);
-    DMA_InitStructure.DMA_PeripheralBaseAddr = (unsigned int)(&USART1->DATAR);
+    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)(&USART1->DATAR);
     DMA_InitStructure.DMA_MemoryBaseAddr = 0x00000000UL;
     DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
     DMA_InitStructure.DMA_BufferSize = 0x00000000UL;

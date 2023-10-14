@@ -12,7 +12,7 @@ void timer3_config(void) {
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
 
     TIM_TimeBaseInitStructure.TIM_Prescaler = (144 - 1);
-    TIM_TimeBaseInitStructure.TIM_Period = (1000 - 1);
+    TIM_TimeBaseInitStructure.TIM_Period = (1000 - 1);  // 1kHz
     TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
     TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
     TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);

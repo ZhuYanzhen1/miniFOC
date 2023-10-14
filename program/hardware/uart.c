@@ -6,27 +6,75 @@
 #include "dma.h"
 #include "system.h"
 
-volatile unsigned char receive_buffer1[UART_RECEIVE_BUFFER_SIZE / 2] = {0};
-volatile unsigned char receive_buffer2[UART_RECEIVE_BUFFER_SIZE / 2] = {0};
-volatile unsigned char receive_buffer_counter[2] = {0, 0}, receive_buffer_available[2] = {0, 1};
+typedef struct UART_TRANSMIT_BUFFER_T {
+    struct UART_TRANSMIT_BUFFER_T* next_transmit_buffer;
+    uint8_t current_buffer[UART_TRANSMIT_BUFFER_SIZE];
+    uint8_t length;
+} uart_transmit_buffer_t;
 
-uart_transmit_buffer_t *first_transmit_buffer = NULL, *tail_transmit_buffer = NULL;
-uart_transmit_buffer_t uart_transmit_buffer[UART_TRANSMIT_BUFFER_NUM] = {0};
+static volatile uint8_t receive_buffer1[UART_RECEIVE_BUFFER_SIZE / 2] = {0};
+static volatile uint8_t receive_buffer2[UART_RECEIVE_BUFFER_SIZE / 2] = {0};
+static uint8_t receive_buffer_counter[2] = {0, 0}, receive_buffer_available[2] = {0, 1};
 
-void uart_receive_callback(unsigned char* buffer, unsigned char length) {
-    DEBUG_INFO("%s", buffer)
+static uart_transmit_buffer_t *first_transmit_buffer = NULL, *tail_transmit_buffer = NULL;
+static uart_transmit_buffer_t uart_transmit_buffer[UART_TRANSMIT_BUFFER_NUM] = {0};
+
+void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+void DMA1_Channel4_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+
+void USART1_IRQHandler(void) {
+    // TODO: Receive buffer always delay 1 cycle
+    if (__builtin_expect((USART_GetITStatus(USART1, USART_IT_IDLE) != RESET), 1)) {
+        USART_ClearFlag(USART1, USART_IT_IDLE);
+        uint8_t receive_size = (UART_RECEIVE_BUFFER_SIZE / 2) - DMA1_Channel5->CNTR;
+        if (__builtin_expect((receive_size == 0), 1))
+            return;
+        if (receive_buffer_available[0] == 1) {
+            receive_buffer_counter[1] = receive_size;
+            uart_dma_receive((uint32_t*)receive_buffer1, UART_RECEIVE_BUFFER_SIZE / 2);
+            receive_buffer_available[0] = 0;
+        } else if (receive_buffer_available[1] == 1) {
+            receive_buffer_counter[0] = receive_size;
+            uart_dma_receive((uint32_t*)receive_buffer2, UART_RECEIVE_BUFFER_SIZE / 2);
+            receive_buffer_available[1] = 0;
+        }
+    }
 }
 
-void uart_transmit_kernel(const unsigned char* buffer, unsigned char length) {
-    for (unsigned char counter = 0; counter < length; ++counter) {
+void DMA1_Channel4_IRQHandler(void) {
+    if (__builtin_expect(DMA_GetITStatus(DMA1_IT_TC4) != RESET, 1)) {
+        DMA_ClearFlag(DMA1_FLAG_TC4);
+        first_transmit_buffer->length = 0;
+        if (__builtin_expect((first_transmit_buffer->next_transmit_buffer != NULL), 0))
+            uart_dma_transmit((uint32_t*)first_transmit_buffer->next_transmit_buffer->current_buffer,
+                              first_transmit_buffer->next_transmit_buffer->length);
+        first_transmit_buffer = first_transmit_buffer->next_transmit_buffer;
+    }
+}
+
+void uart_process_loop(void) {
+    if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {
+        uart_receive_callback((uint8_t*)receive_buffer1, receive_buffer_counter[0]);
+        receive_buffer_counter[0] = 0;
+        receive_buffer_available[0] = 1;
+    }
+    if (__builtin_expect((receive_buffer_counter[1] != 0), 0)) {
+        uart_receive_callback((uint8_t*)receive_buffer2, receive_buffer_counter[1]);
+        receive_buffer_counter[1] = 0;
+        receive_buffer_available[1] = 1;
+    }
+}
+
+void uart_transmit_kernel(const uint8_t* buffer, uint8_t length) {
+    for (uint8_t counter = 0; counter < length; ++counter) {
         while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET) {}
         USART_SendData(USART1, buffer[counter]);
     }
 }
 
-unsigned char uart_transmit(const unsigned char* buffer, unsigned char length) {
+uint8_t uart_transmit(const uint8_t* buffer, uint8_t length) {
     uart_transmit_buffer_t* available_buffer = NULL;
-    for (unsigned char counter = 0; counter < UART_TRANSMIT_BUFFER_NUM; ++counter)
+    for (uint8_t counter = 0; counter < UART_TRANSMIT_BUFFER_NUM; ++counter)
         if (__builtin_expect((uart_transmit_buffer[counter].length == 0), 1)) {
             available_buffer = &(uart_transmit_buffer[counter]);
             break;
@@ -35,13 +83,13 @@ unsigned char uart_transmit(const unsigned char* buffer, unsigned char length) {
         return 1;
 
     available_buffer->length = (length > UART_TRANSMIT_BUFFER_SIZE) ? UART_TRANSMIT_BUFFER_SIZE : length;
-    for (unsigned char counter = 0; counter < available_buffer->length; ++counter)
+    for (uint8_t counter = 0; counter < available_buffer->length; ++counter)
         available_buffer->current_buffer[counter] = buffer[counter];
     available_buffer->next_transmit_buffer = NULL;
 
     if (__builtin_expect((first_transmit_buffer == NULL), 1)) {
         first_transmit_buffer = available_buffer;
-        uart_dma_transmit((unsigned int*)first_transmit_buffer->current_buffer, first_transmit_buffer->length);
+        uart_dma_transmit((uint32_t*)first_transmit_buffer->current_buffer, first_transmit_buffer->length);
     } else
         tail_transmit_buffer->next_transmit_buffer = available_buffer;
     tail_transmit_buffer = available_buffer;
@@ -86,9 +134,9 @@ void usart1_config(void) {
     DMA_Cmd(DMA1_Channel5, ENABLE);
     USART_Cmd(USART1, ENABLE);
 
-    uart_dma_receive((unsigned int*)receive_buffer1, UART_RECEIVE_BUFFER_SIZE / 2);
+    uart_dma_receive((uint32_t*)receive_buffer1, UART_RECEIVE_BUFFER_SIZE / 2);
 
-    for (unsigned char counter = 0; counter < UART_TRANSMIT_BUFFER_NUM; ++counter)
+    for (uint8_t counter = 0; counter < UART_TRANSMIT_BUFFER_NUM; ++counter)
         uart_transmit_buffer[counter].length = 0;
 }
 
@@ -103,6 +151,7 @@ void usart1_config_kernel(void) {
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
+    GPIO_PinRemapConfig(GPIO_Remap_USART1, ENABLE);
 
     USART_DeInit(USART1);
     USART_InitStructure.USART_BaudRate = DEBUG_SERIAL_BAUDRATE;

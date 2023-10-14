@@ -12,6 +12,7 @@
 ////////////// Hardware //////////////
 #include "adc.h"
 #include "dma.h"
+#include "flash.h"
 #include "pwm.h"
 #include "spi.h"
 #include "timer.h"

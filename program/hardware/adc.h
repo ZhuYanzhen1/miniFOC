@@ -5,12 +5,14 @@
 #ifndef MINIFOC_HARDWARE_ADC_H_
 #define MINIFOC_HARDWARE_ADC_H_
 
+#include "stdint.h"
+
 typedef struct {
-    unsigned short ch1_offset;
-    unsigned short ch3_offset;
-    int phase1_current;
-    int phase2_current;
-    int phase3_current;
+    uint16_t ch1_offset;
+    uint16_t ch3_offset;
+    int32_t phase1_current;
+    int32_t phase2_current;
+    int32_t phase3_current;
 } adc_sample_t;
 
 void adc_start(void);

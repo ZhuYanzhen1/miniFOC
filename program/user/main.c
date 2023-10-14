@@ -2,6 +2,10 @@
 
 adc_sample_t adc_sample = {0};
 
+void uart_receive_callback(unsigned char* buffer, unsigned char length) {
+    DEBUG_INFO("%s", buffer)
+}
+
 int main(void) {
     system_config();
     dma_config();
@@ -17,18 +21,7 @@ int main(void) {
     adc_start();
 
     while (1) {
-        if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {
-            uart_receive_callback((unsigned char*)receive_buffer1, receive_buffer_counter[0]);
-            receive_buffer_counter[0] = 0;
-            receive_buffer_available[0] = 1;
-        }
-
-        if (__builtin_expect((receive_buffer_counter[1] != 0), 0)) {
-            uart_receive_callback((unsigned char*)receive_buffer2, receive_buffer_counter[1]);
-            receive_buffer_counter[1] = 0;
-            receive_buffer_available[1] = 1;
-        }
-
+        uart_process_loop();
         delayms(5);
     }
 }

@@ -5,10 +5,10 @@
 #include "spi.h"
 #include "system.h"
 
-void spi2_senddata(unsigned short data) {
+void spi2_send_data(uint16_t data) {
     SPI_I2S_ClearFlag(SPI2, SPI_I2S_FLAG_TXE);
     GPIO_ResetBits(GPIOB, GPIO_Pin_12);
-    SPI_I2S_SendData(SPI2, 0xA5A5);
+    SPI_I2S_SendData(SPI2, data);
 }
 
 void spi2_config(void) {

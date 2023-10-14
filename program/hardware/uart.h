@@ -5,9 +5,10 @@
 #ifndef MINIFOC_HARDWARE_UART_H_
 #define MINIFOC_HARDWARE_UART_H_
 
-#ifdef DEBUG
+#include "stdint.h"
 #include "stdio.h"
 
+#ifdef DEBUG
 #define DEBUG_INFO(format, ...)                                                                                     \
     {                                                                                                               \
         unsigned char tmp_transmit_buffer[UART_TRANSMIT_BUFFER_SIZE] = {0};                                         \
@@ -52,25 +53,11 @@
         uart_transmit_kernel(tmp_transmit_buffer, unLen);                                        \
     }
 
-#define UART_RECEIVE_BUFFER_SIZE 256
-#define UART_TRANSMIT_BUFFER_SIZE 32
-#define UART_TRANSMIT_BUFFER_NUM 8
-
-typedef struct UART_TRANSMIT_BUFFER_T {
-    struct UART_TRANSMIT_BUFFER_T* next_transmit_buffer;
-    unsigned char current_buffer[UART_TRANSMIT_BUFFER_SIZE];
-    unsigned char length;
-} uart_transmit_buffer_t;
-
-extern volatile unsigned char receive_buffer1[UART_RECEIVE_BUFFER_SIZE / 2];
-extern volatile unsigned char receive_buffer2[UART_RECEIVE_BUFFER_SIZE / 2];
-extern volatile unsigned char receive_buffer_counter[2], receive_buffer_available[2];
-extern uart_transmit_buffer_t* first_transmit_buffer;
-
 void usart1_config(void);
 void usart1_config_kernel(void);
-void uart_receive_callback(unsigned char* buffer, unsigned char length);
-unsigned char uart_transmit(const unsigned char* buffer, unsigned char length);
-void uart_transmit_kernel(const unsigned char* buffer, unsigned char length);
+void uart_process_loop(void);
+void uart_receive_callback(uint8_t* buffer, uint8_t length);
+uint8_t uart_transmit(const uint8_t* buffer, uint8_t length);
+void uart_transmit_kernel(const uint8_t* buffer, uint8_t length);
 
 #endif  // MINIFOC_HARDWARE_UART_H_
