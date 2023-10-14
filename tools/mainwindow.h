@@ -38,6 +38,14 @@ private slots:
     void on_angle_summax_slider_valueChanged(int value);
     void on_pid_parameter_btn_clicked();
 
+    void on_torque_kp_slider_valueChanged(int value);
+
+    void on_torque_ki_slider_valueChanged(int value);
+
+    void on_torque_kd_slider_valueChanged(int value);
+
+    void on_torque_summax_slider_valueChanged(int value);
+
 public slots:
     void serial_received();
     void slider_timer_timeout();
@@ -48,9 +56,12 @@ private:
 
     /* slider value changed variables */
     bool expect_slider_change_flag = false;
+    bool torque_slider_change_flag[4];
     bool speed_slider_change_flag[4];
     bool angle_slider_change_flag[4];
+
     float expect_slider_value = 0;
+    float torque_slider_value[4];
     float speed_slider_value[4];
     float angle_slider_value[4];
     QTimer *slider_timer;

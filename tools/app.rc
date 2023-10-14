@@ -26,7 +26,7 @@ VS_VERSION_INFO VERSIONINFO
                 VALUE "FileDescription", "AcmeEDU Teacher Side Application"
                 VALUE "ProductName", "main"
                 VALUE "FileVersion", "2.0.2"
-                VALUE "ProductVersion", "1.0.2"
+                VALUE "ProductVersion", "2.0.2"
                 VALUE "LegalCopyright", "(C) 2023 AcmeTech Co.Ltd."
                 VALUE "InternalName", "TeacherSide.exe"
                 VALUE "OriginalFilename", "TeacherSide.exe"

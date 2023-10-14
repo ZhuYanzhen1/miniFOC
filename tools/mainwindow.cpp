@@ -9,18 +9,26 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     refresh_serial_port();
     setup_custom_plot();
+
     slider_timer = new QTimer(this);
-    slider_timer->setInterval(50);
+    slider_timer->setInterval(100);
     connect(slider_timer,SIGNAL(timeout()),this,SLOT(slider_timer_timeout()));
+
     ui->mode_set_cb->addItem("Torque Control");
     ui->mode_set_cb->addItem("Speed Control");
     ui->mode_set_cb->addItem("Angle Control");
-    for (int counter = 0; counter < 4; counter++)
-        angle_slider_change_flag[counter] = false;
-    for (int counter = 0; counter < 4; counter++)
+
+    for (int counter = 0; counter < 4; counter++) {
+        torque_slider_change_flag[counter] = false;
         speed_slider_change_flag[counter] = false;
+        angle_slider_change_flag[counter] = false;
+    }
+
+    ui->custom_plot->setEnabled(false);
+    ui->torque_groupbox->setEnabled(false);
     ui->speed_groupbox->setEnabled(false);
     ui->angle_groupbox->setEnabled(false);
+    ui->pid_parameter_btn->setEnabled(false);
 }
 
 MainWindow::~MainWindow(){
@@ -32,9 +40,8 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::update_minimum_maximum_value(float value, QLabel *value_widget, QSlider *value_slider,
-                                  QTextEdit *maximum_tb, QTextEdit *minimum_tb){
+                                  QTextEdit *maximum_tb, QTextEdit *minimum_tb) {
     int32_t pow_counter = 0, maximum = 0, minimum = 0, error_value = 0, value_step = 0;
-    qDebug() << QString("value: %1").arg(value);
     if(value < 1.0 && value > -1.0f) {
         minimum = 0;
         maximum = value * 2;
@@ -83,7 +90,7 @@ void MainWindow::update_minimum_maximum_value(float value, QLabel *value_widget,
     value_slider->setValue(value_step);
 }
 
-void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *data){
+void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *data) {
     uint32_t data1, data2;
     data1 = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
     data2 = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
@@ -102,30 +109,7 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
             curve_counter = curve_counter + 1;
             break;
         case 1:
-            ui->angle_offset_lable->setText("Offset: " + QString::number(data1 >> 16));
-            ui->phase_lable->setText("Phase: " + QString::number(data1 & 0x0001));
-            if(((data1 & 0x0002) >> 1) == 0x01) {
-                QPalette pe;
-                ui->foc_available_lable->setText("FOC Available");
-                pe.setColor(QPalette::WindowText, Qt::green);
-                ui->foc_available_lable->setPalette(pe);
-            } else {
-                QPalette pe;
-                ui->foc_available_lable->setText("FOC Unavailable");
-                pe.setColor(QPalette::WindowText, Qt::red);
-                ui->foc_available_lable->setPalette(pe);
-            }
-            if(((data1 & 0x0004) >> 2) == 0x01) {
-                QPalette pe;
-                ui->pid_available_lable->setText("PID Available");
-                pe.setColor(QPalette::WindowText, Qt::green);
-                ui->pid_available_lable->setPalette(pe);
-            } else {
-                QPalette pe;
-                ui->pid_available_lable->setText("PID Unavailable");
-                pe.setColor(QPalette::WindowText, Qt::red);
-                ui->pid_available_lable->setPalette(pe);
-            }
+
             update_minimum_maximum_value((*((float *)(&data2))), ui->slider_current_value,
                                          ui->user_expect_slider, ui->slider_maximum_value, ui->slider_minimum_value);
             break;
@@ -158,26 +142,28 @@ void MainWindow::mdtp_callback_handler(unsigned char pid, const unsigned char *d
     }
 }
 
-void MainWindow::on_open_btn_clicked(){
-    if(serial->isOpen() == false){
-        if(set_serial_badurate() == true) {
-            unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-            serial->open(QSerialPort::ReadWrite);
-            connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
-            ui->open_btn->setText("Close");
-            ui->serial_port_cb->setEnabled(false);
-            ui->serial_baudrate_txt->setEnabled(false);
-            ui->calibrate_btn->setEnabled(true);
-            ui->start_stop_btn->setEnabled(true);
-            ui->mode_set_cb->setEnabled(true);
-            slider_timer->start();
-            buffer[0] = 0xC3;
-            mdtp_data_transmit(0x00, buffer);
-            ui->speed_groupbox->setEnabled(true);
-            ui->angle_groupbox->setEnabled(true);
-            ui->pid_parameter_btn->setEnabled(true);
-        }
-    }else {
+void MainWindow::on_open_btn_clicked() {
+    if(serial->isOpen() == false) {
+        if(set_serial_badurate() == false)
+            return;
+        unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+        serial->open(QSerialPort::ReadWrite);
+        connect(serial,SIGNAL(readyRead()),this,SLOT(serial_received()));
+        ui->open_btn->setText("Close");
+        ui->serial_port_cb->setEnabled(false);
+        ui->serial_baudrate_txt->setEnabled(false);
+        ui->calibrate_btn->setEnabled(true);
+        ui->start_stop_btn->setEnabled(true);
+        ui->mode_set_cb->setEnabled(true);
+        slider_timer->start();
+        buffer[0] = 0xC3;
+        mdtp_data_transmit(0x00, buffer);
+        ui->torque_groupbox->setEnabled(true);
+        ui->speed_groupbox->setEnabled(true);
+        ui->angle_groupbox->setEnabled(true);
+        ui->pid_parameter_btn->setEnabled(true);
+        ui->custom_plot->setEnabled(true);
+    } else {
         serial->close();
         ui->open_btn->setText("Open");
         ui->mode_set_cb->setEnabled(false);
@@ -186,9 +172,11 @@ void MainWindow::on_open_btn_clicked(){
         ui->serial_port_cb->setEnabled(true);
         ui->serial_baudrate_txt->setEnabled(true);
         slider_timer->stop();
+        ui->torque_groupbox->setEnabled(false);
         ui->speed_groupbox->setEnabled(false);
         ui->angle_groupbox->setEnabled(false);
         ui->pid_parameter_btn->setEnabled(false);
+        ui->custom_plot->setEnabled(false);
     }
 }
 
@@ -237,9 +225,39 @@ void MainWindow::on_refresh_btn_clicked(){
 }
 
 /* slider value changed functions */
+void MainWindow::on_torque_kp_slider_valueChanged(int value) {
+    float maximum = ui->torque_kp_maximum->toPlainText().toFloat();
+    float minimum = ui->torque_kp_minimum->toPlainText().toFloat();
+    torque_slider_change_flag[0] = true;
+    torque_slider_value[0] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->torque_kp_value->setText(QString::number(torque_slider_value[0], 10, 2));
+}
 
-void MainWindow::on_speed_kp_slider_valueChanged(int value)
-{
+void MainWindow::on_torque_ki_slider_valueChanged(int value) {
+    float maximum = ui->torque_ki_maximum->toPlainText().toFloat();
+    float minimum = ui->torque_ki_minimum->toPlainText().toFloat();
+    torque_slider_change_flag[1] = true;
+    torque_slider_value[1] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->torque_ki_value->setText(QString::number(torque_slider_value[1], 10, 2));
+}
+
+void MainWindow::on_torque_kd_slider_valueChanged(int value) {
+    float maximum = ui->torque_kd_maximum->toPlainText().toFloat();
+    float minimum = ui->torque_kd_minimum->toPlainText().toFloat();
+    torque_slider_change_flag[2] = true;
+    torque_slider_value[2] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->torque_kd_value->setText(QString::number(torque_slider_value[2], 10, 2));
+}
+
+void MainWindow::on_torque_summax_slider_valueChanged(int value) {
+    float maximum = ui->torque_summax_maximum->toPlainText().toFloat();
+    float minimum = ui->torque_summax_minimum->toPlainText().toFloat();
+    torque_slider_change_flag[3] = true;
+    torque_slider_value[3] = (maximum - minimum) * (value / 10000.0f) + minimum;
+    ui->torque_summax_value->setText(QString::number(torque_slider_value[3], 10, 2));
+}
+
+void MainWindow::on_speed_kp_slider_valueChanged(int value) {
     float maximum = ui->speed_kp_maximum->toPlainText().toFloat();
     float minimum = ui->speed_kp_minimum->toPlainText().toFloat();
     speed_slider_change_flag[0] = true;
@@ -247,7 +265,7 @@ void MainWindow::on_speed_kp_slider_valueChanged(int value)
     ui->speed_kp_value->setText(QString::number(speed_slider_value[0], 10, 2));
 }
 
-void MainWindow::on_speed_ki_slider_valueChanged(int value){
+void MainWindow::on_speed_ki_slider_valueChanged(int value) {
     float maximum = ui->speed_ki_maximum->toPlainText().toFloat();
     float minimum = ui->speed_ki_minimum->toPlainText().toFloat();
     speed_slider_change_flag[1] = true;
@@ -255,7 +273,7 @@ void MainWindow::on_speed_ki_slider_valueChanged(int value){
     ui->speed_ki_value->setText(QString::number(speed_slider_value[1], 10, 2));
 }
 
-void MainWindow::on_speed_kd_slider_valueChanged(int value){
+void MainWindow::on_speed_kd_slider_valueChanged(int value) {
     float maximum = ui->speed_kd_maximum->toPlainText().toFloat();
     float minimum = ui->speed_kd_minimum->toPlainText().toFloat();
     speed_slider_change_flag[2] = true;
@@ -263,7 +281,7 @@ void MainWindow::on_speed_kd_slider_valueChanged(int value){
     ui->speed_kd_value->setText(QString::number(speed_slider_value[2], 10, 2));
 }
 
-void MainWindow::on_speed_summax_slider_valueChanged(int value){
+void MainWindow::on_speed_summax_slider_valueChanged(int value) {
     float maximum = ui->speed_summax_maximum->toPlainText().toFloat();
     float minimum = ui->speed_summax_minimum->toPlainText().toFloat();
     speed_slider_change_flag[3] = true;
@@ -272,7 +290,7 @@ void MainWindow::on_speed_summax_slider_valueChanged(int value){
 }
 
 
-void MainWindow::on_angle_kp_slider_valueChanged(int value){
+void MainWindow::on_angle_kp_slider_valueChanged(int value) {
     float maximum = ui->angle_kp_maximum->toPlainText().toFloat();
     float minimum = ui->angle_kp_minimum->toPlainText().toFloat();
     angle_slider_change_flag[0] = true;
@@ -280,7 +298,7 @@ void MainWindow::on_angle_kp_slider_valueChanged(int value){
     ui->angle_kp_value->setText(QString::number(angle_slider_value[0], 10, 2));
 }
 
-void MainWindow::on_angle_ki_slider_valueChanged(int value){
+void MainWindow::on_angle_ki_slider_valueChanged(int value) {
     float maximum = ui->angle_ki_maximum->toPlainText().toFloat();
     float minimum = ui->angle_ki_minimum->toPlainText().toFloat();
     angle_slider_change_flag[1] = true;
@@ -288,7 +306,7 @@ void MainWindow::on_angle_ki_slider_valueChanged(int value){
     ui->angle_ki_value->setText(QString::number(angle_slider_value[1], 10, 2));
 }
 
-void MainWindow::on_angle_kd_slider_valueChanged(int value){
+void MainWindow::on_angle_kd_slider_valueChanged(int value) {
     float maximum = ui->angle_kd_maximum->toPlainText().toFloat();
     float minimum = ui->angle_kd_minimum->toPlainText().toFloat();
     angle_slider_change_flag[2] = true;
@@ -296,7 +314,7 @@ void MainWindow::on_angle_kd_slider_valueChanged(int value){
     ui->angle_kd_value->setText(QString::number(angle_slider_value[2], 10, 2));
 }
 
-void MainWindow::on_angle_summax_slider_valueChanged(int value){
+void MainWindow::on_angle_summax_slider_valueChanged(int value) {
     float maximum = ui->angle_summax_maximum->toPlainText().toFloat();
     float minimum = ui->angle_summax_minimum->toPlainText().toFloat();
     angle_slider_change_flag[3] = true;
@@ -304,7 +322,7 @@ void MainWindow::on_angle_summax_slider_valueChanged(int value){
     ui->angle_summax_value->setText(QString::number(angle_slider_value[3], 10, 2));
 }
 
-void MainWindow::on_user_expect_slider_valueChanged(int value){
+void MainWindow::on_user_expect_slider_valueChanged(int value) {
     float maximum = ui->slider_maximum_value->toPlainText().toFloat();
     float minimum = ui->slider_minimum_value->toPlainText().toFloat();
     expect_slider_change_flag = true;
@@ -314,7 +332,7 @@ void MainWindow::on_user_expect_slider_valueChanged(int value){
 
 /* some functions related to timer interrupt */
 
-void MainWindow::slider_timer_timeout(){
+void MainWindow::slider_timer_timeout() {
     unsigned char buffer[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     unsigned int uintp32 = 0x00000000UL;
     if(expect_slider_change_flag == true){
@@ -325,7 +343,16 @@ void MainWindow::slider_timer_timeout(){
     }
 
     for (int counter = 0; counter < 4; counter++) {
-        if(speed_slider_change_flag[counter] != false){
+        if(torque_slider_change_flag[counter] != false) {
+            buffer[0] = ((4 + counter) << 4) | ((~(4 + counter)) & 0x0f);
+            uintp32 = (*((unsigned int *) (&torque_slider_value[counter])));
+            torque_slider_change_flag[counter] = false;
+            goto mdtp_sendpackage;
+        }
+    }
+
+    for (int counter = 0; counter < 4; counter++) {
+        if(speed_slider_change_flag[counter] != false) {
             buffer[0] = ((4 + counter) << 4) | ((~(4 + counter)) & 0x0f);
             uintp32 = (*((unsigned int *) (&speed_slider_value[counter])));
             speed_slider_change_flag[counter] = false;
@@ -334,7 +361,7 @@ void MainWindow::slider_timer_timeout(){
     }
 
     for (int counter = 0; counter < 4; counter++) {
-        if(angle_slider_change_flag[counter] != false){
+        if(angle_slider_change_flag[counter] != false) {
             buffer[0] = ((8 + counter) << 4) | ((~(8 + counter)) & 0x0f);
             uintp32 = (*((unsigned int *) (&angle_slider_value[counter])));
             angle_slider_change_flag[counter] = false;
@@ -382,18 +409,18 @@ void MainWindow::setup_custom_plot(){
 /* some functions related to serial port control */
 
 bool MainWindow::set_serial_badurate(){
-    if(ui->serial_port_cb->currentText() == NULL || ui->serial_baudrate_txt->toPlainText() == NULL){
+    if(ui->serial_port_cb->currentText() == NULL || ui->serial_baudrate_txt->toPlainText() == NULL) {
         QMessageBox::information(NULL, "Error", "Please select port number and baudrate first!");
         return false;
-    } else{
-        serial->setPortName(ui->serial_port_cb->currentText());
-        serial->setBaudRate(ui->serial_baudrate_txt->toPlainText().toInt());
-        serial->setDataBits(QSerialPort::Data8);
-        serial->setFlowControl(QSerialPort::NoFlowControl);
-        serial->setParity(QSerialPort::NoParity);
-        serial->setStopBits(QSerialPort::OneStop);
-        return true;
     }
+
+    serial->setPortName(ui->serial_port_cb->currentText());
+    serial->setBaudRate(ui->serial_baudrate_txt->toPlainText().toInt());
+    serial->setDataBits(QSerialPort::Data8);
+    serial->setFlowControl(QSerialPort::NoFlowControl);
+    serial->setParity(QSerialPort::NoParity);
+    serial->setStopBits(QSerialPort::OneStop);
+    return true;
 }
 
 void MainWindow::refresh_serial_port(){
