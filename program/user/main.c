@@ -10,8 +10,8 @@ int main(void) {
     system_config();
     dma_config();
     usart1_config();
+    adc_config(&adc_sample);
     pwm_config();
-    adc_config();
     timer3_config();
     spi2_config();
 
@@ -22,6 +22,5 @@ int main(void) {
 
     while (1) {
         uart_process_loop();
-        delayms(5);
     }
 }

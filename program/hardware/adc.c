@@ -14,7 +14,16 @@ void adc_start(void) {
     ADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_T1_CC4);
 }
 
-void adc_config(void) {
+int16_t get_adc_calibrate(int16_t adc_offset, int16_t data) {
+    int16_t adc_result = (int16_t)(adc_offset + data);
+    if (__builtin_expect((adc_result < 0), 0))
+        return 0;
+    if (__builtin_expect((adc_result > 4095), 0))
+        return 4095;
+    return adc_result;
+}
+
+void adc_config(adc_sample_t* adc_sample) {
     ADC_InitTypeDef ADC_InitStructure = {0};
     GPIO_InitTypeDef GPIO_InitStructure = {0};
     TIM_OCInitTypeDef Timer_OCInitStructure = {0};
@@ -59,6 +68,25 @@ void adc_config(void) {
     while (ADC_GetResetCalibrationStatus(ADC1)) {}
     ADC_StartCalibration(ADC1);
     while (ADC_GetCalibrationStatus(ADC1)) {}
+    adc_sample->adc1_offset = Get_CalibrationValue(ADC1);
+
+    //    ADC_DeInit(ADC2);
+    //    ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+    //    ADC_InitStructure.ADC_ScanConvMode = DISABLE;
+    //    ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
+    //    ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+    //    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+    //    ADC_InitStructure.ADC_NbrOfChannel = 1;
+    //    ADC_Init(ADC2, &ADC_InitStructure);
+    //
+    //    ADC_RegularChannelConfig(ADC2, ADC_Channel_TempSensor, 1, ADC_SampleTime_239Cycles5);
+    //    ADC_Cmd(ADC2, ENABLE);
+    //
+    //    ADC_BufferCmd(ADC2, DISABLE);
+    //    adc_sample->adc2_offset = Get_CalibrationValue(ADC2);
+    //    ADC_BufferCmd(ADC2, ENABLE);
+    //
+    //    ADC_TempSensorVrefintCmd(ENABLE);
 
     NVIC_InitStructure.NVIC_IRQChannel = ADC_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
@@ -93,6 +121,8 @@ void adc_read_offset(adc_sample_t* adc_sample) {
 
         adc_sample->ch1_offset += ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1) & 0x0FFF;
         adc_sample->ch3_offset += ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_2) & 0x0FFF;
+        adc_sample->ch1_offset += adc_sample->adc1_offset;
+        adc_sample->ch3_offset += adc_sample->adc1_offset;
 
         ADC_ClearFlag(ADC1, ADC_FLAG_JEOC);
         ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
@@ -107,8 +137,9 @@ void adc_read_offset(adc_sample_t* adc_sample) {
 }
 
 void read_adc_current(adc_sample_t* adc_sample) {
-    short adc_channel_6 = ADC1->IDATAR1 & 0x0FFF, adc_channel_7 = ADC1->IDATAR2 & 0x0FFF;
-    adc_sample->phase1_current = (adc_channel_6 - (short)adc_sample->ch1_offset);
-    adc_sample->phase3_current = (adc_channel_7 - (short)adc_sample->ch3_offset);
+    int16_t adc_channel_6 = get_adc_calibrate(adc_sample->adc1_offset, ADC1->IDATAR1 & 0x0FFF);
+    int16_t adc_channel_7 = get_adc_calibrate(adc_sample->adc1_offset, ADC1->IDATAR2 & 0x0FFF);
+    adc_sample->phase1_current = (adc_channel_6 - (int16_t)adc_sample->ch1_offset);
+    adc_sample->phase3_current = (adc_channel_7 - (int16_t)adc_sample->ch3_offset);
     adc_sample->phase2_current = -(adc_sample->phase1_current + adc_sample->phase3_current);
 }
