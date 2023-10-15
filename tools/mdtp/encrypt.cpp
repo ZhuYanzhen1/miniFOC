@@ -29,7 +29,7 @@ void MainWindow::mdtp_data_transmit(unsigned char pid, const unsigned char *data
     /* judge whether adjust frame is 0xAA */
     if (temp_buf[10] == 0xAA) {
         temp_buf[10] = 0x80;
-        temp_buf[2] = 0xA5;
+        temp_buf[9] = 0xA5;
     }
     /* load self checking packet id byte */
     temp_buf[1] = pid << 4 | ((~pid) & 0x0f);

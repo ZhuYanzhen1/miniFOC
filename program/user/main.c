@@ -2,8 +2,10 @@
 
 adc_sample_t adc_sample = {0};
 
-void uart_receive_callback(unsigned char* buffer, unsigned char length) {
-    DEBUG_INFO("%s", buffer)
+void mdtp_callback_handler(uint8_t pid, uint8_t* buffer) {
+    DEBUG_INFO("Rcv pid: %d\r\n", pid)
+    DEBUG_INFO("%02x %02x %02x %02x %02x %02x %02x %02x\r\n", buffer[0], buffer[1], buffer[2], buffer[3], buffer[4],
+               buffer[5], buffer[6], buffer[7])
 }
 
 int main(void) {

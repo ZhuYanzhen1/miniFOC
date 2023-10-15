@@ -58,19 +58,18 @@ void MainWindow::mdtp_receive_handler(unsigned char data) {
                 if ((mdtp_receive_data_buffer[0] >> 4) == (~mdtp_receive_data_buffer[0] & 0x0f)) {
                     unsigned char tmp_rcv_buffer[8], counter = 0;
                     /* judge whether the adjust frame is all 0xAA */
-                    if (mdtp_receive_data_buffer[1] == 0xA5 && mdtp_receive_data_buffer[9] == 0x80)
+                    if (mdtp_receive_data_buffer[8] == 0xA5 && mdtp_receive_data_buffer[9] == 0x80)
                         /* set adjust frame to with 0xAA */
                         mdtp_receive_data_buffer[9] = 0xAA;
-                    else {
-                        /* traverse the data byte to be adjusted */
-                        for (counter = 0; counter < 8; ++counter)
-                            /* judge whether the adjustment bit is 1 */
-                            if (((mdtp_receive_data_buffer[9] >> counter) & 0x01) == 0x01)
-                                /* fill the data byte with 0xAA */
-                                tmp_rcv_buffer[counter] = 0xAA;
-                            else
-                                /* copy data directly to the receiving array */
-                                tmp_rcv_buffer[counter] = mdtp_receive_data_buffer[counter + 1];
+                    /* traverse the data byte to be adjusted */
+                    for (counter = 0; counter < 8; ++counter) {
+                        /* judge whether the adjustment bit is 1 */
+                        if (((mdtp_receive_data_buffer[9] >> counter) & 0x01) == 0x01)
+                            /* fill the data byte with 0xAA */
+                            tmp_rcv_buffer[counter] = 0xAA;
+                        else
+                            /* copy data directly to the receiving array */
+                            tmp_rcv_buffer[counter] = mdtp_receive_data_buffer[counter + 1];
                     }
                     /* call user callback function to complete the next step */
                     mdtp_callback_handler(mdtp_receive_data_buffer[0] >> 4, tmp_rcv_buffer);

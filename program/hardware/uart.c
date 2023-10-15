@@ -8,10 +8,11 @@
 
 typedef struct UART_TRANSMIT_BUFFER_T {
     struct UART_TRANSMIT_BUFFER_T* next_transmit_buffer;
-    uint8_t current_buffer[UART_TRANSMIT_BUFFER_SIZE];
+    volatile uint8_t current_buffer[UART_TRANSMIT_BUFFER_SIZE];
     uint8_t length;
 } uart_transmit_buffer_t;
 
+static volatile uint32_t dummy_read_byte = 0x00000000UL;
 static volatile uint8_t receive_buffer1[UART_RECEIVE_BUFFER_SIZE / 2] = {0};
 static volatile uint8_t receive_buffer2[UART_RECEIVE_BUFFER_SIZE / 2] = {0};
 static uint8_t receive_buffer_counter[2] = {0, 0}, receive_buffer_available[2] = {0, 1};
@@ -23,12 +24,9 @@ void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void DMA1_Channel4_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
 void USART1_IRQHandler(void) {
-    // TODO: Receive buffer always delay 1 cycle
     if (__builtin_expect((USART_GetITStatus(USART1, USART_IT_IDLE) != RESET), 1)) {
-        USART_ClearFlag(USART1, USART_IT_IDLE);
+        dummy_read_byte = USART1->DATAR;
         uint8_t receive_size = (UART_RECEIVE_BUFFER_SIZE / 2) - DMA1_Channel5->CNTR;
-        if (__builtin_expect((receive_size == 0), 1))
-            return;
         if (receive_buffer_available[0] == 1) {
             receive_buffer_counter[1] = receive_size;
             uart_dma_receive((uint32_t*)receive_buffer1, UART_RECEIVE_BUFFER_SIZE / 2);
@@ -51,6 +49,8 @@ void DMA1_Channel4_IRQHandler(void) {
         first_transmit_buffer = first_transmit_buffer->next_transmit_buffer;
     }
 }
+
+void __attribute__((weak)) uart_receive_callback(const uint8_t* buffer, uint8_t length) {}
 
 void uart_process_loop(void) {
     if (__builtin_expect((receive_buffer_counter[0] != 0), 0)) {
