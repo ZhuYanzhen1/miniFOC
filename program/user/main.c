@@ -23,6 +23,8 @@ int main(void) {
     adc_start();
 
     while (1) {
+        spi2_send_data(0x0000);
         uart_process_loop();
+        delayms(200);
     }
 }

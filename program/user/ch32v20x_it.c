@@ -18,8 +18,9 @@ void SPI2_IRQHandler(void) {
     if (__builtin_expect((SPI_I2S_GetITStatus(SPI2, SPI_I2S_IT_RXNE) != RESET), 1)) {
         GPIO_SetBits(GPIOB, GPIO_Pin_12);
         SPI_I2S_ClearFlag(SPI2, SPI_I2S_FLAG_RXNE);
-        SPI_I2S_ReceiveData(SPI2);
+        uint16_t data = SPI_I2S_ReceiveData(SPI2);
         SPI_I2S_ClearITPendingBit(SPI2, SPI_I2S_IT_RXNE);
+        current_encoder_angle = ((data & 0x7FFF) >> 1);
     }
 }
 

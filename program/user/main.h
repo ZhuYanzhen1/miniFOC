@@ -19,6 +19,7 @@
 #include "uart.h"
 
 ////////////// Algorithm //////////////
+#include "encoder.h"
 #include "fast_math.h"
 #include "transform.h"
 
