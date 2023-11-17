@@ -21,6 +21,7 @@
 ////////////// Algorithm //////////////
 #include "encoder.h"
 #include "fast_math.h"
+#include "foc.h"
 #include "transform.h"
 
 #endif  // MINIFOC_USER_MAIN_H_

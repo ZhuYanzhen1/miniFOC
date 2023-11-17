@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 
-extern uint16_t current_encoder_angle;
+void encoder_zeroing(void);
+void update_encoder_angle(uint16_t current_encoder_angle);
 
 #endif  //MINIFOC_ALGORITHM_ENCODER_H_

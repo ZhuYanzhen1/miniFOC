@@ -29,6 +29,7 @@ extern "C" {
 * Return         : 返回转换后的IQ格式数，与GLOBAL_Q指定的IQ格式相同
 *******************************************************************************/
 #define IQ(A) ((int32_t)((A) * (1 << GLOBAL_Q)))
+#define IQ16(A) ((int32_t)((A) * (1 << 16)))
 
 /*******************************************************************************
 * Function Name  : IQtoF
@@ -37,6 +38,7 @@ extern "C" {
 * Return         : 转换后的float类型的数据
 *******************************************************************************/
 #define IQtoF(A) ((float)A / (float)(1 << GLOBAL_Q))
+#define IQ16toF(A) ((float)A / (float)(1 << 16))
 
 /*******************************************************************************
 * Function Name  : IQtoD
@@ -45,6 +47,7 @@ extern "C" {
 * Return         : 转换后的double类型的数据
 *******************************************************************************/
 #define IQtoD(A) ((double)A / (double)(1 << GLOBAL_Q))
+#define IQ16toD(A) ((double)A / (double)(1 << 16))
 
 #define IQsat(A, Pos, Neg) (((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
 
@@ -288,6 +291,7 @@ extern "C" {
 #define IQ1toIQ(A) ((int32_t)(A) << (GLOBAL_Q - 1))
 
 #define IQmul(A, B) ((int32_t)(((int64_t)A * (int64_t)B) >> GLOBAL_Q))
+#define IQ16mul(A, B) ((int32_t)(((int64_t)A * (int64_t)B) >> 16))
 /*******************************************************************************
 * Function Name  : IQdiv
 * Description    : IQ格式数的除法运算:A/B
